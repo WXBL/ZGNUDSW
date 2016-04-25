@@ -1,23 +1,30 @@
 {
-  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "71A959E54F628149E763838E4E9AB8C0C4FA8840",
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "675E58A1D99B7FD40779A6E419CC5A4F12028E34",
   "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
     "e92f5974-3737-1049-a30f-f3b5e46b8ef1++3880" : {
 
     }
   },
   "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "e92f5974-3737-1049-a30f-f3b5e46b8ef1++3880" : 0,
     "71A959E54F628149E763838E4E9AB8C0C4FA8840" : 0,
-    "e92f5974-3737-1049-a30f-f3b5e46b8ef1++3880" : 0
+    "675E58A1D99B7FD40779A6E419CC5A4F12028E34" : 0
   },
   "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "AF4F434D-1CE8-4681-9DE8-3E7EF2AF8ED8",
   "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "e92f5974-3737-1049-a30f-f3b5e46b8ef1++3880" : "WST-ZGNCDSW\/ZGNCDSW\/ZGNCDSW\/Framework\/JsonFramework\/",
     "71A959E54F628149E763838E4E9AB8C0C4FA8840" : "WST-ZGNCDSW\/",
-    "e92f5974-3737-1049-a30f-f3b5e46b8ef1++3880" : "WST-ZGNCDSW\/ZGNCDSW\/ZGNCDSW\/Framework\/JsonFramework\/"
+    "675E58A1D99B7FD40779A6E419CC5A4F12028E34" : "ZGNUDSW\/"
   },
   "DVTSourceControlWorkspaceBlueprintNameKey" : "ZGNCDSW",
   "DVTSourceControlWorkspaceBlueprintVersion" : 204,
   "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "ZGNCDSW\/ZGNCDSW.xcodeproj",
   "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/WXBL\/ZGNUDSW.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "675E58A1D99B7FD40779A6E419CC5A4F12028E34"
+    },
     {
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/zhxOoO\/WST-ZGNCDSW.git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",

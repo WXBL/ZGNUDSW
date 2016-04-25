@@ -76,6 +76,9 @@
 		8FA39E071CCE0CA70034C622 /* validateTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FA39E041CCE0CA70034C622 /* validateTest.m */; };
 		8FA39E0D1CCE0FFF0034C622 /* NetWork.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FA39E0C1CCE0FFF0034C622 /* NetWork.m */; };
 		8FA39E101CCE10400034C622 /* WXUserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FA39E0F1CCE10400034C622 /* WXUserModel.m */; };
+		8FA39E141CCE29F30034C622 /* WXProductModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FA39E131CCE29F30034C622 /* WXProductModel.m */; };
+		8FA39E171CCE2D420034C622 /* WXOrderModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FA39E161CCE2D420034C622 /* WXOrderModel.m */; };
+		8FA39E1B1CCE32710034C622 /* WXMessageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FA39E1A1CCE32710034C622 /* WXMessageModel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -244,6 +247,12 @@
 		8FA39E0C1CCE0FFF0034C622 /* NetWork.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetWork.m; sourceTree = "<group>"; };
 		8FA39E0E1CCE10400034C622 /* WXUserModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXUserModel.h; sourceTree = "<group>"; };
 		8FA39E0F1CCE10400034C622 /* WXUserModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXUserModel.m; sourceTree = "<group>"; };
+		8FA39E121CCE29F30034C622 /* WXProductModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXProductModel.h; sourceTree = "<group>"; };
+		8FA39E131CCE29F30034C622 /* WXProductModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXProductModel.m; sourceTree = "<group>"; };
+		8FA39E151CCE2D420034C622 /* WXOrderModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXOrderModel.h; sourceTree = "<group>"; };
+		8FA39E161CCE2D420034C622 /* WXOrderModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXOrderModel.m; sourceTree = "<group>"; };
+		8FA39E191CCE32710034C622 /* WXMessageModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXMessageModel.h; sourceTree = "<group>"; };
+		8FA39E1A1CCE32710034C622 /* WXMessageModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXMessageModel.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -638,6 +647,12 @@
 			children = (
 				8FA39E0E1CCE10400034C622 /* WXUserModel.h */,
 				8FA39E0F1CCE10400034C622 /* WXUserModel.m */,
+				8FA39E121CCE29F30034C622 /* WXProductModel.h */,
+				8FA39E131CCE29F30034C622 /* WXProductModel.m */,
+				8FA39E151CCE2D420034C622 /* WXOrderModel.h */,
+				8FA39E161CCE2D420034C622 /* WXOrderModel.m */,
+				8FA39E191CCE32710034C622 /* WXMessageModel.h */,
+				8FA39E1A1CCE32710034C622 /* WXMessageModel.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -803,6 +818,8 @@
 				8FA39E0D1CCE0FFF0034C622 /* NetWork.m in Sources */,
 				8FA39DF41CCE0C0B0034C622 /* MJRefreshBaseView.m in Sources */,
 				8FA39DF51CCE0C0B0034C622 /* MJRefreshFooterView.m in Sources */,
+				8FA39E171CCE2D420034C622 /* WXOrderModel.m in Sources */,
+				8FA39E1B1CCE32710034C622 /* WXMessageModel.m in Sources */,
 				8FA39DE71CCE0C0B0034C622 /* qrinput.c in Sources */,
 				8FA39DD51CCE0C0B0034C622 /* SBJsonStreamParserAccumulator.m in Sources */,
 				8FA39DF21CCE0C0B0034C622 /* MBProgressHUD.m in Sources */,
@@ -819,6 +836,7 @@
 				8FA39DDF1CCE0C0B0034C622 /* SDRefreshFooterView.m in Sources */,
 				8FA39DF61CCE0C0B0034C622 /* MJRefreshHeaderView.m in Sources */,
 				8FA39DD71CCE0C0B0034C622 /* SBJsonStreamParserState.m in Sources */,
+				8FA39E141CCE29F30034C622 /* WXProductModel.m in Sources */,
 				8FA39E101CCE10400034C622 /* WXUserModel.m in Sources */,
 				8FA39DC71CCE0C0B0034C622 /* AFHTTPRequestOperation.m in Sources */,
 				8FA39DE51CCE0C0B0034C622 /* QRCodeGenerator.m in Sources */,
