@@ -1,0 +1,32 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "71A959E54F628149E763838E4E9AB8C0C4FA8840",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+    "e92f5974-3737-1049-a30f-f3b5e46b8ef1++3880" : {
+
+    }
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "71A959E54F628149E763838E4E9AB8C0C4FA8840" : 0,
+    "e92f5974-3737-1049-a30f-f3b5e46b8ef1++3880" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "AF4F434D-1CE8-4681-9DE8-3E7EF2AF8ED8",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "71A959E54F628149E763838E4E9AB8C0C4FA8840" : "WST-ZGNCDSW\/",
+    "e92f5974-3737-1049-a30f-f3b5e46b8ef1++3880" : "WST-ZGNCDSW\/ZGNCDSW\/ZGNCDSW\/Framework\/JsonFramework\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "ZGNCDSW",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "ZGNCDSW\/ZGNCDSW.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/zhxOoO\/WST-ZGNCDSW.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "71A959E54F628149E763838E4E9AB8C0C4FA8840"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "http:\/\/192.168.1.201:8081\/svn\/eTicket",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Subversion",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "e92f5974-3737-1049-a30f-f3b5e46b8ef1++3880"
+    }
+  ]
+}
