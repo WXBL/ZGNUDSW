@@ -1,15 +1,13 @@
 //
-//  ViewController.h
+//  WXNewsController.h
 //  ZGNCDSW
 //
-//  Created by Macx on 16/4/18.
+//  Created by admin on 16/4/25.
 //  Copyright © 2016年 Macx. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
-
+@interface WXNewsController : UIViewController
 
 @end
-
