@@ -9,8 +9,9 @@
 #import <Foundation/Foundation.h>
 
 @interface WXUserModel : NSObject
-@property(strong,nonatomic)NSString *UserID;
+@property(assign)int  UserID;
 @property(strong,nonatomic)NSString *UserName;
+<<<<<<< HEAD
 @property(strong,nonatomic)NSString *Password;
 @property(strong,nonatomic)NSString *Tel;
 @property(strong,nonatomic)NSString *Age;
@@ -28,4 +29,6 @@
 
 -(id)getUserDataWithDictionaryJSON:(NSDictionary *)dict;
 -(id)getUserDataWithArrayJSON:(NSArray *)array;
+=======
+>>>>>>> origin/master
 @end

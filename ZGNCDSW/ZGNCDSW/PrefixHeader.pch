@@ -1,0 +1,29 @@
+//
+//  PrefixHeader.pch
+//  ZGNCDSW
+//
+//  Created by admin on 16/4/25.
+//  Copyright © 2016年 Macx. All rights reserved.
+//
+
+#ifndef PrefixHeader_pch
+#define PrefixHeader_pch
+
+
+//屏幕宽高
+#define screenWidth [[UIScreen mainScreen] bounds].size.width
+#define screenHeigth [[UIScreen mainScreen] bounds].size.height
+
+
+//app主窗口
+#define WXKeyWindow [UIApplication sharedApplication].keyWindow
+
+
+// 通知
+#define WXPageNumberDidChangeNotification               @"WXPageNumberDidChange"
+#define WXCurrentPageDidChangeNotification              @"WXCurrentPageDidChange"
+#define WXSelectedProductCountDidChangeNotification     @"WXSelectedProductCountDidChange"
+#define WXProductInfoDidRecievedNotification            @"WXProductInfoDidRecieved"
+#define WXProductBuyCountDidChangeNotification          @"WXProductBuyCountDidChange"
+
+#endif /* PrefixHeader_pch */
