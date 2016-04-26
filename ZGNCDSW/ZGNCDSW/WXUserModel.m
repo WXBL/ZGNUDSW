@@ -9,7 +9,7 @@
 #import "WXUserModel.h"
 
 @implementation WXUserModel
-<<<<<<< HEAD
+
 -(id)getUserDataWithDictionaryJSON:(NSDictionary *)dict{
     if (dict) {
         WXUserModel *model=[[WXUserModel alloc] init];
@@ -41,7 +41,5 @@
     }
     return nil;
 }
-=======
 
->>>>>>> origin/master
 @end
