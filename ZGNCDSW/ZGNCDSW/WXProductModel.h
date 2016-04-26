@@ -17,6 +17,7 @@
 @property(strong,nonatomic)NSString *Goods_Average;
 @property(strong,nonatomic)NSString *Goods_last_time;
 @property(strong,nonatomic)NSString *Merchant_ID;
+
 @property(strong,nonatomic)NSString *Goods_Tyoe_ID;
 @property(strong,nonatomic)NSString *Goods_Pubilsh_time;
 

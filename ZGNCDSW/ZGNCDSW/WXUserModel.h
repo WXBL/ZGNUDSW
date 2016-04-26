@@ -23,6 +23,8 @@
 @property(strong,nonatomic)NSString *Now_address;
 @property(strong,nonatomic)NSString *Note;
 @property(strong,nonatomic)NSString *Level_ID;
+@property(strong,nonatomic)NSString *Rank_Content;
+
 
 -(id)getUserDataWithDictionaryJSON:(NSDictionary *)dict;
 -(id)getUserDataWithArrayJSON:(NSArray *)array;

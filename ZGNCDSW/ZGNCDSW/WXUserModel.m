@@ -26,6 +26,7 @@
         model.Now_address=(dict[@"Now_address"]==[NSNull null])?@"":dict[@"Now_address"];
         model.Note=(dict[@"Note"]==[NSNull null])?@"":dict[@"Note"];
         model.Level_ID=[((NSNumber *)dict[@"Level_ID"]) stringValue];
+        model.Rank_Content=(dict[@"Rank_Content"]==[NSNull null])?@"":dict[@"Rank_Content"];
         return  model;
     }
     return nil;
