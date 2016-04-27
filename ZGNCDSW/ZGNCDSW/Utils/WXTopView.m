@@ -32,7 +32,7 @@
         CGFloat width=self.frame.size.width *0.4;
         UILabel *titleLbl = [[UILabel alloc]initWithFrame:CGRectMake((screenWidth-width)/2, 10, width, 40)];
         titleLbl.text = title;
-        titleLbl.textColor = [UIColor blackColor];
+        titleLbl.textColor = [UIColor whiteColor];
         titleLbl.font = [UIFont systemFontOfSize:20];
         titleLbl.textAlignment = NSTextAlignmentCenter;
         [self addSubview:titleLbl];

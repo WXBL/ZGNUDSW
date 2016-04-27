@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface WXUserLoginViewController : UIViewController<UITextFieldDelegate>
+@interface WXUserLoginViewController : UIViewController<UITextFieldDelegate,UIAlertViewDelegate>
 @property(nonatomic,strong)UITextField *userNameTextField;
 @property(nonatomic,strong)UITextField *passwordTextField;
 

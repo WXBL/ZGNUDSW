@@ -36,6 +36,10 @@
 		8F288E851CD09A79007CA5EF /* WXUserLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F288E841CD09A79007CA5EF /* WXUserLoginViewController.m */; };
 		8F288E871CD0A280007CA5EF /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F288E861CD0A280007CA5EF /* CoreData.framework */; };
 		8F288E8A1CD0A559007CA5EF /* WXTopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F288E891CD0A559007CA5EF /* WXTopView.m */; };
+		8F288E8F1CD0B1FA007CA5EF /* reg_pwd_txt.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F288E8B1CD0B1FA007CA5EF /* reg_pwd_txt.png */; };
+		8F288E901CD0B1FA007CA5EF /* reg_pwd_txt@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F288E8C1CD0B1FA007CA5EF /* reg_pwd_txt@2x.png */; };
+		8F288E911CD0B1FA007CA5EF /* reg_username_txt.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F288E8D1CD0B1FA007CA5EF /* reg_username_txt.png */; };
+		8F288E921CD0B1FA007CA5EF /* reg_username_txt@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F288E8E1CD0B1FA007CA5EF /* reg_username_txt@2x.png */; };
 		8FA39DC61CCE0C0B0034C622 /* AFHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FA39D3D1CCE0C0B0034C622 /* AFHTTPClient.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		8FA39DC71CCE0C0B0034C622 /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FA39D3F1CCE0C0B0034C622 /* AFHTTPRequestOperation.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		8FA39DC81CCE0C0B0034C622 /* AFImageRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FA39D411CCE0C0B0034C622 /* AFImageRequestOperation.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -171,6 +175,10 @@
 		8F288E861CD0A280007CA5EF /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		8F288E881CD0A559007CA5EF /* WXTopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXTopView.h; sourceTree = "<group>"; };
 		8F288E891CD0A559007CA5EF /* WXTopView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXTopView.m; sourceTree = "<group>"; };
+		8F288E8B1CD0B1FA007CA5EF /* reg_pwd_txt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = reg_pwd_txt.png; sourceTree = "<group>"; };
+		8F288E8C1CD0B1FA007CA5EF /* reg_pwd_txt@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "reg_pwd_txt@2x.png"; sourceTree = "<group>"; };
+		8F288E8D1CD0B1FA007CA5EF /* reg_username_txt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = reg_username_txt.png; sourceTree = "<group>"; };
+		8F288E8E1CD0B1FA007CA5EF /* reg_username_txt@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "reg_username_txt@2x.png"; sourceTree = "<group>"; };
 		8FA39D3C1CCE0C0B0034C622 /* AFHTTPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPClient.h; sourceTree = "<group>"; };
 		8FA39D3D1CCE0C0B0034C622 /* AFHTTPClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPClient.m; sourceTree = "<group>"; };
 		8FA39D3E1CCE0C0B0034C622 /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
@@ -592,6 +600,10 @@
 		8F288E811CD0971F007CA5EF /* login */ = {
 			isa = PBXGroup;
 			children = (
+				8F288E8B1CD0B1FA007CA5EF /* reg_pwd_txt.png */,
+				8F288E8C1CD0B1FA007CA5EF /* reg_pwd_txt@2x.png */,
+				8F288E8D1CD0B1FA007CA5EF /* reg_username_txt.png */,
+				8F288E8E1CD0B1FA007CA5EF /* reg_username_txt@2x.png */,
 				8F288E831CD09A79007CA5EF /* WXUserLoginViewController.h */,
 				8F288E841CD09A79007CA5EF /* WXUserLoginViewController.m */,
 			);
@@ -1030,8 +1042,10 @@
 				84ED689C1CCF732C00A45281 /* 3.jpg in Resources */,
 				8F0669571CC4E7ED007CD423 /* LaunchScreen.storyboard in Resources */,
 				8FA39DFA1CCE0C0B0034C622 /* zbar-back.png in Resources */,
+				8F288E911CD0B1FA007CA5EF /* reg_username_txt.png in Resources */,
 				8FA39DFD1CCE0C0B0034C622 /* zbar-samples.png in Resources */,
 				84ED689D1CCF732C00A45281 /* 4.jpg in Resources */,
+				8F288E8F1CD0B1FA007CA5EF /* reg_pwd_txt.png in Resources */,
 				84ED689A1CCF732C00A45281 /* 1.jpg in Resources */,
 				8F0669541CC4E7ED007CD423 /* Assets.xcassets in Resources */,
 				8F0669521CC4E7ED007CD423 /* Main.storyboard in Resources */,
@@ -1040,6 +1054,8 @@
 				8FA39DFB1CCE0C0B0034C622 /* zbar-help.html in Resources */,
 				8FA39DFC1CCE0C0B0034C622 /* zbar-helpicons.png in Resources */,
 				8FA39DDE1CCE0C0B0034C622 /* sdRefeshView_arrow@2x.png in Resources */,
+				8F288E901CD0B1FA007CA5EF /* reg_pwd_txt@2x.png in Resources */,
+				8F288E921CD0B1FA007CA5EF /* reg_username_txt@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
