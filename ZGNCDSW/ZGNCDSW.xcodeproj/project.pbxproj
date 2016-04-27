@@ -7,11 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-<<<<<<< HEAD
-		8F031D5C1CCF711700E99B53 /* WXNewsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F031D5B1CCF711700E99B53 /* WXNewsModel.m */; };
-		8F031D5F1CCF734400E99B53 /* WXAddressModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F031D5E1CCF734400E99B53 /* WXAddressModel.m */; };
-		8F031D631CCF7B9A00E99B53 /* WXMerchantModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F031D621CCF7B9A00E99B53 /* WXMerchantModel.m */; };
-=======
 		8401900F1CCE287900A43AA4 /* WXTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8401900E1CCE287900A43AA4 /* WXTabBarController.m */; };
 		840190171CCE295800A43AA4 /* WXNewsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 840190161CCE295800A43AA4 /* WXNewsController.m */; };
 		8401901A1CCE297300A43AA4 /* WXFarmImportsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 840190191CCE297300A43AA4 /* WXFarmImportsController.m */; };
@@ -25,7 +20,6 @@
 		84ED689B1CCF732C00A45281 /* 2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 84ED68971CCF732C00A45281 /* 2.jpg */; };
 		84ED689C1CCF732C00A45281 /* 3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 84ED68981CCF732C00A45281 /* 3.jpg */; };
 		84ED689D1CCF732C00A45281 /* 4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 84ED68991CCF732C00A45281 /* 4.jpg */; };
->>>>>>> origin/master
 		8F0669491CC4E7ED007CD423 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F0669481CC4E7ED007CD423 /* main.m */; };
 		8F06694C1CC4E7ED007CD423 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F06694B1CC4E7ED007CD423 /* AppDelegate.m */; };
 		8F0669521CC4E7ED007CD423 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8F0669501CC4E7ED007CD423 /* Main.storyboard */; };
@@ -114,15 +108,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-<<<<<<< HEAD
-		8F031D5A1CCF711700E99B53 /* WXNewsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXNewsModel.h; sourceTree = "<group>"; };
-		8F031D5B1CCF711700E99B53 /* WXNewsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXNewsModel.m; sourceTree = "<group>"; };
-		8F031D5D1CCF734400E99B53 /* WXAddressModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXAddressModel.h; sourceTree = "<group>"; };
-		8F031D5E1CCF734400E99B53 /* WXAddressModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXAddressModel.m; sourceTree = "<group>"; };
-		8F031D601CCF7A1F00E99B53 /* Common.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Common.pch; sourceTree = "<group>"; };
-		8F031D611CCF7B9A00E99B53 /* WXMerchantModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXMerchantModel.h; sourceTree = "<group>"; };
-		8F031D621CCF7B9A00E99B53 /* WXMerchantModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXMerchantModel.m; sourceTree = "<group>"; };
-=======
 		8401900D1CCE287900A43AA4 /* WXTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXTabBarController.h; sourceTree = "<group>"; };
 		8401900E1CCE287900A43AA4 /* WXTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXTabBarController.m; sourceTree = "<group>"; };
 		840190151CCE295800A43AA4 /* WXNewsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXNewsController.h; sourceTree = "<group>"; };
@@ -146,7 +131,6 @@
 		84ED68971CCF732C00A45281 /* 2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 2.jpg; sourceTree = "<group>"; };
 		84ED68981CCF732C00A45281 /* 3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 3.jpg; sourceTree = "<group>"; };
 		84ED68991CCF732C00A45281 /* 4.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 4.jpg; sourceTree = "<group>"; };
->>>>>>> origin/master
 		8F0669441CC4E7ED007CD423 /* ZGNCDSW.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZGNCDSW.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F0669481CC4E7ED007CD423 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		8F06694A1CC4E7ED007CD423 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -540,7 +524,6 @@
 				8F0669551CC4E7ED007CD423 /* LaunchScreen.storyboard */,
 				8F0669581CC4E7ED007CD423 /* Info.plist */,
 				8F0669471CC4E7ED007CD423 /* Supporting Files */,
-				8F031D601CCF7A1F00E99B53 /* Common.pch */,
 			);
 			path = ZGNCDSW;
 			sourceTree = "<group>";
@@ -861,21 +844,6 @@
 			children = (
 				8FA39E0E1CCE10400034C622 /* WXUserModel.h */,
 				8FA39E0F1CCE10400034C622 /* WXUserModel.m */,
-<<<<<<< HEAD
-				8FA39E121CCE29F30034C622 /* WXProductModel.h */,
-				8FA39E131CCE29F30034C622 /* WXProductModel.m */,
-				8FA39E151CCE2D420034C622 /* WXOrderModel.h */,
-				8FA39E161CCE2D420034C622 /* WXOrderModel.m */,
-				8FA39E191CCE32710034C622 /* WXMessageModel.h */,
-				8FA39E1A1CCE32710034C622 /* WXMessageModel.m */,
-				8F031D5A1CCF711700E99B53 /* WXNewsModel.h */,
-				8F031D5B1CCF711700E99B53 /* WXNewsModel.m */,
-				8F031D5D1CCF734400E99B53 /* WXAddressModel.h */,
-				8F031D5E1CCF734400E99B53 /* WXAddressModel.m */,
-				8F031D611CCF7B9A00E99B53 /* WXMerchantModel.h */,
-				8F031D621CCF7B9A00E99B53 /* WXMerchantModel.m */,
-=======
->>>>>>> origin/master
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -1064,7 +1032,6 @@
 				8FA39DD71CCE0C0B0034C622 /* SBJsonStreamParserState.m in Sources */,
 				8FA39E101CCE10400034C622 /* WXUserModel.m in Sources */,
 				8FA39DC71CCE0C0B0034C622 /* AFHTTPRequestOperation.m in Sources */,
-				8F031D631CCF7B9A00E99B53 /* WXMerchantModel.m in Sources */,
 				8FA39DE51CCE0C0B0034C622 /* QRCodeGenerator.m in Sources */,
 				8FA39DD11CCE0C0B0034C622 /* ICSDropShadowView.m in Sources */,
 				8FA39DD91CCE0C0B0034C622 /* SBJsonUTF8Stream.m in Sources */,
@@ -1075,11 +1042,9 @@
 				8FA39DE41CCE0C0B0034C622 /* mask.c in Sources */,
 				8FA39DD31CCE0C0B0034C622 /* SBJsonParser.m in Sources */,
 				8F0669491CC4E7ED007CD423 /* main.m in Sources */,
-				8F031D5F1CCF734400E99B53 /* WXAddressModel.m in Sources */,
 				8FA39E071CCE0CA70034C622 /* validateTest.m in Sources */,
 				8FA39E061CCE0CA70034C622 /* MViewUtil.m in Sources */,
 				8FA39DDC1CCE0C0B0034C622 /* SBJsonStreamWriterState.m in Sources */,
-				8F031D5C1CCF711700E99B53 /* WXNewsModel.m in Sources */,
 				8FA39DC61CCE0C0B0034C622 /* AFHTTPClient.m in Sources */,
 				8FA39DEA1CCE0C0B0034C622 /* split.c in Sources */,
 				8FA39DCC1CCE0C0B0034C622 /* AFPropertyListRequestOperation.m in Sources */,
@@ -1241,8 +1206,6 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/ZGNCDSW/Framework/map",
 				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = ZGNCDSW/Common.pch;
 				INFOPLIST_FILE = ZGNCDSW/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
@@ -1262,8 +1225,6 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/ZGNCDSW/Framework/map",
 				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = ZGNCDSW/Common.pch;
 				INFOPLIST_FILE = ZGNCDSW/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
