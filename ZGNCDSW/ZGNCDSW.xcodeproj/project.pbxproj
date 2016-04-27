@@ -27,6 +27,12 @@
 		8F0669571CC4E7ED007CD423 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8F0669551CC4E7ED007CD423 /* LaunchScreen.storyboard */; };
 		8F0669621CC4E7ED007CD423 /* ZGNCDSWTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F0669611CC4E7ED007CD423 /* ZGNCDSWTests.m */; };
 		8F06696D1CC4E7ED007CD423 /* ZGNCDSWUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F06696C1CC4E7ED007CD423 /* ZGNCDSWUITests.m */; };
+		8F288E701CD053AE007CA5EF /* WXProductModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F288E6F1CD053AE007CA5EF /* WXProductModel.m */; };
+		8F288E731CD060D8007CA5EF /* WXNewsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F288E721CD060D8007CA5EF /* WXNewsModel.m */; };
+		8F288E761CD0610A007CA5EF /* WXMessageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F288E751CD0610A007CA5EF /* WXMessageModel.m */; };
+		8F288E791CD06115007CA5EF /* WXMerchantModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F288E781CD06115007CA5EF /* WXMerchantModel.m */; };
+		8F288E7C1CD063D1007CA5EF /* WXOrderModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F288E7B1CD063D1007CA5EF /* WXOrderModel.m */; };
+		8F288E7F1CD063F1007CA5EF /* WXCommendModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F288E7E1CD063F1007CA5EF /* WXCommendModel.m */; };
 		8FA39DC61CCE0C0B0034C622 /* AFHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FA39D3D1CCE0C0B0034C622 /* AFHTTPClient.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		8FA39DC71CCE0C0B0034C622 /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FA39D3F1CCE0C0B0034C622 /* AFHTTPRequestOperation.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		8FA39DC81CCE0C0B0034C622 /* AFImageRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FA39D411CCE0C0B0034C622 /* AFImageRequestOperation.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -145,6 +151,18 @@
 		8F0669681CC4E7ED007CD423 /* ZGNCDSWUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ZGNCDSWUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F06696C1CC4E7ED007CD423 /* ZGNCDSWUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZGNCDSWUITests.m; sourceTree = "<group>"; };
 		8F06696E1CC4E7ED007CD423 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8F288E6E1CD053AE007CA5EF /* WXProductModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXProductModel.h; sourceTree = "<group>"; };
+		8F288E6F1CD053AE007CA5EF /* WXProductModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXProductModel.m; sourceTree = "<group>"; };
+		8F288E711CD060D8007CA5EF /* WXNewsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXNewsModel.h; sourceTree = "<group>"; };
+		8F288E721CD060D8007CA5EF /* WXNewsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXNewsModel.m; sourceTree = "<group>"; };
+		8F288E741CD0610A007CA5EF /* WXMessageModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXMessageModel.h; sourceTree = "<group>"; };
+		8F288E751CD0610A007CA5EF /* WXMessageModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXMessageModel.m; sourceTree = "<group>"; };
+		8F288E771CD06115007CA5EF /* WXMerchantModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXMerchantModel.h; sourceTree = "<group>"; };
+		8F288E781CD06115007CA5EF /* WXMerchantModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXMerchantModel.m; sourceTree = "<group>"; };
+		8F288E7A1CD063D1007CA5EF /* WXOrderModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXOrderModel.h; sourceTree = "<group>"; };
+		8F288E7B1CD063D1007CA5EF /* WXOrderModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXOrderModel.m; sourceTree = "<group>"; };
+		8F288E7D1CD063F1007CA5EF /* WXCommendModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXCommendModel.h; sourceTree = "<group>"; };
+		8F288E7E1CD063F1007CA5EF /* WXCommendModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXCommendModel.m; sourceTree = "<group>"; };
 		8FA39D3C1CCE0C0B0034C622 /* AFHTTPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPClient.h; sourceTree = "<group>"; };
 		8FA39D3D1CCE0C0B0034C622 /* AFHTTPClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPClient.m; sourceTree = "<group>"; };
 		8FA39D3E1CCE0C0B0034C622 /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
@@ -512,7 +530,6 @@
 				840190081CCE25E400A43AA4 /* Home(首页) */,
 				8FA39DFE1CCE0CA70034C622 /* Utils */,
 				8FCD40E21CCA2154001EFC9E /* Framework */,
-				8FCD40E11CCA2130001EFC9E /* Views */,
 				8FCD40E01CCA2126001EFC9E /* Models */,
 				8FCD40DF1CCA211A001EFC9E /* Services */,
 				840190301CCE2DA200A43AA4 /* Headers(头文件) */,
@@ -842,17 +859,22 @@
 		8FCD40E01CCA2126001EFC9E /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				8F288E771CD06115007CA5EF /* WXMerchantModel.h */,
+				8F288E781CD06115007CA5EF /* WXMerchantModel.m */,
+				8F288E741CD0610A007CA5EF /* WXMessageModel.h */,
+				8F288E751CD0610A007CA5EF /* WXMessageModel.m */,
+				8F288E6E1CD053AE007CA5EF /* WXProductModel.h */,
+				8F288E6F1CD053AE007CA5EF /* WXProductModel.m */,
 				8FA39E0E1CCE10400034C622 /* WXUserModel.h */,
 				8FA39E0F1CCE10400034C622 /* WXUserModel.m */,
+				8F288E711CD060D8007CA5EF /* WXNewsModel.h */,
+				8F288E721CD060D8007CA5EF /* WXNewsModel.m */,
+				8F288E7A1CD063D1007CA5EF /* WXOrderModel.h */,
+				8F288E7B1CD063D1007CA5EF /* WXOrderModel.m */,
+				8F288E7D1CD063F1007CA5EF /* WXCommendModel.h */,
+				8F288E7E1CD063F1007CA5EF /* WXCommendModel.m */,
 			);
 			name = Models;
-			sourceTree = "<group>";
-		};
-		8FCD40E11CCA2130001EFC9E /* Views */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Views;
 			sourceTree = "<group>";
 		};
 		8FCD40E21CCA2154001EFC9E /* Framework */ = {
@@ -1017,6 +1039,8 @@
 				8FA39DF51CCE0C0B0034C622 /* MJRefreshFooterView.m in Sources */,
 				8FA39DE71CCE0C0B0034C622 /* qrinput.c in Sources */,
 				8FA39DD51CCE0C0B0034C622 /* SBJsonStreamParserAccumulator.m in Sources */,
+				8F288E731CD060D8007CA5EF /* WXNewsModel.m in Sources */,
+				8F288E7F1CD063F1007CA5EF /* WXCommendModel.m in Sources */,
 				8FA39DF21CCE0C0B0034C622 /* MBProgressHUD.m in Sources */,
 				8FA39DCA1CCE0C0B0034C622 /* AFJSONUtilities.m in Sources */,
 				8FA39DE31CCE0C0B0034C622 /* bitstream.c in Sources */,
@@ -1041,13 +1065,16 @@
 				8FA39DE11CCE0C0B0034C622 /* SDRefreshView.m in Sources */,
 				8FA39DE41CCE0C0B0034C622 /* mask.c in Sources */,
 				8FA39DD31CCE0C0B0034C622 /* SBJsonParser.m in Sources */,
+				8F288E761CD0610A007CA5EF /* WXMessageModel.m in Sources */,
 				8F0669491CC4E7ED007CD423 /* main.m in Sources */,
 				8FA39E071CCE0CA70034C622 /* validateTest.m in Sources */,
 				8FA39E061CCE0CA70034C622 /* MViewUtil.m in Sources */,
+				8F288E791CD06115007CA5EF /* WXMerchantModel.m in Sources */,
 				8FA39DDC1CCE0C0B0034C622 /* SBJsonStreamWriterState.m in Sources */,
 				8FA39DC61CCE0C0B0034C622 /* AFHTTPClient.m in Sources */,
 				8FA39DEA1CCE0C0B0034C622 /* split.c in Sources */,
 				8FA39DCC1CCE0C0B0034C622 /* AFPropertyListRequestOperation.m in Sources */,
+				8F288E7C1CD063D1007CA5EF /* WXOrderModel.m in Sources */,
 				8401900F1CCE287900A43AA4 /* WXTabBarController.m in Sources */,
 				8FA39DDD1CCE0C0B0034C622 /* SBJsonWriter.m in Sources */,
 				840190271CCE2A3700A43AA4 /* WXMyInforController.m in Sources */,
@@ -1060,6 +1087,7 @@
 				8FA39DE61CCE0C0B0034C622 /* qrencode.c in Sources */,
 				8FA39DCB1CCE0C0B0034C622 /* AFNetworkActivityIndicatorManager.m in Sources */,
 				8FA39DE21CCE0C0B0034C622 /* UIView+SDExtension.m in Sources */,
+				8F288E701CD053AE007CA5EF /* WXProductModel.m in Sources */,
 				8401902F1CCE2D2A00A43AA4 /* WXNavigationController.m in Sources */,
 				840190171CCE295800A43AA4 /* WXNewsController.m in Sources */,
 			);
