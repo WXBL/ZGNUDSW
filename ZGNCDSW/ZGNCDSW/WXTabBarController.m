@@ -14,6 +14,7 @@
 #import "WXMyInforController.h"
 #import "WXFarmImportsController.h"
 #import "WXNavigationController.h"
+#import "WXUserLoginViewController.h"
 
 @interface WXTabBarController ()
 
@@ -25,16 +26,19 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-   
     //1.初始化字控制器
     WXHomeViewController *home = [[WXHomeViewController alloc]init];
     [self addChildVc:home title:@"首页" image:@"tabbar_home" selectedImage:@"tabbar_home_selected"];
-   
+    
     WXNewsController *news = [[WXNewsController alloc]init];
-    [self addChildVc:news title:@"咨询"  image:@"tabbar_home" selectedImage:@"tabbar_home_selected"];
+    [self addChildVc:news title:@"资讯"  image:@"tabbar_home" selectedImage:@"tabbar_home_selected"];
     
     WXFarmImportsController *farmImports = [[WXFarmImportsController alloc]init];
     [self addChildVc:farmImports title:@"农产品" image:@"tabbar_home" selectedImage:@"tabbar_home_selected"];
+
+    if (![[NSUserDefaults standardUserDefaults]stringForKey:@"userName"]) {
+        
+    }
     
     WXMessageController *message = [[WXMessageController alloc]init];
     [self addChildVc:message title:@"消息" image:@"tabbar_home" selectedImage:@"tabbar_home_selected"];
