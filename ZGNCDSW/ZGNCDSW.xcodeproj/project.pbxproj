@@ -87,7 +87,6 @@
 		8FA39E061CCE0CA70034C622 /* MViewUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FA39E021CCE0CA70034C622 /* MViewUtil.m */; };
 		8FA39E071CCE0CA70034C622 /* validateTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FA39E041CCE0CA70034C622 /* validateTest.m */; };
 		8FA39E0D1CCE0FFF0034C622 /* NetWork.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FA39E0C1CCE0FFF0034C622 /* NetWork.m */; };
-		8FA39E101CCE10400034C622 /* WXUserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FA39E0F1CCE10400034C622 /* WXUserModel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -275,8 +274,6 @@
 		8FA39E041CCE0CA70034C622 /* validateTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = validateTest.m; sourceTree = "<group>"; };
 		8FA39E0B1CCE0FFF0034C622 /* NetWork.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetWork.h; sourceTree = "<group>"; };
 		8FA39E0C1CCE0FFF0034C622 /* NetWork.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetWork.m; sourceTree = "<group>"; };
-		8FA39E0E1CCE10400034C622 /* WXUserModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXUserModel.h; sourceTree = "<group>"; };
-		8FA39E0F1CCE10400034C622 /* WXUserModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXUserModel.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -512,8 +509,6 @@
 				840190081CCE25E400A43AA4 /* Home(首页) */,
 				8FA39DFE1CCE0CA70034C622 /* Utils */,
 				8FCD40E21CCA2154001EFC9E /* Framework */,
-				8FCD40E11CCA2130001EFC9E /* Views */,
-				8FCD40E01CCA2126001EFC9E /* Models */,
 				8FCD40DF1CCA211A001EFC9E /* Services */,
 				840190301CCE2DA200A43AA4 /* Headers(头文件) */,
 				840190071CCE256200A43AA4 /* Others */,
@@ -839,22 +834,6 @@
 			name = Services;
 			sourceTree = "<group>";
 		};
-		8FCD40E01CCA2126001EFC9E /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				8FA39E0E1CCE10400034C622 /* WXUserModel.h */,
-				8FA39E0F1CCE10400034C622 /* WXUserModel.m */,
-			);
-			name = Models;
-			sourceTree = "<group>";
-		};
-		8FCD40E11CCA2130001EFC9E /* Views */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Views;
-			sourceTree = "<group>";
-		};
 		8FCD40E21CCA2154001EFC9E /* Framework */ = {
 			isa = PBXGroup;
 			children = (
@@ -1030,7 +1009,6 @@
 				8FA39DDF1CCE0C0B0034C622 /* SDRefreshFooterView.m in Sources */,
 				8FA39DF61CCE0C0B0034C622 /* MJRefreshHeaderView.m in Sources */,
 				8FA39DD71CCE0C0B0034C622 /* SBJsonStreamParserState.m in Sources */,
-				8FA39E101CCE10400034C622 /* WXUserModel.m in Sources */,
 				8FA39DC71CCE0C0B0034C622 /* AFHTTPRequestOperation.m in Sources */,
 				8FA39DE51CCE0C0B0034C622 /* QRCodeGenerator.m in Sources */,
 				8FA39DD11CCE0C0B0034C622 /* ICSDropShadowView.m in Sources */,
