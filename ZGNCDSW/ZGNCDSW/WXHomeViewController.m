@@ -10,27 +10,24 @@
 #import "WXSearchBar.h"
 #import "UIView+Extension.h"
 #import "PrefixHeader.pch"
+#import "WXCategoryTableViewCell.h"
+//#import "WXNewsTableViewCell.m"
 
-@interface WXHomeViewController ()<UIScrollViewDelegate>
+@interface WXHomeViewController ()<UITableViewDelegate,UITableViewDataSource,UIScrollViewDelegate>
 
+@property (nonatomic,strong)UITableView *tableView;
 // 创建一个用来引用计时器对象的属性
 @property (nonatomic, strong) NSTimer *timer;
 @property (nonatomic,strong)UIScrollView *scrollView;
 @property (nonatomic,strong)UIPageControl *pageControl;
 
-@property (nonatomic,strong)NSMutableArray *imagesURLStrings;
+@property (nonatomic,strong)NSMutableArray *newsListArray;
+
 @end
 
 @implementation WXHomeViewController
 
--(id)initWithStyle:(UITableViewStyle)style{
-    
-    self = [super initWithStyle:style];
-    if (self) {
-        
-    }
-    return self;
-}
+
 
 // 实现UIScrollView的滚动方法
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
@@ -87,6 +84,9 @@
     
     self.navigationItem.titleView = searchBar;
     
+    self.newsListArray = [NSMutableArray array];
+
+    
     [self addScrollView];
 }
 
@@ -94,14 +94,29 @@
 #pragma mark -设置轮播图片
 -(void)addScrollView{
     
-    UIScrollView *scrollView = [[UIScrollView alloc]init];
-    scrollView.frame = CGRectMake(0, 0, screenWidth, 200);
-    scrollView.backgroundColor = [UIColor grayColor];
-    self.tableView.tableHeaderView = scrollView;
-    self.scrollView = scrollView;
+    self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, screenWidth, screenHeigth) style:UITableViewStylePlain];
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    self.tableView.backgroundColor = [UIColor colorWithWhite:0.9 alpha:1];
+    self.tableView.tableFooterView=[[UIView alloc] init];
+    [self.view addSubview:self.tableView];
+
+    
+    self.scrollView = [[UIScrollView alloc]init];
+    self.scrollView.frame = CGRectMake(0, 0, screenWidth, screenHeigth *0.3);
+    self.scrollView.backgroundColor = [UIColor grayColor];
+    self.tableView.tableHeaderView = self.scrollView;
+    self.scrollView.delegate = self;
+    
+    
+    self.pageControl = [[UIPageControl alloc]initWithFrame:CGRectMake(screenWidth *0.3, screenHeigth *0.25, screenWidth * 0.4, 40)];
+    //    pageControl.backgroundColor = [UIColor redColor];
+    [self.pageControl setCurrentPageIndicatorTintColor:[UIColor colorWithRed:0.8 green:0.2 blue:0.3 alpha:1]];
+    [self.tableView addSubview:self.pageControl];
     
     CGFloat imgW = screenWidth;
-    CGFloat imgH = 200;
+    CGFloat imgH = screenHeigth * 0.3
+    ;
     CGFloat imgY = 0;
     
     // 1. 循环创建5个UIImageView添加到ScrollView中
@@ -119,12 +134,12 @@
         imgView.frame = CGRectMake(imgX, imgY, imgW, imgH);
         
         // 把imgView添加到UIScrollView中
-        [scrollView addSubview:imgView];
+        [self.scrollView addSubview:imgView];
     }
 
     
     // 设置UIScrollView的contentSize(内容的实际大小)
-    CGFloat maxW = screenWidth * 4;
+    CGFloat maxW = self.scrollView.frame.size.width * 4;
     self.scrollView.contentSize = CGSizeMake(maxW, 0);
     
     
@@ -134,11 +149,6 @@
     
     // 隐藏水平滚动指示器
     self.scrollView.showsHorizontalScrollIndicator = NO;
-    
-    self.pageControl = [[UIPageControl alloc]initWithFrame:CGRectMake(screenWidth *0.3, 160, screenWidth * 0.4, 40)];
-//    pageControl.backgroundColor = [UIColor redColor];
-    [self.pageControl setCurrentPageIndicatorTintColor:[UIColor colorWithRed:0.8 green:0.2 blue:0.3 alpha:1]];
-    [self.view addSubview:self.pageControl];
     
     // 指定UIPageControl的总页数
     self.pageControl.numberOfPages = 4;
@@ -156,6 +166,9 @@
     NSRunLoop *runLoop = [NSRunLoop currentRunLoop];
     // 改变self.timer对象的优先级
     [runLoop addTimer:self.timer forMode:NSRunLoopCommonModes];
+    
+    //    [self.scrollView bringSubviewToFront:self.pageControl];
+    
 
 
     
@@ -196,29 +209,74 @@
 
 #pragma mark - Table view data source
 
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    return 1;
+}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 
-    return 1;
+    return 2;
+    
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
    
-    static NSString *cellStr = @"cell";
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellStr];
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellStr];
+  
+    if (indexPath.row == 0) {
+        static NSString *cellStr = @"cell1";
+        WXCategoryTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellStr];
+        if (cell == nil) {
+            cell = [[WXCategoryTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellStr];
+        }
+
+        [cell.categoryButton addTarget:self action:@selector(ClickCategoryButton:) forControlEvents:UIControlEventTouchUpInside];
+        return cell;
+        
+    }else if(indexPath.row == 1){
+        static NSString *cellStr = @"cell";
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellStr];
+        if (cell == nil) {
+            cell= [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellStr];
+        }
+        cell.textLabel.text = @"行业资讯";
+        cell.backgroundColor = [UIColor colorWithWhite:0.9 alpha:1];
+        return cell;
     }
+//    }else{
+//        static NSString *cellStr = @"cell2";
+//        WXNewsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellStr];
+//        if (cell == nil) {
+//            cell = [[WXNewsTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellStr];
+//        }
+//        
+//        [cell.newsImage setImage:[UIImage imageNamed:@"news_list1"]];
+//                
+//        return cell;
+//
+//    }
+    return nil;
     
-    cell.textLabel.text = @"ads";
+}
+
+-(void)ClickCategoryButton:(UIButton *)sender{
+    if (sender.tag == 0) {
+        
+    }
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    return cell;
+    
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 44;
+    if (indexPath.row==0) {
+        return 180;
+    }else{
+        return 30;
+    }
 }
 
 /*
