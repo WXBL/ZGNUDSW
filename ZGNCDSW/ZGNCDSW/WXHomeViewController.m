@@ -11,7 +11,7 @@
 #import "UIView+Extension.h"
 #import "PrefixHeader.pch"
 #import "WXCategoryTableViewCell.h"
-//#import "WXNewsTableViewCell.m"
+//#import "WXNewsTableCell.m"
 #import "WXRecommendTableViewCell.h"
 
 @interface WXHomeViewController ()<UITableViewDelegate,UITableViewDataSource,UIScrollViewDelegate>
@@ -91,6 +91,12 @@
     [self addScrollView];
 }
 
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    
+    [self.rootTableView reloadData];
+}
+
 
 #pragma mark -设置轮播图片
 -(void)addScrollView{
@@ -113,7 +119,7 @@
     self.pageControl = [[UIPageControl alloc]initWithFrame:CGRectMake(screenWidth *0.3, screenHeigth *0.25, screenWidth * 0.4, 40)];
     //    pageControl.backgroundColor = [UIColor redColor];
     [self.pageControl setCurrentPageIndicatorTintColor:[UIColor colorWithRed:0.8 green:0.2 blue:0.3 alpha:1]];
-    [self.tableView addSubview:self.pageControl];
+    [self.rootTableView addSubview:self.pageControl];
     
     CGFloat imgW = screenWidth;
     CGFloat imgH = screenHeigth * 0.3
@@ -218,7 +224,8 @@
     if (section == 0) {
         return 2;
     }else{
-        return _newsListArray.count;
+//        return _newsListArray.count;
+        return 10;
     }
 }
 
@@ -246,35 +253,60 @@
             return cell;
         }
     }else{
-        return nil;
+        
+        if (indexPath.row == 0) {
+            static NSString *cellStr = @"cell2";
+            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellStr];
+            if (cell == nil) {
+                cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellStr];
+            }
+            cell.textLabel.text = @"行业资讯";
+            cell.backgroundColor = [UIColor colorWithWhite:0.9 alpha:1];
+            return cell;
+        }else{
+            
+            static NSString *cellStr = @"cell3";
+            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellStr];
+            if (cell == nil) {
+                cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellStr];
+            }
+            
+            UIView *newView = [[UIView alloc]initWithFrame:CGRectMake(10, 0, screenWidth - 20, 100)];
+            newView.backgroundColor = [UIColor whiteColor];
+            [cell addSubview:newView];
+            
+            cell.backgroundColor = [UIColor colorWithWhite:0.9 alpha:1];
+
+            
+            UIImageView *newImage = [[UIImageView alloc]initWithFrame:CGRectMake(5, 5, 90, 90)];
+            [newImage setImage:[UIImage imageNamed:@"news_list1"]];
+            [newView addSubview:newImage];
+            
+            UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(screenWidth * 0.25, 0, screenWidth * 0.6, 25)];
+            titleLabel.text = @"asdfasdfasdfasdgasdga";
+            titleLabel.textColor = [UIColor grayColor];
+            titleLabel.textAlignment = NSTextAlignmentCenter;
+            titleLabel.font = [UIFont systemFontOfSize:14];
+            [newView addSubview:titleLabel];
+            
+            UILabel *detailLabel = [[UILabel alloc]initWithFrame:CGRectMake(screenWidth * 0.25, 25, screenWidth * 0.6, 50)];
+            detailLabel.text = @"asdfasdfasdfasdgaadgfasdfasdfkjl;askdjf;lasdjfsdga";
+            detailLabel.textColor = [UIColor grayColor];
+            detailLabel.textAlignment = NSTextAlignmentCenter;
+            detailLabel.font = [UIFont systemFontOfSize:14];
+            detailLabel.numberOfLines = 2;
+            [newView addSubview:detailLabel];
+            
+            
+            
+            return cell;
+        }
+        
     }
     
-    
-    //    }else{
-    //        static NSString *cellStr = @"cell2";
-    //        WXNewsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellStr];
-    //        if (cell == nil) {
-    //            cell = [[WXNewsTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellStr];
-    //        }
-    //
-    //        [cell.newsImage setImage:[UIImage imageNamed:@"news_list1"]];
-    //
-    //        return cell;
-    //
-    //    }
-    
-    
+       
 }
 
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
-    if (section == 1) {
-        NSString *newStr = @"行业资讯";
-        return newStr;
-    }else{
-        return nil;
-    }
-    
-}
 
 -(void)ClickCategoryButton:(UIButton *)sender{
     if (sender.tag == 0) {
@@ -294,53 +326,14 @@
         return 180;
         
     }else{
-        return 100;
+        if (indexPath.row == 0) {
+            return 30;
+        }else{
+            return 120;
+        }
     }
     
 }
 
-/*
- // Override to support conditional editing of the table view.
- - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
- // Return NO if you do not want the specified item to be editable.
- return YES;
- }
- */
-
-/*
- // Override to support editing the table view.
- - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
- if (editingStyle == UITableViewCellEditingStyleDelete) {
- // Delete the row from the data source
- [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
- } else if (editingStyle == UITableViewCellEditingStyleInsert) {
- // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
- }
- }
- */
-
-/*
- // Override to support rearranging the table view.
- - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
- }
- */
-
-/*
- // Override to support conditional rearranging of the table view.
- - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
- // Return NO if you do not want the item to be re-orderable.
- return YES;
- }
- */
-
-/*
- #pragma mark - Navigation
- 
- // In a storyboard-based application, you will often want to do a little preparation before navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
- }
- */
 
 @end

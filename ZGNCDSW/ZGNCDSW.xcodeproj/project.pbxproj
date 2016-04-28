@@ -15,6 +15,7 @@
 		8401902F1CCE2D2A00A43AA4 /* WXNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8401902E1CCE2D2A00A43AA4 /* WXNavigationController.m */; };
 		84C361FC1CD19274008ED985 /* WXCategoryTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 84C361FA1CD19274008ED985 /* WXCategoryTableViewCell.m */; };
 		84C361FF1CD19C0A008ED985 /* WXRecommendTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 84C361FE1CD19C0A008ED985 /* WXRecommendTableViewCell.m */; };
+		84C362051CD1B284008ED985 /* WXNewsTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 84C362041CD1B284008ED985 /* WXNewsTableCell.m */; };
 		84ED68451CCF1A5200A45281 /* WXHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84ED68441CCF1A5200A45281 /* WXHomeViewController.m */; };
 		84ED68911CCF528200A45281 /* UIView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 84ED68901CCF528200A45281 /* UIView+Extension.m */; };
 		84ED68941CCF545E00A45281 /* WXSearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 84ED68931CCF545E00A45281 /* WXSearchBar.m */; };
@@ -140,6 +141,8 @@
 		84C361FB1CD19274008ED985 /* WXCategoryTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXCategoryTableViewCell.h; sourceTree = "<group>"; };
 		84C361FD1CD19C0A008ED985 /* WXRecommendTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXRecommendTableViewCell.h; sourceTree = "<group>"; };
 		84C361FE1CD19C0A008ED985 /* WXRecommendTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXRecommendTableViewCell.m; sourceTree = "<group>"; };
+		84C362031CD1B284008ED985 /* WXNewsTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXNewsTableCell.h; sourceTree = "<group>"; };
+		84C362041CD1B284008ED985 /* WXNewsTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXNewsTableCell.m; sourceTree = "<group>"; };
 		84ED68431CCF1A5200A45281 /* WXHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXHomeViewController.h; sourceTree = "<group>"; };
 		84ED68441CCF1A5200A45281 /* WXHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXHomeViewController.m; sourceTree = "<group>"; };
 		84ED688F1CCF528200A45281 /* UIView+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Extension.h"; sourceTree = "<group>"; };
@@ -406,6 +409,8 @@
 				84C361FA1CD19274008ED985 /* WXCategoryTableViewCell.m */,
 				84C361FD1CD19C0A008ED985 /* WXRecommendTableViewCell.h */,
 				84C361FE1CD19C0A008ED985 /* WXRecommendTableViewCell.m */,
+				84C362031CD1B284008ED985 /* WXNewsTableCell.h */,
+				84C362041CD1B284008ED985 /* WXNewsTableCell.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -1153,6 +1158,7 @@
 				8FA39DE61CCE0C0B0034C622 /* qrencode.c in Sources */,
 				8FA39DCB1CCE0C0B0034C622 /* AFNetworkActivityIndicatorManager.m in Sources */,
 				8FA39DE21CCE0C0B0034C622 /* UIView+SDExtension.m in Sources */,
+				84C362051CD1B284008ED985 /* WXNewsTableCell.m in Sources */,
 				8F288E701CD053AE007CA5EF /* WXProductModel.m in Sources */,
 				8F288E8A1CD0A559007CA5EF /* WXTopView.m in Sources */,
 				8401902F1CCE2D2A00A43AA4 /* WXNavigationController.m in Sources */,
