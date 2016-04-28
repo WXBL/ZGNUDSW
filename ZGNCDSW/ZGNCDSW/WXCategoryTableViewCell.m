@@ -28,11 +28,11 @@
             
             
             // 计算每个UIImageView在UIScrollView中的x坐标值
-            CGFloat imgW = screenWidth * 0.25 -20;
+            CGFloat imgW = screenWidth * 0.25 -40;
             CGFloat imgH = 60;
             
             CGFloat imgY = 5;
-            CGFloat imgX = i * screenWidth * 0.25 +10;
+            CGFloat imgX = i * screenWidth * 0.25 +20;
             // 设置UIImageView中的图片
             NSString *imgName = [NSString stringWithFormat:@"category_list%d", i + 1];
             imgView.image = [UIImage imageNamed:imgName];
@@ -83,10 +83,10 @@
             
             
             // 计算每个UIImageView在UIScrollView中的x坐标值
-            CGFloat imgW = screenWidth * 0.25 -20;
+            CGFloat imgW = screenWidth * 0.25 -40;
             CGFloat imgH = 60;
             CGFloat imgY = 96;
-            CGFloat imgX = j * screenWidth * 0.25 + 10;
+            CGFloat imgX = j * screenWidth * 0.25 + 20;
             // 设置UIImageView中的图片
             NSString *imgName = [NSString stringWithFormat:@"category_list%d", j + 1];
             imgView.image = [UIImage imageNamed:imgName];

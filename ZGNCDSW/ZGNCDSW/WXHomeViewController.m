@@ -12,10 +12,11 @@
 #import "PrefixHeader.pch"
 #import "WXCategoryTableViewCell.h"
 //#import "WXNewsTableViewCell.m"
+#import "WXRecommendTableViewCell.h"
 
 @interface WXHomeViewController ()<UITableViewDelegate,UITableViewDataSource,UIScrollViewDelegate>
 
-@property (nonatomic,strong)UITableView *tableView;
+@property (nonatomic,strong)UITableView *rootTableView;
 // 创建一个用来引用计时器对象的属性
 @property (nonatomic, strong) NSTimer *timer;
 @property (nonatomic,strong)UIScrollView *scrollView;
@@ -76,16 +77,16 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    
     WXSearchBar *searchBar = [WXSearchBar searchBar];
     searchBar.width = self.view.frame.size.width * 0.8;
     searchBar.height = 30;
-
+    
     
     self.navigationItem.titleView = searchBar;
     
     self.newsListArray = [NSMutableArray array];
-
+    
     
     [self addScrollView];
 }
@@ -94,18 +95,18 @@
 #pragma mark -设置轮播图片
 -(void)addScrollView{
     
-    self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, screenWidth, screenHeigth) style:UITableViewStylePlain];
-    self.tableView.delegate = self;
-    self.tableView.dataSource = self;
-    self.tableView.backgroundColor = [UIColor colorWithWhite:0.9 alpha:1];
-    self.tableView.tableFooterView=[[UIView alloc] init];
-    [self.view addSubview:self.tableView];
-
+    self.rootTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, screenWidth, screenHeigth) style:UITableViewStylePlain];
+    self.rootTableView.delegate = self;
+    self.rootTableView.dataSource = self;
+    self.rootTableView.backgroundColor = [UIColor colorWithWhite:0.9 alpha:1];
+    self.rootTableView.tableFooterView=[[UIView alloc] init];
+    [self.view addSubview:self.rootTableView];
+    
     
     self.scrollView = [[UIScrollView alloc]init];
     self.scrollView.frame = CGRectMake(0, 0, screenWidth, screenHeigth *0.3);
     self.scrollView.backgroundColor = [UIColor grayColor];
-    self.tableView.tableHeaderView = self.scrollView;
+    self.rootTableView.tableHeaderView = self.scrollView;
     self.scrollView.delegate = self;
     
     
@@ -136,7 +137,7 @@
         // 把imgView添加到UIScrollView中
         [self.scrollView addSubview:imgView];
     }
-
+    
     
     // 设置UIScrollView的contentSize(内容的实际大小)
     CGFloat maxW = self.scrollView.frame.size.width * 4;
@@ -169,8 +170,8 @@
     
     //    [self.scrollView bringSubviewToFront:self.pageControl];
     
-
-
+    
+    
     
 }
 
@@ -210,53 +211,68 @@
 #pragma mark - Table view data source
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 1;
+    return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-
-    return 2;
-    
+    if (section == 0) {
+        return 2;
+    }else{
+        return _newsListArray.count;
+    }
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-   
     
-  
-    if (indexPath.row == 0) {
-        static NSString *cellStr = @"cell1";
-        WXCategoryTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellStr];
-        if (cell == nil) {
-            cell = [[WXCategoryTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellStr];
+    if (indexPath.section == 0) {
+        if (indexPath.row == 0) {
+            static NSString *cellStr = @"cell1";
+            WXCategoryTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellStr];
+            if (cell == nil) {
+                cell = [[WXCategoryTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellStr];
+            }
+            
+            [cell.categoryButton addTarget:self action:@selector(ClickCategoryButton:) forControlEvents:UIControlEventTouchUpInside];
+            return cell;
+            
+        }else{
+            static NSString *cellStr = @"cell";
+            WXRecommendTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellStr];
+            if (cell == nil) {
+                cell = [[WXRecommendTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellStr];
+            }
+            
+            return cell;
         }
-
-        [cell.categoryButton addTarget:self action:@selector(ClickCategoryButton:) forControlEvents:UIControlEventTouchUpInside];
-        return cell;
-        
-    }else if(indexPath.row == 1){
-        static NSString *cellStr = @"cell";
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellStr];
-        if (cell == nil) {
-            cell= [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellStr];
-        }
-        cell.textLabel.text = @"行业资讯";
-        cell.backgroundColor = [UIColor colorWithWhite:0.9 alpha:1];
-        return cell;
+    }else{
+        return nil;
     }
-//    }else{
-//        static NSString *cellStr = @"cell2";
-//        WXNewsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellStr];
-//        if (cell == nil) {
-//            cell = [[WXNewsTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellStr];
-//        }
-//        
-//        [cell.newsImage setImage:[UIImage imageNamed:@"news_list1"]];
-//                
-//        return cell;
-//
-//    }
-    return nil;
+    
+    
+    //    }else{
+    //        static NSString *cellStr = @"cell2";
+    //        WXNewsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellStr];
+    //        if (cell == nil) {
+    //            cell = [[WXNewsTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellStr];
+    //        }
+    //
+    //        [cell.newsImage setImage:[UIImage imageNamed:@"news_list1"]];
+    //
+    //        return cell;
+    //
+    //    }
+    
+    
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
+    if (section == 1) {
+        NSString *newStr = @"行业资讯";
+        return newStr;
+    }else{
+        return nil;
+    }
     
 }
 
@@ -266,61 +282,65 @@
     }
 }
 
+#pragma mark - TableView delegate
+
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
     
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (indexPath.row==0) {
+    if (indexPath.section == 0) {
         return 180;
+        
     }else{
-        return 30;
+        return 100;
     }
+    
 }
 
 /*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
+ // Override to support conditional editing of the table view.
+ - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+ // Return NO if you do not want the specified item to be editable.
+ return YES;
+ }
+ */
 
 /*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
+ // Override to support editing the table view.
+ - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+ if (editingStyle == UITableViewCellEditingStyleDelete) {
+ // Delete the row from the data source
+ [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+ } else if (editingStyle == UITableViewCellEditingStyleInsert) {
+ // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+ }
+ }
+ */
 
 /*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
+ // Override to support rearranging the table view.
+ - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
+ }
+ */
 
 /*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
+ // Override to support conditional rearranging of the table view.
+ - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
+ // Return NO if you do not want the item to be re-orderable.
+ return YES;
+ }
+ */
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 @end

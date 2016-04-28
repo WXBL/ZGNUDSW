@@ -21,14 +21,14 @@
     // Override point for customization after application launch.
     
     self.window = [[UIWindow alloc]initWithFrame:[[UIScreen mainScreen]bounds]];
-    defaults=[NSUserDefaults standardUserDefaults];
-    WXUserLoginViewController *viewC=[[WXUserLoginViewController alloc] init];
-    self.window.rootViewController=viewC;
+//    defaults=[NSUserDefaults standardUserDefaults];
+//    WXUserLoginViewController *viewC=[[WXUserLoginViewController alloc] init];
+//    self.window.rootViewController=viewC;
     
-//    //设置跟控制器
-//    WXTabBarController *tabBar = [[WXTabBarController alloc]init];
-//    
-//    self.window.rootViewController = tabBar;
+    //设置跟控制器
+    WXTabBarController *tabBar = [[WXTabBarController alloc]init];
+    
+    self.window.rootViewController = tabBar;
     
     [self.window makeKeyAndVisible];
     return YES;

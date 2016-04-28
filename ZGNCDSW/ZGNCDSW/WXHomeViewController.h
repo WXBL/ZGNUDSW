@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface WXHomeViewController : UIViewController
+@interface WXHomeViewController : UITableViewController
 
 @end
