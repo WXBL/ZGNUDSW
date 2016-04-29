@@ -16,4 +16,6 @@
 @property (nonatomic,strong)UIImageView *fineImage; //精品
 @property (nonatomic,strong)UIImageView *phoneVipImage; //手机专享
 
+@property (nonatomic,strong)UILabel *titleLabel;
+
 @end

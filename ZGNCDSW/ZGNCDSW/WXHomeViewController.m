@@ -14,7 +14,7 @@
 //#import "WXNewsTableCell.m"
 #import "WXRecommendTableViewCell.h"
 
-@interface WXHomeViewController ()<UITableViewDelegate,UITableViewDataSource,UIScrollViewDelegate>
+@interface WXHomeViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic,strong)UITableView *rootTableView;
 // 创建一个用来引用计时器对象的属性
@@ -101,11 +101,15 @@
 #pragma mark -设置轮播图片
 -(void)addScrollView{
     
-    self.rootTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, screenWidth, screenHeigth) style:UITableViewStylePlain];
+    self.rootTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, screenWidth, screenHeigth) style:UITableViewStyleGrouped];
     self.rootTableView.delegate = self;
     self.rootTableView.dataSource = self;
+    
     self.rootTableView.backgroundColor = [UIColor colorWithWhite:0.9 alpha:1];
     self.rootTableView.tableFooterView=[[UIView alloc] init];
+    
+    //隐藏UITableViewCell的分隔线
+    [self.rootTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     [self.view addSubview:self.rootTableView];
     
     
@@ -229,6 +233,20 @@
     }
 }
 
+/**
+ * section底部间距
+ */
+-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+    return 0.1;
+}
+/**
+ * section顶部间距
+ */
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 0.1;
+}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
@@ -264,7 +282,7 @@
             cell.backgroundColor = [UIColor colorWithWhite:0.9 alpha:1];
             return cell;
         }else{
-            
+        
             static NSString *cellStr = @"cell3";
             UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellStr];
             if (cell == nil) {
@@ -273,6 +291,7 @@
             
             UIView *newView = [[UIView alloc]initWithFrame:CGRectMake(10, 0, screenWidth - 20, 100)];
             newView.backgroundColor = [UIColor whiteColor];
+            [newView.layer setCornerRadius:5];
             [cell addSubview:newView];
             
             cell.backgroundColor = [UIColor colorWithWhite:0.9 alpha:1];
@@ -292,7 +311,7 @@
             UILabel *detailLabel = [[UILabel alloc]initWithFrame:CGRectMake(screenWidth * 0.25, 25, screenWidth * 0.6, 50)];
             detailLabel.text = @"asdfasdfasdfasdgaadgfasdfasdfkjl;askdjf;lasdjfsdga";
             detailLabel.textColor = [UIColor grayColor];
-            detailLabel.textAlignment = NSTextAlignmentCenter;
+            detailLabel.textAlignment = NSTextAlignmentLeft;
             detailLabel.font = [UIFont systemFontOfSize:14];
             detailLabel.numberOfLines = 2;
             [newView addSubview:detailLabel];
@@ -306,6 +325,15 @@
     
        
 }
+//
+//- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
+//    
+//    if (section == 1) {
+//        NSString *titleStr = @"行业资讯";
+//        return titleStr;
+//    }
+//    return nil;
+//}
 
 
 -(void)ClickCategoryButton:(UIButton *)sender{

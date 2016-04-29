@@ -21,15 +21,27 @@
             
             [self addSubview:recommView];
             
+            self.titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, recommView.frame.size.width-1, recommView.frame.size.height / 4)];
+            self.titleLabel.textAlignment = NSTextAlignmentCenter;
+            self.titleLabel.font = [UIFont systemFontOfSize:14];
+            self.titleLabel.backgroundColor = [UIColor whiteColor];
+            [recommView addSubview:self.titleLabel];
+            
             switch (recommView.tag) {
                 case 1:
-                    self.salesImage = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, recommView.frame.size.width-1, recommView.frame.size.height-1)];
+                    self.salesImage = [[UIImageView alloc]initWithFrame:CGRectMake(0, recommView.frame.size.height / 4, recommView.frame.size.width-1, recommView.frame.size.height  / 4 *3)];
                     [self.salesImage setImage:[UIImage imageNamed:@"recomm_list1"]];
                     
                     [recommView addSubview:self.salesImage];
+                    
+                    self.titleLabel.text = @"优惠推荐";
+                    self.titleLabel.textColor = [UIColor colorWithRed:0.9 green:0.3 blue:0.2 alpha:1];
 
                     break;
                 case 2:
+                    
+                    
+                    
                     self.newproductsImage = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, recommView.frame.size.width-1, recommView.frame.size.height / 2-1)];
                     [self.newproductsImage setImage:[UIImage imageNamed:@"recomm_list2"]];
                     
@@ -39,6 +51,9 @@
                     [self.fineImage setImage:[UIImage imageNamed:@"recomm_list3"]];
                     
                     [recommView addSubview:self.fineImage];
+                    
+                    self.titleLabel.text = @"新品推荐";
+                    self.titleLabel.textColor = [UIColor colorWithRed:0.9 green:0.3 blue:0.2 alpha:1];
                     
                     break;
                 case 3:

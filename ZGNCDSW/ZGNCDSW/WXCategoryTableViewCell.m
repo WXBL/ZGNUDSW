@@ -47,17 +47,15 @@
                     cateLabel.text = @"农资超市";
                     break;
                 case 1:
-                    cateLabel.text = @"农资超市";
+                    cateLabel.text = @"时令果蔬";
                     break;
                 case 2:
-                    cateLabel.text = @"农资超市";
+                    cateLabel.text = @"海鲜肉食";
                     break;
                 case 3:
-                    cateLabel.text = @"农资超市";
+                    cateLabel.text = @"大宗团购";
                     break;
-                case 4:
-                    cateLabel.text = @"农资超市";
-                    break;
+               
                 default:
                     break;
             }
@@ -88,7 +86,7 @@
             CGFloat imgY = 96;
             CGFloat imgX = j * screenWidth * 0.25 + 20;
             // 设置UIImageView中的图片
-            NSString *imgName = [NSString stringWithFormat:@"category_list%d", j + 1];
+            NSString *imgName = [NSString stringWithFormat:@"category_list%d", j + 5];
             imgView.image = [UIImage imageNamed:imgName];
             // 设置imgView的frame
             imgView.frame = CGRectMake(imgX, imgY, imgW, imgH);
@@ -98,20 +96,18 @@
             cateLabel.font = [UIFont systemFontOfSize:12];
             switch (j) {
                 case 0:
-                    cateLabel.text = @"农资超市";
+                    cateLabel.text = @"私人定制";
                     break;
                 case 1:
-                    cateLabel.text = @"农资超市";
+                    cateLabel.text = @"会员之家";
                     break;
                 case 2:
-                    cateLabel.text = @"农资超市";
+                    cateLabel.text = @"采购乐园";
                     break;
                 case 3:
-                    cateLabel.text = @"农资超市";
+                    cateLabel.text = @"商业资讯";
                     break;
-                case 4:
-                    cateLabel.text = @"农资超市";
-                    break;
+                
                 default:
                     break;
             }
