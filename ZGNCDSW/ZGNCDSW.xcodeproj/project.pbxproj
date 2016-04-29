@@ -23,6 +23,7 @@
 		84ED689B1CCF732C00A45281 /* 2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 84ED68971CCF732C00A45281 /* 2.jpg */; };
 		84ED689C1CCF732C00A45281 /* 3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 84ED68981CCF732C00A45281 /* 3.jpg */; };
 		84ED689D1CCF732C00A45281 /* 4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 84ED68991CCF732C00A45281 /* 4.jpg */; };
+		84F4ADC61CD35CDD00270CC4 /* WXfarmImportsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 84F4ADC51CD35CDD00270CC4 /* WXfarmImportsTableViewCell.m */; };
 		8F0669491CC4E7ED007CD423 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F0669481CC4E7ED007CD423 /* main.m */; };
 		8F06694C1CC4E7ED007CD423 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F06694B1CC4E7ED007CD423 /* AppDelegate.m */; };
 		8F0669521CC4E7ED007CD423 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8F0669501CC4E7ED007CD423 /* Main.storyboard */; };
@@ -153,6 +154,8 @@
 		84ED68971CCF732C00A45281 /* 2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 2.jpg; sourceTree = "<group>"; };
 		84ED68981CCF732C00A45281 /* 3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 3.jpg; sourceTree = "<group>"; };
 		84ED68991CCF732C00A45281 /* 4.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 4.jpg; sourceTree = "<group>"; };
+		84F4ADC41CD35CDD00270CC4 /* WXfarmImportsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXfarmImportsTableViewCell.h; sourceTree = "<group>"; };
+		84F4ADC51CD35CDD00270CC4 /* WXfarmImportsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXfarmImportsTableViewCell.m; sourceTree = "<group>"; };
 		8F0669441CC4E7ED007CD423 /* ZGNCDSW.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZGNCDSW.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F0669481CC4E7ED007CD423 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		8F06694A1CC4E7ED007CD423 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -415,17 +418,18 @@
 			name = View;
 			sourceTree = "<group>";
 		};
-		840190131CCE28DD00A43AA4 /* News(咨询) */ = {
+		840190131CCE28DD00A43AA4 /* News(资讯) */ = {
 			isa = PBXGroup;
 			children = (
 				8401901C1CCE298800A43AA4 /* Controller */,
 			);
-			name = "News(咨询)";
+			name = "News(资讯)";
 			sourceTree = "<group>";
 		};
 		840190141CCE290700A43AA4 /* Farm imports（农产品） */ = {
 			isa = PBXGroup;
 			children = (
+				84F4ADC31CD35C6700270CC4 /* View */,
 				8401901B1CCE297800A43AA4 /* Controller */,
 			);
 			name = "Farm imports（农产品）";
@@ -531,6 +535,15 @@
 			name = image;
 			sourceTree = "<group>";
 		};
+		84F4ADC31CD35C6700270CC4 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				84F4ADC41CD35CDD00270CC4 /* WXfarmImportsTableViewCell.h */,
+				84F4ADC51CD35CDD00270CC4 /* WXfarmImportsTableViewCell.m */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
 		8F06693B1CC4E7ED007CD423 = {
 			isa = PBXGroup;
 			children = (
@@ -559,7 +572,7 @@
 				840190231CCE29E500A43AA4 /* Myinformation(我的) */,
 				8401901E1CCE29BF00A43AA4 /* Message(消息) */,
 				840190141CCE290700A43AA4 /* Farm imports（农产品） */,
-				840190131CCE28DD00A43AA4 /* News(咨询) */,
+				840190131CCE28DD00A43AA4 /* News(资讯) */,
 				840190091CCE282300A43AA4 /* Main(主框架) */,
 				840190081CCE25E400A43AA4 /* Home(首页) */,
 				8FA39DFE1CCE0CA70034C622 /* Utils */,
@@ -1150,6 +1163,7 @@
 				840190271CCE2A3700A43AA4 /* WXMyInforController.m in Sources */,
 				840190221CCE29DD00A43AA4 /* WXMessageController.m in Sources */,
 				84ED68941CCF545E00A45281 /* WXSearchBar.m in Sources */,
+				84F4ADC61CD35CDD00270CC4 /* WXfarmImportsTableViewCell.m in Sources */,
 				8FA39DD01CCE0C0B0034C622 /* ICSDrawerController.m in Sources */,
 				84ED68451CCF1A5200A45281 /* WXHomeViewController.m in Sources */,
 				84C361FF1CD19C0A008ED985 /* WXRecommendTableViewCell.m in Sources */,

@@ -316,7 +316,14 @@
             detailLabel.numberOfLines = 2;
             [newView addSubview:detailLabel];
             
+            UIButton *messageButton = [UIButton buttonWithType:UIButtonTypeCustom];
+            messageButton.frame = CGRectMake(screenWidth * 0.3, newView.frame.size.height - 35, 100, 30);
+            [messageButton setTitle:@"消息" forState:UIControlStateNormal];
+            [messageButton setTintColor:[UIColor grayColor]];
+    
             
+//            [messageButton setImage:[UIImage imageNamed:@"home_message"] forState:UIControlStateNormal];
+            [newView addSubview:messageButton];
             
             return cell;
         }
