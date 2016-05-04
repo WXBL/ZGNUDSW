@@ -20,7 +20,7 @@
 -(instancetype)initWithFrame:(CGRect)frame TitleText:(NSString *)title{
     self=[super initWithFrame:frame];
     if (self) {
-        self.backgroundColor=[UIColor colorWithRed:0.2 green:0.7 blue:0.4 alpha:1];
+        self.backgroundColor=[UIColor colorWithRed:0.5 green:0.7 blue:0.4 alpha:1];
 //        self.backgroundColor=[UIColor colorWithWhite:1 alpha:0.7];
         self.backButton = [UIButton buttonWithType:UIButtonTypeCustom];
         self.backButton.frame = CGRectMake(5, 10, 80, 40);

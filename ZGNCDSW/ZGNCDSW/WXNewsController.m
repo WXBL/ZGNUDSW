@@ -10,6 +10,7 @@
 #import "WXSearchBar.h"
 #import "UIView+Extension.h"
 #import "PrefixHeader.pch"
+#import "WXNewsDetailViewController.h"
 @interface WXNewsController ()<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate>
 
 @property (nonatomic,strong)UITextField *newsText;
@@ -80,34 +81,34 @@
     titleLabel.textColor = [UIColor grayColor];
     titleLabel.textAlignment = NSTextAlignmentLeft;
 
-    
-        //添加最新／最热／精华新闻按钮
-    UIButton *newsButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    newsButton.frame = CGRectMake(screenWidth / 1.8, 0, screenWidth / 2 /3 -10, 30);
-    [newsButton setTitle:@"最新" forState:UIControlStateNormal];
-    [newsButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
-    [newsButton setTitleColor:[UIColor greenColor] forState:UIControlStateHighlighted];
-    
-    UIButton *hotButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    hotButton.frame = CGRectMake(screenWidth / 1.8 + (screenWidth / 2 /3 -10), 0, screenWidth / 2 /3 -10, 30);
-    [hotButton setTitle:@"最热" forState:UIControlStateNormal];
-    [hotButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
-    [hotButton setTitleColor:[UIColor greenColor] forState:UIControlStateHighlighted];
-    
-    UIButton *creamButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    creamButton.frame = CGRectMake(screenWidth / 1.8 +(screenWidth / 2 /3 -10)*2, 0, screenWidth / 2 /3 -10, 30);
-    [creamButton setTitle:@"精华" forState:UIControlStateNormal];
-    [creamButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
-    [creamButton setTitleColor:[UIColor greenColor] forState:UIControlStateHighlighted];
-    
+//    
+//        //添加最新／最热／精华新闻按钮
+//    UIButton *newsButton = [UIButton buttonWithType:UIButtonTypeCustom];
+//    newsButton.frame = CGRectMake(screenWidth / 1.8, 0, screenWidth / 2 /3 -10, 30);
+//    [newsButton setTitle:@"最新" forState:UIControlStateNormal];
+//    [newsButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+//    [newsButton setTitleColor:[UIColor greenColor] forState:UIControlStateHighlighted];
+//
+//    UIButton *hotButton = [UIButton buttonWithType:UIButtonTypeCustom];
+//    hotButton.frame = CGRectMake(screenWidth / 1.8 + (screenWidth / 2 /3 -10), 0, screenWidth / 2 /3 -10, 30);
+//    [hotButton setTitle:@"最热" forState:UIControlStateNormal];
+//    [hotButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+//    [hotButton setTitleColor:[UIColor greenColor] forState:UIControlStateHighlighted];
+//    
+//    UIButton *creamButton = [UIButton buttonWithType:UIButtonTypeCustom];
+//    creamButton.frame = CGRectMake(screenWidth / 1.8 +(screenWidth / 2 /3 -10)*2, 0, screenWidth / 2 /3 -10, 30);
+//    [creamButton setTitle:@"精华" forState:UIControlStateNormal];
+//    [creamButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+//    [creamButton setTitleColor:[UIColor greenColor] forState:UIControlStateHighlighted];
+//    
     UIView *titleView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, screenWidth, 30)];
     titleView.backgroundColor = [UIColor colorWithWhite:0.9 alpha:1];
-    
+//
     [titleView addSubview:titleLabel];
-    [titleView addSubview:newsButton];
-    [titleView addSubview:hotButton];
-    [titleView addSubview:creamButton];
-    
+//    [titleView addSubview:newsButton];
+//    [titleView addSubview:hotButton];
+//    [titleView addSubview:creamButton];
+//    
     self.newsTableView.tableHeaderView = titleView;
 
 }
@@ -175,6 +176,13 @@
 
     
     return cell;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    WXNewsDetailViewController *newDetailViewController = [[WXNewsDetailViewController alloc]init];
+
+    [self presentViewController:newDetailViewController animated:YES completion:nil];
 }
 
 

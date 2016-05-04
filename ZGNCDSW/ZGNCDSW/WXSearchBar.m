@@ -31,7 +31,60 @@
     return self;
 }
 
+
+//- (instancetype)initWithFrame:(CGRect)frame {
+//    
+//    self = [super initWithFrame:frame];
+//    
+//    if (self) {
+//        
+//        // 设置字体
+//        self.font = [UIFont systemFontOfSize:13];
+//        
+//        // 设置背景
+//        self.background = [UIImage imageNamed:@"searchbar_textfield_background"];
+//        self.placeholder = @"请输入想要搜索的商品";
+//        
+//        // 设置左边的view
+//        [self setLeftView];
+//        
+//        // 设置右边的录音按钮
+//        //        [self setRightView];
+//        
+//    }
+//    
+//    return self;
+//}
+//
+-(instancetype)init{
+    
+    // 设置frame
+    CGFloat width = WXMainScreenBounds.size.width - 110;
+    CGFloat height = 30;
+    //    CGFloat X = (SCMainScreenBounds.size.width - width) * 0.5;
+    CGFloat X=screenWidth-width-20;
+    CGFloat Y = 7;
+    CGRect frame = CGRectMake(X, Y, width, height);
+    
+    return [self initWithFrame:frame];
+
+}
+
 +(instancetype)searchBar{
     return [[self alloc]init];
 }
+
+//
+//// 设置左边的view
+//- (void)setLeftView {
+//    
+//    // initWithImage:默认UIImageView的尺寸跟图片一样
+//    UIImageView *leftImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"searchbar_textfield_search_icon"]];
+//    
+//    
+//    self.leftView = leftImageView;
+//    //  注意：一定要设置，想要显示搜索框左边的视图，一定要设置左边视图的模式
+//    self.leftViewMode = UITextFieldViewModeAlways;
+//}
+
 @end

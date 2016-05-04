@@ -10,19 +10,29 @@
 #import "WXSearchBar.h"
 #import "UIView+Extension.h"
 #import "PrefixHeader.pch"
+#import "MBProgressHUD.h"
 #import "WXCategoryTableViewCell.h"
 //#import "WXNewsTableCell.m"
 #import "WXRecommendTableViewCell.h"
+#import "WXNewsDetailViewController.h"
 
-@interface WXHomeViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface WXHomeViewController ()<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate>
 
 @property (nonatomic,strong)UITableView *rootTableView;
+
+//搜索
+@property (nonatomic,strong)WXSearchBar *searchBar;
 // 创建一个用来引用计时器对象的属性
 @property (nonatomic, strong) NSTimer *timer;
 @property (nonatomic,strong)UIScrollView *scrollView;
 @property (nonatomic,strong)UIPageControl *pageControl;
 
 @property (nonatomic,strong)NSMutableArray *newsListArray;
+
+//声明一个搜索后的可变数组
+@property (nonatomic,strong)NSMutableArray *filteredGoods;
+//显示当前列表内容
+@property (nonatomic,strong)NSMutableArray *currentNewsArray;
 
 @end
 
@@ -78,12 +88,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    WXSearchBar *searchBar = [WXSearchBar searchBar];
-    searchBar.width = self.view.frame.size.width * 0.8;
-    searchBar.height = 30;
+    self.searchBar = [WXSearchBar searchBar];
+    self.searchBar.delegate=self;
+//    searchBar.width = self.view.frame.size.width * 0.8;
+//    searchBar.height = 30;
     
     
-    self.navigationItem.titleView = searchBar;
+    [self.navigationController.navigationBar addSubview:self.searchBar];
     
     self.newsListArray = [NSMutableArray array];
     
@@ -104,6 +115,7 @@
     self.rootTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, screenWidth, screenHeigth) style:UITableViewStyleGrouped];
     self.rootTableView.delegate = self;
     self.rootTableView.dataSource = self;
+    self.rootTableView.tag = 0;
     
     self.rootTableView.backgroundColor = [UIColor colorWithWhite:0.9 alpha:1];
     self.rootTableView.tableFooterView=[[UIView alloc] init];
@@ -218,6 +230,61 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - search搜索功能实现
+-(void)search:(id)sender{
+    NSString *searchString = self.searchBar.text;
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"title contains [c] %@",searchString];
+    self.filteredGoods = [NSMutableArray arrayWithArray:[self.newsListArray filteredArrayUsingPredicate:predicate]];
+    if (self.filteredGoods.count > 0) {
+        self.currentNewsArray=self.filteredGoods;
+    }else{
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        
+        hud.mode = MBProgressHUDModeText;
+        hud.labelText = @"没有搜索到您想要的商品";
+        hud.margin = 10.f;
+        hud.yOffset = 150.f;
+        hud.removeFromSuperViewOnHide = YES;
+        [hud hide:YES afterDelay:2];
+        
+    }
+    [self.rootTableView reloadData];
+}
+
+-(BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+    [self search:nil];
+    return YES;
+}
+
+
+-(BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
+    
+    self.searchBar.text = nil;
+    self.filteredGoods = self.newsListArray;
+    return YES;
+}
+
+-(BOOL)textFieldShouldEndEditing:(UITextField *)textField{
+    
+    [self search:nil];
+    return YES;
+}
+
+-(BOOL)textFieldShouldClear:(UITextField *)textField{
+    
+    self.filteredGoods = self.newsListArray;
+    [self search:nil];
+    return YES;
+}
+
+-(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
+    
+    [self search:nil];
+    return YES;
+}
+
 #pragma mark - Table view data source
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
@@ -228,9 +295,24 @@
     if (section == 0) {
         return 2;
     }else{
-//        return _newsListArray.count;
+//        if (tableView.tag == 0) {
+//            if (self.currentNewsArray.count == 0) {
+//                return 1;
+//            }else{
+//                return self.currentNewsArray.count;
+//            }
+//            
+//        }else{
+//            if (self.newsListArray.count == 0) {
+//                return 10;
+//            }else{
+//                return self.newsListArray.count;
+//            }
+//        }
+//    }
         return 10;
     }
+    
 }
 
 /**
@@ -315,15 +397,15 @@
             detailLabel.font = [UIFont systemFontOfSize:14];
             detailLabel.numberOfLines = 2;
             [newView addSubview:detailLabel];
-            
-            UIButton *messageButton = [UIButton buttonWithType:UIButtonTypeCustom];
-            messageButton.frame = CGRectMake(screenWidth * 0.3, newView.frame.size.height - 35, 100, 30);
-            [messageButton setTitle:@"消息" forState:UIControlStateNormal];
-            [messageButton setTintColor:[UIColor grayColor]];
+//            
+//            UIButton *messageButton = [UIButton buttonWithType:UIButtonTypeCustom];
+//            messageButton.frame = CGRectMake(screenWidth * 0.3, newView.frame.size.height - 35, 100, 30);
+//            [messageButton setTitle:@"消息" forState:UIControlStateNormal];
+//            [messageButton setTintColor:[UIColor grayColor]];
     
             
 //            [messageButton setImage:[UIImage imageNamed:@"home_message"] forState:UIControlStateNormal];
-            [newView addSubview:messageButton];
+//            [newView addSubview:messageButton];
             
             return cell;
         }
@@ -352,7 +434,12 @@
 #pragma mark - TableView delegate
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    
+    if (indexPath.section == 1) {
+        
+        WXNewsDetailViewController *newDetailViewController = [[WXNewsDetailViewController alloc]init];
+        [self presentViewController:newDetailViewController animated:YES completion:nil];
+
+    }
     
 }
 
@@ -364,7 +451,7 @@
         if (indexPath.row == 0) {
             return 30;
         }else{
-            return 120;
+            return 110;
         }
     }
     

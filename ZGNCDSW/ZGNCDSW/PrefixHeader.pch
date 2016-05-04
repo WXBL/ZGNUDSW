@@ -14,6 +14,8 @@
 #define screenWidth [[UIScreen mainScreen] bounds].size.width
 #define screenHeigth [[UIScreen mainScreen] bounds].size.height
 
+// 主屏幕大小
+#define WXMainScreenBounds [UIScreen mainScreen].bounds
 
 //app主窗口
 #define WXKeyWindow [UIApplication sharedApplication].keyWindow

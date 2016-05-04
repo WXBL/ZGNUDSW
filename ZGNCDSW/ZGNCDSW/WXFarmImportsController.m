@@ -10,6 +10,7 @@
 #import "PrefixHeader.pch"
 #import "WXfarmImportsTableViewCell.h"
 #import "UIView+Extension.h"
+#import "WXFarmDetailViewController.h"
 @interface WXFarmImportsController ()<UITextFieldDelegate,UICollectionViewDelegate,UICollectionViewDataSource>
 
 @property (nonatomic,strong)UITextField *farmImports;
@@ -55,14 +56,21 @@
 }
 
 -(void)addCollectionView{
+    
+    float headerHeight = 30;
+    
     UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc]init];
     [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
+    flowLayout.headerReferenceSize = CGSizeMake(screenWidth, headerHeight);
     self.collectionView = [[UICollectionView alloc]initWithFrame:CGRectMake(0, self.searchView.frame.size.height, screenWidth, screenHeigth - self.searchView.frame.size.height) collectionViewLayout:flowLayout];
     [self.collectionView registerClass:[WXfarmImportsTableViewCell class] forCellWithReuseIdentifier:@"cell"];
+    [self.collectionView registerClass:[UICollectionReusableView class]forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"hederView"];
     self.collectionView.backgroundColor = [UIColor colorWithWhite:0.9 alpha:1];
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
     [self.view addSubview:self.collectionView];
+    
+    
     
 }
 - (void)didReceiveMemoryWarning {
@@ -89,6 +97,49 @@
     return 1;
     
 }
+-(UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
+{
+    UICollectionReusableView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"hederView" forIndexPath:indexPath];
+    
+    //    //添加标题
+    UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 0,screenWidth / 2-10, 30)];
+    titleLabel.text = @"行业资讯-共12121条资讯";
+    titleLabel.font = [UIFont systemFontOfSize:15];
+    titleLabel.textColor = [UIColor grayColor];
+    titleLabel.textAlignment = NSTextAlignmentLeft;
+    
+    
+//    //添加最新／最热／精华新闻按钮
+//    UIButton *newsButton = [UIButton buttonWithType:UIButtonTypeCustom];
+//    newsButton.frame = CGRectMake(screenWidth / 1.8, 0, screenWidth / 2 /3 -10, 30);
+//    [newsButton setTitle:@"最新" forState:UIControlStateNormal];
+//    [newsButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+//    [newsButton setTitleColor:[UIColor greenColor] forState:UIControlStateHighlighted];
+//    
+//    UIButton *hotButton = [UIButton buttonWithType:UIButtonTypeCustom];
+//    hotButton.frame = CGRectMake(screenWidth / 1.8 + (screenWidth / 2 /3 -10), 0, screenWidth / 2 /3 -10, 30);
+//    [hotButton setTitle:@"最热" forState:UIControlStateNormal];
+//    [hotButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+//    [hotButton setTitleColor:[UIColor greenColor] forState:UIControlStateHighlighted];
+//    
+//    UIButton *creamButton = [UIButton buttonWithType:UIButtonTypeCustom];
+//    creamButton.frame = CGRectMake(screenWidth / 1.8 +(screenWidth / 2 /3 -10)*2, 0, screenWidth / 2 /3 -10, 30);
+//    [creamButton setTitle:@"精华" forState:UIControlStateNormal];
+//    [creamButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+//    [creamButton setTitleColor:[UIColor greenColor] forState:UIControlStateHighlighted];
+    
+    UIView *titleView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, screenWidth, 30)];
+    titleView.backgroundColor = [UIColor colorWithWhite:0.9 alpha:1];
+    
+    [titleView addSubview:titleLabel];
+//    [titleView addSubview:newsButton];
+//    [titleView addSubview:hotButton];
+//    [titleView addSubview:creamButton];
+    
+    [headerView addSubview:titleView];
+    
+    return headerView;
+}
 
 //每个cell所展示的内容
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
@@ -101,6 +152,10 @@
     }
     
     cell.farmImage.image = [UIImage imageNamed:@"news_list1"];
+    cell.titleLabel.text = @"afsd";
+    cell.priceLabel.text = @"10元／500g";
+    cell.saleNumLabel.text = @"20";
+    
     
     return cell;
 }
@@ -127,6 +182,8 @@
 
 //UICollectionView被选中时调用的方法
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    WXFarmDetailViewController *farmDetail = [[WXFarmDetailViewController alloc]init];
+    [self presentViewController:farmDetail animated:YES completion:nil];
     
 }
 
