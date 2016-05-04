@@ -10,6 +10,19 @@
 #import "WXTabBarController.h"
 #import <CoreData/CoreData.h>
 #import "WXUserLoginViewController.h"
+
+#import <ShareSDK/ShareSDK.h>
+#import <ShareSDKConnector/ShareSDKConnector.h>
+//腾讯开放平台（对应QQ和QQ空间）sdk头文件
+#import <TencentOpenAPI/TencentOAuth.h>
+#import <TencentOpenAPI/QQApiInterface.h>
+
+//微信sdk头文件
+#import "WXApi.h"
+
+//新浪微博sdk头文件
+#import "WeiboSDK.h"
+//新浪微博sdk需要在项目Buikd Settings中的Other linker flags添加“－ObjC”
 @interface AppDelegate ()
 
 @end
@@ -31,6 +44,44 @@
     self.window.rootViewController = tabBar;
     
     [self.window makeKeyAndVisible];
+    
+    [ShareSDK registerApp:@"1265d2d8495a0" activePlatforms:@[@(SSDKPlatformTypeSinaWeibo),@(SSDKPlatformTypeWechat),@(SSDKPlatformTypeQQ),] onImport:^(SSDKPlatformType plateformType){
+        switch (plateformType) {
+            case SSDKPlatformTypeQQ:
+                [ShareSDKConnector connectQQ:[QQApiInterface class] tencentOAuthClass:[TencentOAuth class]];
+                break;
+            case SSDKPlatformTypeWechat:
+                [ShareSDKConnector connectWeChat:[WXApi class]];
+                break;
+            case SSDKPlatformTypeSinaWeibo:
+                [ShareSDKConnector connectWeibo:[WeiboSDK class]];
+            default:
+                break;
+        }
+    }onConfiguration:^(SSDKPlatformType platformType,NSMutableDictionary *appInfo){
+        switch (platformType) {
+            case SSDKPlatformTypeSinaWeibo:
+                //设置新浪微博应用信息,其中authType设置为使用SSO＋Web形式授权
+                [appInfo SSDKSetupSinaWeiboByAppKey:@"568898243"
+                                          appSecret:@"38a4f8204cc784f81f9f0daaf31e02e3"
+                                        redirectUri:@"http://www.sharesdk.cn"
+                                           authType:SSDKAuthTypeBoth];
+                break;
+            case SSDKPlatformTypeWechat:
+                [appInfo SSDKSetupWeChatByAppId:@"wx00add2f73396b524"
+                                      appSecret:@"94d162d846ea964d526138a7327f17ae"];
+                break;
+            case SSDKPlatformTypeQQ:
+                [appInfo SSDKSetupQQByAppId:@"1105239497"
+                                     appKey:@"ypO7N7rGT7WUwMKo"
+                                   authType:SSDKAuthTypeBoth];
+                break;
+                
+            default:
+                break;
+        }
+    }];
+
     return YES;
 }
 
