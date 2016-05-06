@@ -341,6 +341,9 @@
             }
             
             [cell.categoryButton addTarget:self action:@selector(ClickCategoryButton:) forControlEvents:UIControlEventTouchUpInside];
+            
+            //点击cell时不变色
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
             return cell;
             
         }else{
@@ -349,6 +352,9 @@
             if (cell == nil) {
                 cell = [[WXRecommendTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellStr];
             }
+            
+            //点击cell时不变色
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
             
             return cell;
         }
@@ -362,6 +368,8 @@
             }
             cell.textLabel.text = @"行业资讯";
             cell.backgroundColor = [UIColor colorWithWhite:0.9 alpha:1];
+            //点击cell时不变色
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
             return cell;
         }else{
         
@@ -407,8 +415,14 @@
 //            [messageButton setImage:[UIImage imageNamed:@"home_message"] forState:UIControlStateNormal];
 //            [newView addSubview:messageButton];
             
+            //点击cell时不变色
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            
             return cell;
+            
+           
         }
+        
         
     }
     

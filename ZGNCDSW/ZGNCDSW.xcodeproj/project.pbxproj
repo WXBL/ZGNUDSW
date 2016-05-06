@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		840065C91CDC28880014C377 /* WXBuyCartController.m in Sources */ = {isa = PBXBuildFile; fileRef = 840065C81CDC28880014C377 /* WXBuyCartController.m */; };
+		840065CC1CDC37A70014C377 /* WXBuyCartTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 840065CB1CDC37A70014C377 /* WXBuyCartTableViewCell.m */; };
 		8401900F1CCE287900A43AA4 /* WXTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8401900E1CCE287900A43AA4 /* WXTabBarController.m */; };
 		840190171CCE295800A43AA4 /* WXNewsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 840190161CCE295800A43AA4 /* WXNewsController.m */; };
 		8401901A1CCE297300A43AA4 /* WXFarmImportsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 840190191CCE297300A43AA4 /* WXFarmImportsController.m */; };
@@ -47,6 +49,10 @@
 		84ED689C1CCF732C00A45281 /* 3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 84ED68981CCF732C00A45281 /* 3.jpg */; };
 		84ED689D1CCF732C00A45281 /* 4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 84ED68991CCF732C00A45281 /* 4.jpg */; };
 		84F4ADC61CD35CDD00270CC4 /* WXfarmImportsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 84F4ADC51CD35CDD00270CC4 /* WXfarmImportsTableViewCell.m */; };
+		84F99D881CDAF76500B3EF2D /* WXCommentController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84F99D871CDAF76500B3EF2D /* WXCommentController.m */; };
+		84F99D8B1CDAFB4800B3EF2D /* WXCommentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 84F99D8A1CDAFB4800B3EF2D /* WXCommentTableViewCell.m */; };
+		84F99D921CDB2F4100B3EF2D /* WXStatusFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = 84F99D911CDB2F4100B3EF2D /* WXStatusFrame.m */; };
+		84F99D951CDB338500B3EF2D /* WXStatusModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 84F99D941CDB338500B3EF2D /* WXStatusModel.m */; };
 		8F0669491CC4E7ED007CD423 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F0669481CC4E7ED007CD423 /* main.m */; };
 		8F06694C1CC4E7ED007CD423 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F06694B1CC4E7ED007CD423 /* AppDelegate.m */; };
 		8F0669521CC4E7ED007CD423 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8F0669501CC4E7ED007CD423 /* Main.storyboard */; };
@@ -141,6 +147,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		840065C71CDC28880014C377 /* WXBuyCartController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXBuyCartController.h; sourceTree = "<group>"; };
+		840065C81CDC28880014C377 /* WXBuyCartController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXBuyCartController.m; sourceTree = "<group>"; };
+		840065CA1CDC37A70014C377 /* WXBuyCartTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXBuyCartTableViewCell.h; sourceTree = "<group>"; };
+		840065CB1CDC37A70014C377 /* WXBuyCartTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXBuyCartTableViewCell.m; sourceTree = "<group>"; };
 		8401900D1CCE287900A43AA4 /* WXTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXTabBarController.h; sourceTree = "<group>"; };
 		8401900E1CCE287900A43AA4 /* WXTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXTabBarController.m; sourceTree = "<group>"; };
 		840190151CCE295800A43AA4 /* WXNewsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXNewsController.h; sourceTree = "<group>"; };
@@ -212,6 +222,14 @@
 		84ED68991CCF732C00A45281 /* 4.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 4.jpg; sourceTree = "<group>"; };
 		84F4ADC41CD35CDD00270CC4 /* WXfarmImportsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXfarmImportsTableViewCell.h; sourceTree = "<group>"; };
 		84F4ADC51CD35CDD00270CC4 /* WXfarmImportsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXfarmImportsTableViewCell.m; sourceTree = "<group>"; };
+		84F99D861CDAF76500B3EF2D /* WXCommentController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXCommentController.h; sourceTree = "<group>"; };
+		84F99D871CDAF76500B3EF2D /* WXCommentController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXCommentController.m; sourceTree = "<group>"; };
+		84F99D891CDAFB4800B3EF2D /* WXCommentTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXCommentTableViewCell.h; sourceTree = "<group>"; };
+		84F99D8A1CDAFB4800B3EF2D /* WXCommentTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXCommentTableViewCell.m; sourceTree = "<group>"; };
+		84F99D901CDB2F4100B3EF2D /* WXStatusFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXStatusFrame.h; sourceTree = "<group>"; };
+		84F99D911CDB2F4100B3EF2D /* WXStatusFrame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXStatusFrame.m; sourceTree = "<group>"; };
+		84F99D931CDB338500B3EF2D /* WXStatusModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXStatusModel.h; sourceTree = "<group>"; };
+		84F99D941CDB338500B3EF2D /* WXStatusModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXStatusModel.m; sourceTree = "<group>"; };
 		8F0669441CC4E7ED007CD423 /* ZGNCDSW.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZGNCDSW.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F0669481CC4E7ED007CD423 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		8F06694A1CC4E7ED007CD423 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -488,6 +506,7 @@
 		840190141CCE290700A43AA4 /* Farm imports（农产品） */ = {
 			isa = PBXGroup;
 			children = (
+				84F99D8C1CDB15FF00B3EF2D /* Model */,
 				84F4ADC31CD35C6700270CC4 /* View */,
 				8401901B1CCE297800A43AA4 /* Controller */,
 			);
@@ -501,6 +520,10 @@
 				840190191CCE297300A43AA4 /* WXFarmImportsController.m */,
 				8406FAFC1CD8915900EA155E /* WXFarmDetailViewController.h */,
 				8406FAFD1CD8915900EA155E /* WXFarmDetailViewController.m */,
+				84F99D861CDAF76500B3EF2D /* WXCommentController.h */,
+				84F99D871CDAF76500B3EF2D /* WXCommentController.m */,
+				840065C71CDC28880014C377 /* WXBuyCartController.h */,
+				840065C81CDC28880014C377 /* WXBuyCartController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -692,10 +715,25 @@
 			children = (
 				84F4ADC41CD35CDD00270CC4 /* WXfarmImportsTableViewCell.h */,
 				84F4ADC51CD35CDD00270CC4 /* WXfarmImportsTableViewCell.m */,
+				84F99D891CDAFB4800B3EF2D /* WXCommentTableViewCell.h */,
+				84F99D8A1CDAFB4800B3EF2D /* WXCommentTableViewCell.m */,
+				840065CA1CDC37A70014C377 /* WXBuyCartTableViewCell.h */,
+				840065CB1CDC37A70014C377 /* WXBuyCartTableViewCell.m */,
 				844329F31CD9860800BD7B9E /* WXBigPic.h */,
 				844329F41CD9860800BD7B9E /* WXBigPic.m */,
 			);
 			name = View;
+			sourceTree = "<group>";
+		};
+		84F99D8C1CDB15FF00B3EF2D /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				84F99D901CDB2F4100B3EF2D /* WXStatusFrame.h */,
+				84F99D911CDB2F4100B3EF2D /* WXStatusFrame.m */,
+				84F99D931CDB338500B3EF2D /* WXStatusModel.h */,
+				84F99D941CDB338500B3EF2D /* WXStatusModel.m */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 		8F06693B1CC4E7ED007CD423 = {
@@ -1293,6 +1331,7 @@
 				8FA39DC71CCE0C0B0034C622 /* AFHTTPRequestOperation.m in Sources */,
 				8FA39DE51CCE0C0B0034C622 /* QRCodeGenerator.m in Sources */,
 				8FA39DD11CCE0C0B0034C622 /* ICSDropShadowView.m in Sources */,
+				84F99D881CDAF76500B3EF2D /* WXCommentController.m in Sources */,
 				8FA39DD91CCE0C0B0034C622 /* SBJsonUTF8Stream.m in Sources */,
 				8FA39DE81CCE0C0B0034C622 /* qrspec.c in Sources */,
 				8FA39DF81CCE0C0B0034C622 /* SHLUILabel.m in Sources */,
@@ -1306,6 +1345,7 @@
 				8FA39E061CCE0CA70034C622 /* MViewUtil.m in Sources */,
 				844329F51CD9860800BD7B9E /* WXBigPic.m in Sources */,
 				8F288E791CD06115007CA5EF /* WXMerchantModel.m in Sources */,
+				840065CC1CDC37A70014C377 /* WXBuyCartTableViewCell.m in Sources */,
 				8FA39DDC1CCE0C0B0034C622 /* SBJsonStreamWriterState.m in Sources */,
 				8FA39DC61CCE0C0B0034C622 /* AFHTTPClient.m in Sources */,
 				8FA39DEA1CCE0C0B0034C622 /* split.c in Sources */,
@@ -1317,6 +1357,8 @@
 				8406FAFA1CD8773000EA155E /* WXNewsDetailViewController.m in Sources */,
 				840190221CCE29DD00A43AA4 /* WXMessageController.m in Sources */,
 				84ED68941CCF545E00A45281 /* WXSearchBar.m in Sources */,
+				84F99D8B1CDAFB4800B3EF2D /* WXCommentTableViewCell.m in Sources */,
+				84F99D921CDB2F4100B3EF2D /* WXStatusFrame.m in Sources */,
 				84F4ADC61CD35CDD00270CC4 /* WXfarmImportsTableViewCell.m in Sources */,
 				8FA39DD01CCE0C0B0034C622 /* ICSDrawerController.m in Sources */,
 				84ED68451CCF1A5200A45281 /* WXHomeViewController.m in Sources */,
@@ -1325,10 +1367,12 @@
 				8FA39DD21CCE0C0B0034C622 /* NSObject+SBJson.m in Sources */,
 				8FA39DE61CCE0C0B0034C622 /* qrencode.c in Sources */,
 				8FA39DCB1CCE0C0B0034C622 /* AFNetworkActivityIndicatorManager.m in Sources */,
+				840065C91CDC28880014C377 /* WXBuyCartController.m in Sources */,
 				8FA39DE21CCE0C0B0034C622 /* UIView+SDExtension.m in Sources */,
 				84C362051CD1B284008ED985 /* WXNewsTableCell.m in Sources */,
 				8F288E701CD053AE007CA5EF /* WXProductModel.m in Sources */,
 				8F288E8A1CD0A559007CA5EF /* WXTopView.m in Sources */,
+				84F99D951CDB338500B3EF2D /* WXStatusModel.m in Sources */,
 				8401902F1CCE2D2A00A43AA4 /* WXNavigationController.m in Sources */,
 				84C361FC1CD19274008ED985 /* WXCategoryTableViewCell.m in Sources */,
 				840190171CCE295800A43AA4 /* WXNewsController.m in Sources */,

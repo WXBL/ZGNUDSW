@@ -11,6 +11,7 @@
 #import "WXfarmImportsTableViewCell.h"
 #import "UIView+Extension.h"
 #import "WXFarmDetailViewController.h"
+#import "WXBuyCartController.h"
 @interface WXFarmImportsController ()<UITextFieldDelegate,UICollectionViewDelegate,UICollectionViewDataSource>
 
 @property (nonatomic,strong)UITextField *farmImports;
@@ -27,10 +28,28 @@
     
     self.view.backgroundColor = [UIColor colorWithWhite:0.9 alpha:1];
     
+    
+
+    //设置导航
+    [self setNavBar];
+    //添加搜索
     [self addSearchView];
+    
     [self addCollectionView];
     
 }
+//设置导航
+-(void)setNavBar
+{
+    self.navigationItem.title = @"产品购";
+    
+    UIButton *buyCart = [UIButton buttonWithType:UIButtonTypeCustom];
+    buyCart.frame = CGRectMake(screenWidth -50, 0, 50, 40);
+    [buyCart setImage:[UIImage imageNamed:@"detailBar_cart_press"] forState:UIControlStateNormal];
+    [buyCart addTarget:self action:@selector(ClickBuyCartButton:) forControlEvents:UIControlEventTouchUpInside];
+    [self.navigationController.navigationBar addSubview:buyCart];
+}
+//添加搜索
 -(void)addSearchView{
     //
     self.searchView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, screenWidth , 120)];
@@ -73,6 +92,14 @@
     
     
 }
+
+//点击购物车触发事件
+-(void)ClickBuyCartButton:(id)sender{
+    
+    WXBuyCartController *buyCartViewController = [[WXBuyCartController alloc]init];
+    [self presentViewController:buyCartViewController animated:YES completion:nil];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -103,7 +130,7 @@
     
     //    //添加标题
     UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 0,screenWidth / 2-10, 30)];
-    titleLabel.text = @"行业资讯-共12121条资讯";
+    titleLabel.text = @"农品铺子－共123123个产品";
     titleLabel.font = [UIFont systemFontOfSize:15];
     titleLabel.textColor = [UIColor grayColor];
     titleLabel.textAlignment = NSTextAlignmentLeft;
