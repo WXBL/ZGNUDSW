@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "ShoppingBtn.h"
 @interface WXBuyCartTableViewCell : UITableViewCell
 
 
@@ -18,4 +18,9 @@
 @property (nonatomic,strong)UIButton *reduceButton;
 @property (nonatomic,strong)UIButton *addButton;
 @property (nonatomic,strong)UILabel *buyNumLabel;
+@property (nonatomic,strong)UIButton *deleteButton;
+
+@property (nonatomic,strong)ShoppingBtn *chooseButton;
+
+@property (nonatomic,strong)UIView *editView;
 @end

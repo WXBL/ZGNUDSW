@@ -8,7 +8,10 @@
 
 #import "WXBuyCartTableViewCell.h"
 
-@implementation WXBuyCartTableViewCell
+@implementation WXBuyCartTableViewCell{
+    
+    BOOL isBool;
+}
 
 - (void)awakeFromNib {
     [super awakeFromNib];
@@ -19,10 +22,15 @@
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        UIView *cartBgView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, screenWidth, 120)];
-        cartBgView.backgroundColor = [UIColor whiteColor];
-        self.backgroundColor = [UIColor colorWithWhite:0.9 alpha:1];
-        [self addSubview:cartBgView];
+//        UIView *cartBgView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, screenWidth, 120)];
+//        cartBgView.backgroundColor = [UIColor whiteColor];
+//        self.backgroundColor = [UIColor colorWithWhite:0.9 alpha:1];
+//        [self addSubview:cartBgView];
+        
+        self.chooseButton = [ShoppingBtn buttonWithType:UIButtonTypeCustom];
+        self.chooseButton.frame = CGRectMake(10, 45, 30, 30);
+        [self.chooseButton addTarget:self action:@selector(ClickChooseButton:) forControlEvents:UIControlEventTouchUpInside];
+        [self addSubview:self.chooseButton];
         
         self.productImage = [[UIImageView alloc]initWithFrame:CGRectMake(50, 10, 100, 100)];
         [self.productImage.layer setCornerRadius:5];
@@ -45,30 +53,54 @@
         self.buyNum.font = [UIFont systemFontOfSize:14];
         [self addSubview:self.buyNum];
         
+        
+        self.editView = [[UIView alloc]initWithFrame:CGRectMake(180, 70, screenWidth-180, 50)];
+        self.editView.backgroundColor = [UIColor whiteColor];
+        [self addSubview:self.editView];
+        
         self.reduceButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        self.reduceButton.frame = CGRectMake(200, cartBgView.frame.size.height-50, 50, 50);
+        self.reduceButton.frame = CGRectMake(0, 0, 50, 50);
         [self.reduceButton setTitle:@"-" forState:UIControlStateNormal];
         [self.reduceButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        [self addSubview:self.reduceButton];
+        [self.editView addSubview:self.reduceButton];
         
         self.buyNumLabel = [[UILabel alloc]init];
-        self.buyNumLabel.frame = CGRectMake(CGRectGetMaxX(self.reduceButton.frame), cartBgView.frame.size.height-40, 100, 30);
+        self.buyNumLabel.frame = CGRectMake(CGRectGetMaxX(self.reduceButton.frame),10, 80, 30);
         self.buyNumLabel.backgroundColor = [UIColor colorWithWhite:0.9 alpha:1];
         self.buyNumLabel.textColor = [UIColor blackColor];
         self.buyNumLabel.textAlignment = NSTextAlignmentCenter;
-        [self addSubview:self.buyNumLabel];
+        [self.editView addSubview:self.buyNumLabel];
         
         self.addButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        self.addButton.frame = CGRectMake(CGRectGetMaxX(self.buyNumLabel.frame), cartBgView.frame.size.height-50, 50, 50);
+        self.addButton.frame = CGRectMake(CGRectGetMaxX(self.buyNumLabel.frame),0, 50, 50);
         [self.addButton setTitle:@"+" forState:UIControlStateNormal];
         [self.addButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        [self addSubview:self.addButton];
+        [self.editView addSubview:self.addButton];
         
-        
+        self.deleteButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        self.deleteButton.frame = CGRectMake(CGRectGetMaxX(self.addButton.frame), 10, 50, 30);
+        [self.deleteButton setTitle:@"删除" forState:UIControlStateNormal];
+        [self.deleteButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        self.deleteButton.titleLabel.font = [UIFont systemFontOfSize:14];
+        [self.deleteButton setBackgroundColor: [UIColor redColor]];
+        [self.deleteButton.layer setCornerRadius:5];
+        [self.editView addSubview:self.deleteButton];
         
     }
     return self;
 }
+
+
+-(void)ClickChooseButton:(UIButton *)sender{
+    if (isBool) {
+        [self.chooseButton setImage:[UIImage imageNamed:@"iconfont-yuanquan"] forState:UIControlStateNormal];
+        isBool = NO;
+    }else{
+        [self.chooseButton setImage:[UIImage imageNamed:@"iconfont-zhengque"] forState:UIControlStateNormal];
+        isBool = YES;
+    }
+}
+
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
