@@ -22,7 +22,7 @@
 @property (nonatomic, assign) NSInteger headClickState;
 
 //分组数据
-@property (nonatomic, copy) NSMutableArray *headCellArray;
+@property (nonatomic, strong) NSMutableArray *headCellArray;
 
 
 

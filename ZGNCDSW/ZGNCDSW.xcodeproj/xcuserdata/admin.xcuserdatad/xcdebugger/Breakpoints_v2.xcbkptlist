@@ -138,12 +138,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ZGNCDSW/WXBuyCartController.m"
-            timestampString = "484218710.816597"
+            timestampString = "484474853.487759"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "117"
-            endingLineNumber = "117"
-            landmarkName = "-ClickEditButton:"
+            startingLineNumber = "688"
+            endingLineNumber = "688"
+            landmarkName = "-tableView:cellForRowAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -154,28 +154,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ZGNCDSW/WXBuyCartController.m"
-            timestampString = "484218710.816597"
+            timestampString = "484474860.181712"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "150"
-            endingLineNumber = "150"
-            landmarkName = "-tableView:viewForHeaderInSection:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ZGNCDSW/WXBuyCartController.m"
-            timestampString = "484218710.816597"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "157"
-            endingLineNumber = "157"
-            landmarkName = "-tableView:viewForHeaderInSection:"
+            startingLineNumber = "706"
+            endingLineNumber = "706"
+            landmarkName = "-ClickDeleteButton:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

@@ -7,10 +7,12 @@
 //
 
 #import "WXBuyCartTableViewCell.h"
-
+static NSInteger num=0;
 @implementation WXBuyCartTableViewCell{
     
     BOOL isBool;
+    
+    NSIndexPath *indexPath;
 }
 
 - (void)awakeFromNib {
@@ -86,9 +88,103 @@
         [self.deleteButton.layer setCornerRadius:5];
         [self.editView addSubview:self.deleteButton];
         
+        [self.reduceButton addTarget:self action:@selector(ClickReduceButton:) forControlEvents:UIControlEventTouchDown];
+        
+        [self.addButton addTarget:self action:@selector(ClickAddButton:) forControlEvents:UIControlEventTouchDown];
+        
+        
     }
     return self;
 }
+
+-(void)setModel:(WXShoppingCellModel *)model{
+    _model = model;
+    
+    indexPath = [NSIndexPath indexPathForRow:model.row inSection:model.section];
+    
+    self.reduceButton.tag = indexPath.row;
+    self.addButton.tag = indexPath.row;
+    
+    self.productImage.image = [UIImage imageNamed:_model.imageUrl];
+    self.titleLabel.text = model.title;
+    self.priceLabel.text = [NSString stringWithFormat:@"¥ %@",model.price];
+    self.buyNumLabel.text = [NSString stringWithFormat:@"%ld",model.numInt];
+    self.buyNum.text = [NSString stringWithFormat:@"X%ld",model.numInt];
+    self.numInteger = model.numInt;
+    if (model.cellClickState == 1) {
+        
+        isBool = YES;
+        [self.chooseButton setImage:[UIImage imageNamed:@"iconfont-zhengque"] forState:UIControlStateNormal];
+        
+    } else {
+        
+        isBool = NO;
+        [self.chooseButton setImage:[UIImage imageNamed:@"iconfont-yuanquan"] forState:UIControlStateNormal];
+    }
+    
+    if (model.cellEditState ==1) {
+        
+        self.editView.hidden = NO;
+        
+    }else{
+        
+        self.editView.hidden = YES;
+        
+    }
+}
+
+//点击减少数量按钮触发事件
+-(void)ClickReduceButton:(UIButton *)sender
+{
+    num=self.buyNumLabel.text.intValue;
+  
+        if (num>1) {
+            num--;
+            self.buyNumLabel.text = [NSString stringWithFormat:@"%ld",num];
+            
+            self.buyNum.text = [NSString stringWithFormat:@"X%ld",num];
+        }else{
+            NSLog(@"超出范围");
+        }
+ 
+    
+}
+
+//点击增加数量按钮触发事件
+-(void)ClickAddButton:(UIButton *)sender{
+num=self.buyNumLabel.text.intValue;
+        num++;
+        self.buyNumLabel.text = [NSString stringWithFormat:@"%ld",num];
+        self.buyNum.text = [NSString stringWithFormat:@"X%ld",num];
+
+   
+}
+
+
+
+
+//-(void)setNumInteger:(NSInteger)numInteger{
+//    
+//    self.numInteger = numInteger;
+//    self.buyNumLabel.text = [NSString stringWithFormat:@"%ld",(long)_numInteger];
+//    num = self.numInteger;
+//}
+//
+//-(void)setMinInteget:(NSInteger)minInteget{
+//    
+//    _minInteget = minInteget;
+//    if (_minInteget == 0) {
+//
+//        self.buyNumLabel.text = @"0";
+//        num = 0;
+//        
+//    }else if (_minInteget<=[self.buyNumLabel.text integerValue]){
+//
+//        self.buyNumLabel.text = [NSString stringWithFormat:@"%ld",(long)_minInteget];
+//        num = _minInteget;
+//    }
+//    
+//}
 
 
 -(void)ClickChooseButton:(UIButton *)sender{

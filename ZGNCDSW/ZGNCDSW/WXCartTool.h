@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "WXShoppingModel.h"
 @protocol WXCartToolDelegate <NSObject>
 
 @optional
@@ -23,4 +23,10 @@
 @property (nonatomic, strong) NSMutableArray *cellItems;
 @property (nonatomic,weak)id <WXCartToolDelegate>delegate;
 
+@property (nonatomic, strong) WXShoppingCellModel *model;
+
+@property (nonatomic,strong)UIImageView *chooseAllImage;//全选按钮
+@property (nonatomic,strong)UILabel *chooseAll;//全选
+@property (nonatomic,strong)UIButton *statement;//结算
+@property (nonatomic,strong)UILabel *totalPrice;//合计
 @end
