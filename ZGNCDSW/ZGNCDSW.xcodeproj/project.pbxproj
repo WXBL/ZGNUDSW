@@ -73,6 +73,12 @@
 		8F288E901CD0B1FA007CA5EF /* reg_pwd_txt@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F288E8C1CD0B1FA007CA5EF /* reg_pwd_txt@2x.png */; };
 		8F288E911CD0B1FA007CA5EF /* reg_username_txt.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F288E8D1CD0B1FA007CA5EF /* reg_username_txt.png */; };
 		8F288E921CD0B1FA007CA5EF /* reg_username_txt@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F288E8E1CD0B1FA007CA5EF /* reg_username_txt@2x.png */; };
+		8F62014F1CE01202002C9C60 /* WXBaseService.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F62014C1CE01202002C9C60 /* WXBaseService.m */; };
+		8F6201501CE01202002C9C60 /* WXUserService.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F62014E1CE01202002C9C60 /* WXUserService.m */; };
+		8F6201531CE0127A002C9C60 /* WXUserRegistViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F6201521CE0127A002C9C60 /* WXUserRegistViewController.m */; };
+		8F62015A1CE01294002C9C60 /* WXResetPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F6201551CE01294002C9C60 /* WXResetPasswordViewController.m */; };
+		8F62015B1CE01294002C9C60 /* WXForgetPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F6201571CE01294002C9C60 /* WXForgetPasswordViewController.m */; };
+		8F62015C1CE01294002C9C60 /* WXVerifyTelephoneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F6201591CE01294002C9C60 /* WXVerifyTelephoneViewController.m */; };
 		8FA39DC61CCE0C0B0034C622 /* AFHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FA39D3D1CCE0C0B0034C622 /* AFHTTPClient.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		8FA39DC71CCE0C0B0034C622 /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FA39D3F1CCE0C0B0034C622 /* AFHTTPRequestOperation.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		8FA39DC81CCE0C0B0034C622 /* AFImageRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FA39D411CCE0C0B0034C622 /* AFImageRequestOperation.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -265,6 +271,18 @@
 		8F288E8C1CD0B1FA007CA5EF /* reg_pwd_txt@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "reg_pwd_txt@2x.png"; sourceTree = "<group>"; };
 		8F288E8D1CD0B1FA007CA5EF /* reg_username_txt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = reg_username_txt.png; sourceTree = "<group>"; };
 		8F288E8E1CD0B1FA007CA5EF /* reg_username_txt@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "reg_username_txt@2x.png"; sourceTree = "<group>"; };
+		8F62014B1CE01202002C9C60 /* WXBaseService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXBaseService.h; sourceTree = "<group>"; };
+		8F62014C1CE01202002C9C60 /* WXBaseService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXBaseService.m; sourceTree = "<group>"; };
+		8F62014D1CE01202002C9C60 /* WXUserService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXUserService.h; sourceTree = "<group>"; };
+		8F62014E1CE01202002C9C60 /* WXUserService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXUserService.m; sourceTree = "<group>"; };
+		8F6201511CE0127A002C9C60 /* WXUserRegistViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXUserRegistViewController.h; sourceTree = "<group>"; };
+		8F6201521CE0127A002C9C60 /* WXUserRegistViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXUserRegistViewController.m; sourceTree = "<group>"; };
+		8F6201541CE01294002C9C60 /* WXResetPasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXResetPasswordViewController.h; sourceTree = "<group>"; };
+		8F6201551CE01294002C9C60 /* WXResetPasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXResetPasswordViewController.m; sourceTree = "<group>"; };
+		8F6201561CE01294002C9C60 /* WXForgetPasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXForgetPasswordViewController.h; sourceTree = "<group>"; };
+		8F6201571CE01294002C9C60 /* WXForgetPasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXForgetPasswordViewController.m; sourceTree = "<group>"; };
+		8F6201581CE01294002C9C60 /* WXVerifyTelephoneViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXVerifyTelephoneViewController.h; sourceTree = "<group>"; };
+		8F6201591CE01294002C9C60 /* WXVerifyTelephoneViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXVerifyTelephoneViewController.m; sourceTree = "<group>"; };
 		8FA39D3C1CCE0C0B0034C622 /* AFHTTPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPClient.h; sourceTree = "<group>"; };
 		8FA39D3D1CCE0C0B0034C622 /* AFHTTPClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPClient.m; sourceTree = "<group>"; };
 		8FA39D3E1CCE0C0B0034C622 /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
@@ -812,6 +830,12 @@
 			children = (
 				8F288E821CD09729007CA5EF /* register */,
 				8F288E811CD0971F007CA5EF /* login */,
+				8F6201541CE01294002C9C60 /* WXResetPasswordViewController.h */,
+				8F6201551CE01294002C9C60 /* WXResetPasswordViewController.m */,
+				8F6201561CE01294002C9C60 /* WXForgetPasswordViewController.h */,
+				8F6201571CE01294002C9C60 /* WXForgetPasswordViewController.m */,
+				8F6201581CE01294002C9C60 /* WXVerifyTelephoneViewController.h */,
+				8F6201591CE01294002C9C60 /* WXVerifyTelephoneViewController.m */,
 			);
 			name = "Users(用户)";
 			sourceTree = "<group>";
@@ -832,6 +856,8 @@
 		8F288E821CD09729007CA5EF /* register */ = {
 			isa = PBXGroup;
 			children = (
+				8F6201511CE0127A002C9C60 /* WXUserRegistViewController.h */,
+				8F6201521CE0127A002C9C60 /* WXUserRegistViewController.m */,
 			);
 			name = register;
 			sourceTree = "<group>";
@@ -1114,6 +1140,10 @@
 		8FCD40DF1CCA211A001EFC9E /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				8F62014B1CE01202002C9C60 /* WXBaseService.h */,
+				8F62014C1CE01202002C9C60 /* WXBaseService.m */,
+				8F62014D1CE01202002C9C60 /* WXUserService.h */,
+				8F62014E1CE01202002C9C60 /* WXUserService.m */,
 			);
 			name = Services;
 			sourceTree = "<group>";
@@ -1306,6 +1336,7 @@
 				8FA39DC81CCE0C0B0034C622 /* AFImageRequestOperation.m in Sources */,
 				84ED68911CCF528200A45281 /* UIView+Extension.m in Sources */,
 				8FA39E0D1CCE0FFF0034C622 /* NetWork.m in Sources */,
+				8F62015A1CE01294002C9C60 /* WXResetPasswordViewController.m in Sources */,
 				8401901A1CCE297300A43AA4 /* WXFarmImportsController.m in Sources */,
 				8FA39DF41CCE0C0B0034C622 /* MJRefreshBaseView.m in Sources */,
 				8FA39DF51CCE0C0B0034C622 /* MJRefreshFooterView.m in Sources */,
@@ -1332,7 +1363,9 @@
 				8FA39DE51CCE0C0B0034C622 /* QRCodeGenerator.m in Sources */,
 				8FA39DD11CCE0C0B0034C622 /* ICSDropShadowView.m in Sources */,
 				84F99D881CDAF76500B3EF2D /* WXCommentController.m in Sources */,
+				8F6201501CE01202002C9C60 /* WXUserService.m in Sources */,
 				8FA39DD91CCE0C0B0034C622 /* SBJsonUTF8Stream.m in Sources */,
+				8F62015B1CE01294002C9C60 /* WXForgetPasswordViewController.m in Sources */,
 				8FA39DE81CCE0C0B0034C622 /* qrspec.c in Sources */,
 				8FA39DF81CCE0C0B0034C622 /* SHLUILabel.m in Sources */,
 				8FA39DD61CCE0C0B0034C622 /* SBJsonStreamParserAdapter.m in Sources */,
@@ -1343,6 +1376,7 @@
 				8F0669491CC4E7ED007CD423 /* main.m in Sources */,
 				8FA39E071CCE0CA70034C622 /* validateTest.m in Sources */,
 				8FA39E061CCE0CA70034C622 /* MViewUtil.m in Sources */,
+				8F62015C1CE01294002C9C60 /* WXVerifyTelephoneViewController.m in Sources */,
 				844329F51CD9860800BD7B9E /* WXBigPic.m in Sources */,
 				8F288E791CD06115007CA5EF /* WXMerchantModel.m in Sources */,
 				840065CC1CDC37A70014C377 /* WXBuyCartTableViewCell.m in Sources */,
@@ -1356,6 +1390,7 @@
 				840190271CCE2A3700A43AA4 /* WXMyInforController.m in Sources */,
 				8406FAFA1CD8773000EA155E /* WXNewsDetailViewController.m in Sources */,
 				840190221CCE29DD00A43AA4 /* WXMessageController.m in Sources */,
+				8F6201531CE0127A002C9C60 /* WXUserRegistViewController.m in Sources */,
 				84ED68941CCF545E00A45281 /* WXSearchBar.m in Sources */,
 				84F99D8B1CDAFB4800B3EF2D /* WXCommentTableViewCell.m in Sources */,
 				84F99D921CDB2F4100B3EF2D /* WXStatusFrame.m in Sources */,
@@ -1366,6 +1401,7 @@
 				8FA39DD41CCE0C0B0034C622 /* SBJsonStreamParser.m in Sources */,
 				8FA39DD21CCE0C0B0034C622 /* NSObject+SBJson.m in Sources */,
 				8FA39DE61CCE0C0B0034C622 /* qrencode.c in Sources */,
+				8F62014F1CE01202002C9C60 /* WXBaseService.m in Sources */,
 				8FA39DCB1CCE0C0B0034C622 /* AFNetworkActivityIndicatorManager.m in Sources */,
 				840065C91CDC28880014C377 /* WXBuyCartController.m in Sources */,
 				8FA39DE21CCE0C0B0034C622 /* UIView+SDExtension.m in Sources */,

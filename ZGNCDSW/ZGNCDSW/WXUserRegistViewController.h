@@ -1,22 +1,19 @@
 //
-//  WXUserLoginViewController.h
+//  WXUserRegistViewController.h
 //  ZGNCDSW
 //
-//  Created by Macx on 16/4/27.
+//  Created by 龙莲莲 on 16/4/28.
 //  Copyright © 2016年 Macx. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 #import "NetWork.h"
-@interface WXUserLoginViewController : UIViewController<UITextFieldDelegate,UIAlertViewDelegate>
 
+@interface WXUserRegistViewController : UIViewController<UITextFieldDelegate,UIAlertViewDelegate>
 @property(nonatomic,strong)UITextField *userNameTextField;
 @property(nonatomic,strong)UITextField *passwordTextField;
-@property(nonatomic,strong)UIButton *loginBtn;
-@property(nonatomic,strong)UIButton *forgetPasswordBtn;
-@property(nonatomic,strong)UIButton *registBtn;
 
+@property(nonatomic,strong)UIButton *clickNextBtn;
 @property(nonatomic,strong)UILabel *alertLbl;
 @property(nonatomic,strong)NetWork *isHaveNet;
-
 @end

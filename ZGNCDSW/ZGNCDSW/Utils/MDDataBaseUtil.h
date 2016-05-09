@@ -8,20 +8,22 @@
 
 #import <Foundation/Foundation.h>
 #define M_USER_OBJECT @"m_user_object"
-#define M_USER_ID @"m_user_ID"
-#define M_USER_TYPE @"m_user_Type"
-#define M_USER_UIN @"m_user_UIN"
-#define M_USER_LGOGIN_NAME @"m_user_login_name"
+#define USER_ID @"UserID"
+#define USER_NAME @"UserName"
+#define PASSWORD @"Password"
+#define TEL @"Tel"
 #define IS_LOGIN @"is_login"
-#define M_LONGTITUDE @"m_longtitude"
-#define M_LATITUDE @"m_latitude"
-#define M_LIST_KEYWORD @"m_keyword"
-#define M_LIST_KEYWORD_ATT @"m_keyword_att"
-#define M_LIST_VC_INDEX @"m_list_index"
-#define M_USER_PASSWORD @"m_user_password"
-#define M_USER_PHONE @"m_user_phone"
-#define M_UUID @"m_uuid"
-#define M_USER_COINS @"m_user_coins"
+#define AGE @"Age"
+#define SEX @"Sex"
+#define REGIST_TIME @"Regist_time"
+#define LAST_LOGIN_TIME @"Last_login_time"
+#define USER_IMAGE @"User_image"
+#define EMAIL @"Email"
+#define LOGIN_ADDRESS @"Login_address"
+#define NOW_ADDRESS @"Now_address"
+#define NOTE @"Note"
+#define LEVEL_ID @"Level_ID"
+#define RANK_CONTENT @"Rank_Content"
 
 @interface MDDataBaseUtil : NSObject
 
@@ -35,41 +37,45 @@
 + (id)userID;
 + (void)setUserID:(id)userID;
 
-+ (id)userUIN;
-+ (void)setUserUIN:(id)userUIN;
++ (id)userName;
++ (void)setUserName:(id)userName;
 
-+ (id)userType;
-+ (void)setUserType:(id)userType;
++ (id)password;
++ (void)setPassword:(id)password;
 
 
-+ (id)userPhone;
-+ (void)setUserPhone:(id)userPhone;
++ (id)tel;
++ (void)setTel:(id)tel;
 
-+ (id)userCoins;
-+ (void)setUserCoins:(id)userCoins;
++ (id)age;
++ (void)setAge:(id)age;
 
-+ (id)userLoginName;
-+ (void)setUserLoginName:(id)userLoginName;
++ (id)sex;
++ (void)setSex:(id)sex;
 
-+ (id)userPassword;
-+ (void)setUserPassword:(id)userPassword;
++ (id)registTime;
++ (void)setRegistTime:(id)registTime;
 
-+ (id)txtLongtitude;
-+ (void)setTxtLongtitude:(id)txtLongtitude;
++ (id)lastLoginTime;
++ (void)setLastLoginTime:(id)lastLoginTime;
 
-+ (id)txtLatitude;
-+ (void)setTxtLatitude:(id)txtLongtitude;
++ (id)userImage;
++ (void)setUserImage:(id)userImage;
 
-+ (id)keyWord;
-+ (void)setKeyWord:(id)keyArr;
++ (id)email;
++ (void)setEmail:(id)email;
 
-+ (id)keyWordAtt;
-+ (void)setKeyWordAtt:(id)keyWordAtt;
++ (id)loginAddress;
++ (void)setLoginAddress:(id)loginAddress;
 
-+ (int)listVCIndex;
-+ (void)setListVCIndex:(int)index;
++ (id)nowAddress;
++ (void)setNowAddress:(id)nowAddress;
 
-+ (NSString*)uuid;
-+ (void)setUuid:(NSString*)uuid;
++ (id)note;
++ (void)setNote:(id)note;
 
++ (id)levelID;
++ (void)setLevelID:(id)levelID;
++ (id)rankContent;
++ (void)setRankContent:(id)rankContent;
 @end

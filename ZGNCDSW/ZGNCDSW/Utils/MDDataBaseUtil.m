@@ -30,143 +30,155 @@
     
     [[NSUserDefaults standardUserDefaults] setObject:UserObject forKey:M_USER_OBJECT];
     [[NSUserDefaults standardUserDefaults] synchronize];
-   
+    
 }
 + (id)userID
 {
-    return [[NSUserDefaults standardUserDefaults] objectForKey:M_USER_ID];
+    return [[NSUserDefaults standardUserDefaults] objectForKey:USER_ID];
 }
 
 + (void)setUserID:(id)userID{
-    [[NSUserDefaults standardUserDefaults] setObject:userID forKey:M_USER_ID];
+    [[NSUserDefaults standardUserDefaults] setObject:userID forKey:USER_ID];
     [[NSUserDefaults standardUserDefaults] synchronize];
     
 }
 
-+ (id)userType
++ (id)userName
 {
-    return [[NSUserDefaults standardUserDefaults] objectForKey:M_USER_TYPE];
+    return [[NSUserDefaults standardUserDefaults] objectForKey:USER_NAME];
 }
 
-+ (void)setUserType:(id)userType{
-    [[NSUserDefaults standardUserDefaults] setObject:userType forKey:M_USER_TYPE];
++ (void)setUserName:(id)userName{
+    [[NSUserDefaults standardUserDefaults] setObject:userName forKey:USER_NAME];
     [[NSUserDefaults standardUserDefaults] synchronize];
     
 }
 
-+ (id)userUIN {
-    return [[NSUserDefaults standardUserDefaults] objectForKey:M_USER_UIN];
++ (id)password {
+    return [[NSUserDefaults standardUserDefaults] objectForKey:PASSWORD];
 }
 
-+ (void)setUserUIN:(id)userUIN{
-    [[NSUserDefaults standardUserDefaults] setObject:userUIN forKey:M_USER_UIN];
++ (void)setPassword:(id)password{
+    [[NSUserDefaults standardUserDefaults] setObject:password forKey:PASSWORD];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 
 
-+ (id)userCoins {
-    return [[NSUserDefaults standardUserDefaults] objectForKey:M_USER_COINS];
++ (id)tel {
+    return [[NSUserDefaults standardUserDefaults] objectForKey:TEL];
     
 }
 
-+ (void)setUserCoins:(id)userCoins{
-    [[NSUserDefaults standardUserDefaults] setObject:userCoins forKey:M_USER_COINS];
++ (void)setTel:(id)tel{
+    [[NSUserDefaults standardUserDefaults] setObject:tel forKey:TEL];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 
-+ (id)userLoginName {
-    return [[NSUserDefaults standardUserDefaults] objectForKey:M_USER_LGOGIN_NAME];
++ (id)age {
+    return [[NSUserDefaults standardUserDefaults] objectForKey:AGE];
 }
 
-+ (void)setUserLoginName:(id)userLoginName{
-    [[NSUserDefaults standardUserDefaults] setObject:userLoginName forKey:M_USER_LGOGIN_NAME];
++ (void)setAge:(id)age{
+    [[NSUserDefaults standardUserDefaults] setObject:age forKey:AGE];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
-+ (id)userPassword
++ (id)sex
 {
-    return [[NSUserDefaults standardUserDefaults] objectForKey:M_USER_PASSWORD];
+    return [[NSUserDefaults standardUserDefaults] objectForKey:SEX];
 }
 
-+ (void)setUserPassword:(id)userPassword
++ (void)setSex:(id)sex
 {
-    [[NSUserDefaults standardUserDefaults] setObject:userPassword forKey:M_USER_PASSWORD];
+    [[NSUserDefaults standardUserDefaults] setObject:sex forKey:SEX];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 
-+ (id)userPhone {
-    return [[NSUserDefaults standardUserDefaults] objectForKey:M_USER_PHONE];
++ (id)registTime {
+    return [[NSUserDefaults standardUserDefaults] objectForKey:REGIST_TIME];
 }
 
-+ (void)setUserPhone:(id)userPhone {
-    [[NSUserDefaults standardUserDefaults] setObject:userPhone forKey:M_USER_PHONE];
++ (void)setRegistTime:(id)registTime{
+    [[NSUserDefaults standardUserDefaults] setObject:registTime forKey:REGIST_TIME];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
-+ (id)txtLongtitude
++ (id)lastLoginTime
 {
-    return [[NSUserDefaults standardUserDefaults] objectForKey:M_LONGTITUDE];
+    return [[NSUserDefaults standardUserDefaults] objectForKey:LAST_LOGIN_TIME];
 }
 
-+ (void)setTxtLongtitude:(id)txtLongtitude
++ (void)setLastLoginTime:(id)lastLoginTime
 {
-    [[NSUserDefaults standardUserDefaults] setObject:txtLongtitude forKey:M_LONGTITUDE];
+    [[NSUserDefaults standardUserDefaults] setObject:lastLoginTime forKey:LAST_LOGIN_TIME];
     [[NSUserDefaults standardUserDefaults] synchronize];
     
 }
 
-+ (id)txtLatitude
++ (id)userImage
 {
-    return [[NSUserDefaults standardUserDefaults] objectForKey:M_LATITUDE];
+    return [[NSUserDefaults standardUserDefaults] objectForKey:USER_IMAGE];
 }
 
-+ (void)setTxtLatitude:(id)txtLongtitude
++ (void)setUserImage:(id)userImage
 {
-    [[NSUserDefaults standardUserDefaults] setObject:txtLongtitude forKey:M_LATITUDE];
+    [[NSUserDefaults standardUserDefaults] setObject:userImage forKey:USER_IMAGE];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
-+ (id)keyWord
++ (id)email
 {
-    return [[NSUserDefaults standardUserDefaults] objectForKey:M_LIST_KEYWORD];
+    return [[NSUserDefaults standardUserDefaults] objectForKey:EMAIL];
 }
 
-+ (void)setKeyWord:(id)keyArr
++ (void)setEmail:(id)email
 {
-    [[NSUserDefaults standardUserDefaults] setObject:keyArr forKey:M_LIST_KEYWORD];
-    [[NSUserDefaults standardUserDefaults] synchronize];
-}
-
-+ (id)keyWordAtt{
-    return [[NSUserDefaults standardUserDefaults] objectForKey:M_LIST_KEYWORD_ATT];
-}
-+ (void)setKeyWordAtt:(id)keyWordAtt{
-    [[NSUserDefaults standardUserDefaults] setObject:keyWordAtt forKey:M_LIST_KEYWORD_ATT];
+    [[NSUserDefaults standardUserDefaults] setObject:email forKey:EMAIL];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
-
-+ (int)listVCIndex{
-    NSNumber * number = [[NSUserDefaults standardUserDefaults] objectForKey:M_LIST_VC_INDEX];
-    int index = [number intValue];
-    return index;
++ (id)loginAddress{
+    return [[NSUserDefaults standardUserDefaults] objectForKey:LOGIN_ADDRESS];
 }
-+ (void)setListVCIndex:(int)index{
-    NSNumber * indexNunmber = [NSNumber numberWithInt:index];
-    [[NSUserDefaults standardUserDefaults] setObject:indexNunmber forKey:M_LIST_VC_INDEX];
++ (void)setLoginAddress:(id)loginAddress{
+    [[NSUserDefaults standardUserDefaults] setObject:loginAddress forKey:LOGIN_ADDRESS];
+    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
-+ (NSString *)uuid
+
++ (id)nowAddress{
+    return [[NSUserDefaults standardUserDefaults] objectForKey:NOW_ADDRESS];
+}
++ (void)setNowAddress:(id)nowAddress{
+    [[NSUserDefaults standardUserDefaults] setObject:nowAddress forKey:NOW_ADDRESS];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
++ (id)note
 {
-    NSString *uuid = [NSString stringWithFormat:@"%@", [[NSUserDefaults standardUserDefaults] objectForKey:M_UUID]];
-    return uuid;
+    return  [[NSUserDefaults standardUserDefaults] objectForKey:NOTE];
+    
 }
 
-+ (void)setUuid:(NSString*)uuid
++ (void)setNote:(id)note
 {
-    [[NSUserDefaults standardUserDefaults] setObject:uuid forKey:M_UUID];
+    [[NSUserDefaults standardUserDefaults] setObject:note forKey:NOTE];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
++(id)levelID{
+    return [NSString stringWithFormat:@"%@", [[NSUserDefaults standardUserDefaults] objectForKey:LEVEL_ID]];
+}
++(void)setLevelID:(id)levelID{
+    [[NSUserDefaults standardUserDefaults] setObject:levelID forKey:LEVEL_ID];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
++(id)rankContent{
+    return [NSString stringWithFormat:@"%@", [[NSUserDefaults standardUserDefaults] objectForKey:RANK_CONTENT]];
+}
++(void)setRankContent:(id)rankContent{
+    [[NSUserDefaults standardUserDefaults] setObject:rankContent forKey:RANK_CONTENT];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 @end

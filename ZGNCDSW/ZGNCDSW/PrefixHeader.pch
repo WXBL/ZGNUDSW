@@ -28,4 +28,7 @@
 #define WXProductInfoDidRecievedNotification            @"WXProductInfoDidRecieved"
 #define WXProductBuyCountDidChangeNotification          @"WXProductBuyCountDidChange"
 
+//接口
+#define BASE_SERVICE_URL @""
+
 #endif /* PrefixHeader_pch */
