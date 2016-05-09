@@ -15,6 +15,9 @@
 //#import "WXNewsTableCell.m"
 #import "WXRecommendTableViewCell.h"
 #import "WXNewsDetailViewController.h"
+#import "MDDataBaseUtil.h"
+#import "WXUserLoginViewController.h"
+#import "WXMyInforController.h"
 
 @interface WXHomeViewController ()<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate>
 
@@ -339,7 +342,6 @@
             if (cell == nil) {
                 cell = [[WXCategoryTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellStr];
             }
-            
             [cell.categoryButton addTarget:self action:@selector(ClickCategoryButton:) forControlEvents:UIControlEventTouchUpInside];
             
             //点击cell时不变色
@@ -440,9 +442,9 @@
 
 
 -(void)ClickCategoryButton:(UIButton *)sender{
-    if (sender.tag == 0) {
-        
-    }
+    
+    NSLog(@"senter--------------------%ld",sender.tag);
+  
 }
 
 #pragma mark - TableView delegate

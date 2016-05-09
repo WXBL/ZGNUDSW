@@ -17,7 +17,7 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         UIView *categoryView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, screenWidth, 180)];
-        categoryView.backgroundColor = [UIColor colorWithWhite:0.9 alpha:1];
+        categoryView.backgroundColor = [UIColor whiteColor];
         [self addSubview:categoryView];
 
         
@@ -60,18 +60,12 @@
                     break;
             }
             
-            self.categoryButton = [UIButton buttonWithType:UIButtonTypeCustom];
-            self.categoryButton.frame = CGRectMake(i * screenWidth *0.25, 0, screenWidth * 0.25, 90);
-            self.categoryButton.tag = i+1;
-            [self.categoryButton setBackgroundColor:[UIColor whiteColor]];
-//            [self.categoryButton setImage:[UIImage imageNamed:imgName] forState:UIControlStateNormal];
-            [categoryView addSubview:self.categoryButton];
+            
             
             [categoryView addSubview:imgView];
             
             [categoryView addSubview:cateLabel];
            
-            
 
         }
         for (int j = 0; j < 4; j++) {
@@ -113,14 +107,15 @@
             }
             
             self.categoryButton = [UIButton buttonWithType:UIButtonTypeCustom];
-            self.categoryButton.frame = CGRectMake(j * screenWidth *0.25, 90, screenWidth * 0.25, 90);
-            self.categoryButton.tag = j+5;
-            [self.categoryButton setBackgroundColor:[UIColor whiteColor]];
-            [categoryView addSubview:self.categoryButton];
+            self.categoryButton.frame = CGRectMake(j * screenWidth, 0, screenWidth,CGRectGetHeight(self.frame));
+            self.categoryButton.tag=100;
+            [self.categoryButton setBackgroundColor:[UIColor clearColor]];
+            
             
             [categoryView addSubview:imgView];
             
             [categoryView addSubview:cateLabel];
+            [categoryView addSubview:self.categoryButton];
         }
     }
     return self;
