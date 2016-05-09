@@ -44,13 +44,13 @@
             cateLabel.font = [UIFont systemFontOfSize:12];
             switch (i) {
                 case 0:
-                    cateLabel.text = @"农资超市";
+                    cateLabel.text = @"会员之家";
                     break;
                 case 1:
-                    cateLabel.text = @"时令果蔬";
+                    cateLabel.text = @"商家联盟";
                     break;
                 case 2:
-                    cateLabel.text = @"海鲜肉食";
+                    cateLabel.text = @"商家入驻";
                     break;
                 case 3:
                     cateLabel.text = @"大宗团购";
@@ -96,16 +96,16 @@
             cateLabel.font = [UIFont systemFontOfSize:12];
             switch (j) {
                 case 0:
-                    cateLabel.text = @"私人定制";
+                    cateLabel.text = @"产品分类";
                     break;
                 case 1:
-                    cateLabel.text = @"会员之家";
+                    cateLabel.text = @"特色馆";
                     break;
                 case 2:
-                    cateLabel.text = @"采购乐园";
+                    cateLabel.text = @"行业资讯";
                     break;
                 case 3:
-                    cateLabel.text = @"商业资讯";
+                    cateLabel.text = @"购物车";
                     break;
                 
                 default:
