@@ -22,6 +22,7 @@
 #import "WXFarmImportsController.h"
 #import "WXNewsController.h"
 #import "WXTopView.h"
+#import "WXProductCategoryViewController.h"
 
 @interface WXHomeViewController ()<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate>
 
@@ -145,12 +146,13 @@
             }
             break;
         case 4:
+        {
             
+        }
             break;
         case 5:
         {
             WXFarmImportsController *farmImportVC=[[WXFarmImportsController alloc] init];
-            farmImportVC.showType=1;
             [self presentViewController:farmImportVC animated:YES completion:nil];
         }
             break;

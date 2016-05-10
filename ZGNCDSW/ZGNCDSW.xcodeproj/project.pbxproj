@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		79B936741CE18F2100C70521 /* WXProductCategoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 79B936731CE18F2100C70521 /* WXProductCategoryViewController.m */; };
 		84004EA01CE1792E002DEFB6 /* WXNewfeatureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84004E9F1CE1792E002DEFB6 /* WXNewfeatureViewController.m */; };
 		84004EA41CE18563002DEFB6 /* WXMessageTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84004EA31CE18563002DEFB6 /* WXMessageTableViewController.m */; };
 		840065C91CDC28880014C377 /* WXBuyCartController.m in Sources */ = {isa = PBXBuildFile; fileRef = 840065C81CDC28880014C377 /* WXBuyCartController.m */; };
@@ -158,6 +159,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		79B936721CE18F2100C70521 /* WXProductCategoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXProductCategoryViewController.h; sourceTree = "<group>"; };
+		79B936731CE18F2100C70521 /* WXProductCategoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXProductCategoryViewController.m; sourceTree = "<group>"; };
 		84004E9E1CE1792E002DEFB6 /* WXNewfeatureViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXNewfeatureViewController.h; sourceTree = "<group>"; };
 		84004E9F1CE1792E002DEFB6 /* WXNewfeatureViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXNewfeatureViewController.m; sourceTree = "<group>"; };
 		84004EA21CE18563002DEFB6 /* WXMessageTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXMessageTableViewController.h; sourceTree = "<group>"; };
@@ -468,6 +471,33 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		79B9366C1CE18E1D00C70521 /* BuyCar */ = {
+			isa = PBXGroup;
+			children = (
+				79B9366E1CE18E6400C70521 /* Views */,
+				79B9366D1CE18E3200C70521 /* Controllers */,
+			);
+			name = BuyCar;
+			sourceTree = "<group>";
+		};
+		79B9366D1CE18E3200C70521 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				840065C71CDC28880014C377 /* WXBuyCartController.h */,
+				840065C81CDC28880014C377 /* WXBuyCartController.m */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		79B9366E1CE18E6400C70521 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				840065CA1CDC37A70014C377 /* WXBuyCartTableViewCell.h */,
+				840065CB1CDC37A70014C377 /* WXBuyCartTableViewCell.m */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
 		84004E9D1CE178FD002DEFB6 /* Newfeature(新特性) */ = {
 			isa = PBXGroup;
 			children = (
@@ -573,8 +603,8 @@
 				8406FAFD1CD8915900EA155E /* WXFarmDetailViewController.m */,
 				84F99D861CDAF76500B3EF2D /* WXCommentController.h */,
 				84F99D871CDAF76500B3EF2D /* WXCommentController.m */,
-				840065C71CDC28880014C377 /* WXBuyCartController.h */,
-				840065C81CDC28880014C377 /* WXBuyCartController.m */,
+				79B936721CE18F2100C70521 /* WXProductCategoryViewController.h */,
+				79B936731CE18F2100C70521 /* WXProductCategoryViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -768,8 +798,6 @@
 				84F4ADC51CD35CDD00270CC4 /* WXfarmImportsTableViewCell.m */,
 				84F99D891CDAFB4800B3EF2D /* WXCommentTableViewCell.h */,
 				84F99D8A1CDAFB4800B3EF2D /* WXCommentTableViewCell.m */,
-				840065CA1CDC37A70014C377 /* WXBuyCartTableViewCell.h */,
-				840065CB1CDC37A70014C377 /* WXBuyCartTableViewCell.m */,
 				840065CD1CDC8A750014C377 /* WXCartTool.h */,
 				840065CE1CDC8A750014C377 /* WXCartTool.m */,
 				846047221CE020B200DC01B9 /* ShoppingBtn.h */,
@@ -819,6 +847,7 @@
 		8F0669461CC4E7ED007CD423 /* ZGNCDSW */ = {
 			isa = PBXGroup;
 			children = (
+				79B9366C1CE18E1D00C70521 /* BuyCar */,
 				84004E9D1CE178FD002DEFB6 /* Newfeature(新特性) */,
 				8F288E801CD09702007CA5EF /* Users(用户) */,
 				840190231CCE29E500A43AA4 /* Myinformation(我的) */,
@@ -1398,6 +1427,7 @@
 				8FA39DC91CCE0C0B0034C622 /* AFJSONRequestOperation.m in Sources */,
 				8FA39DD81CCE0C0B0034C622 /* SBJsonTokeniser.m in Sources */,
 				8FA39DE91CCE0C0B0034C622 /* rscode.c in Sources */,
+				79B936741CE18F2100C70521 /* WXProductCategoryViewController.m in Sources */,
 				8FA39DDF1CCE0C0B0034C622 /* SDRefreshFooterView.m in Sources */,
 				8FA39DF61CCE0C0B0034C622 /* MJRefreshHeaderView.m in Sources */,
 				8FA39DD71CCE0C0B0034C622 /* SBJsonStreamParserState.m in Sources */,
