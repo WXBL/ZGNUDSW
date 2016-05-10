@@ -37,8 +37,15 @@
     statementView.backgroundColor = [UIColor whiteColor];
     [self addSubview:statementView];
     
+    UIButton *allButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    allButton.frame = CGRectMake(0, 0, 100, 60);
+    allButton.backgroundColor = [UIColor whiteColor];
+    [statementView addSubview:allButton];
+    self.allButton = allButton;
+    
     self.chooseAllImage = [[UIImageView alloc]initWithFrame:CGRectMake(10, 15, 30, 30)];
 
+//    [self.chooseAllImage setImage:[UIImage imageNamed:@"iconfont-yuanquan"]];
     
     [statementView addSubview:self.chooseAllImage];
     

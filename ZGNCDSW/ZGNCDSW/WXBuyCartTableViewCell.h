@@ -11,7 +11,7 @@
 #import "WXShoppingModel.h"
 @protocol WXBuyTableViewCellDelegate <NSObject>
 
--(void)WXShoppingTableViewCell:(WXShoppingModel *)model;
+-(void)WXShoppingTableViewCell:(WXShoppingCellModel *)model;
 
 @end
 

@@ -43,6 +43,8 @@
 
 @property (nonatomic,strong)NSString *numStr;
 
+@property (nonatomic,strong)UILabel *totalPriceLabel;
+
 @end
 
 @implementation WXBuyCartController
@@ -61,13 +63,16 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    
+    
     [self setNavBar];
     
     [self addTableView];
     
     [self addStatement];
     
-    self.numStr = @"1";
+    [self setInit];
+    
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -112,7 +117,6 @@
     self.buyCartTabelView.backgroundColor = [UIColor colorWithWhite:0.9 alpha:1];
     [self.view addSubview:self.buyCartTabelView];
     
-    [self setData];
     
 }
 
@@ -120,40 +124,39 @@
 -(void)addStatement{
     WXCartTool *toolBar = [[WXCartTool alloc]init];
     toolBar.delegate = self;
+
+    self.totalPriceLabel = toolBar.totalPrice;
+    [toolBar.allButton addTarget:self action:@selector(AllBtn:) forControlEvents:UIControlEventTouchUpInside];
     
     [self.view addSubview:toolBar];
 }
 
 -(void)setInit{
     
-    _numStr = @"0";
+    self.numStr = @"0";
     [Util setFoursides:_bottomView Direction:@"top" sizeW:SCREEN_WIDTH];
     [Util setFoursides:_naviView Direction:@"bottom" sizeW:SCREEN_WIDTH];
     
-    
-    
+    [self setData];
     //接收通知
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(AllPrice:) name:@"AllPrice" object:nil];
-    [Util setUILabel:_allPriceLabel Data:@"总价: " SetData:@"￥0.00" Color:BACKGROUNDCOLOR Font:15 Underline:NO];
+//   [Util setUILabel:self.totalPriceLabel Data:@"" SetData:@"￥0.00" Color:BACKGROUNDCOLOR Font:15 Underline:NO];
     
 }
 
 #pragma mark 通知
 - (void)AllPrice:(NSNotification *)text{
     
-    WXCartTool *cartTool = [[WXCartTool alloc]init];
-    cartTool.totalPrice.text = [NSString stringWithFormat:@"%@",text.userInfo[@"allPrice"]];
+   
+    self.totalPriceLabel.text = [NSString stringWithFormat:@"%@",text.userInfo[@"allPrice"]];
     
-    _numStr= text.userInfo[@"num"];
-    
-//    [self setTlementLabel];
     [self setAllBtnState:[text.userInfo[@"allState"]  isEqual: @"YES"]?NO:YES];
     
     cellArray =  text.userInfo[@"cellModel"];
 }
 
 
-//#pragma 全选
+#pragma 全选
 - (void)AllBtn:(UIButton *)sender {
     
     [self allBtn:!self.isbool];
@@ -257,7 +260,7 @@
                                         },
                                     @{
                                         @"headID":@"10",
-                                        @"headState":@0,
+                                        @"headState":@1,
                                         @"headCellArray":@[
                                                 @{
                                                     @"imageUrl":@"headurl.png",
@@ -276,7 +279,7 @@
                                         },
                                     @{
                                         @"headID":@"10",
-                                        @"headState":@0,
+                                        @"headState":@1,
                                         @"headCellArray":@[
                                                 @{
                                                     @"imageUrl":@"headurl.png",
@@ -322,15 +325,18 @@
     if (editbool) {
         [self editBtn:editbool];
         editbool = NO;
+        [self.editButton setTitle:@"编辑" forState: UIControlStateNormal];
+      
     }else{
         [self editBtn:editbool];
         editbool = YES;
+        [self.editButton setTitle:@"完成" forState: UIControlStateNormal];
+
+     
     }
-     [self.editButton setTitle:editbool?@"完成":@"编辑" forState:UIControlStateNormal];
-    self.editView.hidden = editbool;
-   
-   
-    
+
+    self.totalPriceLabel.hidden = editbool;
+
 }
 
 #pragma mark 分割线去掉左边15个像素
@@ -407,7 +413,7 @@
 }
 
 #pragma mark 单选
--(void)ShoppingTableViewCell:(WXShoppingCellModel *)model{
+-(void)WXShoppingTableViewCell:(WXShoppingCellModel *)model{
     
     WXShoppingModel *headmodel = _shoppingArray[model.section];
     
@@ -514,10 +520,17 @@
         }
         
         if (array.count > 0) {
+             NSString *string = [NSString stringWithFormat:@"选择必选单品"];
+            [dict setObject:string forKey:@"headTitle"];
             [dict setObject:[NSString stringWithFormat:@"小计 ¥%.2f",allprice] forKey:@"footerTitle"];
 
+        }else{
+             NSString *string = [NSString stringWithFormat:@"选择必选单品"];
+            [dict setObject:string forKey:@"headTitle"];
+            [dict setObject:[NSString stringWithFormat:@"小计 ¥%.2f",allprice] forKey:@"footerTitle"];
         }
 
+        allPrict = allPrict + allprice;
         
         model.headPriceDict = dict;
         }
@@ -532,20 +545,6 @@
     
 }
 
-//#pragma mark 返回 “搭配购” 下面必选单品的id，用于和当前选中的必选单品做比较
-//-(NSArray *)RutrnCellModel:(WXShoppingModel *)model{
-//    
-//    NSMutableArray *array = [[NSMutableArray alloc] init];
-//    for (WXShoppingCellModel *cellmodel in model.headCellArray) {
-//        
-//        if (cellmodel.mustInteger == 1) {
-//            
-//            [array addObject:cellmodel.ID];
-//        }
-//    }
-//    
-//    return [array copy];
-//}
 
 #pragma mark 全选
 -(void)allBtn:(BOOL)isbool{
@@ -635,11 +634,12 @@
         
         
 //        //享受优惠力度
-//        if (forModel.headPriceDict) {
-//            
-//            priceLabel.text = [NSString stringWithFormat:@"%@%@",forModel.headPriceDict[@"footerTitle"],forModel.headPriceDict[@"footerMinus"]];
-//            [Util setUILabel:priceLabel Data:forModel.headPriceDict[@"footerTitle"] SetData:forModel.headPriceDict[@"footerMinus"] Color:[UIColor grayColor] Font:12.0 Underline:NO];
-//        }
+        if (forModel.headPriceDict) {
+            
+            priceLabel.text = [NSString stringWithFormat:@"%@",forModel.headPriceDict[@"footerTitle"]];
+            priceLabel.font = [UIFont systemFontOfSize:12];
+            priceLabel.textColor = [UIColor redColor];
+        }
         
         UIView *bottomview = [[UIView alloc] initWithFrame:CGRectMake(0, 40, SCREEN_WIDTH, 10)];
         bottomview.backgroundColor = UIColorRGBA(238, 238, 238, 1);
@@ -675,8 +675,8 @@
     WXBuyCartTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
     if (cell == nil) {
         cell = [[WXBuyCartTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
-        cell.editView.hidden=NO;
         cell.delegate = self;
+        cell.editView.hidden = NO;
     }
     
 
