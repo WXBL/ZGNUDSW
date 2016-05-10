@@ -12,6 +12,6 @@
 
 @property (nonatomic,strong)UIImageView *Categoryimages;
 @property (nonatomic,strong)UIButton *categoryButton;
-
-
+@property(nonatomic,assign)CGPoint point;
+-(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event;
 @end

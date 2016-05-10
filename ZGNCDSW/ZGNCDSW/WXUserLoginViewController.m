@@ -144,7 +144,7 @@
     
     
     //    注册按钮
-    UIView *registBtnView=[[UIView alloc] initWithFrame:CGRectMake((screenWidth-200)/2, screenHeigth-50, 200, 50)];
+    UIView *registBtnView=[[UIView alloc] initWithFrame:CGRectMake((screenWidth-200)/2, screenHeigth-100, 200, 50)];
     registBtnView.backgroundColor=[UIColor clearColor];
     [self.view addSubview:registBtnView];
     

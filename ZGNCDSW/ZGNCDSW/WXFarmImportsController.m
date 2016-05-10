@@ -12,6 +12,7 @@
 #import "UIView+Extension.h"
 #import "WXFarmDetailViewController.h"
 #import "WXBuyCartController.h"
+#import "WXTopView.h"
 @interface WXFarmImportsController ()<UITextFieldDelegate,UICollectionViewDelegate,UICollectionViewDataSource>
 
 @property (nonatomic,strong)UITextField *farmImports;
@@ -31,12 +32,23 @@
     
 
     //设置导航
-    [self setNavBar];
+//    [self setNavBar];
+    [self addTitleView];
     //添加搜索
     [self addSearchView];
     
     [self addCollectionView];
     
+}
+-(void)addTitleView{
+    
+    WXTopView *topView=[[WXTopView alloc] initWithFrame:CGRectMake(0, 0, screenWidth, 50) TitleText:@"农品购"];
+    [topView.backButton addTarget:self action:@selector(backButton:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:topView];
+    
+}
+-(void)backButton:(id)sender{
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 //设置导航
 -(void)setNavBar
@@ -51,12 +63,13 @@
 }
 //添加搜索
 -(void)addSearchView{
-    //
-    self.searchView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, screenWidth , 120)];
+    //CGRectGetHeight(self.navigationController.navigationBar.frame)
+    self.searchView = [[UIView alloc]initWithFrame:CGRectMake(0, 60, screenWidth , 50)];
     self.searchView.backgroundColor = [UIColor colorWithWhite:0.9 alpha:1];
+
     [self.view addSubview:self.searchView];
     
-    self.farmImports = [[UITextField alloc]initWithFrame:CGRectMake(20,75, screenWidth - 40, 40)];
+    self.farmImports = [[UITextField alloc]initWithFrame:CGRectMake(20,CGRectGetHeight(self.searchView.frame)-40-3, screenWidth - 40, 40)];
     self.farmImports.placeholder = @"搜索农产品，景点，农业资讯";
     [self.farmImports.layer setCornerRadius:10];
     self.farmImports.backgroundColor = [UIColor whiteColor];
@@ -81,7 +94,7 @@
     UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc]init];
     [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
     flowLayout.headerReferenceSize = CGSizeMake(screenWidth, headerHeight);
-    self.collectionView = [[UICollectionView alloc]initWithFrame:CGRectMake(0, self.searchView.frame.size.height, screenWidth, screenHeigth - self.searchView.frame.size.height) collectionViewLayout:flowLayout];
+    self.collectionView = [[UICollectionView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.searchView.frame), screenWidth, screenHeigth - self.searchView.frame.size.height) collectionViewLayout:flowLayout];
     [self.collectionView registerClass:[WXfarmImportsTableViewCell class] forCellWithReuseIdentifier:@"cell"];
     [self.collectionView registerClass:[UICollectionReusableView class]forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"hederView"];
     self.collectionView.backgroundColor = [UIColor colorWithWhite:0.9 alpha:1];

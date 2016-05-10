@@ -18,6 +18,10 @@
 #import "MDDataBaseUtil.h"
 #import "WXUserLoginViewController.h"
 #import "WXMyInforController.h"
+#import "WXBuyCartController.h"
+#import "WXFarmImportsController.h"
+#import "WXNewsController.h"
+#import "WXTopView.h"
 
 @interface WXHomeViewController ()<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate>
 
@@ -90,7 +94,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     self.searchBar = [WXSearchBar searchBar];
     self.searchBar.delegate=self;
 //    searchBar.width = self.view.frame.size.width * 0.8;
@@ -103,8 +106,73 @@
     
     
     [self addScrollView];
+    NSNotificationCenter *center=[NSNotificationCenter defaultCenter];
+    [center addObserver:self selector:@selector(notice:) name:@"choice" object:nil];
 }
-
+-(void)notice:(NSNotification*)notification{
+    NSDictionary *choiceDictionary=[notification userInfo];
+    NSString *choice=[choiceDictionary objectForKey:@"choice"];
+    NSLog(@"%@",choice);
+    switch (choice.intValue) {
+        case 0:
+            NSLog(@"%@",[MDDataBaseUtil userName]);
+            if ([MDDataBaseUtil userName]==NULL) {
+                WXUserLoginViewController *loginVC=[[WXUserLoginViewController alloc] init];
+                [self presentViewController:loginVC animated:YES completion:nil];
+            }else{
+                WXMyInforController *myInforVC=[[WXMyInforController alloc] init];
+                [self presentViewController:myInforVC animated:YES completion:nil];
+            }
+            break;
+        case 1:
+            if ([MDDataBaseUtil userName]==NULL) {
+                WXUserLoginViewController *loginVC=[[WXUserLoginViewController alloc] init];
+                [self presentViewController:loginVC animated:YES completion:nil];
+            }else{
+                
+            }
+            break;
+        case 2:
+            
+            break;
+        case 3:
+            if ([MDDataBaseUtil userName]==NULL) {
+                WXUserLoginViewController *loginVC=[[WXUserLoginViewController alloc] init];
+                [self presentViewController:loginVC animated:YES completion:nil];
+            }else{
+                WXFarmImportsController *farmImportVC=[[WXFarmImportsController alloc] init];
+                [self presentViewController:farmImportVC animated:YES completion:nil];
+            }
+            break;
+        case 4:
+            
+            break;
+        case 5:
+        {
+            WXFarmImportsController *farmImportVC=[[WXFarmImportsController alloc] init];
+            [self presentViewController:farmImportVC animated:YES completion:nil];
+        }
+            break;
+        case 6:
+        {
+            WXNewsController *newsVC=[[WXNewsController alloc] init];
+            [self presentViewController:newsVC animated:YES completion:nil];
+        }
+            break;
+        case 7:
+            if ([MDDataBaseUtil userName]==NULL) {
+                WXUserLoginViewController *loginVC=[[WXUserLoginViewController alloc] init];
+                [self presentViewController:loginVC animated:YES completion:nil];
+            }else{
+                WXBuyCartController *buyCarVC=[[WXBuyCartController alloc] init];
+                [self presentViewController:buyCarVC animated:YES completion:nil];
+            }
+            break;
+            
+        default:
+            break;
+    }
+}
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     
@@ -342,8 +410,7 @@
             if (cell == nil) {
                 cell = [[WXCategoryTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellStr];
             }
-            [cell.categoryButton addTarget:self action:@selector(ClickCategoryButton:) forControlEvents:UIControlEventTouchUpInside];
-            
+
             //点击cell时不变色
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             return cell;
@@ -441,11 +508,6 @@
 //}
 
 
--(void)ClickCategoryButton:(UIButton *)sender{
-    
-    NSLog(@"senter--------------------%ld",sender.tag);
-  
-}
 
 #pragma mark - TableView delegate
 
@@ -456,7 +518,6 @@
         [self presentViewController:newDetailViewController animated:YES completion:nil];
 
     }
-    
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{

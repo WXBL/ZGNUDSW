@@ -11,6 +11,7 @@
 #import "UIView+Extension.h"
 #import "PrefixHeader.pch"
 #import "WXNewsDetailViewController.h"
+#import "WXTopView.h"
 @interface WXNewsController ()<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate>
 
 @property (nonatomic,strong)UITextField *newsText;
@@ -27,19 +28,28 @@
 
     self.view.backgroundColor = [UIColor colorWithWhite:0.9 alpha:1];
     
-
+    [self addTitleView];
     
     [self addSearchView];
     [self addTableView];
 }
-
+-(void)addTitleView{
+    
+    WXTopView *topView=[[WXTopView alloc] initWithFrame:CGRectMake(0, 0, screenWidth, 50) TitleText:@"行业资讯"];
+    [topView.backButton addTarget:self action:@selector(backButton:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:topView];
+    
+}
+-(void)backButton:(id)sender{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 -(void)addSearchView{
 //
-    self.searchView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, screenWidth , 120)];
+    self.searchView = [[UIView alloc]initWithFrame:CGRectMake(0, 60, screenWidth , 50)];
     self.searchView.backgroundColor = [UIColor colorWithWhite:0.9 alpha:1];
     [self.view addSubview:self.searchView];
     
-    self.newsText = [[UITextField alloc]initWithFrame:CGRectMake(20,75, screenWidth - 40, 40)];
+    self.newsText = [[UITextField alloc]initWithFrame:CGRectMake(20,CGRectGetHeight(self.searchView.frame)-40-3, screenWidth - 40, 40)];
     self.newsText.placeholder = @"搜索农产品，景点，农业资讯";
     [self.newsText.layer setCornerRadius:10];
     self.newsText.backgroundColor = [UIColor whiteColor];
@@ -63,7 +73,7 @@
 
 -(void)addTableView{
     
-    self.newsTableView = [[UITableView alloc]initWithFrame:CGRectMake(0,self.searchView.frame.size.height, screenWidth, screenHeigth -150  ) style:UITableViewStylePlain];
+    self.newsTableView = [[UITableView alloc]initWithFrame:CGRectMake(0,CGRectGetMaxY(self.searchView.frame), screenWidth, screenHeigth  ) style:UITableViewStylePlain];
     self.newsTableView.backgroundColor = [UIColor colorWithWhite:0.9 alpha:1];
     self.newsTableView.tableFooterView = [[UIView alloc]init];
     self.newsTableView.delegate = self;

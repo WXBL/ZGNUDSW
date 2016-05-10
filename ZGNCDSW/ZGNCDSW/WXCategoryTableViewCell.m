@@ -106,17 +106,18 @@
                     break;
             }
             
-            self.categoryButton = [UIButton buttonWithType:UIButtonTypeCustom];
-            self.categoryButton.frame = CGRectMake(j * screenWidth, 0, screenWidth,CGRectGetHeight(self.frame));
-            self.categoryButton.tag=100;
-            [self.categoryButton setBackgroundColor:[UIColor clearColor]];
             
             
             [categoryView addSubview:imgView];
             
             [categoryView addSubview:cateLabel];
-            [categoryView addSubview:self.categoryButton];
+            
         }
+//        self.categoryButton = [UIButton buttonWithType:UIButtonTypeCustom];
+//        self.categoryButton.frame = CGRectMake(0, 0, screenWidth,CGRectGetHeight(self.frame));
+//        self.categoryButton.tag=100;
+//        [self.categoryButton setBackgroundColor:[UIColor clearColor]];
+//        [self addSubview:self.categoryButton];
     }
     return self;
 }
@@ -126,5 +127,13 @@
     
     // Configure the view for the selected state
 }
-
+-(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+    UITouch *touch=[touches anyObject];
+    self.point=[touch locationInView:self];
+    NSLog(@"point=%lf,%lf",self.point.x,self.point.y);
+    [self setNeedsDisplay];
+    NSInteger i=(int)self.point.x/(CGRectGetWidth(self.frame)/4)+((int)(self.point.y/(CGRectGetHeight(self.frame)/2))==0?0:4);
+    NSNotification *notice=[NSNotification notificationWithName:@"choice" object:nil userInfo:@{@"choice":[NSString stringWithFormat:@"%ld",i]}];
+    [[NSNotificationCenter defaultCenter]postNotification:notice];
+}
 @end
