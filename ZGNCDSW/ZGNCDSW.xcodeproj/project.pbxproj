@@ -7,13 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		84004EA01CE1792E002DEFB6 /* WXNewfeatureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84004E9F1CE1792E002DEFB6 /* WXNewfeatureViewController.m */; };
+		84004EA41CE18563002DEFB6 /* WXMessageTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84004EA31CE18563002DEFB6 /* WXMessageTableViewController.m */; };
 		840065C91CDC28880014C377 /* WXBuyCartController.m in Sources */ = {isa = PBXBuildFile; fileRef = 840065C81CDC28880014C377 /* WXBuyCartController.m */; };
 		840065CC1CDC37A70014C377 /* WXBuyCartTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 840065CB1CDC37A70014C377 /* WXBuyCartTableViewCell.m */; };
 		840065CF1CDC8A750014C377 /* WXCartTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 840065CE1CDC8A750014C377 /* WXCartTool.m */; };
 		8401900F1CCE287900A43AA4 /* WXTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8401900E1CCE287900A43AA4 /* WXTabBarController.m */; };
 		840190171CCE295800A43AA4 /* WXNewsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 840190161CCE295800A43AA4 /* WXNewsController.m */; };
 		8401901A1CCE297300A43AA4 /* WXFarmImportsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 840190191CCE297300A43AA4 /* WXFarmImportsController.m */; };
-		840190221CCE29DD00A43AA4 /* WXMessageController.m in Sources */ = {isa = PBXBuildFile; fileRef = 840190211CCE29DD00A43AA4 /* WXMessageController.m */; };
 		840190271CCE2A3700A43AA4 /* WXMyInforController.m in Sources */ = {isa = PBXBuildFile; fileRef = 840190261CCE2A3700A43AA4 /* WXMyInforController.m */; };
 		8401902F1CCE2D2A00A43AA4 /* WXNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8401902E1CCE2D2A00A43AA4 /* WXNavigationController.m */; };
 		8406FAFA1CD8773000EA155E /* WXNewsDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8406FAF91CD8773000EA155E /* WXNewsDetailViewController.m */; };
@@ -157,6 +158,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		84004E9E1CE1792E002DEFB6 /* WXNewfeatureViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXNewfeatureViewController.h; sourceTree = "<group>"; };
+		84004E9F1CE1792E002DEFB6 /* WXNewfeatureViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXNewfeatureViewController.m; sourceTree = "<group>"; };
+		84004EA21CE18563002DEFB6 /* WXMessageTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXMessageTableViewController.h; sourceTree = "<group>"; };
+		84004EA31CE18563002DEFB6 /* WXMessageTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXMessageTableViewController.m; sourceTree = "<group>"; };
 		840065C71CDC28880014C377 /* WXBuyCartController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXBuyCartController.h; sourceTree = "<group>"; };
 		840065C81CDC28880014C377 /* WXBuyCartController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXBuyCartController.m; sourceTree = "<group>"; };
 		840065CA1CDC37A70014C377 /* WXBuyCartTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXBuyCartTableViewCell.h; sourceTree = "<group>"; };
@@ -169,8 +174,6 @@
 		840190161CCE295800A43AA4 /* WXNewsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXNewsController.m; sourceTree = "<group>"; };
 		840190181CCE297300A43AA4 /* WXFarmImportsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXFarmImportsController.h; sourceTree = "<group>"; };
 		840190191CCE297300A43AA4 /* WXFarmImportsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXFarmImportsController.m; sourceTree = "<group>"; };
-		840190201CCE29DD00A43AA4 /* WXMessageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXMessageController.h; sourceTree = "<group>"; };
-		840190211CCE29DD00A43AA4 /* WXMessageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXMessageController.m; sourceTree = "<group>"; };
 		840190251CCE2A3700A43AA4 /* WXMyInforController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXMyInforController.h; sourceTree = "<group>"; };
 		840190261CCE2A3700A43AA4 /* WXMyInforController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXMyInforController.m; sourceTree = "<group>"; };
 		8401902D1CCE2D2A00A43AA4 /* WXNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXNavigationController.h; sourceTree = "<group>"; };
@@ -465,6 +468,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		84004E9D1CE178FD002DEFB6 /* Newfeature(新特性) */ = {
+			isa = PBXGroup;
+			children = (
+				84004EA11CE17933002DEFB6 /* Controller */,
+			);
+			name = "Newfeature(新特性)";
+			sourceTree = "<group>";
+		};
+		84004EA11CE17933002DEFB6 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				84004E9E1CE1792E002DEFB6 /* WXNewfeatureViewController.h */,
+				84004E9F1CE1792E002DEFB6 /* WXNewfeatureViewController.m */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
 		840190071CCE256200A43AA4 /* Others */ = {
 			isa = PBXGroup;
 			children = (
@@ -590,8 +610,8 @@
 		8401901F1CCE29CB00A43AA4 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				840190201CCE29DD00A43AA4 /* WXMessageController.h */,
-				840190211CCE29DD00A43AA4 /* WXMessageController.m */,
+				84004EA21CE18563002DEFB6 /* WXMessageTableViewController.h */,
+				84004EA31CE18563002DEFB6 /* WXMessageTableViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -799,6 +819,7 @@
 		8F0669461CC4E7ED007CD423 /* ZGNCDSW */ = {
 			isa = PBXGroup;
 			children = (
+				84004E9D1CE178FD002DEFB6 /* Newfeature(新特性) */,
 				8F288E801CD09702007CA5EF /* Users(用户) */,
 				840190231CCE29E500A43AA4 /* Myinformation(我的) */,
 				8401901E1CCE29BF00A43AA4 /* Message(消息) */,
@@ -1357,6 +1378,7 @@
 				8FA39DCF1CCE0C0B0034C622 /* UIImageView+AFNetworking.m in Sources */,
 				8FA39DC81CCE0C0B0034C622 /* AFImageRequestOperation.m in Sources */,
 				84ED68911CCF528200A45281 /* UIView+Extension.m in Sources */,
+				84004EA41CE18563002DEFB6 /* WXMessageTableViewController.m in Sources */,
 				8FA39E0D1CCE0FFF0034C622 /* NetWork.m in Sources */,
 				8F62015A1CE01294002C9C60 /* WXResetPasswordViewController.m in Sources */,
 				8401901A1CCE297300A43AA4 /* WXFarmImportsController.m in Sources */,
@@ -1392,6 +1414,7 @@
 				8FA39DF81CCE0C0B0034C622 /* SHLUILabel.m in Sources */,
 				8460471D1CE01BC600DC01B9 /* WXShoppingModel.m in Sources */,
 				8FA39DD61CCE0C0B0034C622 /* SBJsonStreamParserAdapter.m in Sources */,
+				84004EA01CE1792E002DEFB6 /* WXNewfeatureViewController.m in Sources */,
 				8FA39DE11CCE0C0B0034C622 /* SDRefreshView.m in Sources */,
 				8FA39DE41CCE0C0B0034C622 /* mask.c in Sources */,
 				8FA39DD31CCE0C0B0034C622 /* SBJsonParser.m in Sources */,
@@ -1413,7 +1436,6 @@
 				8FA39DDD1CCE0C0B0034C622 /* SBJsonWriter.m in Sources */,
 				840190271CCE2A3700A43AA4 /* WXMyInforController.m in Sources */,
 				8406FAFA1CD8773000EA155E /* WXNewsDetailViewController.m in Sources */,
-				840190221CCE29DD00A43AA4 /* WXMessageController.m in Sources */,
 				8F6201531CE0127A002C9C60 /* WXUserRegistViewController.m in Sources */,
 				84ED68941CCF545E00A45281 /* WXSearchBar.m in Sources */,
 				84F99D8B1CDAFB4800B3EF2D /* WXCommentTableViewCell.m in Sources */,

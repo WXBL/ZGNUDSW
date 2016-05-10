@@ -38,16 +38,16 @@
     [self addSubview:statementView];
     
     UIButton *allButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    allButton.frame = CGRectMake(0, 0, 100, 60);
-    allButton.backgroundColor = [UIColor whiteColor];
+    allButton.frame = CGRectMake(10, 15, 30, 30);
+
     [statementView addSubview:allButton];
     self.allButton = allButton;
-    
-    self.chooseAllImage = [[UIImageView alloc]initWithFrame:CGRectMake(10, 15, 30, 30)];
-
+//
+//    self.chooseAllImage = [[UIImageView alloc]initWithFrame:CGRectMake(10, 15, 30, 30)];
+//
 //    [self.chooseAllImage setImage:[UIImage imageNamed:@"iconfont-yuanquan"]];
-    
-    [statementView addSubview:self.chooseAllImage];
+//    
+//    [statementView addSubview:self.chooseAllImage];
     
     UILabel *chooseAll = [[UILabel alloc]init];
     chooseAll.frame = CGRectMake(50, 0, 50, statementView.frame.size.height);
@@ -85,5 +85,30 @@
     [statementView addSubview:luggage];
 
 }
+
+//-(void)setModel:(WXShoppingCellModel *)model{
+//    if (model.cellClickState == 1) {
+//        
+//        isbool = YES;
+//        [self.allButton setImage:[UIImage imageNamed:@"iconfont-zhengque"] forState:UIControlStateNormal];
+//        
+//    } else {
+//        
+//        isbool = NO;
+//        [self.allButton setImage:[UIImage imageNamed:@"iconfont-yuanquan"] forState:UIControlStateNormal];
+//    }
+//}
+//
+//-(void)ClickAllButton:(UIButton *)sender{
+//    if (isbool) {
+//        _model.cellClickState = 0;
+//        [self.allButton setImage:[UIImage imageNamed:@"iconfont-yuanquan"] forState:UIControlStateNormal];
+//        isbool = NO;
+//    }else{
+//        _model.cellClickState = 1;
+//        [self.allButton setImage:[UIImage imageNamed:@"iconfont-zhengque"] forState:UIControlStateNormal];
+//        isbool = YES;
+//    }
+//}
 
 @end

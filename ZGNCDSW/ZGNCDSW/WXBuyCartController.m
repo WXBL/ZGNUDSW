@@ -45,6 +45,8 @@
 
 @property (nonatomic,strong)UILabel *totalPriceLabel;
 
+@property (nonatomic,assign)NSInteger deleteTag;
+
 @end
 
 @implementation WXBuyCartController
@@ -126,9 +128,12 @@
     toolBar.delegate = self;
 
     self.totalPriceLabel = toolBar.totalPrice;
-    [toolBar.allButton addTarget:self action:@selector(AllBtn:) forControlEvents:UIControlEventTouchUpInside];
+    [toolBar.allButton setImage:[UIImage imageNamed:@"iconfont-yuanquan"] forState:(UIControlStateNormal)];
+    
+//    [toolBar.allButton addTarget:self action:@selector(AllBtn:) forControlEvents:UIControlEventTouchUpInside];
     
     [self.view addSubview:toolBar];
+    [toolBar.allButton addTarget:self action:@selector(AllButton:) forControlEvents:UIControlEventTouchUpInside];
 }
 
 -(void)setInit{
@@ -145,6 +150,7 @@
 }
 
 #pragma mark 通知
+//利用通知获取总价格
 - (void)AllPrice:(NSNotification *)text{
     
    
@@ -157,7 +163,7 @@
 
 
 #pragma 全选
-- (void)AllBtn:(UIButton *)sender {
+- (void)AllButton:(UIButton *)sender {
     
     [self allBtn:!self.isbool];
 }
@@ -169,18 +175,18 @@
     WXCartTool *cartTool = [[WXCartTool alloc]init];
     if (_bool) {
         
-        cartTool.chooseAllImage.image = [UIImage imageNamed:@"iconfont-yuanquan"];
+        [cartTool.allButton setImage:[UIImage imageNamed:@"iconfont-yuanquan"] forState:UIControlStateNormal];
         self.isbool = NO;
         
     }else{
         
-        cartTool.chooseAllImage.image = [UIImage imageNamed:@"iconfont-zhengque"];
+        [cartTool.allButton setImage:[UIImage imageNamed:@"iconfont-zhengque"] forState:UIControlStateNormal];
         self.isbool = YES;
     }
 }
 
 
-
+#pragma mark - 添加数据
 -(void)setData{
     
     
@@ -331,9 +337,10 @@
         [self editBtn:editbool];
         editbool = YES;
         [self.editButton setTitle:@"完成" forState: UIControlStateNormal];
-
+[self.buyCartTabelView reloadData];
      
     }
+    
 
     self.totalPriceLabel.hidden = editbool;
 
@@ -658,17 +665,19 @@
     return nil ;
 }
 
-
+#pragma mark-总共有多少组数据
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
  
     return _shoppingArray.count;
     
 }
+#pragma mark-每组有几行数据
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     WXShoppingModel *model = _shoppingArray[section];
     return model.headCellArray.count;
 }
 
+#pragma mark-每个cell的数据
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *cellID = @"buyCartcell";
@@ -679,12 +688,10 @@
         cell.editView.hidden = NO;
     }
     
-
-
-    
     self.editView = cell.editView;
 
-    
+    cell.deleteButton.tag = indexPath.row;
+    self.deleteTag = cell.deleteButton.tag;
     [cell.deleteButton addTarget:self action:@selector(ClickDeleteButton:) forControlEvents:UIControlEventTouchUpInside
      ];
     
@@ -702,58 +709,63 @@
 }
 
 
-
+#pragma mark - 删除cell
 -(void)ClickDeleteButton:(UIButton *)sender{
-    NSMutableArray *headDeleteArray = [[NSMutableArray alloc] init];
-    for (WXShoppingModel *model in _shoppingArray) {
-        
-        if (model.headClickState == 1) {
+    if (sender.tag == self.deleteTag) {
+        NSMutableArray *headDeleteArray = [[NSMutableArray alloc] init];
+        for (WXShoppingModel *model in _shoppingArray) {
             
-            [headDeleteArray addObject:model];
-            
-        }else{
-            
-            NSMutableArray *cellDeleteArray = [[NSMutableArray alloc] init];
-            for (WXShoppingCellModel *cellmodel in model.headCellArray) {
+            if (model.headClickState == 1) {
                 
-                if (cellmodel.cellClickState == 1) {
+                [headDeleteArray addObject:model];
+                
+            }else{
+                
+                NSMutableArray *cellDeleteArray = [[NSMutableArray alloc] init];
+                for (WXShoppingCellModel *cellmodel in model.headCellArray) {
                     
-                    [cellDeleteArray addObject:cellmodel];
+                    if (cellmodel.cellClickState == 1) {
+                        
+                        [cellDeleteArray addObject:cellmodel];
+                    }
                 }
+                
+                NSMutableArray *headcellArray = [NSMutableArray arrayWithArray:model.headCellArray];
+                for (WXShoppingCellModel *cellmodel in cellDeleteArray) {
+                    
+                    if ([headcellArray containsObject:cellmodel]) {
+                        
+                        [headcellArray removeObject:cellmodel];
+                    }
+                }
+                model.headCellArray = headcellArray;
             }
             
-            NSMutableArray *headcellArray = [NSMutableArray arrayWithArray:model.headCellArray];
-            for (WXShoppingCellModel *cellmodel in cellDeleteArray) {
-                
-                if ([headcellArray containsObject:cellmodel]) {
-                    
-                    [headcellArray removeObject:cellmodel];
-                }
-            }
-            model.headCellArray = headcellArray;
         }
         
-    }
-    
-    NSMutableArray *shopArray = [NSMutableArray arrayWithArray:_shoppingArray];
-    for (WXShoppingModel *model in headDeleteArray) {
-        
-        if ([shopArray containsObject:model]) {
+        NSMutableArray *shopArray = [NSMutableArray arrayWithArray:_shoppingArray];
+        for (WXShoppingModel *model in headDeleteArray) {
             
-            [shopArray removeObject:model];
+            if ([shopArray containsObject:model]) {
+                
+                [shopArray removeObject:model];
+            }
         }
+        _shoppingArray = shopArray;
+        
+        [self CalculationPrice];
+        [self.buyCartTabelView reloadData];
     }
-    _shoppingArray = shopArray;
     
-    [self CalculationPrice];
-    [self.buyCartTabelView reloadData];
 }
 
 
+#pragma mark - 点击cell触发事件
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
 }
+#pragma mark - cell的行高
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return 120;
