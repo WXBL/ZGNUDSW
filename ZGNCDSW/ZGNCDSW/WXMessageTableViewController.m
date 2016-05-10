@@ -60,6 +60,8 @@
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
     }
     
+    cell.textLabel.text = @"alskd";
+    
     return cell;
 }
 

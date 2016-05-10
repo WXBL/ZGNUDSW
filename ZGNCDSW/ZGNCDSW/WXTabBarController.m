@@ -9,7 +9,7 @@
 #import "WXTabBarController.h"
 #import "PrefixHeader.pch"
 #import "WXHomeViewController.h"
-#import "WXMessageController.h"
+#import "WXMessageTableViewController.h"
 #import "WXNewsController.h"
 #import "WXMyInforController.h"
 #import "WXFarmImportsController.h"
@@ -40,7 +40,7 @@
         
     }
     
-    WXMessageController *message = [[WXMessageController alloc]init];
+    WXMessageTableViewController *message = [[WXMessageTableViewController alloc]init];
     [self addChildVc:message title:@"消息" image:@"tabbar_home" selectedImage:@"tabbar_home_selected"];
     
     
