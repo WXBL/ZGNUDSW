@@ -28,7 +28,6 @@
     self.headPriceDict = @{
                            @"headTitle":[NSString stringWithFormat:@"选择必选单品,即可享受折优惠"],
                            @"footerTitle":@"小计:¥0.00",
-                           @"footerMinus":@""
                            };
     
     return self ;

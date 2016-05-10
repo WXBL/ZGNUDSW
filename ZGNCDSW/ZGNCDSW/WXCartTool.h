@@ -29,4 +29,5 @@
 @property (nonatomic,strong)UILabel *chooseAll;//全选
 @property (nonatomic,strong)UIButton *statement;//结算
 @property (nonatomic,strong)UILabel *totalPrice;//合计
+@property (nonatomic,strong)UIButton *allButton;
 @end

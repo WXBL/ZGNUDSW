@@ -28,7 +28,7 @@ static NSInteger num=0;
 //        cartBgView.backgroundColor = [UIColor whiteColor];
 //        self.backgroundColor = [UIColor colorWithWhite:0.9 alpha:1];
 //        [self addSubview:cartBgView];
-        
+        //勾选按钮
         self.chooseButton = [ShoppingBtn buttonWithType:UIButtonTypeCustom];
         self.chooseButton.frame = CGRectMake(10, 45, 30, 30);
         [self.chooseButton addTarget:self action:@selector(ClickChooseButton:) forControlEvents:UIControlEventTouchUpInside];
@@ -189,9 +189,13 @@ num=self.buyNumLabel.text.intValue;
 
 -(void)ClickChooseButton:(UIButton *)sender{
     if (isBool) {
+        _model.cellClickState = 0;
+         [_delegate WXShoppingTableViewCell:_model];
         [self.chooseButton setImage:[UIImage imageNamed:@"iconfont-yuanquan"] forState:UIControlStateNormal];
         isBool = NO;
     }else{
+        _model.cellClickState = 1;
+        [_delegate WXShoppingTableViewCell:_model ];
         [self.chooseButton setImage:[UIImage imageNamed:@"iconfont-zhengque"] forState:UIControlStateNormal];
         isBool = YES;
     }
