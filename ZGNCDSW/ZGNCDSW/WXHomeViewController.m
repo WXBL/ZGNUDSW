@@ -150,6 +150,7 @@
         case 5:
         {
             WXFarmImportsController *farmImportVC=[[WXFarmImportsController alloc] init];
+            farmImportVC.showType=1;
             [self presentViewController:farmImportVC animated:YES completion:nil];
         }
             break;
