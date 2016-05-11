@@ -19,6 +19,10 @@
 		8401902F1CCE2D2A00A43AA4 /* WXNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8401902E1CCE2D2A00A43AA4 /* WXNavigationController.m */; };
 		8406FAFA1CD8773000EA155E /* WXNewsDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8406FAF91CD8773000EA155E /* WXNewsDetailViewController.m */; };
 		8406FAFE1CD8915900EA155E /* WXFarmDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8406FAFD1CD8915900EA155E /* WXFarmDetailViewController.m */; };
+		8436AE7B1CE1C0CF008FD067 /* WXHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8436AE7A1CE1C0CF008FD067 /* WXHeaderView.m */; };
+		8436AE7F1CE2B790008FD067 /* WXUserInforModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8436AE7E1CE2B790008FD067 /* WXUserInforModel.m */; };
+		8436AE821CE302BD008FD067 /* WXOrderController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8436AE811CE302BD008FD067 /* WXOrderController.m */; };
+		8436AE851CE31278008FD067 /* WXManagementController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8436AE841CE31278008FD067 /* WXManagementController.m */; };
 		844329F51CD9860800BD7B9E /* WXBigPic.m in Sources */ = {isa = PBXBuildFile; fileRef = 844329F41CD9860800BD7B9E /* WXBigPic.m */; };
 		84432A001CD9D9B600BD7B9E /* libicucore.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 844329FF1CD9D9B600BD7B9E /* libicucore.tbd */; };
 		84432A021CD9D9C200BD7B9E /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 84432A011CD9D9C200BD7B9E /* libz.tbd */; };
@@ -183,6 +187,14 @@
 		8406FAF91CD8773000EA155E /* WXNewsDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WXNewsDetailViewController.m; path = ../WXNewsDetailViewController.m; sourceTree = "<group>"; };
 		8406FAFC1CD8915900EA155E /* WXFarmDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXFarmDetailViewController.h; sourceTree = "<group>"; };
 		8406FAFD1CD8915900EA155E /* WXFarmDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXFarmDetailViewController.m; sourceTree = "<group>"; };
+		8436AE791CE1C0CF008FD067 /* WXHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXHeaderView.h; sourceTree = "<group>"; };
+		8436AE7A1CE1C0CF008FD067 /* WXHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXHeaderView.m; sourceTree = "<group>"; };
+		8436AE7D1CE2B790008FD067 /* WXUserInforModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXUserInforModel.h; sourceTree = "<group>"; };
+		8436AE7E1CE2B790008FD067 /* WXUserInforModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXUserInforModel.m; sourceTree = "<group>"; };
+		8436AE801CE302BD008FD067 /* WXOrderController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXOrderController.h; sourceTree = "<group>"; };
+		8436AE811CE302BD008FD067 /* WXOrderController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXOrderController.m; sourceTree = "<group>"; };
+		8436AE831CE31278008FD067 /* WXManagementController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXManagementController.h; sourceTree = "<group>"; };
+		8436AE841CE31278008FD067 /* WXManagementController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXManagementController.m; sourceTree = "<group>"; };
 		844329F31CD9860800BD7B9E /* WXBigPic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXBigPic.h; sourceTree = "<group>"; };
 		844329F41CD9860800BD7B9E /* WXBigPic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXBigPic.m; sourceTree = "<group>"; };
 		844329FF1CD9D9B600BD7B9E /* libicucore.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libicucore.tbd; path = usr/lib/libicucore.tbd; sourceTree = SDKROOT; };
@@ -619,6 +631,8 @@
 		840190231CCE29E500A43AA4 /* Myinformation(我的) */ = {
 			isa = PBXGroup;
 			children = (
+				8436AE7C1CE2B749008FD067 /* Model */,
+				8436AE781CE1C0BE008FD067 /* View */,
 				840190241CCE2A0F00A43AA4 /* Controller */,
 			);
 			name = "Myinformation(我的)";
@@ -629,6 +643,10 @@
 			children = (
 				840190251CCE2A3700A43AA4 /* WXMyInforController.h */,
 				840190261CCE2A3700A43AA4 /* WXMyInforController.m */,
+				8436AE801CE302BD008FD067 /* WXOrderController.h */,
+				8436AE811CE302BD008FD067 /* WXOrderController.m */,
+				8436AE831CE31278008FD067 /* WXManagementController.h */,
+				8436AE841CE31278008FD067 /* WXManagementController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -648,6 +666,24 @@
 				840190311CCE2DDB00A43AA4 /* PrefixHeader.pch */,
 			);
 			name = "Headers(头文件)";
+			sourceTree = "<group>";
+		};
+		8436AE781CE1C0BE008FD067 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				8436AE791CE1C0CF008FD067 /* WXHeaderView.h */,
+				8436AE7A1CE1C0CF008FD067 /* WXHeaderView.m */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		8436AE7C1CE2B749008FD067 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				8436AE7D1CE2B790008FD067 /* WXUserInforModel.h */,
+				8436AE7E1CE2B790008FD067 /* WXUserInforModel.m */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 		84432A171CD9DFE700BD7B9E /* ShareSDK */ = {
@@ -1424,9 +1460,13 @@
 				8FA39E071CCE0CA70034C622 /* validateTest.m in Sources */,
 				8FA39E061CCE0CA70034C622 /* MViewUtil.m in Sources */,
 				8F62015C1CE01294002C9C60 /* WXVerifyTelephoneViewController.m in Sources */,
+				8436AE821CE302BD008FD067 /* WXOrderController.m in Sources */,
+				8436AE851CE31278008FD067 /* WXManagementController.m in Sources */,
+				8436AE7F1CE2B790008FD067 /* WXUserInforModel.m in Sources */,
 				844329F51CD9860800BD7B9E /* WXBigPic.m in Sources */,
 				8F288E791CD06115007CA5EF /* WXMerchantModel.m in Sources */,
 				840065CC1CDC37A70014C377 /* WXBuyCartTableViewCell.m in Sources */,
+				8436AE7B1CE1C0CF008FD067 /* WXHeaderView.m in Sources */,
 				8FA39DDC1CCE0C0B0034C622 /* SBJsonStreamWriterState.m in Sources */,
 				8FA39DC61CCE0C0B0034C622 /* AFHTTPClient.m in Sources */,
 				8FA39DEA1CCE0C0B0034C622 /* split.c in Sources */,
@@ -1612,6 +1652,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = ZGNCDSW/PrefixHeader.pch;
 				INFOPLIST_FILE = ZGNCDSW/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1641,6 +1682,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = ZGNCDSW/PrefixHeader.pch;
 				INFOPLIST_FILE = ZGNCDSW/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",

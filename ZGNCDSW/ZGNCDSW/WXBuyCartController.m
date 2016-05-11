@@ -24,6 +24,8 @@
     BOOL editbool;
 }
 
+@property (strong,nonatomic)WXCartTool *cartTool;
+
 @property (nonatomic,assign)BOOL isbool;
 
 @property (nonatomic,strong)UITableView *buyCartTabelView;
@@ -71,14 +73,16 @@
     
     [self addTableView];
     
-    [self addStatement];
-    
     [self setInit];
     
 }
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    
+    if (_cartTool == nil) {
+        [self addStatement];
+    }
  
     [self.buyCartTabelView reloadData];
 }
@@ -126,14 +130,12 @@
 -(void)addStatement{
     WXCartTool *toolBar = [[WXCartTool alloc]init];
     toolBar.delegate = self;
-
     self.totalPriceLabel = toolBar.totalPrice;
-    [toolBar.allButton setImage:[UIImage imageNamed:@"iconfont-yuanquan"] forState:(UIControlStateNormal)];
     
-//    [toolBar.allButton addTarget:self action:@selector(AllBtn:) forControlEvents:UIControlEventTouchUpInside];
+    _cartTool = toolBar;
     
-    [self.view addSubview:toolBar];
-    [toolBar.allButton addTarget:self action:@selector(AllButton:) forControlEvents:UIControlEventTouchUpInside];
+    [self.buyCartTabelView.superview insertSubview:toolBar aboveSubview:self.buyCartTabelView];
+    
 }
 
 -(void)setInit{
@@ -161,26 +163,31 @@
     cellArray =  text.userInfo[@"cellModel"];
 }
 
-
-#pragma 全选
-- (void)AllButton:(UIButton *)sender {
-    
-    [self allBtn:!self.isbool];
+-(void)cartToolBar:(UIView *)toolBar didClickButton:(UIButton *)button{
+   
+     [self allBtn:!self.isbool];
 }
+
+
+//#pragma 全选
+//- (void)AllButton:(UIButton *)sender {
+//    
+//    [self allBtn:!self.isbool];
+//}
 
 
 #pragma mark 全选
 -(void)setAllBtnState:(BOOL)_bool{
     
-    WXCartTool *cartTool = [[WXCartTool alloc]init];
+//    WXCartTool *cartTool = [[WXCartTool alloc]init];
     if (_bool) {
         
-        [cartTool.allButton setImage:[UIImage imageNamed:@"iconfont-yuanquan"] forState:UIControlStateNormal];
+        [_cartTool.allButton setImage:[UIImage imageNamed:@"iconfont-yuanquan"] forState:UIControlStateNormal];
         self.isbool = NO;
         
     }else{
         
-        [cartTool.allButton setImage:[UIImage imageNamed:@"iconfont-zhengque"] forState:UIControlStateNormal];
+        [_cartTool.allButton setImage:[UIImage imageNamed:@"iconfont-zhengque"] forState:UIControlStateNormal];
         self.isbool = YES;
     }
 }
