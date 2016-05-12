@@ -70,6 +70,7 @@
     self.manageTableView.dataSource = self;
 //    self.manageTableView.backgroundColor = [UIColor colorWithWhite:0.9 alpha:1];
     [self.view addSubview:self.manageTableView];
+    
 }
 
 

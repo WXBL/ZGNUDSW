@@ -150,28 +150,28 @@
                     }
                 }];
             }else{
-//                WXVerifyTelephoneViewController *verifyTeleVC=[[WXVerifyTelephoneViewController alloc] init];
-//                verifyTeleVC.userName=self.userNameTextField.text;
-//                verifyTeleVC.password=self.passwordTextField.text;
-//                [self presentViewController:verifyTeleVC animated:YES completion:nil];
-//                [[WXUserService sharedClient] vertifyUserNameIsExitWithUserName:self.userNameTextField.text Completion:^(NSString *success){
-//                    WXVerifyTelephoneViewController *verifyTeleVC=[[WXVerifyTelephoneViewController alloc] init];
-//                    verifyTeleVC.userName=self.userNameTextField.text;
-//                    verifyTeleVC.password=self.passwordTextField.text;
-//                    [self presentViewController:verifyTeleVC animated:YES completion:nil];
-//                }Failure:^(NSString *error){
-//                    UIAlertView * alertView=[[UIAlertView alloc] initWithTitle:@"提示" message:@"用户存在，请重新填写用户名密码！" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"关闭", nil];
-//                    [alertView show];
-//                    self.userNameTextField.text=nil;
-//                    self.passwordTextField.text=nil;
-//                }];
+                //                WXVerifyTelephoneViewController *verifyTeleVC=[[WXVerifyTelephoneViewController alloc] init];
+                //                verifyTeleVC.userName=self.userNameTextField.text;
+                //                verifyTeleVC.password=self.passwordTextField.text;
+                //                [self presentViewController:verifyTeleVC animated:YES completion:nil];
+                //                [[WXUserService sharedClient] vertifyUserNameIsExitWithUserName:self.userNameTextField.text Completion:^(NSString *success){
+                //                    WXVerifyTelephoneViewController *verifyTeleVC=[[WXVerifyTelephoneViewController alloc] init];
+                //                    verifyTeleVC.userName=self.userNameTextField.text;
+                //                    verifyTeleVC.password=self.passwordTextField.text;
+                //                    [self presentViewController:verifyTeleVC animated:YES completion:nil];
+                //                }Failure:^(NSString *error){
+                //                    UIAlertView * alertView=[[UIAlertView alloc] initWithTitle:@"提示" message:@"用户存在，请重新填写用户名密码！" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"关闭", nil];
+                //                    [alertView show];
+                //                    self.userNameTextField.text=nil;
+                //                    self.passwordTextField.text=nil;
+                //                }];
                 [self vailiUser];
                 
             }
         }
         
     }
-
+    
     
 }
 -(void)vailiUser{
@@ -215,13 +215,13 @@
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 @end

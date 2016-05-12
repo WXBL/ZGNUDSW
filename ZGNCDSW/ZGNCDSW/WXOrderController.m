@@ -8,6 +8,9 @@
 
 #import "WXOrderController.h"
 #import "WXTopView.h"
+#import "WXPayingTableViewController.h"
+#import "WXRecommendTableViewCell.h"
+#import "WXCommendTableViewController.h"
 @interface WXOrderController ()
 
 @end
@@ -20,7 +23,7 @@
     
     self.view.backgroundColor = [UIColor colorWithWhite:0.9 alpha:1];
     
-    WXTopView *topView = [[WXTopView alloc]initWithFrame:CGRectMake(0, 0, screenWidth, 50) TitleText:@"收获详情"];
+    WXTopView *topView = [[WXTopView alloc]initWithFrame:CGRectMake(0, 0, screenWidth, 50) TitleText:@"待付款"];
     [topView.backButton addTarget:self action:@selector(backButton:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:topView];
     

@@ -37,7 +37,7 @@
     self.view.backgroundColor = [UIColor colorWithWhite:0.9 alpha:1];
     
     [self setProductData];
-
+    
     //设置导航
     if (self.showType==1) {
         [self setNavBar];
@@ -57,9 +57,9 @@
 -(void)setProductData{
     AFHTTPRequestOperationManager *AFMGR=[AFHTTPRequestOperationManager manager];
     NSString *path=[NSString stringWithFormat:@"%@%@",BASE_SERVICE_URL,@""];
-     NSMutableDictionary *params=[NSMutableDictionary dictionary];
+    NSMutableDictionary *params=[NSMutableDictionary dictionary];
     if (self.typeModel) {
-       
+        
         params[@"Type_ID"]=self.typeModel.Type_ID;
     }
     [AFMGR GET:path parameters:params success:^(AFHTTPRequestOperation *operation,NSArray *responseObject){
@@ -101,7 +101,7 @@
     //CGRectGetHeight(self.navigationController.navigationBar.frame)
     self.searchView = [[UIView alloc]initWithFrame:CGRectMake(0, 60, screenWidth , 50)];
     self.searchView.backgroundColor = [UIColor colorWithWhite:0.9 alpha:1];
-
+    
     [self.view addSubview:self.searchView];
     
     self.farmImports = [[UITextField alloc]initWithFrame:CGRectMake(20,CGRectGetHeight(self.searchView.frame)-40-3, screenWidth - 40, 40)];
@@ -154,14 +154,14 @@
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
     //    return self.keepArray.count;
@@ -185,32 +185,32 @@
     titleLabel.textAlignment = NSTextAlignmentLeft;
     
     
-//    //添加最新／最热／精华新闻按钮
-//    UIButton *newsButton = [UIButton buttonWithType:UIButtonTypeCustom];
-//    newsButton.frame = CGRectMake(screenWidth / 1.8, 0, screenWidth / 2 /3 -10, 30);
-//    [newsButton setTitle:@"最新" forState:UIControlStateNormal];
-//    [newsButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
-//    [newsButton setTitleColor:[UIColor greenColor] forState:UIControlStateHighlighted];
-//    
-//    UIButton *hotButton = [UIButton buttonWithType:UIButtonTypeCustom];
-//    hotButton.frame = CGRectMake(screenWidth / 1.8 + (screenWidth / 2 /3 -10), 0, screenWidth / 2 /3 -10, 30);
-//    [hotButton setTitle:@"最热" forState:UIControlStateNormal];
-//    [hotButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
-//    [hotButton setTitleColor:[UIColor greenColor] forState:UIControlStateHighlighted];
-//    
-//    UIButton *creamButton = [UIButton buttonWithType:UIButtonTypeCustom];
-//    creamButton.frame = CGRectMake(screenWidth / 1.8 +(screenWidth / 2 /3 -10)*2, 0, screenWidth / 2 /3 -10, 30);
-//    [creamButton setTitle:@"精华" forState:UIControlStateNormal];
-//    [creamButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
-//    [creamButton setTitleColor:[UIColor greenColor] forState:UIControlStateHighlighted];
+    //    //添加最新／最热／精华新闻按钮
+    //    UIButton *newsButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    //    newsButton.frame = CGRectMake(screenWidth / 1.8, 0, screenWidth / 2 /3 -10, 30);
+    //    [newsButton setTitle:@"最新" forState:UIControlStateNormal];
+    //    [newsButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+    //    [newsButton setTitleColor:[UIColor greenColor] forState:UIControlStateHighlighted];
+    //
+    //    UIButton *hotButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    //    hotButton.frame = CGRectMake(screenWidth / 1.8 + (screenWidth / 2 /3 -10), 0, screenWidth / 2 /3 -10, 30);
+    //    [hotButton setTitle:@"最热" forState:UIControlStateNormal];
+    //    [hotButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+    //    [hotButton setTitleColor:[UIColor greenColor] forState:UIControlStateHighlighted];
+    //
+    //    UIButton *creamButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    //    creamButton.frame = CGRectMake(screenWidth / 1.8 +(screenWidth / 2 /3 -10)*2, 0, screenWidth / 2 /3 -10, 30);
+    //    [creamButton setTitle:@"精华" forState:UIControlStateNormal];
+    //    [creamButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+    //    [creamButton setTitleColor:[UIColor greenColor] forState:UIControlStateHighlighted];
     
     UIView *titleView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, screenWidth, 30)];
     titleView.backgroundColor = [UIColor colorWithWhite:0.9 alpha:1];
     
     [titleView addSubview:titleLabel];
-//    [titleView addSubview:newsButton];
-//    [titleView addSubview:hotButton];
-//    [titleView addSubview:creamButton];
+    //    [titleView addSubview:newsButton];
+    //    [titleView addSubview:hotButton];
+    //    [titleView addSubview:creamButton];
     
     [headerView addSubview:titleView];
     

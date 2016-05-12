@@ -25,7 +25,7 @@
         model.Goods_Size=(dict[@"Goods_Size"]==[NSNull null])?@"":dict[@"Goods_Size"];
         return model;
     }
-
+    
     return nil;
 }
 -(id)getOrderListWithArray:(NSArray *)array{

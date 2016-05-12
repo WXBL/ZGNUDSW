@@ -202,27 +202,27 @@
                     }
                 }];
             }else{
-//                [[WXUserService sharedClient]userLoginWithUserName:self.userNameTextField.text Password:self.passwordTextField.text Completion:^(WXUserModel *model){
-//                    [MDDataBaseUtil setUserID:model.UserID];
-//                    [MDDataBaseUtil setPassword:model.Password];
-//                    [MDDataBaseUtil setUserName:model.UserName];
-//                    [MDDataBaseUtil setUserImage:model.User_image];
-//                    [MDDataBaseUtil setTel:model.Tel];
-//                    [MDDataBaseUtil setSex:model.Sex];
-//                    [MDDataBaseUtil setNowAddress:model.Now_address];
-//                    [MDDataBaseUtil setLevelID:model.Level_ID];
-//                    [MDDataBaseUtil setLastLoginTime:model.Last_login_time];
-//                    [MDDataBaseUtil setLoginAddress:model.Login_address];
-//                    [MDDataBaseUtil setAge:model.Age];
-//                    [MDDataBaseUtil setRegistTime:model.Regist_time];
-//                    [MDDataBaseUtil setEmail:model.Email];
-//                    [MDDataBaseUtil setLevelID:model.Level_ID];
-//                    [MDDataBaseUtil setRankContent:model.Rank_Content];
-//                    [self dismissViewControllerAnimated:YES completion:nil];
-//                }Failure:^(NSString *error){
-//                    UIAlertView * alertView=[[UIAlertView alloc] initWithTitle:@"提示" message:@"登录失败" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"关闭", nil];
-//                    [alertView show];
-//                }];
+                //                [[WXUserService sharedClient]userLoginWithUserName:self.userNameTextField.text Password:self.passwordTextField.text Completion:^(WXUserModel *model){
+                //                    [MDDataBaseUtil setUserID:model.UserID];
+                //                    [MDDataBaseUtil setPassword:model.Password];
+                //                    [MDDataBaseUtil setUserName:model.UserName];
+                //                    [MDDataBaseUtil setUserImage:model.User_image];
+                //                    [MDDataBaseUtil setTel:model.Tel];
+                //                    [MDDataBaseUtil setSex:model.Sex];
+                //                    [MDDataBaseUtil setNowAddress:model.Now_address];
+                //                    [MDDataBaseUtil setLevelID:model.Level_ID];
+                //                    [MDDataBaseUtil setLastLoginTime:model.Last_login_time];
+                //                    [MDDataBaseUtil setLoginAddress:model.Login_address];
+                //                    [MDDataBaseUtil setAge:model.Age];
+                //                    [MDDataBaseUtil setRegistTime:model.Regist_time];
+                //                    [MDDataBaseUtil setEmail:model.Email];
+                //                    [MDDataBaseUtil setLevelID:model.Level_ID];
+                //                    [MDDataBaseUtil setRankContent:model.Rank_Content];
+                //                    [self dismissViewControllerAnimated:YES completion:nil];
+                //                }Failure:^(NSString *error){
+                //                    UIAlertView * alertView=[[UIAlertView alloc] initWithTitle:@"提示" message:@"登录失败" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"关闭", nil];
+                //                    [alertView show];
+                //                }];
                 [self userLoginAction];
             }
         }
@@ -239,8 +239,8 @@
     NSString *path=[NSString stringWithFormat:@"%@%@",BASE_SERVICE_URL,@""];
     [mgr POST:path parameters:params success:^(AFHTTPRequestOperation *operation,NSDictionary *responseObject){
         WXUserModel *model=[WXUserModel objectWithKeyValues:responseObject];
-//        WXUserModel *model=[[WXUserModel alloc] init];
-//        [model getUserDataWithDictionaryJSON:responseObject];
+        //        WXUserModel *model=[[WXUserModel alloc] init];
+        //        [model getUserDataWithDictionaryJSON:responseObject];
         [MDDataBaseUtil setUserID:model.UserID];
         [MDDataBaseUtil setPassword:model.Password];
         [MDDataBaseUtil setUserName:model.UserName];
@@ -258,7 +258,7 @@
         [MDDataBaseUtil setRankContent:model.Rank_Content];
         WXTabBarController *tabBarVC=[[WXTabBarController alloc] init];
         [self presentViewController:tabBarVC animated:YES completion:nil];
-
+        
     }failure:^(AFHTTPRequestOperation *operation,NSError *error){
         UIAlertView * alertView=[[UIAlertView alloc] initWithTitle:@"提示" message:@"登录失败" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"关闭", nil];
         [alertView show];

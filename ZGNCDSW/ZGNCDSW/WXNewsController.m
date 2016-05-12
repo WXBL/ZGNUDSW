@@ -13,7 +13,7 @@
 #import "WXNewsDetailViewController.h"
 #import "WXTopView.h"
 #import "WXNewsModel.h"
-
+#import "WXImageModel.h"
 @interface WXNewsController ()<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate>
 
 @property (nonatomic,strong)UITextField *newsText;
@@ -27,7 +27,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-
+    
     self.view.backgroundColor = [UIColor colorWithWhite:0.9 alpha:1];
     
     [self addTitleView];
@@ -46,7 +46,7 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 -(void)addSearchView{
-//
+    //
     self.searchView = [[UIView alloc]initWithFrame:CGRectMake(0, 60, screenWidth , 50)];
     self.searchView.backgroundColor = [UIColor colorWithWhite:0.9 alpha:1];
     [self.view addSubview:self.searchView];
@@ -69,7 +69,7 @@
     
     
     
-
+    
 }
 
 
@@ -92,37 +92,37 @@
     titleLabel.font = [UIFont systemFontOfSize:15];
     titleLabel.textColor = [UIColor grayColor];
     titleLabel.textAlignment = NSTextAlignmentLeft;
-
-//    
-//        //添加最新／最热／精华新闻按钮
-//    UIButton *newsButton = [UIButton buttonWithType:UIButtonTypeCustom];
-//    newsButton.frame = CGRectMake(screenWidth / 1.8, 0, screenWidth / 2 /3 -10, 30);
-//    [newsButton setTitle:@"最新" forState:UIControlStateNormal];
-//    [newsButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
-//    [newsButton setTitleColor:[UIColor greenColor] forState:UIControlStateHighlighted];
-//
-//    UIButton *hotButton = [UIButton buttonWithType:UIButtonTypeCustom];
-//    hotButton.frame = CGRectMake(screenWidth / 1.8 + (screenWidth / 2 /3 -10), 0, screenWidth / 2 /3 -10, 30);
-//    [hotButton setTitle:@"最热" forState:UIControlStateNormal];
-//    [hotButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
-//    [hotButton setTitleColor:[UIColor greenColor] forState:UIControlStateHighlighted];
-//    
-//    UIButton *creamButton = [UIButton buttonWithType:UIButtonTypeCustom];
-//    creamButton.frame = CGRectMake(screenWidth / 1.8 +(screenWidth / 2 /3 -10)*2, 0, screenWidth / 2 /3 -10, 30);
-//    [creamButton setTitle:@"精华" forState:UIControlStateNormal];
-//    [creamButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
-//    [creamButton setTitleColor:[UIColor greenColor] forState:UIControlStateHighlighted];
-//    
+    
+    //
+    //        //添加最新／最热／精华新闻按钮
+    //    UIButton *newsButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    //    newsButton.frame = CGRectMake(screenWidth / 1.8, 0, screenWidth / 2 /3 -10, 30);
+    //    [newsButton setTitle:@"最新" forState:UIControlStateNormal];
+    //    [newsButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+    //    [newsButton setTitleColor:[UIColor greenColor] forState:UIControlStateHighlighted];
+    //
+    //    UIButton *hotButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    //    hotButton.frame = CGRectMake(screenWidth / 1.8 + (screenWidth / 2 /3 -10), 0, screenWidth / 2 /3 -10, 30);
+    //    [hotButton setTitle:@"最热" forState:UIControlStateNormal];
+    //    [hotButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+    //    [hotButton setTitleColor:[UIColor greenColor] forState:UIControlStateHighlighted];
+    //
+    //    UIButton *creamButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    //    creamButton.frame = CGRectMake(screenWidth / 1.8 +(screenWidth / 2 /3 -10)*2, 0, screenWidth / 2 /3 -10, 30);
+    //    [creamButton setTitle:@"精华" forState:UIControlStateNormal];
+    //    [creamButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+    //    [creamButton setTitleColor:[UIColor greenColor] forState:UIControlStateHighlighted];
+    //
     UIView *titleView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, screenWidth, 30)];
     titleView.backgroundColor = [UIColor colorWithWhite:0.9 alpha:1];
-//
+    //
     [titleView addSubview:titleLabel];
-//    [titleView addSubview:newsButton];
-//    [titleView addSubview:hotButton];
-//    [titleView addSubview:creamButton];
-//    
+    //    [titleView addSubview:newsButton];
+    //    [titleView addSubview:hotButton];
+    //    [titleView addSubview:creamButton];
+    //
     self.newsTableView.tableHeaderView = titleView;
-
+    
 }
 
 
@@ -136,13 +136,13 @@
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-
-        return self.newsDataArray.count;
-//    return 10;
+    
+    return self.newsDataArray.count;
+    //    return 10;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-
+    
     static NSString *cellStr = @"cell2";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellStr];
     if (cell == nil) {
@@ -158,7 +158,9 @@
         
         cell.backgroundColor = [UIColor colorWithWhite:0.9 alpha:1];
         UIImageView *newImage = [[UIImageView alloc]initWithFrame:CGRectMake(5, 5, CGRectGetHeight(newView.frame)-10, CGRectGetHeight(newView.frame)-10)];
-        [newImage setImage:[UIImage imageNamed:model.newsImg]];
+//        [newImage setImage:[UIImage imageNamed:[model.newsImgArr lastObject]]];
+        WXImageModel *imgModel=[model.newsImgArr firstObject];
+        [newImage setImage:[UIImage imageNamed:imgModel.Image_ur]];
         [newView addSubview:newImage];
         
         UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(newImage.frame)+10, 5, CGRectGetWidth(newView.frame)-CGRectGetMaxX(newImage.frame)-20, 25)];
@@ -178,24 +180,24 @@
     }
     
     
-//    UIButton *messageButton = [UIButton buttonWithType:UIButtonTypeCustom];
-//    messageButton.frame = CGRectMake(screenWidth * 0.3, newView.frame.size.height - 35, 100, 30);
-//    [messageButton setTitle:@"消息" forState:UIControlStateNormal];
-//    [messageButton setTintColor:[UIColor grayColor]];
+    //    UIButton *messageButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    //    messageButton.frame = CGRectMake(screenWidth * 0.3, newView.frame.size.height - 35, 100, 30);
+    //    [messageButton setTitle:@"消息" forState:UIControlStateNormal];
+    //    [messageButton setTintColor:[UIColor grayColor]];
     
     
     //            [messageButton setImage:[UIImage imageNamed:@"home_message"] forState:UIControlStateNormal];
-//    [newView addSubview:messageButton];
+    //    [newView addSubview:messageButton];
     
     return cell;
-
+    
     
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     WXNewsDetailViewController *newDetailViewController = [[WXNewsDetailViewController alloc]init];
-
+    
     [self presentViewController:newDetailViewController animated:YES completion:nil];
 }
 

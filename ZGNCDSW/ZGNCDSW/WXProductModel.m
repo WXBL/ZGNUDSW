@@ -33,7 +33,7 @@
         model.Goods_Image=[[[WXImageModel alloc]init]getImageListDataWithArrayJSON:imageArr];
         return model;
     }
-
+    
     return  nil;
 }
 -(id)getProductListWithArrayJSON:(NSArray *)array

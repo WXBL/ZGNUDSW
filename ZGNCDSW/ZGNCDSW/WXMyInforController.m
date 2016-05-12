@@ -99,11 +99,22 @@
         [self ClickShopButton:button];
     }else if(button.tag ==3){
         [self ClickScannedButton:button];
-    }else{
+    }else if(button.tag ==4){
         [self ClickManagementButton:button];
+    }else if(button.tag ==5){
+        [self ClickHeadImageBtn:button];
+    }else{
+        [self ClickMbtypeBtn:button];
     }
     
 }
+
+#pragma mark 点击会员按钮
+-(void)ClickMbtypeBtn:(UIButton *)sender{
+    
+}
+
+#pragma mark -点击头像
 -(void)ClickHeadImageBtn:(UIButton *)sender{
     WXManagementController *managementController = [[WXManagementController alloc]init];
     [self presentViewController:managementController animated:YES completion:nil];

@@ -56,28 +56,25 @@
     WXFarmImportsController *farmImports = [[WXFarmImportsController alloc]init];
     farmImports.showType=1;
     [self addChildVc:farmImports title:@"农产品" image:@"tabbar_home" selectedImage:@"tabbar_home_selected"];
-
+    
     if (![[NSUserDefaults standardUserDefaults]stringForKey:@"userName"]) {
         
     }
     
-<<<<<<< HEAD
 
-=======
->>>>>>> origin/master
-
+    
     if ([MDDataBaseUtil userName]==NULL) {
         WXUserLoginViewController *userLoginVC=[[WXUserLoginViewController alloc] init];
         [self addChildVc:userLoginVC title:@"消息" image:@"tabbar_home" selectedImage:@"tabbar_home_selected"];
-//        WXUserLoginViewController *userLoginVC1=[[WXUserLoginViewController alloc] init];
-//        [self addChildVc:userLoginVC1 title:@"我的" image:@"tabbar_home" selectedImage:@"tabbar_home_selected"];
+        //        WXUserLoginViewController *userLoginVC1=[[WXUserLoginViewController alloc] init];
+        //        [self addChildVc:userLoginVC1 title:@"我的" image:@"tabbar_home" selectedImage:@"tabbar_home_selected"];
     }else{
         WXMessageTableViewController *message = [[WXMessageTableViewController alloc]init];
         [self addChildVc:message title:@"消息" image:@"tabbar_home" selectedImage:@"tabbar_home_selected"];
         
         
-//        WXMyInforController *myInfor = [[WXMyInforController alloc]init];
-//        [self addChildVc:myInfor title:@"我的" image:@"tabbar_home" selectedImage:@"tabbar_home_selected"];
+        //        WXMyInforController *myInfor = [[WXMyInforController alloc]init];
+        //        [self addChildVc:myInfor title:@"我的" image:@"tabbar_home" selectedImage:@"tabbar_home_selected"];
     }
     WXMyInforController *myInfor = [[WXMyInforController alloc]init];
     [self addChildVc:myInfor title:@"我的" image:@"tabbar_home" selectedImage:@"tabbar_home_selected"];
@@ -101,8 +98,8 @@
     
     //设置字控制器的文字
     childVc.title = title;
-//    childVc.tabBarItem.title = title;
-//    childVc.navigationItem.title = title;
+    //    childVc.tabBarItem.title = title;
+    //    childVc.navigationItem.title = title;
     
     //设置字控制器的图片
     childVc.tabBarItem.image = [UIImage imageNamed:image];
@@ -116,14 +113,14 @@
     [childVc.tabBarItem setTitleTextAttributes:textAttrs forState:UIControlStateNormal];
     [childVc.tabBarItem setTitleTextAttributes:selectTextAttrs forState:UIControlStateSelected];
     
-   
     
-//    //先给外面传进来的小控制器包装一个导航控制器
+    
+    //    //先给外面传进来的小控制器包装一个导航控制器
     WXNavigationController *nav = [[WXNavigationController alloc]initWithRootViewController:childVc];
     //添加字控制器
     [self addChildViewController:nav];
     
-//    [self addChildViewController:childVc];
+    //    [self addChildViewController:childVc];
 }
 
 

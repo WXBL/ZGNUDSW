@@ -122,12 +122,12 @@
 }
 //点击登录按钮触发事件
 -(void)resetPasswordButtonClick:(UIButton *)sender{
-//    [[WXUserService sharedClient] updateUserPasswordWithUserID:[MDDataBaseUtil userID] UserName:[MDDataBaseUtil userName] ReSetPassword:self.resetPasswordText.text Completion:^(NSString* success){
-//        [MDDataBaseUtil setPassword:self.resetPasswordText.text];
-//    }Failure:^(NSString *error){
-//        UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"提示" message:@"修改密码失败！" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"关闭", nil];
-//        [alert show];
-//    }];
+    //    [[WXUserService sharedClient] updateUserPasswordWithUserID:[MDDataBaseUtil userID] UserName:[MDDataBaseUtil userName] ReSetPassword:self.resetPasswordText.text Completion:^(NSString* success){
+    //        [MDDataBaseUtil setPassword:self.resetPasswordText.text];
+    //    }Failure:^(NSString *error){
+    //        UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"提示" message:@"修改密码失败！" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"关闭", nil];
+    //        [alert show];
+    //    }];
     
     
     AFHTTPRequestOperationManager *mgr=[AFHTTPRequestOperationManager manager];
@@ -197,7 +197,7 @@
                 self.resetPasswordBtn.enabled=YES;
                 [self.resetPasswordBtn setBackgroundColor:[UIColor colorWithRed:0.2 green:0.7 blue:0.4 alpha:1]];
             }
-
+            
         }
     }
 }
@@ -210,13 +210,13 @@
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 @end

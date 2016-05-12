@@ -24,6 +24,7 @@
 #import "WXTopView.h"
 #import "WXProductCategoryViewController.h"
 #import "WXNewsModel.h"
+#import "WXImageModel.h"
 
 @interface WXHomeViewController ()<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate>
 
@@ -104,13 +105,13 @@
     [super viewDidLoad];
     self.searchBar = [WXSearchBar searchBar];
     self.searchBar.delegate=self;
-//    searchBar.width = self.view.frame.size.width * 0.8;
-//    searchBar.height = 30;
+    //    searchBar.width = self.view.frame.size.width * 0.8;
+    //    searchBar.height = 30;
     
     
     [self.navigationController.navigationBar addSubview:self.searchBar];
     
-   
+    
     
     
     [self addScrollView];
@@ -377,27 +378,27 @@
     if (section == 0) {
         return 2;
     }else{
-//        if (tableView.tag == 0) {
-//            if (self.currentNewsArray.count == 0) {
-//                return 1;
-//            }else{
-//                return self.currentNewsArray.count;
-//            }
-//            
-//        }else{
-//            if (self.newsListArray.count == 0) {
-//                return 10;
-//            }else{
-//                return self.newsListArray.count;
-//            }
-//        }
-//    }
+        //        if (tableView.tag == 0) {
+        //            if (self.currentNewsArray.count == 0) {
+        //                return 1;
+        //            }else{
+        //                return self.currentNewsArray.count;
+        //            }
+        //
+        //        }else{
+        //            if (self.newsListArray.count == 0) {
+        //                return 10;
+        //            }else{
+        //                return self.newsListArray.count;
+        //            }
+        //        }
+        //    }
         if (self.newsListArray.count>10) {
             return 11;
         }else{
             return self.newsListArray.count+1;
         }
-//        return 10;
+        //        return 10;
         
     }
     
@@ -427,7 +428,7 @@
             if (cell == nil) {
                 cell = [[WXCategoryTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellStr];
             }
-
+            
             //点击cell时不变色
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             return cell;
@@ -458,12 +459,12 @@
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             return cell;
         }else{
-        static NSString *cellID=@"newsListCellID";
+            static NSString *cellID=@"newsListCellID";
             UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
             if (cell == nil) {
                 cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellID];
             }
-          
+            
             WXNewsModel *model=[self.newsListArray objectAtIndex:indexPath.row-1];
             UIView *newView = [[UIView alloc]initWithFrame:CGRectMake(10, 0, screenWidth - 20, 100)];
             newView.backgroundColor = [UIColor whiteColor];
@@ -471,10 +472,11 @@
             [cell addSubview:newView];
             
             cell.backgroundColor = [UIColor colorWithWhite:0.9 alpha:1];
-
+            
             
             UIImageView *newImage = [[UIImageView alloc]initWithFrame:CGRectMake(5, 5, CGRectGetHeight(newView.frame)-10, CGRectGetHeight(newView.frame)-10)];
-            [newImage setImage:[UIImage imageNamed:model.newsImg]];
+            WXImageModel *imgModel=[model.newsImgArr firstObject];
+            [newImage setImage:[UIImage imageNamed:imgModel.Image_ur]];
             [newView addSubview:newImage];
             
             UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(newImage.frame)+10, 5, CGRectGetWidth(newView.frame)-CGRectGetMaxX(newImage.frame)-20, 25)];
@@ -491,32 +493,32 @@
             detailLabel.font = [UIFont systemFontOfSize:14];
             detailLabel.numberOfLines = 0;
             [newView addSubview:detailLabel];
-
-//            UIButton *messageButton = [UIButton buttonWithType:UIButtonTypeCustom];
-//            messageButton.frame = CGRectMake(screenWidth * 0.3, newView.frame.size.height - 35, 100, 30);
-//            [messageButton setTitle:@"消息" forState:UIControlStateNormal];
-//            [messageButton setTintColor:[UIColor grayColor]];
-//    
-//            
-//            [messageButton setImage:[UIImage imageNamed:@"home_message"] forState:UIControlStateNormal];
-//            [newView addSubview:messageButton];
+            
+            //            UIButton *messageButton = [UIButton buttonWithType:UIButtonTypeCustom];
+            //            messageButton.frame = CGRectMake(screenWidth * 0.3, newView.frame.size.height - 35, 100, 30);
+            //            [messageButton setTitle:@"消息" forState:UIControlStateNormal];
+            //            [messageButton setTintColor:[UIColor grayColor]];
+            //
+            //
+            //            [messageButton setImage:[UIImage imageNamed:@"home_message"] forState:UIControlStateNormal];
+            //            [newView addSubview:messageButton];
             
             //点击cell时不变色
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             
             return cell;
             
-           
+            
         }
         
         
     }
     
-       
+    
 }
 //
 //- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
-//    
+//
 //    if (section == 1) {
 //        NSString *titleStr = @"行业资讯";
 //        return titleStr;
@@ -538,7 +540,7 @@
             [self presentViewController:newDetailViewController animated:YES completion:nil];
         }
         
-
+        
     }
 }
 
