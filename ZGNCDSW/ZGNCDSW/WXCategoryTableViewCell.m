@@ -135,5 +135,6 @@
     NSInteger i=(int)self.point.x/(CGRectGetWidth(self.frame)/4)+((int)(self.point.y/(CGRectGetHeight(self.frame)/2))==0?0:4);
     NSNotification *notice=[NSNotification notificationWithName:@"choice" object:nil userInfo:@{@"choice":[NSString stringWithFormat:@"%ld",i]}];
     [[NSNotificationCenter defaultCenter]postNotification:notice];
+    
 }
 @end

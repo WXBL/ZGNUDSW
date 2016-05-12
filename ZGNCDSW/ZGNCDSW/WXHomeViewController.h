@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface WXHomeViewController : UIViewController
-
+@property (nonatomic,strong)NSMutableArray *newsListArray;
 @end

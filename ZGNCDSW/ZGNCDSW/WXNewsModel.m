@@ -7,7 +7,7 @@
 //
 
 #import "WXNewsModel.h"
-
+#import "WXImageModel.h"
 @implementation WXNewsModel
 -(id)getNewsDataWithDictionaryJSON:(NSDictionary *)dict{
     if (dict) {
@@ -17,6 +17,8 @@
         model.Administrivia_Content=(dict[@"Administrivia_Content"]==[NSNull null])?@"":dict[@"Administrivia_Content"];
         model.News_release_People_=(dict[@"News_release_People_"]==[NSNull null])?@"":dict[@"News_release_People_"];
         model.Release_Time=(dict[@"Release_Time"]==[NSNull null])?@"":dict[@"Release_Time"];
+        NSMutableArray *imgArr=(dict[@"NewsImage"]==[NSNull null])?@"":dict[@"NewsImage"];
+        model.newsImgArr=[[[WXImageModel alloc] init] getImageListDataWithArrayJSON:imgArr];
         return model;
     }
     return nil;

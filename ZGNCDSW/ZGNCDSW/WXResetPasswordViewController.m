@@ -10,6 +10,9 @@
 #import "WXTopView.h"
 #import "MDDataBaseUtil.h"
 #import "WXUserService.h"
+#import "AFNetworking.h"
+#import "AFHTTPRequestOperationManager.h"
+#import "WXUserLoginViewController.h"
 @interface WXResetPasswordViewController ()
 
 @end
@@ -119,11 +122,26 @@
 }
 //点击登录按钮触发事件
 -(void)resetPasswordButtonClick:(UIButton *)sender{
-    [[WXUserService sharedClient] updateUserPasswordWithUserID:[MDDataBaseUtil userID] UserName:[MDDataBaseUtil userName] ReSetPassword:self.resetPasswordText.text Completion:^(NSString* success){
+//    [[WXUserService sharedClient] updateUserPasswordWithUserID:[MDDataBaseUtil userID] UserName:[MDDataBaseUtil userName] ReSetPassword:self.resetPasswordText.text Completion:^(NSString* success){
+//        [MDDataBaseUtil setPassword:self.resetPasswordText.text];
+//    }Failure:^(NSString *error){
+//        UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"提示" message:@"修改密码失败！" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"关闭", nil];
+//        [alert show];
+//    }];
+    
+    
+    AFHTTPRequestOperationManager *mgr=[AFHTTPRequestOperationManager manager];
+    NSMutableDictionary *params=[[NSMutableDictionary alloc] init];
+    params[@"ReSetPassword"]=self.resetPasswordText.text;
+    NSString *path=[NSString stringWithFormat:@"%@%@",BASE_SERVICE_URL,@""];
+    [mgr POST:path parameters:params success:^(AFHTTPRequestOperation *operation,NSDictionary *responseObject){
         [MDDataBaseUtil setPassword:self.resetPasswordText.text];
-    }Failure:^(NSString *error){
-        UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"提示" message:@"修改密码失败！" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"关闭", nil];
-        [alert show];
+        WXUserLoginViewController *userLoginVC=[[WXUserLoginViewController alloc] init];
+        [self presentViewController:userLoginVC animated:YES completion:nil];
+        
+    }failure:^(AFHTTPRequestOperation *operation,NSError *error){
+        UIAlertView * alertView=[[UIAlertView alloc] initWithTitle:@"提示" message:@"登录失败" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"关闭", nil];
+        [alertView show];
     }];
 }
 

@@ -10,6 +10,8 @@
 #import "WXTopView.h"
 #import "WXVerifyTelephoneViewController.h"
 #import "WXUserService.h"
+#import "AFNetworking.h"
+#import "AFHTTPRequestOperationManager.h"
 @interface WXUserRegistViewController ()
 
 @end
@@ -148,10 +150,10 @@
                     }
                 }];
             }else{
-                WXVerifyTelephoneViewController *verifyTeleVC=[[WXVerifyTelephoneViewController alloc] init];
-                verifyTeleVC.userName=self.userNameTextField.text;
-                verifyTeleVC.password=self.passwordTextField.text;
-                [self presentViewController:verifyTeleVC animated:YES completion:nil];
+//                WXVerifyTelephoneViewController *verifyTeleVC=[[WXVerifyTelephoneViewController alloc] init];
+//                verifyTeleVC.userName=self.userNameTextField.text;
+//                verifyTeleVC.password=self.passwordTextField.text;
+//                [self presentViewController:verifyTeleVC animated:YES completion:nil];
 //                [[WXUserService sharedClient] vertifyUserNameIsExitWithUserName:self.userNameTextField.text Completion:^(NSString *success){
 //                    WXVerifyTelephoneViewController *verifyTeleVC=[[WXVerifyTelephoneViewController alloc] init];
 //                    verifyTeleVC.userName=self.userNameTextField.text;
@@ -163,6 +165,7 @@
 //                    self.userNameTextField.text=nil;
 //                    self.passwordTextField.text=nil;
 //                }];
+                [self vailiUser];
                 
             }
         }
@@ -170,6 +173,28 @@
     }
 
     
+}
+-(void)vailiUser{
+    AFHTTPRequestOperationManager *mgr=[AFHTTPRequestOperationManager manager];
+    NSMutableDictionary *params=[[NSMutableDictionary alloc] init];
+    params[@"UserName"]=self.userNameTextField.text;
+    NSString *path=[NSString stringWithFormat:@"%@%@",BASE_SERVICE_URL,@""];
+    [mgr GET:path parameters:params success:^(AFHTTPRequestOperation *operation,NSArray * responseObject){
+        if (responseObject.count==0) {
+            WXVerifyTelephoneViewController *verifyTeleVC=[[WXVerifyTelephoneViewController alloc] init];
+            verifyTeleVC.userName=self.userNameTextField.text;
+            verifyTeleVC.password=self.passwordTextField.text;
+            [self presentViewController:verifyTeleVC animated:YES completion:nil];
+        }else{
+            UIAlertView * alertView=[[UIAlertView alloc] initWithTitle:@"提示" message:@"用户存在，请重新填写用户名密码！" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"关闭", nil];
+            [alertView show];
+            self.userNameTextField.text=nil;
+            self.passwordTextField.text=nil;
+        }
+    }failure:^(AFHTTPRequestOperation *operation,NSError *error){
+        UIAlertView * alertView=[[UIAlertView alloc] initWithTitle:@"提示" message:@"用户验证失败！" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"关闭", nil];
+        [alertView show];
+    }];
 }
 -(BOOL)textFieldShouldReturn:(UITextField *)textField{
     [self.userNameTextField resignFirstResponder];

@@ -17,12 +17,12 @@
         model.Merchant_ID=[((NSNumber *)dict[@"Merchant_ID"]) stringValue];
         model.User_ID=[((NSNumber *)dict[@"User_ID"]) stringValue];
         model.Goods_ID=[((NSNumber *)dict[@"Goods_ID"]) stringValue];
-        model.Goods_Size_ID=[((NSNumber *)dict[@"Goods_Size_ID"]) stringValue];
-        model.Goods_Color_ID=[((NSNumber *)dict[@"Goods_Color_ID"]) stringValue];
+        model.Address_ID=[((NSNumber *)dict[@"Address_ID"]) stringValue];
         model.Delivery_Time=(dict[@"Delivery_Time"]==[NSNull null])?@"":dict[@"Delivery_Time"];
         model.Place_On_Order_Time=(dict[@"Place_On_Order_Time"]==[NSNull null])?@"":dict[@"Place_On_Order_Time"];
         model.Shipments_Address=(dict[@"Shipments_Address"]==[NSNull null])?@"":dict[@"Shipments_Address"];
-        model.Delivery_Address=(dict[@"Delivery_Address"]==[NSNull null])?@"":dict[@"Delivery_Address"];
+        model.Goods_Color=(dict[@"Goods_Color"]==[NSNull null])?@"":dict[@"Goods_Color"];
+        model.Goods_Size=(dict[@"Goods_Size"]==[NSNull null])?@"":dict[@"Goods_Size"];
         return model;
     }
 

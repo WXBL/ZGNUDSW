@@ -13,6 +13,8 @@
 #import "WXFarmDetailViewController.h"
 #import "WXBuyCartController.h"
 #import "WXTopView.h"
+#import "AFHTTPRequestOperationManager.h"
+#import "AFNetworking.h"
 @interface WXFarmImportsController ()<UITextFieldDelegate,UICollectionViewDelegate,UICollectionViewDataSource>
 
 @property (nonatomic,strong)UITextField *farmImports;
@@ -22,20 +24,26 @@
 @end
 
 @implementation WXFarmImportsController
-
+-(NSMutableArray *)productArray{
+    if (!_productArray) {
+        self.productArray=[NSMutableArray array];
+    }
+    return _productArray;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
     self.view.backgroundColor = [UIColor colorWithWhite:0.9 alpha:1];
     
-    
+    [self setProductData];
 
     //设置导航
     if (self.showType==1) {
-        [self addTitleView];
-    }else{
         [self setNavBar];
+        
+    }else{
+        [self addTitleView];
     }
     
     
@@ -44,6 +52,22 @@
     [self addSearchView];
     
     [self addCollectionView];
+    
+}
+-(void)setProductData{
+    AFHTTPRequestOperationManager *AFMGR=[AFHTTPRequestOperationManager manager];
+    NSString *path=[NSString stringWithFormat:@"%@%@",BASE_SERVICE_URL,@""];
+     NSMutableDictionary *params=[NSMutableDictionary dictionary];
+    if (self.typeModel) {
+       
+        params[@"Type_ID"]=self.typeModel.Type_ID;
+    }
+    [AFMGR GET:path parameters:params success:^(AFHTTPRequestOperation *operation,NSArray *responseObject){
+        
+        [self.collectionView reloadData];
+    }failure:^(AFHTTPRequestOperation *operation,NSError *error){
+        
+    }];
     
 }
 -(void)addTitleView{
@@ -141,6 +165,7 @@
 
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
     //    return self.keepArray.count;
+    
     return 10;
 }
 

@@ -17,7 +17,10 @@
 #import "WXUserLoginViewController.h"
 #import "MDDataBaseUtil.h"
 #import "WXUserLoginViewController.h"
-
+#import "AFNetworking.h"
+#import "AFHTTPRequestOperationManager.h"
+#import "WXNewsModel.h"
+#import "WXProductModel.h"
 
 @interface WXTabBarController ()
 
@@ -25,18 +28,33 @@
 
 @implementation WXTabBarController
 
-
+-(NSMutableArray *)newsMutableArray{
+    if (!_newsMutableArray) {
+        self.newsMutableArray=[NSMutableArray array];
+    }
+    return _newsMutableArray;
+}
+-(NSMutableArray *)productMutableArray{
+    if(!_productMutableArray){
+        self.productMutableArray=[NSMutableArray array];
+    }
+    return _productMutableArray;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self setNewsData];
     //1.初始化字控制器
     WXHomeViewController *home = [[WXHomeViewController alloc]init];
+    home.newsListArray=self.newsMutableArray;
     [self addChildVc:home title:@"首页" image:@"tabbar_home" selectedImage:@"tabbar_home_selected"];
     
     WXNewsController *news = [[WXNewsController alloc]init];
+    news.newsDataArray=self.newsMutableArray;
     [self addChildVc:news title:@"资讯"  image:@"tabbar_home" selectedImage:@"tabbar_home_selected"];
     
     WXFarmImportsController *farmImports = [[WXFarmImportsController alloc]init];
+    farmImports.showType=1;
     [self addChildVc:farmImports title:@"农产品" image:@"tabbar_home" selectedImage:@"tabbar_home_selected"];
 
     if (![[NSUserDefaults standardUserDefaults]stringForKey:@"userName"]) {
@@ -63,7 +81,17 @@
     
     
 }
-
+-(void)setNewsData{
+    AFHTTPRequestOperationManager *AFMgr=[AFHTTPRequestOperationManager manager];
+    NSString *path=[NSString stringWithFormat:@"%@%@",BASE_SERVICE_URL,@""];
+    
+    [AFMgr GET:path parameters:nil success:^(AFHTTPRequestOperation *operation,NSArray *responseObject){
+        WXNewsModel *model=[[WXNewsModel alloc] init];
+        self.newsMutableArray=[model getNewsListWithArrayJSON:responseObject];
+    }failure:^(AFHTTPRequestOperation *operation,NSError *error){
+        
+    }];
+}
 
 -(void)addChildVc:(UIViewController *)childVc title:(NSString *)title image:(NSString *)image selectedImage:(NSString *)selectImage{
     

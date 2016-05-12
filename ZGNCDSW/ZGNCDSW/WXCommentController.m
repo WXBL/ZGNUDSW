@@ -51,6 +51,7 @@
     [self addTableView];
     [self addbuyCart];
 
+
 }
 
 /**

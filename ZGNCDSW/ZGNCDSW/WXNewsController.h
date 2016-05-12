@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface WXNewsController : UIViewController
-
+@property(nonatomic,strong)NSMutableArray *newsDataArray;
 @end

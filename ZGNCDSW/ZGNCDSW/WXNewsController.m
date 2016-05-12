@@ -12,6 +12,8 @@
 #import "PrefixHeader.pch"
 #import "WXNewsDetailViewController.h"
 #import "WXTopView.h"
+#import "WXNewsModel.h"
+
 @interface WXNewsController ()<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate>
 
 @property (nonatomic,strong)UITextField *newsText;
@@ -86,7 +88,7 @@
     
     //    //添加标题
     UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 0,screenWidth / 2-10, 30)];
-    titleLabel.text = @"行业资讯-共12121条资讯";
+    titleLabel.text = [NSString stringWithFormat:@"行业资讯-共%ld条资讯",self.newsDataArray.count];
     titleLabel.font = [UIFont systemFontOfSize:15];
     titleLabel.textColor = [UIColor grayColor];
     titleLabel.textAlignment = NSTextAlignmentLeft;
@@ -134,44 +136,47 @@
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    
-    return 10;
+
+        return self.newsDataArray.count;
+//    return 10;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
+
     static NSString *cellStr = @"cell2";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellStr];
     if (cell == nil) {
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellStr];
     }
     
-    UIView *newView = [[UIView alloc]initWithFrame:CGRectMake(10, 0, screenWidth - 20, 100)];
-    newView.backgroundColor = [UIColor whiteColor];
-    [newView.layer setCornerRadius:5];
-    [cell addSubview:newView];
+    if (self.newsDataArray.count>0) {
+        WXNewsModel *model=[self.newsDataArray objectAtIndex:indexPath.row];
+        UIView *newView = [[UIView alloc]initWithFrame:CGRectMake(10, 0, screenWidth - 20, 100)];
+        newView.backgroundColor = [UIColor whiteColor];
+        [newView.layer setCornerRadius:5];
+        [cell addSubview:newView];
+        
+        cell.backgroundColor = [UIColor colorWithWhite:0.9 alpha:1];
+        UIImageView *newImage = [[UIImageView alloc]initWithFrame:CGRectMake(5, 5, CGRectGetHeight(newView.frame)-10, CGRectGetHeight(newView.frame)-10)];
+        [newImage setImage:[UIImage imageNamed:model.newsImg]];
+        [newView addSubview:newImage];
+        
+        UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(newImage.frame)+10, 5, CGRectGetWidth(newView.frame)-CGRectGetMaxX(newImage.frame)-20, 25)];
+        titleLabel.text = model.Administrivia_Name;
+        titleLabel.textColor = [UIColor blackColor];
+        titleLabel.textAlignment = NSTextAlignmentCenter;
+        titleLabel.font = [UIFont systemFontOfSize:16];
+        [newView addSubview:titleLabel];
+        
+        UILabel *detailLabel = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMinX(titleLabel.frame) , CGRectGetMaxY(titleLabel.frame), CGRectGetWidth(titleLabel.frame), CGRectGetHeight(newView.frame)-CGRectGetMaxY(titleLabel.frame)-5)];
+        detailLabel.text = [model.Administrivia_Content substringToIndex:40];
+        detailLabel.textColor = [UIColor grayColor];
+        detailLabel.textAlignment = NSTextAlignmentLeft;
+        detailLabel.font = [UIFont systemFontOfSize:14];
+        detailLabel.numberOfLines = 0;
+        [newView addSubview:detailLabel];
+    }
     
-    cell.backgroundColor = [UIColor colorWithWhite:0.9 alpha:1];
-    
-    
-    UIImageView *newImage = [[UIImageView alloc]initWithFrame:CGRectMake(5, 5, 90, 90)];
-    [newImage setImage:[UIImage imageNamed:@"news_list1"]];
-    [newView addSubview:newImage];
-    
-    UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(screenWidth * 0.25, 0, screenWidth * 0.6, 25)];
-    titleLabel.text = @"asdfasdfasdfasdgasdga";
-    titleLabel.textColor = [UIColor grayColor];
-    titleLabel.textAlignment = NSTextAlignmentCenter;
-    titleLabel.font = [UIFont systemFontOfSize:14];
-    [newView addSubview:titleLabel];
-    
-    UILabel *detailLabel = [[UILabel alloc]initWithFrame:CGRectMake(screenWidth * 0.25, 25, screenWidth * 0.6, 50)];
-    detailLabel.text = @"asdfasdfasdfasdgaadgfasdfasdfkjl;askdjf;lasdjfsdga";
-    detailLabel.textColor = [UIColor grayColor];
-    detailLabel.textAlignment = NSTextAlignmentLeft;
-    detailLabel.font = [UIFont systemFontOfSize:14];
-    detailLabel.numberOfLines = 2;
-    [newView addSubview:detailLabel];
     
 //    UIButton *messageButton = [UIButton buttonWithType:UIButtonTypeCustom];
 //    messageButton.frame = CGRectMake(screenWidth * 0.3, newView.frame.size.height - 35, 100, 30);
@@ -185,7 +190,6 @@
     return cell;
 
     
-    return cell;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

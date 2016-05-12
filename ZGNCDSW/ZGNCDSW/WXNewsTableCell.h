@@ -13,8 +13,8 @@
 
 
 @property (nonatomic,strong) UIImageView *newsImage;
-@property (nonatomic,strong)UILabel *titleLabel;
-@property (nonatomic,strong)UILabel *detailLabel;
+@property (nonatomic,strong)UILabel *newsTitleLabel;
+@property (nonatomic,strong)UILabel *newsDetailLabel;
 @property (nonatomic,strong)UIButton *messageButton;
 @property (nonatomic,strong)UILabel *messageNum;
 @property (nonatomic,strong)UIButton *keepButton;

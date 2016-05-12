@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface WXProductCategoryViewController : UIViewController
+@interface WXProductCategoryViewController : UIViewController<UITableViewDelegate,UITableViewDataSource>
+@property(nonatomic,strong)UITableView *productCategoryTableView;
+@property(nonatomic,strong)NSMutableArray *productCategoryArray;
+
 
 @end
