@@ -15,6 +15,8 @@
 #import "WXTopView.h"
 #import "AFHTTPRequestOperationManager.h"
 #import "AFNetworking.h"
+#import "WXProductModel.h"
+#import "WXImageModel.h"
 @interface WXFarmImportsController ()<UITextFieldDelegate,UICollectionViewDelegate,UICollectionViewDataSource>
 
 @property (nonatomic,strong)UITextField *farmImports;
@@ -63,7 +65,7 @@
         params[@"Type_ID"]=self.typeModel.Type_ID;
     }
     [AFMGR GET:path parameters:params success:^(AFHTTPRequestOperation *operation,NSArray *responseObject){
-        
+        self.productArray=[[[WXProductModel alloc] init] getProductListWithArrayJSON:responseObject];
         [self.collectionView reloadData];
     }failure:^(AFHTTPRequestOperation *operation,NSError *error){
         
@@ -165,8 +167,8 @@
 
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
     //    return self.keepArray.count;
-    
-    return 10;
+//    return self.productArray.count;
+    return 1;
 }
 
 -(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
@@ -179,7 +181,7 @@
     
     //    //添加标题
     UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 0,screenWidth / 2-10, 30)];
-    titleLabel.text = @"农品铺子－共123123个产品";
+    titleLabel.text = [NSString stringWithFormat:@"农品铺子－共%ld个产品",self.productArray.count];
     titleLabel.font = [UIFont systemFontOfSize:15];
     titleLabel.textColor = [UIColor grayColor];
     titleLabel.textAlignment = NSTextAlignmentLeft;
@@ -226,13 +228,16 @@
     if (!cell) {
         NSLog(@"无法创建CollectionViewCell时打印，自定义的cell就不可能进来");
     }
-    
-    cell.farmImage.image = [UIImage imageNamed:@"news_list1"];
-    cell.titleLabel.text = @"afsd";
-    cell.priceLabel.text = @"10元／500g";
-    cell.saleNumLabel.text = @"20";
-    
-    
+//    WXProductModel *productmodel=[self.productArray objectAtIndex:indexPath.row];
+//    WXImageModel *imgModel=[productmodel.Goods_Image firstObject];
+//    cell.farmImage.image = [UIImage imageNamed:imgModel.Image_ur];
+//    cell.titleLabel.text = productmodel.Goods_Name;
+//    cell.priceLabel.text = productmodel.Goods_Price;
+//    cell.saleNumLabel.text = productmodel.Goods_Inventory;
+    cell.farmImage.image = [UIImage imageNamed:@""];
+        cell.titleLabel.text = @"asdasd";
+        cell.priceLabel.text = @"asdas";
+        cell.saleNumLabel.text = @"asdas";
     return cell;
 }
 
@@ -259,6 +264,7 @@
 //UICollectionView被选中时调用的方法
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     WXFarmDetailViewController *farmDetail = [[WXFarmDetailViewController alloc]init];
+//    farmDetail.theProduct=[self.productArray objectAtIndex:indexPath.row];
     [self presentViewController:farmDetail animated:YES completion:nil];
     
 }

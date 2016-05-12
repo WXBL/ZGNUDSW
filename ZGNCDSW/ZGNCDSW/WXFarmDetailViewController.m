@@ -37,14 +37,17 @@
 
 @implementation WXFarmDetailViewController
 
-
+-(NSMutableArray *)sizeArray{
+    if (!_sizeArray) {
+        self.sizeArray=[NSMutableArray array];
+    }
+    return _sizeArray;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor colorWithWhite:0.9 alpha:1];
-    
-    self.sizeArray = [NSMutableArray array];
     
     [self setNavBar];
     
@@ -130,7 +133,7 @@
     UIButton *store = [UIButton buttonWithType:UIButtonTypeCustom];
     store.frame = CGRectMake(screenWidth *0.4/3, 0, screenWidth *0.4/3, 40);
     //    [keep setImage:[UIImage imageNamed:@"collect"] forState:UIControlStateNormal];
-    [store setTitle:@"店铺" forState:UIControlStateNormal];
+    [store setTitle:@"商家" forState:UIControlStateNormal];
     [store setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
     [store setTitleColor:[UIColor blackColor] forState:UIControlStateHighlighted];
     store.titleLabel.font = [UIFont systemFontOfSize:12];

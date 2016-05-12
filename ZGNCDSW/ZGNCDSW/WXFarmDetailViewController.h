@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "WXProductModel.h"
 @interface WXFarmDetailViewController : UIViewController
-
+@property(nonatomic,strong)WXProductModel *theProduct;
 @end

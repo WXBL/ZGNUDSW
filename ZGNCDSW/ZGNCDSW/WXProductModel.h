@@ -16,7 +16,7 @@
 @property(strong,nonatomic)NSString *Goods_Inventory;
 @property(strong,nonatomic)NSString *Goods_Average;
 @property(strong,nonatomic)NSString *Goods_last_time;
-@property(strong,nonatomic)NSString *Merchant_ID;
+@property(strong,nonatomic)NSMutableDictionary *Merchant;
 @property(strong,nonatomic)NSMutableDictionary *Goods_Type;
 @property(strong,nonatomic)NSString *Goods_Pubilsh_time;
 @property(nonatomic,strong)NSMutableArray *Goods_Color;

@@ -10,6 +10,7 @@
 #import "WXTypeModel.h"
 #import "WXColorModel.h"
 #import "WXImageModel.h"
+#import "WXMerchantModel.h"
 @implementation WXProductModel
 
 -(id)getProductDataWithDictionaryJSON:(NSDictionary *)dict
@@ -22,7 +23,8 @@
         model.Goods_Number=[((NSNumber *)dict[@"Goods_Number"]) stringValue];
         model.Goods_Inventory=[((NSNumber *)dict[@"Goods_Inventory"]) stringValue];
         model.Goods_Average=[((NSNumber *)dict[@"Goods_Average"]) stringValue];
-        model.Merchant_ID=[((NSNumber *)dict[@"Merchant_ID"]) stringValue];
+        NSMutableDictionary *merchantDic=(dict[@"Merchant_ID"]==[NSNull null])?@"":dict[@"Merchant_ID"];
+        model.Merchant=[[[WXMerchantModel alloc] init] getMerchantDataWithDictionaryWithJSON:merchantDic];
         model.Goods_last_time=(dict[@"Goods_last_time"]==[NSNull null])?@"":dict[@"Goods_last_time"];
         model.Goods_Pubilsh_time=(dict[@"Goods_Pubilsh_time"]==[NSNull null])?@"":dict[@"Goods_Pubilsh_time"];
         NSMutableDictionary *typeDIct=(dict[@"Goods_Type"]==[NSNull null]?@"":dict[@"Goods_Type"]);
