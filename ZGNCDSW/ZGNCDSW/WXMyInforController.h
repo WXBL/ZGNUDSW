@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface WXMyInforController : UIViewController
+@interface WXMyInforController : UITableViewController
 
 @end

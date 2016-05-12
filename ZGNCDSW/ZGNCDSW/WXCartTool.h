@@ -21,7 +21,7 @@
  *  购物车中商品的被选中状态(NSString:@"YES"/@"NO")
  */
 @property (nonatomic, strong) NSMutableArray *cellItems;
-@property (nonatomic,weak)id <WXCartToolDelegate>delegate;
+@property (nonatomic,strong)id <WXCartToolDelegate>delegate;
 
 @property (nonatomic, strong) WXShoppingCellModel *model;
 
