@@ -33,6 +33,7 @@
         model.Goods_Color=[[[WXColorModel alloc]init] getColorListWithArrayJSON:colorArr];
         NSMutableArray *imageArr=(dict[@"Goods_Image"]==[NSNull null]?@"":dict[@"Goods_Image"]);
         model.Goods_Image=[[[WXImageModel alloc]init]getImageListDataWithArrayJSON:imageArr];
+        model.Goods_Buy_Num=[((NSNumber *)dict[@"Goods_Buy_Num"]) stringValue];
         return model;
     }
     

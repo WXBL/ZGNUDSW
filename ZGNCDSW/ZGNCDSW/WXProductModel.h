@@ -22,6 +22,7 @@
 @property(nonatomic,strong)NSMutableArray *Goods_Color;
 @property(nonatomic,strong)NSMutableArray *Goods_Size;
 @property(nonatomic,strong)NSMutableArray *Goods_Image;
+@property(nonatomic,strong)NSString *Goods_Buy_Num;
 
 -(id)getProductDataWithDictionaryJSON:(NSDictionary *)dict;
 -(id)getProductListWithArrayJSON:(NSArray *)array;
