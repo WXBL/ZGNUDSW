@@ -14,7 +14,7 @@
 @property(strong,nonatomic)NSString *Administrivia_Content;
 @property(strong,nonatomic)NSString *News_release_People_;
 @property(strong,nonatomic)NSString *Release_Time;
-
+@property(strong,nonatomic)NSMutableArray *newsImgArr;
 -(id)getNewsDataWithDictionaryJSON:(NSDictionary *)dict;
 -(id)getNewsListWithArrayJSON:(NSArray *)array;
 @end

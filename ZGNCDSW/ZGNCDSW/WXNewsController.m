@@ -12,6 +12,8 @@
 #import "PrefixHeader.pch"
 #import "WXNewsDetailViewController.h"
 #import "WXTopView.h"
+#import "WXNewsModel.h"
+#import "WXImageModel.h"
 @interface WXNewsController ()<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate>
 
 @property (nonatomic,strong)UITextField *newsText;
@@ -25,7 +27,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-
+    
     self.view.backgroundColor = [UIColor colorWithWhite:0.9 alpha:1];
     
     [self addTitleView];
@@ -44,7 +46,7 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 -(void)addSearchView{
-//
+    //
     self.searchView = [[UIView alloc]initWithFrame:CGRectMake(0, 60, screenWidth , 50)];
     self.searchView.backgroundColor = [UIColor colorWithWhite:0.9 alpha:1];
     [self.view addSubview:self.searchView];
@@ -67,7 +69,7 @@
     
     
     
-
+    
 }
 
 
@@ -86,41 +88,41 @@
     
     //    //添加标题
     UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 0,screenWidth / 2-10, 30)];
-    titleLabel.text = @"行业资讯-共12121条资讯";
+    titleLabel.text = [NSString stringWithFormat:@"行业资讯-共%ld条资讯",self.newsDataArray.count];
     titleLabel.font = [UIFont systemFontOfSize:15];
     titleLabel.textColor = [UIColor grayColor];
     titleLabel.textAlignment = NSTextAlignmentLeft;
-
-//    
-//        //添加最新／最热／精华新闻按钮
-//    UIButton *newsButton = [UIButton buttonWithType:UIButtonTypeCustom];
-//    newsButton.frame = CGRectMake(screenWidth / 1.8, 0, screenWidth / 2 /3 -10, 30);
-//    [newsButton setTitle:@"最新" forState:UIControlStateNormal];
-//    [newsButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
-//    [newsButton setTitleColor:[UIColor greenColor] forState:UIControlStateHighlighted];
-//
-//    UIButton *hotButton = [UIButton buttonWithType:UIButtonTypeCustom];
-//    hotButton.frame = CGRectMake(screenWidth / 1.8 + (screenWidth / 2 /3 -10), 0, screenWidth / 2 /3 -10, 30);
-//    [hotButton setTitle:@"最热" forState:UIControlStateNormal];
-//    [hotButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
-//    [hotButton setTitleColor:[UIColor greenColor] forState:UIControlStateHighlighted];
-//    
-//    UIButton *creamButton = [UIButton buttonWithType:UIButtonTypeCustom];
-//    creamButton.frame = CGRectMake(screenWidth / 1.8 +(screenWidth / 2 /3 -10)*2, 0, screenWidth / 2 /3 -10, 30);
-//    [creamButton setTitle:@"精华" forState:UIControlStateNormal];
-//    [creamButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
-//    [creamButton setTitleColor:[UIColor greenColor] forState:UIControlStateHighlighted];
-//    
+    
+    //
+    //        //添加最新／最热／精华新闻按钮
+    //    UIButton *newsButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    //    newsButton.frame = CGRectMake(screenWidth / 1.8, 0, screenWidth / 2 /3 -10, 30);
+    //    [newsButton setTitle:@"最新" forState:UIControlStateNormal];
+    //    [newsButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+    //    [newsButton setTitleColor:[UIColor greenColor] forState:UIControlStateHighlighted];
+    //
+    //    UIButton *hotButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    //    hotButton.frame = CGRectMake(screenWidth / 1.8 + (screenWidth / 2 /3 -10), 0, screenWidth / 2 /3 -10, 30);
+    //    [hotButton setTitle:@"最热" forState:UIControlStateNormal];
+    //    [hotButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+    //    [hotButton setTitleColor:[UIColor greenColor] forState:UIControlStateHighlighted];
+    //
+    //    UIButton *creamButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    //    creamButton.frame = CGRectMake(screenWidth / 1.8 +(screenWidth / 2 /3 -10)*2, 0, screenWidth / 2 /3 -10, 30);
+    //    [creamButton setTitle:@"精华" forState:UIControlStateNormal];
+    //    [creamButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+    //    [creamButton setTitleColor:[UIColor greenColor] forState:UIControlStateHighlighted];
+    //
     UIView *titleView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, screenWidth, 30)];
     titleView.backgroundColor = [UIColor colorWithWhite:0.9 alpha:1];
-//
+    //
     [titleView addSubview:titleLabel];
-//    [titleView addSubview:newsButton];
-//    [titleView addSubview:hotButton];
-//    [titleView addSubview:creamButton];
-//    
+    //    [titleView addSubview:newsButton];
+    //    [titleView addSubview:hotButton];
+    //    [titleView addSubview:creamButton];
+    //
     self.newsTableView.tableHeaderView = titleView;
-
+    
 }
 
 
@@ -135,7 +137,8 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
-    return 10;
+    return self.newsDataArray.count;
+    //    return 10;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -146,52 +149,55 @@
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellStr];
     }
     
-    UIView *newView = [[UIView alloc]initWithFrame:CGRectMake(10, 0, screenWidth - 20, 100)];
-    newView.backgroundColor = [UIColor whiteColor];
-    [newView.layer setCornerRadius:5];
-    [cell addSubview:newView];
+    if (self.newsDataArray.count>0) {
+        WXNewsModel *model=[self.newsDataArray objectAtIndex:indexPath.row];
+        UIView *newView = [[UIView alloc]initWithFrame:CGRectMake(10, 0, screenWidth - 20, 100)];
+        newView.backgroundColor = [UIColor whiteColor];
+        [newView.layer setCornerRadius:5];
+        [cell addSubview:newView];
+        
+        cell.backgroundColor = [UIColor colorWithWhite:0.9 alpha:1];
+        UIImageView *newImage = [[UIImageView alloc]initWithFrame:CGRectMake(5, 5, CGRectGetHeight(newView.frame)-10, CGRectGetHeight(newView.frame)-10)];
+//        [newImage setImage:[UIImage imageNamed:[model.newsImgArr lastObject]]];
+        WXImageModel *imgModel=[model.newsImgArr firstObject];
+        [newImage setImage:[UIImage imageNamed:imgModel.Image_ur]];
+        [newView addSubview:newImage];
+        
+        UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(newImage.frame)+10, 5, CGRectGetWidth(newView.frame)-CGRectGetMaxX(newImage.frame)-20, 25)];
+        titleLabel.text = model.Administrivia_Name;
+        titleLabel.textColor = [UIColor blackColor];
+        titleLabel.textAlignment = NSTextAlignmentCenter;
+        titleLabel.font = [UIFont systemFontOfSize:16];
+        [newView addSubview:titleLabel];
+        
+        UILabel *detailLabel = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMinX(titleLabel.frame) , CGRectGetMaxY(titleLabel.frame), CGRectGetWidth(titleLabel.frame), CGRectGetHeight(newView.frame)-CGRectGetMaxY(titleLabel.frame)-5)];
+        detailLabel.text = [model.Administrivia_Content substringToIndex:40];
+        detailLabel.textColor = [UIColor grayColor];
+        detailLabel.textAlignment = NSTextAlignmentLeft;
+        detailLabel.font = [UIFont systemFontOfSize:14];
+        detailLabel.numberOfLines = 0;
+        [newView addSubview:detailLabel];
+    }
     
-    cell.backgroundColor = [UIColor colorWithWhite:0.9 alpha:1];
     
-    
-    UIImageView *newImage = [[UIImageView alloc]initWithFrame:CGRectMake(5, 5, 90, 90)];
-    [newImage setImage:[UIImage imageNamed:@"news_list1"]];
-    [newView addSubview:newImage];
-    
-    UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(screenWidth * 0.25, 0, screenWidth * 0.6, 25)];
-    titleLabel.text = @"asdfasdfasdfasdgasdga";
-    titleLabel.textColor = [UIColor grayColor];
-    titleLabel.textAlignment = NSTextAlignmentCenter;
-    titleLabel.font = [UIFont systemFontOfSize:14];
-    [newView addSubview:titleLabel];
-    
-    UILabel *detailLabel = [[UILabel alloc]initWithFrame:CGRectMake(screenWidth * 0.25, 25, screenWidth * 0.6, 50)];
-    detailLabel.text = @"asdfasdfasdfasdgaadgfasdfasdfkjl;askdjf;lasdjfsdga";
-    detailLabel.textColor = [UIColor grayColor];
-    detailLabel.textAlignment = NSTextAlignmentLeft;
-    detailLabel.font = [UIFont systemFontOfSize:14];
-    detailLabel.numberOfLines = 2;
-    [newView addSubview:detailLabel];
-    
-//    UIButton *messageButton = [UIButton buttonWithType:UIButtonTypeCustom];
-//    messageButton.frame = CGRectMake(screenWidth * 0.3, newView.frame.size.height - 35, 100, 30);
-//    [messageButton setTitle:@"消息" forState:UIControlStateNormal];
-//    [messageButton setTintColor:[UIColor grayColor]];
+    //    UIButton *messageButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    //    messageButton.frame = CGRectMake(screenWidth * 0.3, newView.frame.size.height - 35, 100, 30);
+    //    [messageButton setTitle:@"消息" forState:UIControlStateNormal];
+    //    [messageButton setTintColor:[UIColor grayColor]];
     
     
     //            [messageButton setImage:[UIImage imageNamed:@"home_message"] forState:UIControlStateNormal];
-//    [newView addSubview:messageButton];
+    //    [newView addSubview:messageButton];
     
     return cell;
-
     
-    return cell;
+    
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     WXNewsDetailViewController *newDetailViewController = [[WXNewsDetailViewController alloc]init];
-
+    
     [self presentViewController:newDetailViewController animated:YES completion:nil];
 }
 

@@ -19,7 +19,7 @@
         UIView *categoryView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, screenWidth, 180)];
         categoryView.backgroundColor = [UIColor whiteColor];
         [self addSubview:categoryView];
-
+        
         
         for (int i = 0; i < 4; i++) {
             
@@ -55,7 +55,7 @@
                 case 3:
                     cateLabel.text = @"大宗团购";
                     break;
-               
+                    
                 default:
                     break;
             }
@@ -65,8 +65,8 @@
             [categoryView addSubview:imgView];
             
             [categoryView addSubview:cateLabel];
-           
-
+            
+            
         }
         for (int j = 0; j < 4; j++) {
             
@@ -101,7 +101,7 @@
                 case 3:
                     cateLabel.text = @"购物车";
                     break;
-                
+                    
                 default:
                     break;
             }
@@ -113,11 +113,11 @@
             [categoryView addSubview:cateLabel];
             
         }
-//        self.categoryButton = [UIButton buttonWithType:UIButtonTypeCustom];
-//        self.categoryButton.frame = CGRectMake(0, 0, screenWidth,CGRectGetHeight(self.frame));
-//        self.categoryButton.tag=100;
-//        [self.categoryButton setBackgroundColor:[UIColor clearColor]];
-//        [self addSubview:self.categoryButton];
+        //        self.categoryButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        //        self.categoryButton.frame = CGRectMake(0, 0, screenWidth,CGRectGetHeight(self.frame));
+        //        self.categoryButton.tag=100;
+        //        [self.categoryButton setBackgroundColor:[UIColor clearColor]];
+        //        [self addSubview:self.categoryButton];
     }
     return self;
 }
@@ -135,5 +135,6 @@
     NSInteger i=(int)self.point.x/(CGRectGetWidth(self.frame)/4)+((int)(self.point.y/(CGRectGetHeight(self.frame)/2))==0?0:4);
     NSNotification *notice=[NSNotification notificationWithName:@"choice" object:nil userInfo:@{@"choice":[NSString stringWithFormat:@"%ld",i]}];
     [[NSNotificationCenter defaultCenter]postNotification:notice];
+    
 }
 @end

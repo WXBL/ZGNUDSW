@@ -7,7 +7,10 @@
 //
 
 #import "WXProductModel.h"
-
+#import "WXTypeModel.h"
+#import "WXColorModel.h"
+#import "WXImageModel.h"
+#import "WXMerchantModel.h"
 @implementation WXProductModel
 
 -(id)getProductDataWithDictionaryJSON:(NSDictionary *)dict
@@ -20,13 +23,20 @@
         model.Goods_Number=[((NSNumber *)dict[@"Goods_Number"]) stringValue];
         model.Goods_Inventory=[((NSNumber *)dict[@"Goods_Inventory"]) stringValue];
         model.Goods_Average=[((NSNumber *)dict[@"Goods_Average"]) stringValue];
-        model.Merchant_ID=[((NSNumber *)dict[@"Merchant_ID"]) stringValue];
-        model.Goods_Tyoe_ID=[((NSNumber *)dict[@"Goods_Tyoe_ID"]) stringValue];
+        NSMutableDictionary *merchantDic=(dict[@"Merchant_ID"]==[NSNull null])?@"":dict[@"Merchant_ID"];
+        model.Merchant=[[[WXMerchantModel alloc] init] getMerchantDataWithDictionaryWithJSON:merchantDic];
         model.Goods_last_time=(dict[@"Goods_last_time"]==[NSNull null])?@"":dict[@"Goods_last_time"];
         model.Goods_Pubilsh_time=(dict[@"Goods_Pubilsh_time"]==[NSNull null])?@"":dict[@"Goods_Pubilsh_time"];
+        NSMutableDictionary *typeDIct=(dict[@"Goods_Type"]==[NSNull null]?@"":dict[@"Goods_Type"]);
+        model.Goods_Type=[[[WXTypeModel alloc] init] getTypeDataWithDictionaryWithJSON:typeDIct];
+        NSMutableArray *colorArr=(dict[@"Goods_Color"]==[NSNull null]?@"":dict[@"Goods_Color"]);
+        model.Goods_Color=[[[WXColorModel alloc]init] getColorListWithArrayJSON:colorArr];
+        NSMutableArray *imageArr=(dict[@"Goods_Image"]==[NSNull null]?@"":dict[@"Goods_Image"]);
+        model.Goods_Image=[[[WXImageModel alloc]init]getImageListDataWithArrayJSON:imageArr];
+        model.Goods_Buy_Num=[((NSNumber *)dict[@"Goods_Buy_Num"]) stringValue];
         return model;
     }
-
+    
     return  nil;
 }
 -(id)getProductListWithArrayJSON:(NSArray *)array

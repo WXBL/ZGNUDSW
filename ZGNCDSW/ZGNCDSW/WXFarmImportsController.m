@@ -13,6 +13,10 @@
 #import "WXFarmDetailViewController.h"
 #import "WXBuyCartController.h"
 #import "WXTopView.h"
+#import "AFHTTPRequestOperationManager.h"
+#import "AFNetworking.h"
+#import "WXProductModel.h"
+#import "WXImageModel.h"
 @interface WXFarmImportsController ()<UITextFieldDelegate,UICollectionViewDelegate,UICollectionViewDataSource>
 
 @property (nonatomic,strong)UITextField *farmImports;
@@ -22,20 +26,26 @@
 @end
 
 @implementation WXFarmImportsController
-
+-(NSMutableArray *)productArray{
+    if (!_productArray) {
+        self.productArray=[NSMutableArray array];
+    }
+    return _productArray;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
     self.view.backgroundColor = [UIColor colorWithWhite:0.9 alpha:1];
     
+    [self setProductData];
     
-
     //设置导航
     if (self.showType==1) {
-        [self addTitleView];
-    }else{
         [self setNavBar];
+        
+    }else{
+        [self addTitleView];
     }
     
     
@@ -44,6 +54,22 @@
     [self addSearchView];
     
     [self addCollectionView];
+    
+}
+-(void)setProductData{
+    AFHTTPRequestOperationManager *AFMGR=[AFHTTPRequestOperationManager manager];
+    NSString *path=[NSString stringWithFormat:@"%@%@",BASE_SERVICE_URL,@""];
+    NSMutableDictionary *params=[NSMutableDictionary dictionary];
+    if (self.typeModel) {
+        
+        params[@"Type_ID"]=self.typeModel.Type_ID;
+    }
+    [AFMGR GET:path parameters:params success:^(AFHTTPRequestOperation *operation,NSArray *responseObject){
+        self.productArray=[[[WXProductModel alloc] init] getProductListWithArrayJSON:responseObject];
+        [self.collectionView reloadData];
+    }failure:^(AFHTTPRequestOperation *operation,NSError *error){
+        
+    }];
     
 }
 -(void)addTitleView{
@@ -77,7 +103,7 @@
     //CGRectGetHeight(self.navigationController.navigationBar.frame)
     self.searchView = [[UIView alloc]initWithFrame:CGRectMake(0, 60, screenWidth , 50)];
     self.searchView.backgroundColor = [UIColor colorWithWhite:0.9 alpha:1];
-
+    
     [self.view addSubview:self.searchView];
     
     self.farmImports = [[UITextField alloc]initWithFrame:CGRectMake(20,CGRectGetHeight(self.searchView.frame)-40-3, screenWidth - 40, 40)];
@@ -130,18 +156,19 @@
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
     //    return self.keepArray.count;
-    return 10;
+//    return self.productArray.count;
+    return 1;
 }
 
 -(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
@@ -154,38 +181,38 @@
     
     //    //添加标题
     UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 0,screenWidth / 2-10, 30)];
-    titleLabel.text = @"农品铺子－共123123个产品";
+    titleLabel.text = [NSString stringWithFormat:@"农品铺子－共%ld个产品",self.productArray.count];
     titleLabel.font = [UIFont systemFontOfSize:15];
     titleLabel.textColor = [UIColor grayColor];
     titleLabel.textAlignment = NSTextAlignmentLeft;
     
     
-//    //添加最新／最热／精华新闻按钮
-//    UIButton *newsButton = [UIButton buttonWithType:UIButtonTypeCustom];
-//    newsButton.frame = CGRectMake(screenWidth / 1.8, 0, screenWidth / 2 /3 -10, 30);
-//    [newsButton setTitle:@"最新" forState:UIControlStateNormal];
-//    [newsButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
-//    [newsButton setTitleColor:[UIColor greenColor] forState:UIControlStateHighlighted];
-//    
-//    UIButton *hotButton = [UIButton buttonWithType:UIButtonTypeCustom];
-//    hotButton.frame = CGRectMake(screenWidth / 1.8 + (screenWidth / 2 /3 -10), 0, screenWidth / 2 /3 -10, 30);
-//    [hotButton setTitle:@"最热" forState:UIControlStateNormal];
-//    [hotButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
-//    [hotButton setTitleColor:[UIColor greenColor] forState:UIControlStateHighlighted];
-//    
-//    UIButton *creamButton = [UIButton buttonWithType:UIButtonTypeCustom];
-//    creamButton.frame = CGRectMake(screenWidth / 1.8 +(screenWidth / 2 /3 -10)*2, 0, screenWidth / 2 /3 -10, 30);
-//    [creamButton setTitle:@"精华" forState:UIControlStateNormal];
-//    [creamButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
-//    [creamButton setTitleColor:[UIColor greenColor] forState:UIControlStateHighlighted];
+    //    //添加最新／最热／精华新闻按钮
+    //    UIButton *newsButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    //    newsButton.frame = CGRectMake(screenWidth / 1.8, 0, screenWidth / 2 /3 -10, 30);
+    //    [newsButton setTitle:@"最新" forState:UIControlStateNormal];
+    //    [newsButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+    //    [newsButton setTitleColor:[UIColor greenColor] forState:UIControlStateHighlighted];
+    //
+    //    UIButton *hotButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    //    hotButton.frame = CGRectMake(screenWidth / 1.8 + (screenWidth / 2 /3 -10), 0, screenWidth / 2 /3 -10, 30);
+    //    [hotButton setTitle:@"最热" forState:UIControlStateNormal];
+    //    [hotButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+    //    [hotButton setTitleColor:[UIColor greenColor] forState:UIControlStateHighlighted];
+    //
+    //    UIButton *creamButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    //    creamButton.frame = CGRectMake(screenWidth / 1.8 +(screenWidth / 2 /3 -10)*2, 0, screenWidth / 2 /3 -10, 30);
+    //    [creamButton setTitle:@"精华" forState:UIControlStateNormal];
+    //    [creamButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+    //    [creamButton setTitleColor:[UIColor greenColor] forState:UIControlStateHighlighted];
     
     UIView *titleView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, screenWidth, 30)];
     titleView.backgroundColor = [UIColor colorWithWhite:0.9 alpha:1];
     
     [titleView addSubview:titleLabel];
-//    [titleView addSubview:newsButton];
-//    [titleView addSubview:hotButton];
-//    [titleView addSubview:creamButton];
+    //    [titleView addSubview:newsButton];
+    //    [titleView addSubview:hotButton];
+    //    [titleView addSubview:creamButton];
     
     [headerView addSubview:titleView];
     
@@ -201,13 +228,16 @@
     if (!cell) {
         NSLog(@"无法创建CollectionViewCell时打印，自定义的cell就不可能进来");
     }
-    
-    cell.farmImage.image = [UIImage imageNamed:@"news_list1"];
-    cell.titleLabel.text = @"afsd";
-    cell.priceLabel.text = @"10元／500g";
-    cell.saleNumLabel.text = @"20";
-    
-    
+//    WXProductModel *productmodel=[self.productArray objectAtIndex:indexPath.row];
+//    WXImageModel *imgModel=[productmodel.Goods_Image firstObject];
+//    cell.farmImage.image = [UIImage imageNamed:imgModel.Image_ur];
+//    cell.titleLabel.text = productmodel.Goods_Name;
+//    cell.priceLabel.text = productmodel.Goods_Price;
+//    cell.saleNumLabel.text = productmodel.Goods_Inventory;
+    cell.farmImage.image = [UIImage imageNamed:@""];
+        cell.titleLabel.text = @"asdasd";
+        cell.priceLabel.text = @"asdas";
+        cell.saleNumLabel.text = @"asdas";
     return cell;
 }
 
@@ -234,6 +264,7 @@
 //UICollectionView被选中时调用的方法
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     WXFarmDetailViewController *farmDetail = [[WXFarmDetailViewController alloc]init];
+//    farmDetail.theProduct=[self.productArray objectAtIndex:indexPath.row];
     [self presentViewController:farmDetail animated:YES completion:nil];
     
 }

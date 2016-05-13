@@ -110,6 +110,7 @@
 //    self.manageTableView.backgroundColor = [UIColor colorWithWhite:0.9 alpha:1];
     [self.view addSubview:self.manageTableView];
     
+<<<<<<< HEAD
 }
 
 -(void)changeName:(NSNotification *)notification{
@@ -117,6 +118,8 @@
     self.userName.text=[nameDictionary objectForKey:@"name"];
     NSLog(@"%@",self.userName.text);
     [self.manageTableView reloadData];
+=======
+>>>>>>> origin/master
 }
 
 

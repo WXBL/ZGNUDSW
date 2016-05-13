@@ -7,7 +7,7 @@
 //
 
 #import "WXUserModel.h"
-
+#import "PrefixHeader.pch"
 @implementation WXUserModel
 
 -(id)getUserDataWithDictionaryJSON:(NSDictionary *)dict{
@@ -41,4 +41,5 @@
     }
     return nil;
 }
+
 @end

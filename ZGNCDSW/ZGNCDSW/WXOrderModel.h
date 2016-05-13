@@ -14,12 +14,12 @@
 @property(strong,nonatomic)NSString *User_ID;
 @property(strong,nonatomic)NSString *Merchant_ID;
 @property(strong,nonatomic)NSString *Goods_ID;
-@property(strong,nonatomic)NSString *Goods_Size_ID;
-@property(strong,nonatomic)NSString *Goods_Color_ID;
+@property(strong,nonatomic)NSString *Goods_Size;
+@property(strong,nonatomic)NSString *Goods_Color;
 @property(strong,nonatomic)NSString *Delivery_Time;
 @property(strong,nonatomic)NSString *Place_On_Order_Time;
 @property(strong,nonatomic)NSString *Shipments_Address;
-@property(strong,nonatomic)NSString *Delivery_Address;
+@property(strong,nonatomic)NSString *Address_ID;
 
 -(id)getOrderDataWithDictionaryJSON:(NSDictionary *)dict;
 -(id)getOrderListWithArray:(NSArray *)array;

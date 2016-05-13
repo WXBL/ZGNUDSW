@@ -14,6 +14,7 @@
 #import "WXCommentController.h"
 #import "MBProgressHUD.h"
 #import "WXBuyCartController.h"
+#import "WXImageModel.h"
 @interface WXFarmDetailViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic,strong)UITableView *tableView;
@@ -36,15 +37,23 @@
 @end
 
 @implementation WXFarmDetailViewController
-
-
+-(NSMutableArray *)productImgArr{
+    if (!_productImgArr) {
+        self.productImgArr=[NSMutableArray array];
+    }
+    return _productImgArr;
+}
+-(NSMutableArray *)sizeArray{
+    if (!_sizeArray) {
+        self.sizeArray=[NSMutableArray array];
+    }
+    return _sizeArray;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor colorWithWhite:0.9 alpha:1];
-    
-    self.sizeArray = [NSMutableArray array];
     
     [self setNavBar];
     
@@ -130,7 +139,7 @@
     UIButton *store = [UIButton buttonWithType:UIButtonTypeCustom];
     store.frame = CGRectMake(screenWidth *0.4/3, 0, screenWidth *0.4/3, 40);
     //    [keep setImage:[UIImage imageNamed:@"collect"] forState:UIControlStateNormal];
-    [store setTitle:@"店铺" forState:UIControlStateNormal];
+    [store setTitle:@"商家" forState:UIControlStateNormal];
     [store setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
     [store setTitleColor:[UIColor blackColor] forState:UIControlStateHighlighted];
     store.titleLabel.font = [UIFont systemFontOfSize:12];
@@ -215,6 +224,7 @@
     self.scrollView.backgroundColor = [UIColor colorWithWhite:0.9 alpha:1];
     self.tableView.tableHeaderView = self.scrollView;
     self.scrollView.delegate = self;
+    self.productImgArr=self.theProduct.Goods_Image;
     
 //    self.productButton = [UIButton buttonWithType:UIButtonTypeCustom];
 //    self.productButton.frame = CGRectMake(0, 0, screenWidth, screenHeigth);
@@ -229,15 +239,15 @@
     CGFloat imgH = screenHeigth /2;
     ;
     CGFloat imgY = 0;
-    
+    WXImageModel *imageModel=[[WXImageModel alloc] init];
     // 1. 循环创建5个UIImageView添加到ScrollView中
-    for (int i = 0; i < 4; i++) {
+    for (int i = 0; i < self.productImgArr.count; i++) {
         // 创建一个UIImageView
         self.imageView = [[UIImageView alloc] init];
         
         // 设置UIImageView中的图片
-        NSString *imgName = [NSString stringWithFormat:@"%d.jpg", i + 1];
-        self.imageView.image = [UIImage imageNamed:imgName];
+        imageModel=[self.productImgArr objectAtIndex:i];
+        self.imageView.image = [UIImage imageNamed:imageModel.Image_ur];
         
         // 计算每个UIImageView在UIScrollView中的x坐标值
         CGFloat imgX = i * imgW;
@@ -362,7 +372,7 @@
         
         if (indexPath.row == 0) {
             
-            UIView *bgView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, screenWidth, 120)];
+            UIView *bgView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, screenWidth, 100)];
             bgView.backgroundColor = [UIColor whiteColor];
             [cell addSubview:bgView];
             self.cellBgView = bgView;
@@ -386,7 +396,7 @@
             
         }else if (indexPath.row == 2){
             UILabel *size = [[UILabel alloc]initWithFrame:CGRectMake(10, 0, screenWidth /2, 44)];
-            size.text = @"选择颜色，尺码";
+            size.text = @"选择类型";
             size.textAlignment = NSTextAlignmentLeft;
             size.font = [UIFont systemFontOfSize:14];
             size.textColor = [UIColor blackColor];
@@ -449,7 +459,7 @@
 {
     if (tableView == self.tableView) {
         if (indexPath.row == 0) {
-            return 130;
+            return 110;
         }else if(indexPath.row == 3){
             return 180;
         }else{
@@ -515,7 +525,7 @@
     UIButton *finishButton = [UIButton buttonWithType:UIButtonTypeCustom];
     finishButton.frame = CGRectMake(0, sizeView.frame.size.height-sizeView.frame.size.height*0.1, screenWidth, sizeView.frame.size.height*0.1);
     [finishButton setBackgroundColor: [UIColor colorWithRed:0.4 green:0.7 blue:0.3 alpha:1]];
-    [finishButton setTitle:@"完成" forState:UIControlStateNormal];
+    [finishButton setTitle:@"关闭" forState:UIControlStateNormal];
     [finishButton addTarget:self action:@selector(ClickFinishButton:) forControlEvents:UIControlEventTouchUpInside];
     [self.sizeView addSubview:finishButton];
 
@@ -539,74 +549,75 @@
 -(void)firstCellContent
 {
     
-    UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 0, screenWidth*0.8, 50)];
+    UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 0, screenWidth, 50)];
     titleLabel.textColor = [UIColor blackColor];
-    titleLabel.text = @"春装新品拉升空间地方卡拉斯京的法律框架阿斯利康地方";
-    titleLabel.font = [UIFont systemFontOfSize:14.0f];
+    titleLabel.text = self.theProduct.Goods_Name;
+    titleLabel.font = [UIFont systemFontOfSize:16.0f];
     titleLabel.textAlignment = NSTextAlignmentLeft;
-    titleLabel.numberOfLines = 2;
+    titleLabel.numberOfLines = 0;
     [self.cellBgView addSubview:titleLabel];
     
-    UIView *lineView = [[UIView alloc]initWithFrame:CGRectMake(screenWidth *0.85, 5, 1, 45)];
-    lineView.backgroundColor = [UIColor colorWithWhite:0.8 alpha:1];
-    [self.cellBgView addSubview:lineView];
+//    UIView *lineView = [[UIView alloc]initWithFrame:CGRectMake(screenWidth *0.85, 5, 1, 45)];
+//    lineView.backgroundColor = [UIColor colorWithWhite:0.8 alpha:1];
+//    [self.cellBgView addSubview:lineView];
+//    
+//    //分享
+//    UIButton *shareButton = [UIButton buttonWithType:UIButtonTypeCustom];
+//    shareButton.frame = CGRectMake(screenWidth * 0.9, 2, screenWidth * 0.1, 30);
+//    [shareButton setImage:[UIImage imageNamed:@"share_it"] forState:UIControlStateNormal];
+//    [shareButton addTarget:self action:@selector(ClickShareButton:) forControlEvents:UIControlEventTouchUpInside];
+//    [self.cellBgView addSubview:shareButton];
+//    
+//    UILabel *shareLabel = [[UILabel alloc]initWithFrame:CGRectMake(screenWidth * 0.9, 35, screenWidth *0.1, 20)];
+//    shareLabel.text = @"分享";
+//    shareLabel.font = [UIFont systemFontOfSize:11];
+//    shareLabel.textAlignment = NSTextAlignmentCenter;
+//    shareLabel.textColor = [UIColor blackColor];
+//    [self.cellBgView addSubview:shareLabel];
     
-    //分享
-    UIButton *shareButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    shareButton.frame = CGRectMake(screenWidth * 0.9, 2, screenWidth * 0.1, 30);
-    [shareButton setImage:[UIImage imageNamed:@"share_it"] forState:UIControlStateNormal];
-    [shareButton addTarget:self action:@selector(ClickShareButton:) forControlEvents:UIControlEventTouchUpInside];
-    [self.cellBgView addSubview:shareButton];
     
-    UILabel *shareLabel = [[UILabel alloc]initWithFrame:CGRectMake(screenWidth * 0.9, 35, screenWidth *0.1, 20)];
-    shareLabel.text = @"分享";
-    shareLabel.font = [UIFont systemFontOfSize:11];
-    shareLabel.textAlignment = NSTextAlignmentCenter;
-    shareLabel.textColor = [UIColor blackColor];
-    [self.cellBgView addSubview:shareLabel];
-    
+
+    UILabel *price = [[UILabel alloc]initWithFrame:CGRectMake(10, CGRectGetMaxY(titleLabel.frame), 50, 20)];
+    price.textColor = [UIColor grayColor];
+    price.text = @"单价:";
+    price.textAlignment = NSTextAlignmentLeft;
+    price.font = [UIFont systemFontOfSize:14];
+    [self.cellBgView addSubview:price];
     //价格
-    UILabel *priceLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, titleLabel.frame.size.height, screenWidth * 0.2, 20)];
+    UILabel *priceLabel = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(price.frame), titleLabel.frame.size.height, screenWidth * 0.2, 20)];
     priceLabel.textColor = [UIColor redColor];
     priceLabel.text = @"$20";
     priceLabel.textAlignment = NSTextAlignmentLeft;
     priceLabel.font = [UIFont systemFontOfSize:16];
     [self.cellBgView addSubview:priceLabel];
     
-    UILabel *price = [[UILabel alloc]initWithFrame:CGRectMake(10, titleLabel.frame.size.height+priceLabel.frame.size.height, screenWidth * 0.2, 20)];
-    price.textColor = [UIColor grayColor];
-    price.text = @"价格:100";
-    price.textAlignment = NSTextAlignmentLeft;
-    price.font = [UIFont systemFontOfSize:10];
-    [self.cellBgView addSubview:price];
-    
     //快递费，销量，卖家地址
-    UILabel *postageLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, self.cellBgView.frame.size.height - 20, 30, 20)];
+    UILabel *postageLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, CGRectGetMaxY(price.frame)+5, 50, 20)];
     postageLabel.textColor = [UIColor grayColor];
     postageLabel.text = @"快递：";
     postageLabel.textAlignment = NSTextAlignmentLeft;
-    postageLabel.font = [UIFont systemFontOfSize:10];
+    postageLabel.font = [UIFont systemFontOfSize:14];
     [self.cellBgView addSubview:postageLabel];
     
-    UILabel *postage = [[UILabel alloc]initWithFrame:CGRectMake(40, self.cellBgView.frame.size.height - 20, screenWidth/3-60, 20)];
+    UILabel *postage = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(postageLabel.frame), CGRectGetMinY(postageLabel.frame), screenWidth/3-60, 20)];
     postage.textColor = [UIColor grayColor];
     postage.text = @"免费";
     postage.textAlignment = NSTextAlignmentLeft;
-    postage.font = [UIFont systemFontOfSize:10];
+    postage.font = [UIFont systemFontOfSize:14];
     [self.cellBgView addSubview:postage];
     
-    UILabel *saleNum = [[UILabel alloc]initWithFrame:CGRectMake(screenWidth /3, self.cellBgView.frame.size.height - 20, screenWidth/3, 20)];
+    UILabel *saleNum = [[UILabel alloc]initWithFrame:CGRectMake(screenWidth /3,  CGRectGetMinY(postageLabel.frame), screenWidth/3, 20)];
     saleNum.textColor = [UIColor grayColor];
     saleNum.text = @"月销23423笔";
     saleNum.textAlignment = NSTextAlignmentCenter;
-    saleNum.font = [UIFont systemFontOfSize:10];
+    saleNum.font = [UIFont systemFontOfSize:14];
     [self.cellBgView addSubview:saleNum];
     
-    UILabel *address = [[UILabel alloc]initWithFrame:CGRectMake(screenWidth /3 *2, self.cellBgView.frame.size.height - 20, screenWidth /3-10, 20)];
+    UILabel *address = [[UILabel alloc]initWithFrame:CGRectMake(screenWidth /3 *2,  CGRectGetMinY(postageLabel.frame), screenWidth /3-10, 20)];
     address.textColor = [UIColor grayColor];
     address.text = @"浙江";
     address.textAlignment = NSTextAlignmentRight;
-    address.font = [UIFont systemFontOfSize:10];
+    address.font = [UIFont systemFontOfSize:14];
     [self.cellBgView addSubview:address];
     
 }

@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "WXProductModel.h"
 @interface WXFarmDetailViewController : UIViewController
-
+@property(nonatomic,strong)WXProductModel *theProduct;
+@property(nonatomic,strong)NSMutableArray *productImgArr;//存放图片数据
 @end

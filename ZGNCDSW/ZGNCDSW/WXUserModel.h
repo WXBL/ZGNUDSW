@@ -28,5 +28,4 @@
 
 -(id)getUserDataWithDictionaryJSON:(NSDictionary *)dict;
 -(id)getUserDataWithArrayJSON:(NSArray *)array;
-
 @end

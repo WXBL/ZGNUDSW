@@ -7,7 +7,8 @@
 //
 
 #import "WXCommendModel.h"
-
+#import "WXOrderModel.h"
+#import "WXImageModel.h"
 @implementation WXCommendModel
 -(id)getCommentDataWithDictionaryJSON:(NSDictionary *)dict{
     if (dict) {
@@ -15,10 +16,13 @@
         model.Comment_ID=[((NSNumber *)dict[@"Comment_ID"]) stringValue];
         model.Comment_Content=(dict[@"Comment_Content"]==[NSNull null])?@"":dict[@"Comment_Content"];
         model.Comment_Time=(dict[@"Comment_Time"]==[NSNull null])?@"":dict[@"Comment_Time"];
-        model.Indent_ID=[((NSNumber *)dict[@"Indent_ID"]) stringValue];
+        NSMutableDictionary *indentDic=(dict[@"Indent"]==[NSNull null])?@"":dict[@"Indent"];
+        model.Indent=[[[WXOrderModel alloc] init] getOrderDataWithDictionaryJSON:indentDic];
+        NSMutableArray *imgArr=(dict[@"Comment_Image"]==[NSNull null])?@"":dict[@"Comment_Image"];
+        model.Comment_Image=[[[WXImageModel alloc] init] getImageListDataWithArrayJSON:imgArr];
         return model;
     }
-
+    
     return nil;
 }
 -(id)getcommentListWithArrayJSON:(NSArray *)array

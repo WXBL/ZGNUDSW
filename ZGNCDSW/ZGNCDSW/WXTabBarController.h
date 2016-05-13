@@ -9,5 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface WXTabBarController : UITabBarController
+@property(nonatomic,strong)NSMutableArray *newsMutableArray;
+@property(nonatomic,strong)NSMutableArray *productMutableArray;
 
 @end

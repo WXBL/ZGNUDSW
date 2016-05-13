@@ -14,11 +14,14 @@
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        UIView *newView = [[UIView alloc]initWithFrame:CGRectMake(10, 10, screenWidth - 20, 160)];
+        UIView *newView = [[UIView alloc]initWithFrame:CGRectMake(5, 10, screenWidth - 20, 160)];
         newView.backgroundColor = [UIColor whiteColor];
+        
+        
         [self addSubview:newView];
     }
     
     return self;
 }
+
 @end

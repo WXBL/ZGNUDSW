@@ -10,6 +10,9 @@
 #import "WXTopView.h"
 #import "WXUserService.h"
 #import "validateTest.h"
+#import "AFHTTPRequestOperationManager.h"
+#import "AFNetworking.h"
+#import "WXTabBarController.h"
 @interface WXVerifyTelephoneViewController ()
 
 @end
@@ -71,7 +74,7 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 -(void)addContent{
-//手机号
+    //手机号
     
     UIView *textView=[[UIView alloc] initWithFrame:CGRectMake(10, 100, screenWidth-20, 100)];
     textView.backgroundColor=[UIColor colorWithWhite:0.9 alpha:1];
@@ -116,8 +119,8 @@
     self.registerBtn.titleLabel.textAlignment=NSTextAlignmentCenter;
     [self.registerBtn addTarget:self action:@selector(registerButtonClick:) forControlEvents:UIControlEventTouchUpInside];
     [loginBtnView addSubview:self.registerBtn];
-
-
+    
+    
     
     
 }
@@ -137,11 +140,27 @@
 }
 -(void)registerButtonClick:(UIButton *)sender{
     
-    [[WXUserService sharedClient] userRegistWithUserName:self.userName Password:self.password RegisterTime:@"" Telephone:self.telePhoneTextField.text Completion:^(NSString *success){
+    //    [[WXUserService sharedClient] userRegistWithUserName:self.userName Password:self.password RegisterTime:@"" Telephone:self.telePhoneTextField.text Completion:^(NSString *success){
+    //
+    //    }Failure:^(NSString *error){
+    //
+    //    }];
+    
+    AFHTTPRequestOperationManager *mgr=[AFHTTPRequestOperationManager manager];
+    NSMutableDictionary *params=[NSMutableDictionary dictionary];
+    params[@"UserName"]=self.userName;
+    params[@"Password"]=self.password;
+    params[@"Tel"]=self.telePhoneTextField.text;
+    NSString *path=[NSString stringWithFormat:@"%@%@",BASE_SERVICE_URL,@""];
+    [mgr POST:path parameters:params success:^(AFHTTPRequestOperation *operation,NSString *responseObject){
+        WXTabBarController *tabBar = [[WXTabBarController alloc]init];
+        [self presentViewController:tabBar animated:YES completion:nil];
         
-    }Failure:^(NSString *error){
-        
+    }failure:^(AFHTTPRequestOperation *operation,NSError *error){
+        UIAlertView * alertView=[[UIAlertView alloc] initWithTitle:@"提示" message:@"登录失败" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"关闭", nil];
+        [alertView show];
     }];
+    
     
 }
 -(void)getVerifyCode:(UIButton *)sender{
@@ -184,13 +203,13 @@
     [alert show];
 }
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 @end

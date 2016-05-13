@@ -12,7 +12,8 @@
 @property(strong,nonatomic)NSString *Comment_ID;
 @property(strong,nonatomic)NSString *Comment_Content;
 @property(strong,nonatomic)NSString *Comment_Time;
-@property(strong,nonatomic)NSString *Indent_ID;
+@property(strong,nonatomic)NSMutableDictionary *Indent;
+@property(nonatomic,strong)NSMutableArray *Comment_Image;
 
 -(id)getCommentDataWithDictionaryJSON:(NSDictionary *)dict;
 -(id)getcommentListWithArrayJSON:(NSArray *)array;

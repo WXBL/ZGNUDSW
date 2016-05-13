@@ -9,10 +9,16 @@
 #import "WXOrderController.h"
 #import "WXTopView.h"
 #import "WXPayingTableViewController.h"
+<<<<<<< HEAD
 #import "WXReceivingTableViewController.h"
 #import "WXCommendTableViewController.h"
 #import "WXReturnrefundTableVC.h"
 #import "XFSegementView.h"
+=======
+#import "WXRecommendTableViewCell.h"
+#import "WXCommendTableViewController.h"
+@interface WXOrderController ()
+>>>>>>> origin/master
 
 @interface WXOrderController ()<TouchLabelDelegate>{
     XFSegementView *segementView;

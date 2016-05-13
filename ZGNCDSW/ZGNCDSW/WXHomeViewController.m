@@ -22,6 +22,9 @@
 #import "WXFarmImportsController.h"
 #import "WXNewsController.h"
 #import "WXTopView.h"
+#import "WXProductCategoryViewController.h"
+#import "WXNewsModel.h"
+#import "WXImageModel.h"
 
 @interface WXHomeViewController ()<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate>
 
@@ -34,7 +37,7 @@
 @property (nonatomic,strong)UIScrollView *scrollView;
 @property (nonatomic,strong)UIPageControl *pageControl;
 
-@property (nonatomic,strong)NSMutableArray *newsListArray;
+
 
 //声明一个搜索后的可变数组
 @property (nonatomic,strong)NSMutableArray *filteredGoods;
@@ -45,6 +48,12 @@
 
 @implementation WXHomeViewController
 
+-(NSMutableArray *)newsListArray{
+    if (!_newsListArray) {
+        self.newsListArray=[NSMutableArray array];
+    }
+    return _newsListArray;
+}
 
 
 // 实现UIScrollView的滚动方法
@@ -96,13 +105,13 @@
     [super viewDidLoad];
     self.searchBar = [WXSearchBar searchBar];
     self.searchBar.delegate=self;
-//    searchBar.width = self.view.frame.size.width * 0.8;
-//    searchBar.height = 30;
+    //    searchBar.width = self.view.frame.size.width * 0.8;
+    //    searchBar.height = 30;
     
     
     [self.navigationController.navigationBar addSubview:self.searchBar];
     
-    self.newsListArray = [NSMutableArray array];
+    
     
     
     [self addScrollView];
@@ -145,12 +154,14 @@
             }
             break;
         case 4:
-            
+        {
+            WXProductCategoryViewController *productCategoryCV=[[WXProductCategoryViewController alloc] init];
+            [self presentViewController:productCategoryCV animated:YES completion:nil];
+        }
             break;
         case 5:
         {
             WXFarmImportsController *farmImportVC=[[WXFarmImportsController alloc] init];
-            farmImportVC.showType=1;
             [self presentViewController:farmImportVC animated:YES completion:nil];
         }
             break;
@@ -193,7 +204,7 @@
     self.rootTableView.tableFooterView=[[UIView alloc] init];
     
     //隐藏UITableViewCell的分隔线
-    [self.rootTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+    [self.rootTableView setSeparatorStyle:UITableViewCellSeparatorStyleSingleLine];
     [self.view addSubview:self.rootTableView];
     
     
@@ -367,22 +378,28 @@
     if (section == 0) {
         return 2;
     }else{
-//        if (tableView.tag == 0) {
-//            if (self.currentNewsArray.count == 0) {
-//                return 1;
-//            }else{
-//                return self.currentNewsArray.count;
-//            }
-//            
-//        }else{
-//            if (self.newsListArray.count == 0) {
-//                return 10;
-//            }else{
-//                return self.newsListArray.count;
-//            }
-//        }
-//    }
-        return 10;
+        //        if (tableView.tag == 0) {
+        //            if (self.currentNewsArray.count == 0) {
+        //                return 1;
+        //            }else{
+        //                return self.currentNewsArray.count;
+        //            }
+        //
+        //        }else{
+        //            if (self.newsListArray.count == 0) {
+        //                return 10;
+        //            }else{
+        //                return self.newsListArray.count;
+        //            }
+        //        }
+        //    }
+        if (self.newsListArray.count>10) {
+            return 11;
+        }else{
+            return self.newsListArray.count+1;
+        }
+        //        return 10;
+        
     }
     
 }
@@ -411,7 +428,7 @@
             if (cell == nil) {
                 cell = [[WXCategoryTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellStr];
             }
-
+            
             //点击cell时不变色
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             return cell;
@@ -442,65 +459,66 @@
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             return cell;
         }else{
-        
-            static NSString *cellStr = @"cell3";
-            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellStr];
+            static NSString *cellID=@"newsListCellID";
+            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
             if (cell == nil) {
-                cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellStr];
+                cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellID];
             }
             
+            WXNewsModel *model=[self.newsListArray objectAtIndex:indexPath.row-1];
             UIView *newView = [[UIView alloc]initWithFrame:CGRectMake(10, 0, screenWidth - 20, 100)];
             newView.backgroundColor = [UIColor whiteColor];
             [newView.layer setCornerRadius:5];
             [cell addSubview:newView];
             
             cell.backgroundColor = [UIColor colorWithWhite:0.9 alpha:1];
-
             
-            UIImageView *newImage = [[UIImageView alloc]initWithFrame:CGRectMake(5, 5, 90, 90)];
-            [newImage setImage:[UIImage imageNamed:@"news_list1"]];
+            
+            UIImageView *newImage = [[UIImageView alloc]initWithFrame:CGRectMake(5, 5, CGRectGetHeight(newView.frame)-10, CGRectGetHeight(newView.frame)-10)];
+            WXImageModel *imgModel=[model.newsImgArr firstObject];
+            [newImage setImage:[UIImage imageNamed:imgModel.Image_ur]];
             [newView addSubview:newImage];
             
-            UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(screenWidth * 0.25, 0, screenWidth * 0.6, 25)];
-            titleLabel.text = @"asdfasdfasdfasdgasdga";
-            titleLabel.textColor = [UIColor grayColor];
+            UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(newImage.frame)+10, 5, CGRectGetWidth(newView.frame)-CGRectGetMaxX(newImage.frame)-20, 25)];
+            titleLabel.text = model.Administrivia_Name;
+            titleLabel.textColor = [UIColor blackColor];
             titleLabel.textAlignment = NSTextAlignmentCenter;
-            titleLabel.font = [UIFont systemFontOfSize:14];
+            titleLabel.font = [UIFont systemFontOfSize:16];
             [newView addSubview:titleLabel];
             
-            UILabel *detailLabel = [[UILabel alloc]initWithFrame:CGRectMake(screenWidth * 0.25, 25, screenWidth * 0.6, 50)];
-            detailLabel.text = @"asdfasdfasdfasdgaadgfasdfasdfkjl;askdjf;lasdjfsdga";
+            UILabel *detailLabel = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMinX(titleLabel.frame) , CGRectGetMaxY(titleLabel.frame), CGRectGetWidth(titleLabel.frame), CGRectGetHeight(newView.frame)-CGRectGetMaxY(titleLabel.frame)-5)];
+            detailLabel.text = [model.Administrivia_Content substringToIndex:40];
             detailLabel.textColor = [UIColor grayColor];
             detailLabel.textAlignment = NSTextAlignmentLeft;
             detailLabel.font = [UIFont systemFontOfSize:14];
-            detailLabel.numberOfLines = 2;
+            detailLabel.numberOfLines = 0;
             [newView addSubview:detailLabel];
-//            
-//            UIButton *messageButton = [UIButton buttonWithType:UIButtonTypeCustom];
-//            messageButton.frame = CGRectMake(screenWidth * 0.3, newView.frame.size.height - 35, 100, 30);
-//            [messageButton setTitle:@"消息" forState:UIControlStateNormal];
-//            [messageButton setTintColor:[UIColor grayColor]];
-    
             
-//            [messageButton setImage:[UIImage imageNamed:@"home_message"] forState:UIControlStateNormal];
-//            [newView addSubview:messageButton];
+            //            UIButton *messageButton = [UIButton buttonWithType:UIButtonTypeCustom];
+            //            messageButton.frame = CGRectMake(screenWidth * 0.3, newView.frame.size.height - 35, 100, 30);
+            //            [messageButton setTitle:@"消息" forState:UIControlStateNormal];
+            //            [messageButton setTintColor:[UIColor grayColor]];
+            //
+            //
+            //            [messageButton setImage:[UIImage imageNamed:@"home_message"] forState:UIControlStateNormal];
+            //            [newView addSubview:messageButton];
             
             //点击cell时不变色
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             
             return cell;
             
-           
+            
         }
         
         
     }
     
-       
+    
 }
 //
 //- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
-//    
+//
 //    if (section == 1) {
 //        NSString *titleStr = @"行业资讯";
 //        return titleStr;
@@ -514,10 +532,15 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 1) {
+        if(indexPath.row==0){
+            WXNewsController *newVC=[[WXNewsController alloc] init];
+            [self presentViewController:newVC animated:YES completion:nil];
+        }else{
+            WXNewsDetailViewController *newDetailViewController = [[WXNewsDetailViewController alloc]init];
+            [self presentViewController:newDetailViewController animated:YES completion:nil];
+        }
         
-        WXNewsDetailViewController *newDetailViewController = [[WXNewsDetailViewController alloc]init];
-        [self presentViewController:newDetailViewController animated:YES completion:nil];
-
+        
     }
 }
 
