@@ -29,6 +29,7 @@
         for (NSDictionary *dic in array) {
             [data addObject:[self getImageDataWithDictionaryJSON:dic]];
         }
+        return data;
     }
     return nil;
 }

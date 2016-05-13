@@ -26,6 +26,7 @@
         for (NSDictionary *dic in array) {
             [data addObject:[self getColorDataWithDictionaryJSON:dic]];
         }
+        return data;
     }
     return nil;
 }

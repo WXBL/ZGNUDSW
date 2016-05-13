@@ -27,6 +27,7 @@
         for (NSDictionary *dic in array) {
             [data addObject:[self getTypeDataWithDictionaryWithJSON:dic]];
         }
+        return data;
     }
     return nil;
 }

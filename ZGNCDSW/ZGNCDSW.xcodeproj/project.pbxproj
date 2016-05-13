@@ -49,6 +49,8 @@
 		791038391CE452A400B3AC08 /* WXSizeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 791038381CE452A400B3AC08 /* WXSizeModel.m */; };
 		7910383C1CE452DC00B3AC08 /* WXTypeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7910383B1CE452DC00B3AC08 /* WXTypeModel.m */; };
 		7910383D1CE457ED00B3AC08 /* WXNavigationController.h in Sources */ = {isa = PBXBuildFile; fileRef = 8401902D1CCE2D2A00A43AA4 /* WXNavigationController.h */; };
+		79B6C2901CE5747500E81B89 /* WXAddressModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 79B6C28F1CE5747500E81B89 /* WXAddressModel.m */; };
+		79B6C2931CE57C3000E81B89 /* WXCollectionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 79B6C2921CE57C3000E81B89 /* WXCollectionModel.m */; };
 		84004EA01CE1792E002DEFB6 /* WXNewfeatureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84004E9F1CE1792E002DEFB6 /* WXNewfeatureViewController.m */; };
 		84004EA41CE18563002DEFB6 /* WXMessageTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84004EA31CE18563002DEFB6 /* WXMessageTableViewController.m */; };
 		840065C91CDC28880014C377 /* WXBuyCartController.m in Sources */ = {isa = PBXBuildFile; fileRef = 840065C81CDC28880014C377 /* WXBuyCartController.m */; };
@@ -274,6 +276,10 @@
 		791038381CE452A400B3AC08 /* WXSizeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXSizeModel.m; sourceTree = "<group>"; };
 		7910383A1CE452DC00B3AC08 /* WXTypeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXTypeModel.h; sourceTree = "<group>"; };
 		7910383B1CE452DC00B3AC08 /* WXTypeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXTypeModel.m; sourceTree = "<group>"; };
+		79B6C28E1CE5747500E81B89 /* WXAddressModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXAddressModel.h; sourceTree = "<group>"; };
+		79B6C28F1CE5747500E81B89 /* WXAddressModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXAddressModel.m; sourceTree = "<group>"; };
+		79B6C2911CE57C3000E81B89 /* WXCollectionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXCollectionModel.h; sourceTree = "<group>"; };
+		79B6C2921CE57C3000E81B89 /* WXCollectionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXCollectionModel.m; sourceTree = "<group>"; };
 		84004E9E1CE1792E002DEFB6 /* WXNewfeatureViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXNewfeatureViewController.h; sourceTree = "<group>"; };
 		84004E9F1CE1792E002DEFB6 /* WXNewfeatureViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXNewfeatureViewController.m; sourceTree = "<group>"; };
 		84004EA21CE18563002DEFB6 /* WXMessageTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXMessageTableViewController.h; sourceTree = "<group>"; };
@@ -1377,6 +1383,10 @@
 				8F288E7E1CD063F1007CA5EF /* WXCommendModel.m */,
 				7910382E1CE450CF00B3AC08 /* WXImageModel.h */,
 				7910382F1CE450CF00B3AC08 /* WXImageModel.m */,
+				79B6C28E1CE5747500E81B89 /* WXAddressModel.h */,
+				79B6C28F1CE5747500E81B89 /* WXAddressModel.m */,
+				79B6C2911CE57C3000E81B89 /* WXCollectionModel.h */,
+				79B6C2921CE57C3000E81B89 /* WXCollectionModel.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -1540,6 +1550,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7910383D1CE457ED00B3AC08 /* WXNavigationController.h in Sources */,
+				79B6C2901CE5747500E81B89 /* WXAddressModel.m in Sources */,
 				8FA39DE01CCE0C0B0034C622 /* SDRefreshHeaderView.m in Sources */,
 				791037EE1CE4346700B3AC08 /* MJArgument.m in Sources */,
 				8F288E851CD09A79007CA5EF /* WXUserLoginViewController.m in Sources */,
@@ -1588,6 +1599,7 @@
 				8F62015B1CE01294002C9C60 /* WXForgetPasswordViewController.m in Sources */,
 				8FA39DE81CCE0C0B0034C622 /* qrspec.c in Sources */,
 				8FA39DF81CCE0C0B0034C622 /* SHLUILabel.m in Sources */,
+				79B6C2931CE57C3000E81B89 /* WXCollectionModel.m in Sources */,
 				8460471D1CE01BC600DC01B9 /* WXShoppingModel.m in Sources */,
 				84004EA01CE1792E002DEFB6 /* WXNewfeatureViewController.m in Sources */,
 				84CAD0A11CE559E9005A8049 /* WXReceivingTableViewController.m in Sources */,

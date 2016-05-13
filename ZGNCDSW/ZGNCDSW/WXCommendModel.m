@@ -32,6 +32,7 @@
         for (NSDictionary *dic in array) {
             [data addObject:[self getCommentDataWithDictionaryJSON:dic]];
         }
+        return data;
     }
     return nil;
 }

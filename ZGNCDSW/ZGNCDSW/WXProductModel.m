@@ -46,6 +46,7 @@
         for (NSDictionary *dic in array) {
             [data addObject:[self getProductDataWithDictionaryJSON:dic]];
         }
+        return data;
     }
     return nil;
 }

@@ -462,7 +462,7 @@
         if (indexPath.row == 0) {
             return 110;
         }else if(indexPath.row == 3){
-            return 180;
+            return 100;
         }else{
             return 40;
         }
@@ -626,7 +626,7 @@
 
 -(void)ClickShareButton:(UIButton *)sender
 {
-    NSArray *imageArray = @[[UIImage imageNamed:@"my-xiaoxiang"]];
+    NSArray *imageArray = self.theProduct.Goods_Image;
     
     if (imageArray) {
         NSMutableDictionary *shareParams = [NSMutableDictionary dictionary];
@@ -677,36 +677,36 @@
     [self.commentView addSubview:userComment];
     
     
-    UILabel *user = [[UILabel alloc]initWithFrame:CGRectMake(10, 40, screenWidth*0.3, 30)];
-    user.text = @"jwh";
-    user.textColor = [UIColor blackColor];
-    user.textAlignment = NSTextAlignmentLeft;
-    user.font = [UIFont systemFontOfSize:14];
-    [self.commentView addSubview:user];
-    
-    UILabel *comment = [[UILabel alloc]initWithFrame:CGRectMake(10, 70, screenWidth, 20)];
-    comment.text = @"衣服不错，很舒服！";
-    comment.textColor = [UIColor blackColor];
-    comment.textAlignment = NSTextAlignmentLeft;
-    comment.font = [UIFont systemFontOfSize:12];
-    [self.commentView addSubview:comment];
-    
-    UILabel *commentTime = [[UILabel alloc]initWithFrame:CGRectMake(10, 100, screenWidth *0.3, 20)];
-    commentTime.text = @"2016/5/6";
-    commentTime.textColor = [UIColor grayColor];
-    commentTime.textAlignment = NSTextAlignmentLeft;
-    commentTime.font = [UIFont systemFontOfSize:12];
-    [self.commentView addSubview:commentTime];
-    
-    UILabel *colorCategory = [[UILabel alloc]initWithFrame:CGRectMake(screenWidth *0.3, 100, screenWidth*0.7, 20)];
-    colorCategory.text = @"颜色分类：红色；尺寸：28";
-    colorCategory.textColor = [UIColor grayColor];
-    colorCategory.textAlignment = NSTextAlignmentLeft;
-    colorCategory.font = [UIFont systemFontOfSize:12];
-    [self.commentView addSubview:colorCategory];
+//    UILabel *user = [[UILabel alloc]initWithFrame:CGRectMake(10, 40, screenWidth*0.3, 30)];
+//    user.text = @"jwh";
+//    user.textColor = [UIColor blackColor];
+//    user.textAlignment = NSTextAlignmentLeft;
+//    user.font = [UIFont systemFontOfSize:14];
+//    [self.commentView addSubview:user];
+//    
+//    UILabel *comment = [[UILabel alloc]initWithFrame:CGRectMake(10, 70, screenWidth, 20)];
+//    comment.text = @"衣服不错，很舒服！";
+//    comment.textColor = [UIColor blackColor];
+//    comment.textAlignment = NSTextAlignmentLeft;
+//    comment.font = [UIFont systemFontOfSize:12];
+//    [self.commentView addSubview:comment];
+//    
+//    UILabel *commentTime = [[UILabel alloc]initWithFrame:CGRectMake(10, 100, screenWidth *0.3, 20)];
+//    commentTime.text = @"2016/5/6";
+//    commentTime.textColor = [UIColor grayColor];
+//    commentTime.textAlignment = NSTextAlignmentLeft;
+//    commentTime.font = [UIFont systemFontOfSize:12];
+//    [self.commentView addSubview:commentTime];
+//    
+//    UILabel *colorCategory = [[UILabel alloc]initWithFrame:CGRectMake(screenWidth *0.3, 100, screenWidth*0.7, 20)];
+//    colorCategory.text = @"颜色分类：红色；尺寸：28";
+//    colorCategory.textColor = [UIColor grayColor];
+//    colorCategory.textAlignment = NSTextAlignmentLeft;
+//    colorCategory.font = [UIFont systemFontOfSize:12];
+//    [self.commentView addSubview:colorCategory];
     
     UIButton *allComment = [UIButton buttonWithType:UIButtonTypeCustom];
-    allComment.frame = CGRectMake(screenWidth *0.3, 130, screenWidth*0.4, 30);
+    allComment.frame = CGRectMake(screenWidth *0.3, CGRectGetMaxY(userComment.frame), screenWidth*0.4, 30);
     [allComment setTitle:@"查看全部评论" forState:UIControlStateNormal];
     [allComment setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [allComment.layer setBorderColor:[UIColor grayColor].CGColor];
