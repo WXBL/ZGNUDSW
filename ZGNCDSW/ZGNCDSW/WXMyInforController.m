@@ -60,7 +60,7 @@
 }
 
 -(void)addHeaderView{
-
+    
     WXHeaderView *headerView = [[WXHeaderView alloc]init];
     headerView.delegate = self;
     self.headButton = headerView.headerButton;
@@ -76,7 +76,7 @@
     else{
         self.picImage=[UIImage imageNamed:fullPath];
     }
-
+    
     [self.headButton setImage:self.picImage forState:UIControlStateNormal];
     
 }
@@ -170,7 +170,7 @@
  */
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-        return 15;
+    return 15;
 }
 
 /**
@@ -239,12 +239,12 @@
 
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-
-        if (indexPath.row == 0) {
-            return 50;
-        }else{
-            return 80;
-        }
+    
+    if (indexPath.row == 0) {
+        return 50;
+    }else{
+        return 80;
+    }
     
 }
 
@@ -286,8 +286,8 @@
         
         [self.orderBtn addTarget:self action:@selector(ClickOrderBtn:) forControlEvents:UIControlEventTouchUpInside];
     }
-   
-   
+    
+    
 }
 
 -(void)ClickOrderBtn:(UIButton *)sender{
@@ -298,7 +298,7 @@
 
 -(void)myMoneyInfor
 {
-//    WXUserInforModel *userInforModel = [[WXUserInforModel alloc]init];
+    //    WXUserInforModel *userInforModel = [[WXUserInforModel alloc]init];
     
     
     self.myMoneyView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, screenWidth, 80)];
@@ -321,17 +321,17 @@
         
         switch (i) {
             case 0:
-//                self.numLabel.text = userInforModel.balance;
+                //                self.numLabel.text = userInforModel.balance;
                 self.numLabel.text = @"0.00";
                 self.moneyLabel.text = @"账户余额";
                 break;
             case 1:
-//                self.numLabel.text = userInforModel.coupon;
+                //                self.numLabel.text = userInforModel.coupon;
                 self.numLabel.text = @"1";
                 self.moneyLabel.text = @"优惠券";
                 break;
             case 2:
-//                self.numLabel.text = userInforModel.gold_coin;
+                //                self.numLabel.text = userInforModel.gold_coin;
                 self.numLabel.text = @"0";
                 self.moneyLabel.text = @"金币";
                 break;
@@ -347,7 +347,7 @@
         [self.moneyButton addSubview:self.numLabel];
         
         [self.moneyButton addTarget:self action:@selector(ClickMoneyBtn:) forControlEvents:UIControlEventTouchUpInside];
-
+        
     }
 }
 

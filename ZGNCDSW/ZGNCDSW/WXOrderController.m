@@ -9,20 +9,17 @@
 #import "WXOrderController.h"
 #import "WXTopView.h"
 #import "WXPayingTableViewController.h"
-<<<<<<< HEAD
 #import "WXReceivingTableViewController.h"
 #import "WXCommendTableViewController.h"
 #import "WXReturnrefundTableVC.h"
 #import "XFSegementView.h"
-=======
 #import "WXRecommendTableViewCell.h"
 #import "WXCommendTableViewController.h"
-@interface WXOrderController ()
->>>>>>> origin/master
+#import "XFSegementView.h"
 
 @interface WXOrderController ()<TouchLabelDelegate>{
     XFSegementView *segementView;
-
+    
 }
 
 @property(nonatomic,strong)UIButton *orderBtn;
@@ -40,7 +37,7 @@
     [topView.backButton addTarget:self action:@selector(backButton:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:topView];
     
-   
+    
     [self showOrderdetailView];
     
     
@@ -61,40 +58,39 @@
     
     [self.view addSubview:segementView];
     
-//    for (int i = 0; i<4; i++) {
-//        self.orderBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-//        self.orderBtn.frame = CGRectMake(i * screenWidth *0.25, 0, screenWidth *0.25, 40);
-//        self.orderBtn.tag = i+1;
-//        
-//        switch (self.orderBtn.tag) {
-//            case 1:
-//                [self.orderBtn setTitle:@"待付款" forState:UIControlStateNormal];
-//                break;
-//            case 2:
-//                [self.orderBtn setTitle:@"待收货" forState:UIControlStateNormal];
-//                break;
-//            case 3:
-//                [self.orderBtn setTitle:@"待评价" forState:UIControlStateNormal];
-//                break;
-//            case 4:
-//                [self.orderBtn setTitle:@"退货／退款" forState:UIControlStateNormal];
-//                break;
-//                
-//            default:
-//                break;
-//        }
-//        [self.orderBtn setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
-//        [self.orderBtn setTitleColor:[UIColor greenColor] forState:UIControlStateSelected];
-//        self.orderBtn.titleLabel.font = [UIFont systemFontOfSize:15];
-//        [orderView addSubview:self.orderBtn];
-//    }
-
-
+    //    for (int i = 0; i<4; i++) {
+    //        self.orderBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    //        self.orderBtn.frame = CGRectMake(i * screenWidth *0.25, 0, screenWidth *0.25, 40);
+    //        self.orderBtn.tag = i+1;
+    //
+    //        switch (self.orderBtn.tag) {
+    //            case 1:
+    //                [self.orderBtn setTitle:@"待付款" forState:UIControlStateNormal];
+    //                break;
+    //            case 2:
+    //                [self.orderBtn setTitle:@"待收货" forState:UIControlStateNormal];
+    //                break;
+    //            case 3:
+    //                [self.orderBtn setTitle:@"待评价" forState:UIControlStateNormal];
+    //                break;
+    //            case 4:
+    //                [self.orderBtn setTitle:@"退货／退款" forState:UIControlStateNormal];
+    //                break;
+    //
+    //            default:
+    //                break;
+    //        }
+    //        [self.orderBtn setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+    //        [self.orderBtn setTitleColor:[UIColor greenColor] forState:UIControlStateSelected];
+    //        self.orderBtn.titleLabel.font = [UIFont systemFontOfSize:15];
+    //        [orderView addSubview:self.orderBtn];
+    //    }
+    
+    
 }
 
 - (void)touchLabelWithIndex:(NSInteger)index{
     NSLog(@"我是第%ld个label",index);
-    self.theTag = index;
     if (index ==0) {
         WXPayingTableViewController *payViewController = [[WXPayingTableViewController alloc]init];
         payViewController.view.frame = CGRectMake(0, 100, screenWidth, screenHeigth-100);

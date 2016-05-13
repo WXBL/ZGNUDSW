@@ -57,11 +57,11 @@
     self.sexLabel = [[UILabel alloc]init];
     self.birthLabel = [[UILabel alloc]init];
     
-//    WXSexView *sexView = [[WXSexView alloc]init];
-//    sexView.frame = CGRectMake(0, 0, screenWidth, screenHeigth);
-//    [self.view addSubview:sexView];
-//    sexView.hidden = YES;
-//    self.sexView = sexView;
+    //    WXSexView *sexView = [[WXSexView alloc]init];
+    //    sexView.frame = CGRectMake(0, 0, screenWidth, screenHeigth);
+    //    [self.view addSubview:sexView];
+    //    sexView.hidden = YES;
+    //    self.sexView = sexView;
     
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(changeName:) name:@"ChangeUserNameNotification" object:nil];
     
@@ -107,10 +107,9 @@
     self.manageTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 50, screenWidth, screenHeigth-50) style:UITableViewStyleGrouped];
     self.manageTableView.delegate = self;
     self.manageTableView.dataSource = self;
-//    self.manageTableView.backgroundColor = [UIColor colorWithWhite:0.9 alpha:1];
+    //    self.manageTableView.backgroundColor = [UIColor colorWithWhite:0.9 alpha:1];
     [self.view addSubview:self.manageTableView];
     
-<<<<<<< HEAD
 }
 
 -(void)changeName:(NSNotification *)notification{
@@ -118,8 +117,7 @@
     self.userName.text=[nameDictionary objectForKey:@"name"];
     NSLog(@"%@",self.userName.text);
     [self.manageTableView reloadData];
-=======
->>>>>>> origin/master
+
 }
 
 
@@ -201,7 +199,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-     static NSString *cellStr = @"cellID";
+    static NSString *cellStr = @"cellID";
     WXInforTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellStr];
     if (cell == nil) {
         cell = [[WXInforTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellStr];
@@ -220,35 +218,35 @@
         }
     }
     if (indexPath.section ==0) {
-    
+        
         if (indexPath.row ==0) {
             [self.headImageBtn setImage:self.picNameImg forState:UIControlStateNormal];
         }
         else if (indexPath.row == 1){
-             
-             cell.textlbl.text = self.userName.text;
+            
+            cell.textlbl.text = self.userName.text;
             
         }else if (indexPath.row == 2){
-          
+            
             cell.textlbl.text = self.userName.text;
         }
         else if (indexPath.row == 3){
-         
+            
             cell.textlbl.text=self.sexLabel.text;
         }else{
-
+            
             cell.textlbl.text=self.birthLabel.text;
         }
         cell.textLabel.text = self.userDetailArray[indexPath.row];
     }else{
         cell.textLabel.text = self.userManageArray[indexPath.row];
     }
-
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
-        cell.textLabel.font = [UIFont systemFontOfSize:14];
-        return cell;
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
+    cell.textLabel.font = [UIFont systemFontOfSize:14];
+    return cell;
 }
 
 
@@ -301,13 +299,13 @@
     
     isFullScreen = NO;
     self.picNameImg = savedImage;
-//    [self.headImageBtm setImage:savedImage forState:UIControlStateNormal];
+    //    [self.headImageBtm setImage:savedImage forState:UIControlStateNormal];
     
     [self.manageTableView reloadData];
     
     
     
-//    self.headImageBtm.tag = 100;
+    //    self.headImageBtm.tag = 100;
     
 }
 
@@ -368,7 +366,7 @@
             WXUpdateUserNameController *updateName = [[WXUpdateUserNameController alloc]init];
             [self presentViewController:updateName animated:YES completion:nil];
         }else if (indexPath.row ==3) {
-
+            
             UIView *sexView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
             sexView.alpha = 0.5;
             sexView.backgroundColor = [UIColor grayColor];
@@ -452,7 +450,7 @@
             
             [self.view addSubview:self.datePicker];
             
-
+            
         }
     }
     
@@ -510,7 +508,7 @@
     
 }
 
- 
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

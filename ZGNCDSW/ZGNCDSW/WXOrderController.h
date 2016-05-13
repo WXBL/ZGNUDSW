@@ -10,5 +10,4 @@
 
 @interface WXOrderController : UIViewController
 
-@property (nonatomic,assign)NSInteger theTag;
 @end
