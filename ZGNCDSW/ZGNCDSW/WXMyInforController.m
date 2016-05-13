@@ -99,11 +99,22 @@
         [self ClickShopButton:button];
     }else if(button.tag ==3){
         [self ClickScannedButton:button];
-    }else{
+    }else if(button.tag ==4){
         [self ClickManagementButton:button];
+    }else if(button.tag ==5){
+        [self ClickHeadImageBtn:button];
+    }else{
+        [self ClickMbtypeBtn:button];
     }
     
 }
+
+#pragma mark 点击会员按钮
+-(void)ClickMbtypeBtn:(UIButton *)sender{
+    
+}
+
+#pragma mark -点击头像
 -(void)ClickHeadImageBtn:(UIButton *)sender{
     WXManagementController *managementController = [[WXManagementController alloc]init];
     [self presentViewController:managementController animated:YES completion:nil];
@@ -251,18 +262,17 @@
         self.orderBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         self.orderBtn.frame = CGRectMake(i * screenWidth *0.25, 0, screenWidth *0.25, 80);
         self.orderBtn.tag = i+1;
-        
-        switch (self.orderBtn.tag) {
-            case 1:
+        switch (i) {
+            case 0:
                 [self.orderBtn setTitle:@"待付款" forState:UIControlStateNormal];
                 break;
-            case 2:
+            case 1:
                 [self.orderBtn setTitle:@"待收货" forState:UIControlStateNormal];
                 break;
-            case 3:
+            case 2:
                 [self.orderBtn setTitle:@"待评价" forState:UIControlStateNormal];
                 break;
-            case 4:
+            case 3:
                 [self.orderBtn setTitle:@"退货／退款" forState:UIControlStateNormal];
                 break;
                 
@@ -281,10 +291,9 @@
 }
 
 -(void)ClickOrderBtn:(UIButton *)sender{
-    if (sender.tag == 1) {
-        WXOrderController *order = [[WXOrderController alloc]init];
-        [self presentViewController:order animated:YES completion:nil];
-    }
+    
+    WXOrderController *order = [[WXOrderController alloc]init];
+    [self presentViewController:order animated:YES completion:nil];
 }
 
 -(void)myMoneyInfor

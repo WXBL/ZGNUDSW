@@ -10,4 +10,5 @@
 
 @interface WXMyInforController : UITableViewController
 
+
 @end

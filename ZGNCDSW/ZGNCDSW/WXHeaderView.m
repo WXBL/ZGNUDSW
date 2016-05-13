@@ -41,24 +41,28 @@
     
     //用户匿名
     WXUserInforModel *userInforModel = [[WXUserInforModel alloc]init];
-    UILabel *username = [[UILabel alloc]init];
+    UIButton *username = [UIButton buttonWithType:UIButtonTypeCustom];
     username.frame = CGRectMake(CGRectGetMaxX(self.headerButton.frame)+10, self.headerButton.frame.origin.y+10, screenWidth *0.5, 30);
 //    username.text = userInforModel.user.UserName;
-    username.text = @"降降jwh";
-    username.textColor = [UIColor whiteColor];
-    username.font = [UIFont systemFontOfSize:16];
-    username.textAlignment = NSTextAlignmentLeft;
+    [username setTitle:@"jwh" forState:UIControlStateNormal];
+    [username setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    username.titleLabel.font = [UIFont systemFontOfSize:16];
+    username.titleLabel.textAlignment = NSTextAlignmentLeft;
+    [username addTarget:self action:@selector(ClickButton:) forControlEvents:UIControlEventTouchUpInside];
+    username.tag = 5;
     [self addSubview:username];
     self.userName = username;
     
     //会员
-    UILabel *member = [[UILabel alloc]initWithFrame:CGRectMake(self.userName.frame.origin.x, CGRectGetMaxY(self.userName.frame), screenWidth *0.5, 30)];
+    UIButton *member = [[UIButton alloc]initWithFrame:CGRectMake(self.userName.frame.origin.x, CGRectGetMaxY(self.userName.frame), screenWidth *0.5, 30)];
 
 //    member.text = userInforModel.mbtype;
-    member.text = @"钻石会员";
-     member.textColor = [UIColor whiteColor];
-    member.font = [UIFont systemFontOfSize:14];
-    member.textAlignment = NSTextAlignmentLeft;
+    [member setTitle:@"钻石会员" forState:UIControlStateNormal];
+    [member setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    member.titleLabel.font = [UIFont systemFontOfSize:14];
+    member.titleLabel.textAlignment = NSTextAlignmentLeft;
+    [member addTarget:self action:@selector(ClickButton:) forControlEvents:UIControlEventTouchUpInside];
+    member.tag = 6;
     [self addSubview:member];
     
     

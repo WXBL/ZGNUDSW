@@ -18,7 +18,7 @@
 @property (nonatomic,strong)UIView *bgView;
 
 @property (nonatomic,strong)UIButton *headerButton;
-@property (nonatomic,strong)UILabel *userName;
+@property (nonatomic,strong)UIButton *userName;
 
 @property (nonatomic,strong)id<WXHeaderViewDelegate>delegate;
 
