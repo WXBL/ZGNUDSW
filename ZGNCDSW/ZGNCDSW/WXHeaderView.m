@@ -42,30 +42,19 @@
     //用户匿名
     WXUserInforModel *userInforModel = [[WXUserInforModel alloc]init];
     UIButton *username = [UIButton buttonWithType:UIButtonTypeCustom];
-    username.frame = CGRectMake(CGRectGetMaxX(self.headerButton.frame)+10, self.headerButton.frame.origin.y+10, screenWidth *0.5, 30);
+    username.frame = CGRectMake(CGRectGetMaxX(self.headerButton.frame)+10, self.headerButton.frame.origin.y+20, screenWidth *0.5, 30);
 //    username.text = userInforModel.user.UserName;
     [username setTitle:@"jwh" forState:UIControlStateNormal];
     [username setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     username.titleLabel.font = [UIFont systemFontOfSize:16];
-    username.titleLabel.textAlignment = NSTextAlignmentLeft;
+    //设置按钮内容做对齐
+    username.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+    username.titleEdgeInsets = UIEdgeInsetsMake(0, 5, 0, 0);
     [username addTarget:self action:@selector(ClickButton:) forControlEvents:UIControlEventTouchUpInside];
     username.tag = 5;
     [self addSubview:username];
     self.userName = username;
-    
-    //会员
-    UIButton *member = [[UIButton alloc]initWithFrame:CGRectMake(self.userName.frame.origin.x, CGRectGetMaxY(self.userName.frame), screenWidth *0.5, 30)];
 
-//    member.text = userInforModel.mbtype;
-    [member setTitle:@"钻石会员" forState:UIControlStateNormal];
-    [member setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    member.titleLabel.font = [UIFont systemFontOfSize:14];
-    member.titleLabel.textAlignment = NSTextAlignmentLeft;
-    [member addTarget:self action:@selector(ClickButton:) forControlEvents:UIControlEventTouchUpInside];
-    member.tag = 6;
-    [self addSubview:member];
-    
-    
     //账户管理，收货地址
     [self addAddress];
     //添加关注商品，店铺，浏览记录按钮

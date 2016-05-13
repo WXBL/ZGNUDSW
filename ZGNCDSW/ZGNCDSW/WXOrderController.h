@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface WXOrderController : UIViewController
-
+@property(assign)int theTag;
 @end

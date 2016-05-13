@@ -8,9 +8,14 @@
 
 #import "WXMyInforController.h"
 #import "WXHeaderView.h"
-#import "WXOrderController.h"
+//#import "WXOrderController.h"
 #import "WXUserInforModel.h"
 #import "WXManagementController.h"
+
+#import "WXCommendTableViewController.h"
+#import "WXReceivingTableViewController.h"
+#import "WXPayingTableViewController.h"
+#import "WXReturnrefundTableVC.h"
 @interface WXMyInforController ()<WXHeaderViewDelegate>
 
 
@@ -261,7 +266,7 @@
     for (int i = 0; i<4; i++) {
         self.orderBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         self.orderBtn.frame = CGRectMake(i * screenWidth *0.25, 0, screenWidth *0.25, 80);
-        self.orderBtn.tag = i+1;
+        self.orderBtn.tag = i;
         switch (i) {
             case 0:
                 [self.orderBtn setTitle:@"待付款" forState:UIControlStateNormal];
@@ -292,8 +297,20 @@
 
 -(void)ClickOrderBtn:(UIButton *)sender{
     
-    WXOrderController *order = [[WXOrderController alloc]init];
-    [self presentViewController:order animated:YES completion:nil];
+    
+    if (sender.tag ==0) {
+        WXPayingTableViewController *paying = [[WXPayingTableViewController alloc]init];
+        [self presentViewController:paying animated:YES completion:nil];
+    }else if (sender.tag ==1){
+        WXReceivingTableViewController *receiving = [[WXReceivingTableViewController alloc]init];
+        [self presentViewController:receiving animated:YES completion:nil];
+    }else if (sender.tag ==2){
+        WXCommendTableViewController *commend = [[WXCommendTableViewController alloc]init];
+        [self presentViewController:commend animated:YES completion:nil];
+    }else{
+        WXReturnrefundTableVC *returnFund = [[WXReturnrefundTableVC alloc]init];
+        [self presentViewController:returnFund animated:YES completion:nil];
+    }
 }
 
 -(void)myMoneyInfor

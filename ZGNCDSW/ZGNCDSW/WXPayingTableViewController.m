@@ -8,27 +8,45 @@
 
 #import "WXPayingTableViewController.h"
 #import "WXTopView.h"
-@interface WXPayingTableViewController ()
+@interface WXPayingTableViewController ()<UITableViewDataSource,UITableViewDelegate>
 
+@property (nonatomic,strong)UITableView *tableView;
+@property (nonatomic,strong)UIView *topView;
 @end
 
 @implementation WXPayingTableViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+        
+    [self addNavBar];
     
-    self.tableView.frame = CGRectMake(0, 50, screenWidth, screenHeigth-50);
+    [self addTableView];
+}
+
+-(void)addNavBar{
     
-
-//    WXTopView *topView = [[WXTopView alloc]initWithFrame:CGRectMake(0, 0, screenWidth, 50) TitleText:@"待付款"];
-//    [topView.backButton addTarget:self action:@selector(backButton:) forControlEvents:UIControlEventTouchUpInside];
-//    [self.view addSubview:topView];
-
-    WXTopView *topView = [[WXTopView alloc]initWithFrame:CGRectMake(0, 0, screenWidth, 50) TitleText:@"待付款"];
+    WXTopView *topView = [[WXTopView alloc]initWithFrame:CGRectMake(0, 0, screenWidth, 50) TitleText:@"待收货"];
     [topView.backButton addTarget:self action:@selector(backButton:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:topView];
-
+    
+    self.topView = topView;
 }
+
+-(void)addTableView{
+    self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, self.topView.frame.size.height, screenWidth, screenHeigth-self.topView.frame.size.height) style:UITableViewStylePlain];
+    self.tableView.backgroundColor = [UIColor colorWithWhite:0.9 alpha:1];
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    [self.view addSubview:self.tableView];
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    
+    [self.tableView reloadData];
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -61,6 +79,12 @@
     cell.textLabel.text = @"asdf";
 
     return cell;
+}
+
+
+#pragma mark -Table view delegate
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{

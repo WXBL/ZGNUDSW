@@ -7,9 +7,11 @@
 //
 
 #import "WXCommendTableViewController.h"
+#import "WXTopView.h"
+@interface WXCommendTableViewController ()<UITableViewDelegate,UITableViewDataSource>
 
-@interface WXCommendTableViewController ()
-
+@property (nonatomic,strong)UITableView *tableView;
+@property (nonatomic,strong)UIView *topView;
 @end
 
 @implementation WXCommendTableViewController
@@ -17,12 +19,33 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
+    [self addNavBar];
     
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    [self addTableView];
 }
+
+-(void)addNavBar{
+    
+    WXTopView *topView = [[WXTopView alloc]initWithFrame:CGRectMake(0, 0, screenWidth, 50) TitleText:@"待付款"];
+    [topView.backButton addTarget:self action:@selector(backButton:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:topView];
+    self.topView = topView;
+}
+
+-(void)addTableView{
+    self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, self.topView.frame.size.height, screenWidth, screenHeigth-self.topView.frame.size.height) style:UITableViewStylePlain];
+    self.tableView.backgroundColor = [UIColor colorWithWhite:0.9 alpha:1];
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    [self.view addSubview:self.tableView];
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    
+    [self.tableView reloadData];
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -51,10 +74,16 @@
     return cell;
 }
 
-
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 40;
+#pragma mark -Table view delegate
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
 }
 
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 130;
+}
 
+-(void)backButton:(id)sender{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 @end

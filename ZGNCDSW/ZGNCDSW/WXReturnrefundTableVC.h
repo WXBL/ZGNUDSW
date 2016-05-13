@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface WXReturnrefundTableVC : UITableViewController
+@interface WXReturnrefundTableVC : UIViewController
 
 @end

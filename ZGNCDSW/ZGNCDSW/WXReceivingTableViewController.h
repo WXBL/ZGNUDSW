@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface WXReceivingTableViewController : UITableViewController
+@interface WXReceivingTableViewController : UIViewController
 
 @end

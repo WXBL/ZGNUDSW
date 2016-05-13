@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface WXPayingTableViewController : UITableViewController
+@interface WXPayingTableViewController : UIViewController
 
 @end

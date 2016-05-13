@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface WXCommendTableViewController : UITableViewController
+@interface WXCommendTableViewController : UIViewController
 
 @end
