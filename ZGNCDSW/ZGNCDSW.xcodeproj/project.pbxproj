@@ -92,6 +92,13 @@
 		84C361FC1CD19274008ED985 /* WXCategoryTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 84C361FA1CD19274008ED985 /* WXCategoryTableViewCell.m */; };
 		84C361FF1CD19C0A008ED985 /* WXRecommendTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 84C361FE1CD19C0A008ED985 /* WXRecommendTableViewCell.m */; };
 		84C362051CD1B284008ED985 /* WXNewsTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 84C362041CD1B284008ED985 /* WXNewsTableCell.m */; };
+		84CAD09F1CE559E9005A8049 /* WXCommendTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84CAD0981CE559E9005A8049 /* WXCommendTableViewController.m */; };
+		84CAD0A01CE559E9005A8049 /* WXPayingTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84CAD09A1CE559E9005A8049 /* WXPayingTableViewController.m */; };
+		84CAD0A11CE559E9005A8049 /* WXReceivingTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84CAD09C1CE559E9005A8049 /* WXReceivingTableViewController.m */; };
+		84CAD0A21CE559E9005A8049 /* WXReturnrefundTableVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 84CAD09E1CE559E9005A8049 /* WXReturnrefundTableVC.m */; };
+		84CAD0A51CE55A46005A8049 /* WXInforTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 84CAD0A41CE55A46005A8049 /* WXInforTableViewCell.m */; };
+		84CAD0A81CE55A57005A8049 /* WXUpdateUserNameController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84CAD0A71CE55A57005A8049 /* WXUpdateUserNameController.m */; };
+		84CAD0AB1CE55A67005A8049 /* XFSegementView.m in Sources */ = {isa = PBXBuildFile; fileRef = 84CAD0AA1CE55A67005A8049 /* XFSegementView.m */; };
 		84ED68451CCF1A5200A45281 /* WXHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84ED68441CCF1A5200A45281 /* WXHomeViewController.m */; };
 		84ED68911CCF528200A45281 /* UIView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 84ED68901CCF528200A45281 /* UIView+Extension.m */; };
 		84ED68941CCF545E00A45281 /* WXSearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 84ED68931CCF545E00A45281 /* WXSearchBar.m */; };
@@ -104,9 +111,6 @@
 		84F99D8B1CDAFB4800B3EF2D /* WXCommentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 84F99D8A1CDAFB4800B3EF2D /* WXCommentTableViewCell.m */; };
 		84F99D921CDB2F4100B3EF2D /* WXStatusFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = 84F99D911CDB2F4100B3EF2D /* WXStatusFrame.m */; };
 		84F99D951CDB338500B3EF2D /* WXStatusModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 84F99D941CDB338500B3EF2D /* WXStatusModel.m */; };
-		84FC3BC21CE4106C00209B8D /* WXPayingTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84FC3BC11CE4106C00209B8D /* WXPayingTableViewController.m */; };
-		84FC3BC51CE4109100209B8D /* WXReceivingTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84FC3BC41CE4109100209B8D /* WXReceivingTableViewController.m */; };
-		84FC3BC81CE4109F00209B8D /* WXCommendTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84FC3BC71CE4109F00209B8D /* WXCommendTableViewController.m */; };
 		8F0669491CC4E7ED007CD423 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F0669481CC4E7ED007CD423 /* main.m */; };
 		8F06694C1CC4E7ED007CD423 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F06694B1CC4E7ED007CD423 /* AppDelegate.m */; };
 		8F0669521CC4E7ED007CD423 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8F0669501CC4E7ED007CD423 /* Main.storyboard */; };
@@ -352,6 +356,20 @@
 		84C361FE1CD19C0A008ED985 /* WXRecommendTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXRecommendTableViewCell.m; sourceTree = "<group>"; };
 		84C362031CD1B284008ED985 /* WXNewsTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXNewsTableCell.h; sourceTree = "<group>"; };
 		84C362041CD1B284008ED985 /* WXNewsTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXNewsTableCell.m; sourceTree = "<group>"; };
+		84CAD0971CE559E9005A8049 /* WXCommendTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXCommendTableViewController.h; sourceTree = "<group>"; };
+		84CAD0981CE559E9005A8049 /* WXCommendTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXCommendTableViewController.m; sourceTree = "<group>"; };
+		84CAD0991CE559E9005A8049 /* WXPayingTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXPayingTableViewController.h; sourceTree = "<group>"; };
+		84CAD09A1CE559E9005A8049 /* WXPayingTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXPayingTableViewController.m; sourceTree = "<group>"; };
+		84CAD09B1CE559E9005A8049 /* WXReceivingTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXReceivingTableViewController.h; sourceTree = "<group>"; };
+		84CAD09C1CE559E9005A8049 /* WXReceivingTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXReceivingTableViewController.m; sourceTree = "<group>"; };
+		84CAD09D1CE559E9005A8049 /* WXReturnrefundTableVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXReturnrefundTableVC.h; sourceTree = "<group>"; };
+		84CAD09E1CE559E9005A8049 /* WXReturnrefundTableVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXReturnrefundTableVC.m; sourceTree = "<group>"; };
+		84CAD0A31CE55A46005A8049 /* WXInforTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXInforTableViewCell.h; sourceTree = "<group>"; };
+		84CAD0A41CE55A46005A8049 /* WXInforTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXInforTableViewCell.m; sourceTree = "<group>"; };
+		84CAD0A61CE55A57005A8049 /* WXUpdateUserNameController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXUpdateUserNameController.h; sourceTree = "<group>"; };
+		84CAD0A71CE55A57005A8049 /* WXUpdateUserNameController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXUpdateUserNameController.m; sourceTree = "<group>"; };
+		84CAD0A91CE55A67005A8049 /* XFSegementView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XFSegementView.h; sourceTree = "<group>"; };
+		84CAD0AA1CE55A67005A8049 /* XFSegementView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XFSegementView.m; sourceTree = "<group>"; };
 		84ED68431CCF1A5200A45281 /* WXHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXHomeViewController.h; sourceTree = "<group>"; };
 		84ED68441CCF1A5200A45281 /* WXHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXHomeViewController.m; sourceTree = "<group>"; };
 		84ED688F1CCF528200A45281 /* UIView+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Extension.h"; sourceTree = "<group>"; };
@@ -372,12 +390,6 @@
 		84F99D911CDB2F4100B3EF2D /* WXStatusFrame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXStatusFrame.m; sourceTree = "<group>"; };
 		84F99D931CDB338500B3EF2D /* WXStatusModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXStatusModel.h; sourceTree = "<group>"; };
 		84F99D941CDB338500B3EF2D /* WXStatusModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXStatusModel.m; sourceTree = "<group>"; };
-		84FC3BC01CE4106C00209B8D /* WXPayingTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXPayingTableViewController.h; sourceTree = "<group>"; };
-		84FC3BC11CE4106C00209B8D /* WXPayingTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXPayingTableViewController.m; sourceTree = "<group>"; };
-		84FC3BC31CE4109100209B8D /* WXReceivingTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXReceivingTableViewController.h; sourceTree = "<group>"; };
-		84FC3BC41CE4109100209B8D /* WXReceivingTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXReceivingTableViewController.m; sourceTree = "<group>"; };
-		84FC3BC61CE4109F00209B8D /* WXCommendTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXCommendTableViewController.h; sourceTree = "<group>"; };
-		84FC3BC71CE4109F00209B8D /* WXCommendTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXCommendTableViewController.m; sourceTree = "<group>"; };
 		8F0669441CC4E7ED007CD423 /* ZGNCDSW.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZGNCDSW.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F0669481CC4E7ED007CD423 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		8F06694A1CC4E7ED007CD423 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -814,6 +826,8 @@
 				8436AE811CE302BD008FD067 /* WXOrderController.m */,
 				8436AE831CE31278008FD067 /* WXManagementController.h */,
 				8436AE841CE31278008FD067 /* WXManagementController.m */,
+				84CAD0A61CE55A57005A8049 /* WXUpdateUserNameController.h */,
+				84CAD0A71CE55A57005A8049 /* WXUpdateUserNameController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -840,6 +854,10 @@
 			children = (
 				8436AE791CE1C0CF008FD067 /* WXHeaderView.h */,
 				8436AE7A1CE1C0CF008FD067 /* WXHeaderView.m */,
+				84CAD0A31CE55A46005A8049 /* WXInforTableViewCell.h */,
+				84CAD0A41CE55A46005A8049 /* WXInforTableViewCell.m */,
+				84CAD0A91CE55A67005A8049 /* XFSegementView.h */,
+				84CAD0AA1CE55A67005A8049 /* XFSegementView.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -1002,12 +1020,14 @@
 		84FC3BBF1CE4102000209B8D /* Orders(订单详情) */ = {
 			isa = PBXGroup;
 			children = (
-				84FC3BC01CE4106C00209B8D /* WXPayingTableViewController.h */,
-				84FC3BC11CE4106C00209B8D /* WXPayingTableViewController.m */,
-				84FC3BC31CE4109100209B8D /* WXReceivingTableViewController.h */,
-				84FC3BC41CE4109100209B8D /* WXReceivingTableViewController.m */,
-				84FC3BC61CE4109F00209B8D /* WXCommendTableViewController.h */,
-				84FC3BC71CE4109F00209B8D /* WXCommendTableViewController.m */,
+				84CAD0971CE559E9005A8049 /* WXCommendTableViewController.h */,
+				84CAD0981CE559E9005A8049 /* WXCommendTableViewController.m */,
+				84CAD0991CE559E9005A8049 /* WXPayingTableViewController.h */,
+				84CAD09A1CE559E9005A8049 /* WXPayingTableViewController.m */,
+				84CAD09B1CE559E9005A8049 /* WXReceivingTableViewController.h */,
+				84CAD09C1CE559E9005A8049 /* WXReceivingTableViewController.m */,
+				84CAD09D1CE559E9005A8049 /* WXReturnrefundTableVC.h */,
+				84CAD09E1CE559E9005A8049 /* WXReturnrefundTableVC.m */,
 			);
 			name = "Orders(订单详情)";
 			sourceTree = "<group>";
@@ -1531,6 +1551,7 @@
 				791037F81CE4346700B3AC08 /* NSObject+MJMember.m in Sources */,
 				8FA39E0D1CCE0FFF0034C622 /* NetWork.m in Sources */,
 				8F62015A1CE01294002C9C60 /* WXResetPasswordViewController.m in Sources */,
+				84CAD0AB1CE55A67005A8049 /* XFSegementView.m in Sources */,
 				8401901A1CCE297300A43AA4 /* WXFarmImportsController.m in Sources */,
 				8FA39DF41CCE0C0B0034C622 /* MJRefreshBaseView.m in Sources */,
 				7910381F1CE4348800B3AC08 /* SDWebImageDecoder.m in Sources */,
@@ -1540,6 +1561,7 @@
 				8FA39DE71CCE0C0B0034C622 /* qrinput.c in Sources */,
 				8F288E731CD060D8007CA5EF /* WXNewsModel.m in Sources */,
 				8F288E7F1CD063F1007CA5EF /* WXCommendModel.m in Sources */,
+				84CAD09F1CE559E9005A8049 /* WXCommendTableViewController.m in Sources */,
 				8FA39DF21CCE0C0B0034C622 /* MBProgressHUD.m in Sources */,
 				7910381C1CE4348800B3AC08 /* NSData+ImageContentType.m in Sources */,
 				791038291CE4348800B3AC08 /* UIImageView+WebCache.m in Sources */,
@@ -1548,24 +1570,27 @@
 				8F06694C1CC4E7ED007CD423 /* AppDelegate.m in Sources */,
 				7910381E1CE4348800B3AC08 /* SDWebImageCompat.m in Sources */,
 				8FA39DE91CCE0C0B0034C622 /* rscode.c in Sources */,
+				84CAD0A21CE559E9005A8049 /* WXReturnrefundTableVC.m in Sources */,
 				8FA39DDF1CCE0C0B0034C622 /* SDRefreshFooterView.m in Sources */,
 				8FA39DF61CCE0C0B0034C622 /* MJRefreshHeaderView.m in Sources */,
 				791037F51CE4346700B3AC08 /* MJTypeEncoding.m in Sources */,
 				8FA39E101CCE10400034C622 /* WXUserModel.m in Sources */,
 				8406FAFE1CD8915900EA155E /* WXFarmDetailViewController.m in Sources */,
 				8FA39DE51CCE0C0B0034C622 /* QRCodeGenerator.m in Sources */,
+				84CAD0A81CE55A57005A8049 /* WXUpdateUserNameController.m in Sources */,
 				7910382A1CE4348800B3AC08 /* UIView+WebCacheOperation.m in Sources */,
 				791037D41CE4344800B3AC08 /* AFURLResponseSerialization.m in Sources */,
 				791038251CE4348800B3AC08 /* UIImage+GIF.m in Sources */,
 				8FA39DD11CCE0C0B0034C622 /* ICSDropShadowView.m in Sources */,
 				84F99D881CDAF76500B3EF2D /* WXCommentController.m in Sources */,
 				8F6201501CE01202002C9C60 /* WXUserService.m in Sources */,
+				84CAD0A01CE559E9005A8049 /* WXPayingTableViewController.m in Sources */,
 				8F62015B1CE01294002C9C60 /* WXForgetPasswordViewController.m in Sources */,
 				8FA39DE81CCE0C0B0034C622 /* qrspec.c in Sources */,
 				8FA39DF81CCE0C0B0034C622 /* SHLUILabel.m in Sources */,
 				8460471D1CE01BC600DC01B9 /* WXShoppingModel.m in Sources */,
-				84FC3BC21CE4106C00209B8D /* WXPayingTableViewController.m in Sources */,
 				84004EA01CE1792E002DEFB6 /* WXNewfeatureViewController.m in Sources */,
+				84CAD0A11CE559E9005A8049 /* WXReceivingTableViewController.m in Sources */,
 				8FA39DE11CCE0C0B0034C622 /* SDRefreshView.m in Sources */,
 				791038211CE4348800B3AC08 /* SDWebImageDownloaderOperation.m in Sources */,
 				8FA39DE41CCE0C0B0034C622 /* mask.c in Sources */,
@@ -1574,6 +1599,7 @@
 				8F0669491CC4E7ED007CD423 /* main.m in Sources */,
 				8FA39E071CCE0CA70034C622 /* validateTest.m in Sources */,
 				8FA39E061CCE0CA70034C622 /* MViewUtil.m in Sources */,
+				84CAD0A51CE55A46005A8049 /* WXInforTableViewCell.m in Sources */,
 				8F62015C1CE01294002C9C60 /* WXVerifyTelephoneViewController.m in Sources */,
 				791038301CE450CF00B3AC08 /* WXImageModel.m in Sources */,
 				791037CD1CE4344800B3AC08 /* AFHTTPRequestOperation.m in Sources */,
@@ -1624,10 +1650,8 @@
 				8FA39DE21CCE0C0B0034C622 /* UIView+SDExtension.m in Sources */,
 				84C362051CD1B284008ED985 /* WXNewsTableCell.m in Sources */,
 				8F288E701CD053AE007CA5EF /* WXProductModel.m in Sources */,
-				84FC3BC51CE4109100209B8D /* WXReceivingTableViewController.m in Sources */,
 				791037F41CE4346700B3AC08 /* MJType.m in Sources */,
 				8F288E8A1CD0A559007CA5EF /* WXTopView.m in Sources */,
-				84FC3BC81CE4109F00209B8D /* WXCommendTableViewController.m in Sources */,
 				791037F31CE4346700B3AC08 /* MJMethod.m in Sources */,
 				84F99D951CDB338500B3EF2D /* WXStatusModel.m in Sources */,
 				791038261CE4348800B3AC08 /* UIImage+MultiFormat.m in Sources */,

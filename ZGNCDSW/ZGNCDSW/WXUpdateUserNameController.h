@@ -1,5 +1,5 @@
 //
-//  WXCommendTableViewController.h
+//  WXUpdateUserNameController.h
 //  ZGNCDSW
 //
 //  Created by admin on 16/5/12.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface WXCommendTableViewController : UITableViewController
+@interface WXUpdateUserNameController : UIViewController
 
 @end

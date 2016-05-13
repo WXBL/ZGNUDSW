@@ -19,9 +19,15 @@
     
     self.tableView.frame = CGRectMake(0, 50, screenWidth, screenHeigth-50);
     
+
+//    WXTopView *topView = [[WXTopView alloc]initWithFrame:CGRectMake(0, 0, screenWidth, 50) TitleText:@"待付款"];
+//    [topView.backButton addTarget:self action:@selector(backButton:) forControlEvents:UIControlEventTouchUpInside];
+//    [self.view addSubview:topView];
+
     WXTopView *topView = [[WXTopView alloc]initWithFrame:CGRectMake(0, 0, screenWidth, 50) TitleText:@"待付款"];
     [topView.backButton addTarget:self action:@selector(backButton:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:topView];
+
 }
 
 - (void)didReceiveMemoryWarning {
@@ -50,10 +56,16 @@
     if (cell == nil) {
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
     }
+
+    
+    cell.textLabel.text = @"asdf";
+
     return cell;
 }
 
-
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 40;
+}
 
 -(void)backButton:(id)sender{
     [self dismissViewControllerAnimated:YES completion:nil];

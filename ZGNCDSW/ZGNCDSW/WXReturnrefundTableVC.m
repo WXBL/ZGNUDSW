@@ -1,18 +1,18 @@
 //
-//  WXCommendTableViewController.m
+//  WXReturnrefundTableVC.m
 //  ZGNCDSW
 //
 //  Created by admin on 16/5/12.
 //  Copyright © 2016年 Macx. All rights reserved.
 //
 
-#import "WXCommendTableViewController.h"
+#import "WXReturnrefundTableVC.h"
 
-@interface WXCommendTableViewController ()
+@interface WXReturnrefundTableVC ()
 
 @end
 
-@implementation WXCommendTableViewController
+@implementation WXReturnrefundTableVC
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -31,7 +31,6 @@
 
 #pragma mark - Table view data source
 
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 
     return 10;
@@ -47,7 +46,7 @@
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
     }
     
-    cell.textLabel.text = @"asdf";
+    cell.textLabel.text = @"退货";
     return cell;
 }
 
@@ -55,6 +54,4 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 40;
 }
-
-
 @end
