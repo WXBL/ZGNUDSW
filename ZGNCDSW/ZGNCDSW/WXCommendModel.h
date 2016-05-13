@@ -7,12 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import "WXOrderModel.h"
 @interface WXCommendModel : NSObject
 @property(strong,nonatomic)NSString *Comment_ID;
 @property(strong,nonatomic)NSString *Comment_Content;
 @property(strong,nonatomic)NSString *Comment_Time;
-@property(strong,nonatomic)NSMutableDictionary *Indent;
+@property(strong,nonatomic)WXOrderModel *Indent;
 @property(nonatomic,strong)NSMutableArray *Comment_Image;
 
 -(id)getCommentDataWithDictionaryJSON:(NSDictionary *)dict;

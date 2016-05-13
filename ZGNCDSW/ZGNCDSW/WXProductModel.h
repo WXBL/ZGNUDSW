@@ -7,7 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import "WXMerchantModel.h"
+#import "WXTypeModel.h"
 @interface WXProductModel : NSObject
 @property(strong,nonatomic)NSString *Goods_ID;
 @property(strong,nonatomic)NSString *Goods_Name;
@@ -16,8 +17,8 @@
 @property(strong,nonatomic)NSString *Goods_Inventory;
 @property(strong,nonatomic)NSString *Goods_Average;
 @property(strong,nonatomic)NSString *Goods_last_time;
-@property(strong,nonatomic)NSMutableDictionary *Merchant;
-@property(strong,nonatomic)NSMutableDictionary *Goods_Type;
+@property(strong,nonatomic)WXMerchantModel *Merchant;
+@property(strong,nonatomic)WXTypeModel *Goods_Type;
 @property(strong,nonatomic)NSString *Goods_Pubilsh_time;
 @property(nonatomic,strong)NSMutableArray *Goods_Color;
 @property(nonatomic,strong)NSMutableArray *Goods_Size;

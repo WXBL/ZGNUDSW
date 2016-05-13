@@ -15,6 +15,7 @@
 #import "MBProgressHUD.h"
 #import "WXBuyCartController.h"
 #import "WXImageModel.h"
+#import "WXMerchantModel.h"
 @interface WXFarmDetailViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic,strong)UITableView *tableView;
@@ -586,7 +587,7 @@
     //价格
     UILabel *priceLabel = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(price.frame), titleLabel.frame.size.height, screenWidth * 0.2, 20)];
     priceLabel.textColor = [UIColor redColor];
-    priceLabel.text = @"$20";
+    priceLabel.text = [NSString stringWithFormat:@"¥ %@",self.theProduct.Goods_Buy_Num];
     priceLabel.textAlignment = NSTextAlignmentLeft;
     priceLabel.font = [UIFont systemFontOfSize:16];
     [self.cellBgView addSubview:priceLabel];
@@ -608,14 +609,15 @@
     
     UILabel *saleNum = [[UILabel alloc]initWithFrame:CGRectMake(screenWidth /3,  CGRectGetMinY(postageLabel.frame), screenWidth/3, 20)];
     saleNum.textColor = [UIColor grayColor];
-    saleNum.text = @"月销23423笔";
+    saleNum.text = [NSString stringWithFormat:@"月销%@笔",self.theProduct.Goods_Average];
     saleNum.textAlignment = NSTextAlignmentCenter;
     saleNum.font = [UIFont systemFontOfSize:14];
     [self.cellBgView addSubview:saleNum];
     
     UILabel *address = [[UILabel alloc]initWithFrame:CGRectMake(screenWidth /3 *2,  CGRectGetMinY(postageLabel.frame), screenWidth /3-10, 20)];
     address.textColor = [UIColor grayColor];
-    address.text = @"浙江";
+    WXMerchantModel *merchant=self.theProduct.Merchant;
+    address.text = merchant.Company_Address;
     address.textAlignment = NSTextAlignmentRight;
     address.font = [UIFont systemFontOfSize:14];
     [self.cellBgView addSubview:address];
