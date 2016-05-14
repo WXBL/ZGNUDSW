@@ -104,6 +104,12 @@
 		84CAD0AF1CE56C70005A8049 /* WXPayTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 84CAD0AE1CE56C70005A8049 /* WXPayTableViewCell.m */; };
 		84CAD0B21CE56E56005A8049 /* WXReturnrefundTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 84CAD0B11CE56E56005A8049 /* WXReturnrefundTableViewCell.m */; };
 		84CAD0B61CE5A33C005A8049 /* WXAddressController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84CAD0B51CE5A33C005A8049 /* WXAddressController.m */; };
+		84CAD0B91CE5B07F005A8049 /* WXAddAddressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84CAD0B81CE5B07F005A8049 /* WXAddAddressViewController.m */; };
+		84CAD0BE1CE5CD96005A8049 /* AddressChoicePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 84CAD0BC1CE5CD96005A8049 /* AddressChoicePickerView.m */; };
+		84CAD0BF1CE5CD96005A8049 /* AddressChoicePickerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84CAD0BD1CE5CD96005A8049 /* AddressChoicePickerView.xib */; };
+		84CAD0C21CE5CE13005A8049 /* AreaObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 84CAD0C11CE5CE13005A8049 /* AreaObject.m */; };
+		84CAD0C41CE5CE9E005A8049 /* AreaPlist.plist in Resources */ = {isa = PBXBuildFile; fileRef = 84CAD0C31CE5CE9E005A8049 /* AreaPlist.plist */; };
+		84CAD0C71CE5D705005A8049 /* WXAddressTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 84CAD0C61CE5D705005A8049 /* WXAddressTableViewCell.m */; };
 		84ED68451CCF1A5200A45281 /* WXHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84ED68441CCF1A5200A45281 /* WXHomeViewController.m */; };
 		84ED68911CCF528200A45281 /* UIView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 84ED68901CCF528200A45281 /* UIView+Extension.m */; };
 		84ED68941CCF545E00A45281 /* WXSearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 84ED68931CCF545E00A45281 /* WXSearchBar.m */; };
@@ -385,6 +391,16 @@
 		84CAD0B11CE56E56005A8049 /* WXReturnrefundTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXReturnrefundTableViewCell.m; sourceTree = "<group>"; };
 		84CAD0B41CE5A33C005A8049 /* WXAddressController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXAddressController.h; sourceTree = "<group>"; };
 		84CAD0B51CE5A33C005A8049 /* WXAddressController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXAddressController.m; sourceTree = "<group>"; };
+		84CAD0B71CE5B07F005A8049 /* WXAddAddressViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXAddAddressViewController.h; sourceTree = "<group>"; };
+		84CAD0B81CE5B07F005A8049 /* WXAddAddressViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXAddAddressViewController.m; sourceTree = "<group>"; };
+		84CAD0BB1CE5CD96005A8049 /* AddressChoicePickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressChoicePickerView.h; sourceTree = "<group>"; };
+		84CAD0BC1CE5CD96005A8049 /* AddressChoicePickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressChoicePickerView.m; sourceTree = "<group>"; };
+		84CAD0BD1CE5CD96005A8049 /* AddressChoicePickerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddressChoicePickerView.xib; sourceTree = "<group>"; };
+		84CAD0C01CE5CE13005A8049 /* AreaObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AreaObject.h; sourceTree = "<group>"; };
+		84CAD0C11CE5CE13005A8049 /* AreaObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AreaObject.m; sourceTree = "<group>"; };
+		84CAD0C31CE5CE9E005A8049 /* AreaPlist.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = AreaPlist.plist; sourceTree = "<group>"; };
+		84CAD0C51CE5D705005A8049 /* WXAddressTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXAddressTableViewCell.h; sourceTree = "<group>"; };
+		84CAD0C61CE5D705005A8049 /* WXAddressTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXAddressTableViewCell.m; sourceTree = "<group>"; };
 		84ED68431CCF1A5200A45281 /* WXHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXHomeViewController.h; sourceTree = "<group>"; };
 		84ED68441CCF1A5200A45281 /* WXHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXHomeViewController.m; sourceTree = "<group>"; };
 		84ED688F1CCF528200A45281 /* UIView+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Extension.h"; sourceTree = "<group>"; };
@@ -880,6 +896,8 @@
 		8436AE7C1CE2B749008FD067 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				79B6C28E1CE5747500E81B89 /* WXAddressModel.h */,
+				79B6C28F1CE5747500E81B89 /* WXAddressModel.m */,
 				8436AE7D1CE2B790008FD067 /* WXUserInforModel.h */,
 				8436AE7E1CE2B790008FD067 /* WXUserInforModel.m */,
 			);
@@ -991,12 +1009,29 @@
 		84CAD0B31CE5A304005A8049 /* UserManage（用户管理界列表） */ = {
 			isa = PBXGroup;
 			children = (
+				84CAD0BA1CE5CD8F005A8049 /* View */,
 				84CAD0A61CE55A57005A8049 /* WXUpdateUserNameController.h */,
 				84CAD0A71CE55A57005A8049 /* WXUpdateUserNameController.m */,
 				84CAD0B41CE5A33C005A8049 /* WXAddressController.h */,
 				84CAD0B51CE5A33C005A8049 /* WXAddressController.m */,
+				84CAD0B71CE5B07F005A8049 /* WXAddAddressViewController.h */,
+				84CAD0B81CE5B07F005A8049 /* WXAddAddressViewController.m */,
 			);
 			name = "UserManage（用户管理界列表）";
+			sourceTree = "<group>";
+		};
+		84CAD0BA1CE5CD8F005A8049 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				84CAD0BB1CE5CD96005A8049 /* AddressChoicePickerView.h */,
+				84CAD0BC1CE5CD96005A8049 /* AddressChoicePickerView.m */,
+				84CAD0BD1CE5CD96005A8049 /* AddressChoicePickerView.xib */,
+				84CAD0C01CE5CE13005A8049 /* AreaObject.h */,
+				84CAD0C11CE5CE13005A8049 /* AreaObject.m */,
+				84CAD0C51CE5D705005A8049 /* WXAddressTableViewCell.h */,
+				84CAD0C61CE5D705005A8049 /* WXAddressTableViewCell.m */,
+			);
+			name = View;
 			sourceTree = "<group>";
 		};
 		84ED688E1CCF520B00A45281 /* Category */ = {
@@ -1118,6 +1153,7 @@
 		8F0669471CC4E7ED007CD423 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				84CAD0C31CE5CE9E005A8049 /* AreaPlist.plist */,
 				8F0669481CC4E7ED007CD423 /* main.m */,
 			);
 			name = "Supporting Files";
@@ -1414,8 +1450,6 @@
 				8F288E7E1CD063F1007CA5EF /* WXCommendModel.m */,
 				7910382E1CE450CF00B3AC08 /* WXImageModel.h */,
 				7910382F1CE450CF00B3AC08 /* WXImageModel.m */,
-				79B6C28E1CE5747500E81B89 /* WXAddressModel.h */,
-				79B6C28F1CE5747500E81B89 /* WXAddressModel.m */,
 				79B6C2911CE57C3000E81B89 /* WXCollectionModel.h */,
 				79B6C2921CE57C3000E81B89 /* WXCollectionModel.m */,
 			);
@@ -1536,6 +1570,7 @@
 			files = (
 				84ED689C1CCF732C00A45281 /* 3.jpg in Resources */,
 				8F0669571CC4E7ED007CD423 /* LaunchScreen.storyboard in Resources */,
+				84CAD0BF1CE5CD96005A8049 /* AddressChoicePickerView.xib in Resources */,
 				8FA39DFA1CCE0C0B0034C622 /* zbar-back.png in Resources */,
 				8F288E911CD0B1FA007CA5EF /* reg_username_txt.png in Resources */,
 				84432A471CD9DFE700BD7B9E /* ShareSDK.bundle in Resources */,
@@ -1555,6 +1590,7 @@
 				8FA39DDE1CCE0C0B0034C622 /* sdRefeshView_arrow@2x.png in Resources */,
 				8F288E901CD0B1FA007CA5EF /* reg_pwd_txt@2x.png in Resources */,
 				84432A3E1CD9DFE700BD7B9E /* ShareSDKUI.bundle in Resources */,
+				84CAD0C41CE5CE9E005A8049 /* AreaPlist.plist in Resources */,
 				8F288E921CD0B1FA007CA5EF /* reg_username_txt@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1632,6 +1668,7 @@
 				8FA39DE81CCE0C0B0034C622 /* qrspec.c in Sources */,
 				8FA39DF81CCE0C0B0034C622 /* SHLUILabel.m in Sources */,
 				79B6C2931CE57C3000E81B89 /* WXCollectionModel.m in Sources */,
+				84CAD0C21CE5CE13005A8049 /* AreaObject.m in Sources */,
 				8460471D1CE01BC600DC01B9 /* WXShoppingModel.m in Sources */,
 				84004EA01CE1792E002DEFB6 /* WXNewfeatureViewController.m in Sources */,
 				84CAD0A11CE559E9005A8049 /* WXReceivingTableViewController.m in Sources */,
@@ -1642,6 +1679,7 @@
 				8F288E761CD0610A007CA5EF /* WXMessageModel.m in Sources */,
 				8F0669491CC4E7ED007CD423 /* main.m in Sources */,
 				8FA39E071CCE0CA70034C622 /* validateTest.m in Sources */,
+				84CAD0BE1CE5CD96005A8049 /* AddressChoicePickerView.m in Sources */,
 				8FA39E061CCE0CA70034C622 /* MViewUtil.m in Sources */,
 				84CAD0A51CE55A46005A8049 /* WXInforTableViewCell.m in Sources */,
 				8F62015C1CE01294002C9C60 /* WXVerifyTelephoneViewController.m in Sources */,
@@ -1667,6 +1705,7 @@
 				8401900F1CCE287900A43AA4 /* WXTabBarController.m in Sources */,
 				791037CF1CE4344800B3AC08 /* AFHTTPSessionManager.m in Sources */,
 				791037EF1CE4346700B3AC08 /* MJConst.m in Sources */,
+				84CAD0B91CE5B07F005A8049 /* WXAddAddressViewController.m in Sources */,
 				840190271CCE2A3700A43AA4 /* WXMyInforController.m in Sources */,
 				8406FAFA1CD8773000EA155E /* WXNewsDetailViewController.m in Sources */,
 				7910381B1CE4348800B3AC08 /* MKAnnotationView+WebCache.m in Sources */,
@@ -1682,6 +1721,7 @@
 				84F4ADC61CD35CDD00270CC4 /* WXfarmImportsTableViewCell.m in Sources */,
 				8FA39DD01CCE0C0B0034C622 /* ICSDrawerController.m in Sources */,
 				791038231CE4348800B3AC08 /* SDWebImagePrefetcher.m in Sources */,
+				84CAD0C71CE5D705005A8049 /* WXAddressTableViewCell.m in Sources */,
 				791037CE1CE4344800B3AC08 /* AFHTTPRequestOperationManager.m in Sources */,
 				84ED68451CCF1A5200A45281 /* WXHomeViewController.m in Sources */,
 				84C361FF1CD19C0A008ED985 /* WXRecommendTableViewCell.m in Sources */,

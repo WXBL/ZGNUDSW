@@ -12,6 +12,7 @@
 //#import "WXSexView.m"
 #import "WXInforTableViewCell.h"
 #import "WXUpdateUserNameController.h"
+#import "WXAddressController.h"
 @interface WXManagementController ()<UITableViewDelegate,UITableViewDataSource,UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UIAlertViewDelegate>{
     
     BOOL isFullScreen;
@@ -451,6 +452,11 @@
             [self.view addSubview:self.datePicker];
             
             
+        }
+    }else{
+        if (indexPath.row == 0) {
+            WXAddressController *addressViewController = [[WXAddressController alloc]init];
+            [self presentViewController:addressViewController animated:YES completion:nil];
         }
     }
     
