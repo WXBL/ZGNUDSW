@@ -117,11 +117,41 @@
     [self addScrollView];
     NSNotificationCenter *center=[NSNotificationCenter defaultCenter];
     [center addObserver:self selector:@selector(notice:) name:@"choice" object:nil];
+    
+    [center addObserver:self selector:@selector(recommend:) name:@"recommend" object:nil];
+}
+-(void)recommend:(NSNotification *)notification{
+    NSDictionary *recommendDic=[notification userInfo];
+    NSString *recommend=[recommendDic objectForKey:@"click"];
+    WXFarmImportsController *productVC=[[WXFarmImportsController alloc] init];
+    switch (recommend.intValue) {
+        case 0:
+            productVC.typeModel.Type_Name=@"s";
+            break;
+        case 1:
+            productVC.typeModel.Type_Name=@"sd";
+            break;
+        case 2:
+            productVC.typeModel.Type_Name=@"e";
+            break;
+        case 3:
+            productVC.typeModel.Type_Name=@"w";
+            break;
+        case 4:
+            productVC.typeModel.Type_Name=@"r";
+            break;
+            
+        default:
+            break;
+    }
+    [self presentViewController:productVC animated:YES completion:nil];
+    
 }
 -(void)notice:(NSNotification*)notification{
     NSDictionary *choiceDictionary=[notification userInfo];
     NSString *choice=[choiceDictionary objectForKey:@"choice"];
     NSLog(@"%@",choice);
+    UIAlertView * alertView=nil;
     switch (choice.intValue) {
         case 0:
             NSLog(@"%@",[MDDataBaseUtil userName]);
@@ -142,16 +172,18 @@
             }
             break;
         case 2:
-            
+            alertView=[[UIAlertView alloc] initWithTitle:@"提示" message:@"商家入驻，请登录官方网站注册！" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"关闭", nil];
+           
             break;
         case 3:
-            if ([MDDataBaseUtil userName]==NULL) {
-                WXUserLoginViewController *loginVC=[[WXUserLoginViewController alloc] init];
-                [self presentViewController:loginVC animated:YES completion:nil];
-            }else{
-                WXFarmImportsController *farmImportVC=[[WXFarmImportsController alloc] init];
-                [self presentViewController:farmImportVC animated:YES completion:nil];
-            }
+            alertView=[[UIAlertView alloc] initWithTitle:@"提示" message:@"大宗团购，请电话联系商家！" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"关闭", nil];
+//            if ([MDDataBaseUtil userName]==NULL) {
+//                WXUserLoginViewController *loginVC=[[WXUserLoginViewController alloc] init];
+//                [self presentViewController:loginVC animated:YES completion:nil];
+//            }else{
+//                WXFarmImportsController *farmImportVC=[[WXFarmImportsController alloc] init];
+//                [self presentViewController:farmImportVC animated:YES completion:nil];
+//            }
             break;
         case 4:
         {
@@ -162,6 +194,7 @@
         case 5:
         {
             WXFarmImportsController *farmImportVC=[[WXFarmImportsController alloc] init];
+            farmImportVC.typeModel.Type_Name=@"ad";
             [self presentViewController:farmImportVC animated:YES completion:nil];
         }
             break;
@@ -184,6 +217,7 @@
         default:
             break;
     }
+     [alertView show];
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];

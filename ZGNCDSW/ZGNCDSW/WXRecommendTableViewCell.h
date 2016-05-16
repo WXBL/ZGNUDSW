@@ -17,5 +17,6 @@
 @property (nonatomic,strong)UIImageView *phoneVipImage; //手机专享
 
 @property (nonatomic,strong)UILabel *titleLabel;
-
+@property(nonatomic,assign)CGPoint point;
+-(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event;
 @end

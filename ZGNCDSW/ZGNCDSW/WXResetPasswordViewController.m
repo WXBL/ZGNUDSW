@@ -43,7 +43,7 @@
     self.alertLbl=[[UILabel alloc] initWithFrame:CGRectMake((screenWidth-100)/2, 60, 100, 21)];
     self.alertLbl.text=@"当前网络不可用";
     self.alertLbl.textAlignment=NSTextAlignmentCenter;
-    self.alertLbl.font=[UIFont fontWithName:nil size:14];
+    self.alertLbl.font=[UIFont systemFontOfSize:14];
     self.alertLbl.textColor=[UIColor whiteColor];
     self.alertLbl.backgroundColor=[UIColor grayColor];
     self.alertLbl.alpha=0;

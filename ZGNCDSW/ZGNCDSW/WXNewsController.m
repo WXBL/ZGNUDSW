@@ -138,7 +138,7 @@
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
     return self.newsDataArray.count;
-    //    return 10;
+//        return 1;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -179,7 +179,6 @@
         [newView addSubview:detailLabel];
     }
     
-    
     //    UIButton *messageButton = [UIButton buttonWithType:UIButtonTypeCustom];
     //    messageButton.frame = CGRectMake(screenWidth * 0.3, newView.frame.size.height - 35, 100, 30);
     //    [messageButton setTitle:@"消息" forState:UIControlStateNormal];
@@ -197,7 +196,7 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     WXNewsDetailViewController *newDetailViewController = [[WXNewsDetailViewController alloc]init];
-    
+//    newDetailViewController.theNew=[self.newsDataArray objectAtIndex:indexPath.row];
     [self presentViewController:newDetailViewController animated:YES completion:nil];
 }
 

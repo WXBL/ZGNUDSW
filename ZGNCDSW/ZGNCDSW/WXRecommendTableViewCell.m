@@ -78,4 +78,21 @@
     
     return self;
 }
+-(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+    UITouch *touch=[touches anyObject];
+    self.point=[touch locationInView:self];
+    NSLog(@"point=%lf,%lf",self.point.x,self.point.y);
+    [self setNeedsDisplay];
+    NSInteger i;
+    if ((int)(self.point.y/(CGRectGetHeight(self.frame)/2))==0) {
+        i=(int)self.point.x/(CGRectGetWidth(self.frame)/3);
+    }else if((int)(self.point.y/(CGRectGetHeight(self.frame)/2))==1 && (int)(self.point.x/(CGRectGetWidth(self.frame)/3))==0){
+        i=0;
+    }else if((int)(self.point.y/(CGRectGetHeight(self.frame)/2))==1){
+        i=(int)(self.point.x-(CGRectGetWidth(self.frame)/3))/(CGRectGetWidth(self.frame)/3)+3;
+    }
+    NSLog(@"%ld",i);
+    NSNotification *notice=[NSNotification notificationWithName:@"recommend" object:nil userInfo:@{@"click":[NSString stringWithFormat:@"%ld",i]}];
+    [[NSNotificationCenter defaultCenter]postNotification:notice];
+}
 @end

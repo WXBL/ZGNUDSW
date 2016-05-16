@@ -32,6 +32,12 @@
     }
     return _productArray;
 }
+-(WXTypeModel *)typeModel{
+    if (!_typeModel) {
+        self.typeModel=[[WXTypeModel alloc] init];
+    }
+    return _typeModel;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -61,8 +67,14 @@
     NSString *path=[NSString stringWithFormat:@"%@%@",BASE_SERVICE_URL,@""];
     NSMutableDictionary *params=[NSMutableDictionary dictionary];
     if (self.typeModel) {
+        if (![self.typeModel.Type_ID isEqualToString:@""]) {
+            params[@"Type_ID"]=self.typeModel.Type_ID;
+            if (![self.typeModel.Type_Name isEqualToString:@""]) {
+                params[@"Type_Name"]=self.typeModel.Type_Name;
+            }
+        }
         
-        params[@"Type_ID"]=self.typeModel.Type_ID;
+        
     }
     [AFMGR GET:path parameters:params success:^(AFHTTPRequestOperation *operation,NSArray *responseObject){
         self.productArray=[[[WXProductModel alloc] init] getProductListWithArrayJSON:responseObject];

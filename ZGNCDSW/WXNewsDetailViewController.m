@@ -8,7 +8,8 @@
 
 #import "WXNewsDetailViewController.h"
 #import "WXTopView.h"
-
+#import "WXImageModel.h"
+#import "UILabel+WXStringFrame.h"
 @interface WXNewsDetailViewController ()<UIScrollViewDelegate,UITextViewDelegate>
 
 @property (nonatomic,strong)UIScrollView *scrollView;
@@ -48,19 +49,45 @@
  * 添加内容
  */
 -(void)addContentText{
-    self.newsTextView = [[UITextView alloc]initWithFrame:CGRectMake(0, 50, screenWidth, screenHeigth - 50)];
-    self.newsTextView.delegate = self;
-    [self.view addSubview:self.newsTextView];
+//    self.newsTextView = [[UITextView alloc]initWithFrame:CGRectMake(0, 50, screenWidth, screenHeigth - 50)];
+//    self.newsTextView.delegate = self;
+//    [self.view addSubview:self.newsTextView];
+//    
+//    self.newsTextView.text = @"askelfasldjflkasdfkjaaskelfasldjflkasdfkjaaskelfasldjflkasdfkjaaskelfasldjflkasdfkjaaskelfasldjflkasdfkjaaskelfasldjflkasdfkjaaskelfasldjflkasdfkjaaskelfasldjflkasdfkjaaskelfasldjflkasdfkjaaskelfasldjflkasdfkja;lskdjflkasldf";
+//    self.newsTextView.textAlignment = NSTextAlignmentLeft;
+//    self.newsTextView.textColor = [UIColor grayColor];
+//    self.newsTextView.font = [UIFont systemFontOfSize:100];
+//    //设置文字编辑使能属性，是否允许编辑（＝no时，只用来显示，依然可以选择和拷贝）
+//    self.newsTextView.editable = NO;
+//    
+//    //修复文本框是偏移（下移）
+//    self.automaticallyAdjustsScrollViewInsets = NO;
+    UILabel *titleLbl=[[UILabel alloc] initWithFrame:CGRectMake(10, 0, screenWidth-10, 40)];
+    titleLbl.text=self.theNew.Administrivia_Name;
+    titleLbl.numberOfLines=0;
+    titleLbl.textAlignment=NSTextAlignmentCenter;
+    titleLbl.textColor=[UIColor grayColor];
+    titleLbl.font=[UIFont systemFontOfSize:20];
+    [self.scrollView addSubview:titleLbl];
     
-    self.newsTextView.text = @"askelfasldjflkasdfkja;lskdjflkasldf";
-    self.newsTextView.textAlignment = NSTextAlignmentLeft;
-    self.newsTextView.textColor = [UIColor grayColor];
-    self.newsTextView.font = [UIFont systemFontOfSize:20];
-    //设置文字编辑使能属性，是否允许编辑（＝no时，只用来显示，依然可以选择和拷贝）
-    self.newsTextView.editable = NO;
+    UIImageView *imgView=[[UIImageView alloc] initWithFrame:CGRectMake(10, CGRectGetMaxY(titleLbl.frame), screenWidth-20, screenWidth-10)];
     
-    //修复文本框是偏移（下移）
-    self.automaticallyAdjustsScrollViewInsets = NO;
+    imgView.image=[UIImage imageNamed:((WXImageModel *)[self.theNew.newsImgArr firstObject]).Image_ur];
+    [self.scrollView addSubview:imgView];
+    
+    UILabel *newsContentLbl=[[UILabel alloc] initWithFrame:CGRectMake(10, CGRectGetMaxY(imgView.frame), screenWidth-20, screenHeigth)];
+    newsContentLbl.numberOfLines=0;
+    newsContentLbl.textAlignment=NSTextAlignmentLeft;
+    newsContentLbl.textColor=[UIColor grayColor];
+    newsContentLbl.font=[UIFont systemFontOfSize:16];
+    NSString *contentStr=self.theNew.Administrivia_Content;
+    newsContentLbl.text=contentStr;
+    CGSize size=[newsContentLbl boundingRectWithSize:CGSizeMake(screenWidth-20, 0)];
+    newsContentLbl.frame=CGRectMake(10, CGRectGetMaxY(imgView.frame), size.width, size.height);
+    
+    [self.scrollView addSubview:newsContentLbl];
+    self.scrollView.contentSize=CGSizeMake(screenWidth, CGRectGetMaxY(newsContentLbl.frame));
+    
 }
 
 -(void)textViewDidChangeSelection:(UITextView *)textView

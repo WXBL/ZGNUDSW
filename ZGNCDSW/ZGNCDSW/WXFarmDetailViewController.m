@@ -16,6 +16,14 @@
 #import "WXBuyCartController.h"
 #import "WXImageModel.h"
 #import "WXMerchantModel.h"
+#import "AFNetworking.h"
+#import "AFHTTPRequestOperationManager.h"
+#import "MDDataBaseUtil.h"
+#import "WXColorModel.h"
+#import "WXSizeModel.h"
+#define PRODUCT_IS_COLLECTION @""
+#define ADD_COLLECTION_PRODUCT @""
+#define CANCEL_COLLECTION_PRODUCT @""
 @interface WXFarmDetailViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic,strong)UITableView *tableView;
@@ -35,6 +43,9 @@
 @property (nonatomic,strong)NSMutableArray *sizeArray;
 
 @property (nonatomic,strong)UIView *commentView;//评论
+
+@property(nonatomic,copy)NSString *str;
+@property(nonatomic,assign)CGFloat height;
 @end
 
 @implementation WXFarmDetailViewController
@@ -50,7 +61,12 @@
     }
     return _sizeArray;
 }
-
+-(NSString *)str{
+    if (!_str) {
+        self.str=[NSString string];
+    }
+    return _str;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -62,6 +78,60 @@
     [self addproductPic];
     [self addbuyCart];
     
+}
+-(void)viewWillAppear:(BOOL)animated{
+    [self.sizeTableView reloadData];
+    [self.tableView reloadData];
+}
+-(void)viewWillDisappear:(BOOL)animated{
+    AFHTTPRequestOperationManager *AFMgr=[AFHTTPRequestOperationManager manager];
+    NSMutableDictionary *param=[NSMutableDictionary dictionary];
+    NSString *path=@"";
+    if ([[NSUserDefaults standardUserDefaults]objectForKey:@"oldCollectionProduct"]&&![[NSUserDefaults standardUserDefaults] objectForKey:@"saveTheProduct"]) {
+//         取消收藏
+        param[@"Collection_ID"]=[[NSUserDefaults standardUserDefaults]objectForKey:@"oldCollectionProduct"];
+        path=[NSString stringWithFormat:@"%@%@",BASE_SERVICE_URL,CANCEL_COLLECTION_PRODUCT];
+        
+        
+    }else if(![[NSUserDefaults standardUserDefaults]objectForKey:@"oldCollectionProduct"]&&[[NSUserDefaults standardUserDefaults] objectForKey:@"saveTheProduct"]){
+//        加入收藏
+        param[@"User_ID"]=[MDDataBaseUtil userID];
+        param[@"Goods_ID"]=self.theProduct.Goods_ID;
+        path=[NSString stringWithFormat:@"%@%@",BASE_SERVICE_URL,ADD_COLLECTION_PRODUCT];
+    }
+    
+    [AFMgr POST:path parameters:param success:^(AFHTTPRequestOperation *operation,NSString *responseObject){
+        NSLog(@"%@",responseObject);
+            }failure:^(AFHTTPRequestOperation *operation,NSError *error){
+        
+    }];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"oldCollectionProduct"];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"saveTheProduct"];
+
+}
+-(void)theProductIsCellection{
+    AFHTTPRequestOperationManager *mgr=[AFHTTPRequestOperationManager manager];
+    NSMutableDictionary *params=[NSMutableDictionary dictionary];
+    params[@"Goods_ID"]=self.theProduct.Goods_ID;
+    
+    NSString *path=[NSString stringWithFormat:@"%@%@",BASE_SERVICE_URL,PRODUCT_IS_COLLECTION];
+    [mgr POST:path parameters:params success:^(AFHTTPRequestOperation *operation,NSString *responseObject){
+        if ([responseObject isEqualToString:self.theProduct.Goods_ID]) {
+            [[NSUserDefaults standardUserDefaults] setObject:self.theProduct forKey:@"oldCollectionProduct"];
+            [[NSUserDefaults standardUserDefaults] setObject:self.theProduct forKey:@"saveTheProduct"];
+        }
+        
+    }failure:^(AFHTTPRequestOperation *operation,NSError *error){
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        
+        hud.mode = MBProgressHUDModeText;
+        
+        hud.labelText=@"网络请求失败";
+        hud.margin = 10.f;
+        hud.yOffset = 150.f;
+        hud.removeFromSuperViewOnHide = YES;
+        [hud hide:YES afterDelay:2];
+    }];
 }
 //设置导航
 -(void)setNavBar
@@ -104,6 +174,7 @@
     
     self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 50, screenWidth, screenHeigth - 90) style:UITableViewStylePlain];
     self.tableView.backgroundColor = [UIColor colorWithWhite:0.9 alpha:1];
+    self.tableView.tag=1;
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.tableFooterView = [[UIView alloc]init];
@@ -124,26 +195,13 @@
     self.buyCartView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.buyCartView];
     
-    UIButton *customService = [UIButton buttonWithType:UIButtonTypeCustom];
-    customService.frame = CGRectMake(0, 0, screenWidth *0.4/3, 40);
-    //    [keep setImage:[UIImage imageNamed:@"collect"] forState:UIControlStateNormal];
-    [customService setTitle:@"客服" forState:UIControlStateNormal];
-    [customService setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
-    [customService setTitleColor:[UIColor blackColor] forState:UIControlStateHighlighted];
-    customService.titleLabel.font = [UIFont systemFontOfSize:12];
-    [customService.layer setBorderColor:[UIColor colorWithWhite:0.9 alpha:1].CGColor];
-    [customService.layer setBorderWidth:0.5];
-    [customService.layer setMasksToBounds:YES];
-    [customService addTarget:self action:@selector(ClickServiceButton:) forControlEvents:UIControlEventTouchUpInside];
-    [self.buyCartView addSubview:customService];
-    
     UIButton *store = [UIButton buttonWithType:UIButtonTypeCustom];
-    store.frame = CGRectMake(screenWidth *0.4/3, 0, screenWidth *0.4/3, 40);
+    store.frame = CGRectMake(0, 0, screenWidth/6, 40);
     //    [keep setImage:[UIImage imageNamed:@"collect"] forState:UIControlStateNormal];
     [store setTitle:@"商家" forState:UIControlStateNormal];
     [store setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
     [store setTitleColor:[UIColor blackColor] forState:UIControlStateHighlighted];
-    store.titleLabel.font = [UIFont systemFontOfSize:12];
+    store.titleLabel.font = [UIFont systemFontOfSize:14];
     [store.layer setBorderColor:[UIColor colorWithWhite:0.9 alpha:1].CGColor];
     [store.layer setBorderWidth:0.5];
     [store.layer setMasksToBounds:YES];
@@ -151,12 +209,24 @@
     [self.buyCartView addSubview:store];
     
     UIButton *keep = [UIButton buttonWithType:UIButtonTypeCustom];
-    keep.frame = CGRectMake(screenWidth *0.4/3*2, 0, screenWidth *0.4/3, 40);
+    keep.frame = CGRectMake(CGRectGetMaxX(store.frame), 0, screenWidth/6, 40);
 //    [keep setImage:[UIImage imageNamed:@"collect"] forState:UIControlStateNormal];
     [keep setTitle:@"收藏" forState:UIControlStateNormal];
     [keep setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
-    [keep setTitleColor:[UIColor blackColor] forState:UIControlStateHighlighted];
-    keep.titleLabel.font = [UIFont systemFontOfSize:12];
+
+    [keep setTitle:@"已收藏" forState:UIControlStateSelected];
+    [keep setTitleColor:[UIColor redColor] forState:UIControlStateSelected];
+    
+    if ([[NSUserDefaults standardUserDefaults]objectForKey:@"saveTheProduct"]) {
+        keep.selected=YES;
+    }else{
+        keep.selected=NO;
+    }
+
+    
+    [keep setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+    [keep setTitleColor:[UIColor redColor] forState:UIControlStateHighlighted];
+    keep.titleLabel.font = [UIFont systemFontOfSize:14];
     [keep.layer setBorderColor:[UIColor colorWithWhite:0.9 alpha:1].CGColor];
     [keep.layer setBorderWidth:0.5];
     [keep.layer setMasksToBounds:YES];
@@ -164,20 +234,20 @@
     [self.buyCartView addSubview:keep];
     
     UIButton *addbuyCart = [UIButton buttonWithType:UIButtonTypeCustom];
-    addbuyCart.frame = CGRectMake(screenWidth * 0.4, 0, screenWidth*0.3, 40);
+    addbuyCart.frame = CGRectMake(CGRectGetMaxX(keep.frame), 0, screenWidth/3, 40);
     addbuyCart.backgroundColor = [UIColor colorWithRed:0.3 green:0.7 blue:0.5 alpha:1];
     [addbuyCart setTitle:@"加入购物车" forState:UIControlStateNormal];
     [addbuyCart setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    addbuyCart.titleLabel.font = [UIFont systemFontOfSize:13];
+    addbuyCart.titleLabel.font = [UIFont systemFontOfSize:16];
     [addbuyCart addTarget:self action:@selector(addBuyCartButton:) forControlEvents:UIControlEventTouchUpInside];
     [self.buyCartView addSubview:addbuyCart];
     
     UIButton *buyLabel = [UIButton buttonWithType:UIButtonTypeCustom];
-    buyLabel.frame = CGRectMake(screenWidth * 0.7, 0, screenWidth*0.3, 40);
+    buyLabel.frame = CGRectMake(CGRectGetMaxX(addbuyCart.frame), 0, screenWidth/3, 40);
     buyLabel.backgroundColor = [UIColor colorWithRed:0.8 green:0.2 blue:0.3 alpha:1];
     [buyLabel setTitle:@"立即购买" forState:UIControlStateNormal];
     [buyLabel setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    buyLabel.titleLabel.font = [UIFont systemFontOfSize:13];
+    buyLabel.titleLabel.font = [UIFont systemFontOfSize:16];
     [buyLabel addTarget:self action:@selector(ClickBuyButton:) forControlEvents:UIControlEventTouchUpInside];
     [self.buyCartView addSubview:buyLabel];
 }
@@ -193,7 +263,18 @@
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
     hud.mode = MBProgressHUDModeText;
-    hud.labelText = @"收藏成功！";
+    
+    
+    if ([[NSUserDefaults standardUserDefaults]objectForKey:@"saveTheProduct"]) {
+        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"saveTheProduct"];
+        hud.labelText=@"取消收藏";
+        
+        sender.selected=NO;
+    }else{
+        [[NSUserDefaults standardUserDefaults] setObject:self.theProduct forKey:@"saveTheProduct"];
+        hud.labelText = @"收藏成功！";
+        sender.selected=YES;
+    }
     hud.margin = 10.f;
     hud.yOffset = 150.f;
     hud.removeFromSuperViewOnHide = YES;
@@ -353,7 +434,7 @@
         return 4;
     }else{
 //        return self.sizeArray.count;
-        return 10;
+        return 4;
     }
     
 }
@@ -362,7 +443,7 @@
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (tableView == self.tableView) {
+    if (tableView.tag==1) {
         static NSString *cellStr = @"cell";
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellStr];
         if (cell == nil) {
@@ -428,16 +509,58 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
         return cell;
-    }else{
+    }else if(tableView.tag==2){
         static NSString *cellStr = @"sizecell";
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellStr];
         if (cell == nil) {
             cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellStr];
         }
-        cell.textLabel.text = @"sdf";
+//        cell.textLabel.text = @"sdf";
+        UILabel *nameLbl=[[UILabel alloc] initWithFrame:CGRectMake(5, 0, 80, CGRectGetHeight(cell.frame))];
+//        nameLbl.backgroundColor=[UIColor grayColor];
+        nameLbl.textAlignment=NSTextAlignmentCenter;
+        [cell.contentView addSubview:nameLbl];
+        UILabel *contentLbl=[[UILabel alloc] init];
+        contentLbl.frame=CGRectMake(CGRectGetMaxX(nameLbl.frame), CGRectGetMinY(nameLbl.frame)+3, screenWidth-CGRectGetMaxX(nameLbl.frame)-5, self.height+10);
+        NSLog(@"%lf",CGRectGetHeight(cell.frame));
+//        contentLbl.backgroundColor=[UIColor lightGrayColor];
+        contentLbl.numberOfLines=0;
+        [cell.contentView addSubview:contentLbl];
+        WXTypeModel *type=self.theProduct.Goods_Type;
+        NSMutableArray *size=self.theProduct.Goods_Size;
+        NSMutableArray *color=self.theProduct.Goods_Color;
+        if (indexPath.row==0) {
+            nameLbl.text=@"名称";
+            contentLbl.text=self.theProduct.Goods_Name;
+        }else if (indexPath.row==1){
+            nameLbl.text=@"类型";
+            contentLbl.text=type.Type_Name;
+        }else if(indexPath.row==2){
+            nameLbl.text=@"大小";
+            NSString *str;
+            for (int i=0; i<size.count; i++) {
+                str=[str stringByAppendingString:((WXSizeModel *)[size objectAtIndex:i]).Goods_Size];
+            }
+            contentLbl.text=str;
+        }else if(indexPath.row==3){
+            nameLbl.text=@"颜色";
+//            NSString *str;
+            for (int i=0; i<color.count; i++) {
+                self.str=[self.str stringByAppendingString:[NSString stringWithFormat:@"%@     ",((WXColorModel *)[color objectAtIndex:i]).Goods_Color]];
+                
+            }
+            contentLbl.text=self.str;
+            
+             NSLog(@"%lf",self.height);
+            [contentLbl sizeToFit];
+            contentLbl.backgroundColor=[UIColor lightGrayColor];
+
+            
+            
+        }
         return cell;
     }
-   
+    return nil;
 }
 
 
@@ -467,6 +590,13 @@
             return 40;
         }
     }else{
+        
+//        return 40;
+        if (indexPath.row==3) {
+            CGSize size=CGSizeMake(screenWidth-90, 200);
+            self.height=[self.str boundingRectWithSize:size options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14]} context:nil].size.height;
+            return self.height;
+        }
         return 40;
     }
 
@@ -515,9 +645,12 @@
     productSize.textAlignment = NSTextAlignmentCenter;
     [self.sizeView addSubview:productSize];
     
-    self.sizeTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, productSize.frame.size.height, screenWidth, sizeView.frame.size.height * 0.8) style:UITableViewStylePlain];
+    self.sizeTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, productSize.frame.size.height, screenWidth, sizeView.frame.size.height * 0.8)];
     self.sizeTableView.delegate = self;
     self.sizeTableView.dataSource = self;
+    self.sizeTableView.tag=2;
+    self.sizeTableView.allowsSelection=NO;
+    self.sizeTableView.bounces=NO;
     self.sizeTableView.backgroundColor = [UIColor whiteColor];
     self.sizeTableView.tableFooterView = [[UIView alloc]init];
     [self.sizeView addSubview:self.sizeTableView];
@@ -724,4 +857,5 @@
     WXCommentController *commnetView = [[WXCommentController alloc]init];
     [self presentViewController:commnetView animated:YES completion:nil];
 }
+
 @end

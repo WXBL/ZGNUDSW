@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "WXNewsModel.h"
 @interface WXNewsDetailViewController : UIViewController
-
+@property(nonatomic,strong)WXNewsModel *theNew;
 @end
