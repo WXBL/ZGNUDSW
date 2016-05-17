@@ -36,6 +36,7 @@
 @property (nonatomic,strong)UIView *cellBgView;
 
 @property (nonatomic,strong)UIView *sizeBgView;//参数
+@property(nonatomic,strong)UIButton *bgButton;
 @property (nonatomic,strong)UIView *sizeView;
 @property (nonatomic,strong)UITableView *sizeTableView;
 @property (nonatomic,strong)UIView *buyCartView;
@@ -78,6 +79,18 @@
     // Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor colorWithWhite:0.9 alpha:1];
     
+    self.sizeBgView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, screenWidth, screenHeigth)];
+    self.sizeBgView.backgroundColor = [UIColor blackColor];
+    self.sizeBgView.alpha = 0.3;
+    [self.view addSubview:self.sizeBgView];
+    
+    
+    self.bgButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    self.bgButton.frame = CGRectMake(0, 0, screenWidth, screenHeigth);
+    self.bgButton.backgroundColor = [UIColor clearColor];
+    [self.bgButton addTarget:self action:@selector(ClickBgButton:) forControlEvents:UIControlEventTouchUpInside];
+    [self.sizeBgView addSubview:self.bgButton];
+    
     [self setNavBar];
     
     [self addTableView];
@@ -115,6 +128,10 @@
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"saveTheProduct"];
 
 }
+/**
+ 检测该商品是否被收藏
+ */
+
 -(void)theProductIsCellection{
     AFHTTPRequestOperationManager *mgr=[AFHTTPRequestOperationManager manager];
     NSMutableDictionary *params=[NSMutableDictionary dictionary];
@@ -259,10 +276,15 @@
 }
 
 
-
+/**
+ *进入商店
+ */
 -(void)ClickGoToStoreButton:(UIButton *)sender{
     
 }
+/*
+ 收藏方法
+ */
 -(void)ClickKeepButton:(UIButton *)sender{
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
@@ -584,14 +606,16 @@
     if (tableView == self.tableView) {
         if (indexPath.row == 1) {
             [self showProductSize];
-        }else if(indexPath.row==0){
-            NSLog(@"asda");
+        }else if(indexPath.row==2){
+            [self showShoppingChooseType];
         }
     }
     
     
 }
-
+-(void)showShoppingChooseType{
+    
+}
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -634,17 +658,7 @@
  */
 -(void)showProductSize
 {
-    self.sizeBgView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, screenWidth, screenHeigth)];
-    self.sizeBgView.backgroundColor = [UIColor blackColor];
-    self.sizeBgView.alpha = 0.3;
-    [self.view addSubview:self.sizeBgView];
-    
-    
-    UIButton *bgButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    bgButton.frame = CGRectMake(0, 0, screenWidth, screenHeigth);
-    bgButton.backgroundColor = [UIColor clearColor];
-    [bgButton addTarget:self action:@selector(ClickBgButton:) forControlEvents:UIControlEventTouchUpInside];
-    [self.sizeBgView addSubview:bgButton];
+
     
     UIView *sizeView = [[UIView alloc]initWithFrame:CGRectMake(0, screenHeigth/2, screenWidth, screenHeigth/2)];
     sizeView.backgroundColor = [UIColor whiteColor];
@@ -770,7 +784,7 @@
     [self.cellBgView addSubview:address];
     
 }
-
+#pragma share
 -(void)ClickShareButton:(UIButton *)sender
 {
     NSArray *imageArray = self.theProduct.Goods_Image;
