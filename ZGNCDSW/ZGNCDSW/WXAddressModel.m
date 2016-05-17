@@ -10,7 +10,7 @@
 
 @implementation WXAddressModel
 
-
+@synthesize addressClickState;
 
 
 -(id)getAddressDataWithArrayJSON:(NSArray *)array{
@@ -38,6 +38,7 @@
         model.User_ID=[((NSNumber *)dict[@"User_ID"]) stringValue];
         
 
+        model.addressClickState = 0;
         
         return model;
     }

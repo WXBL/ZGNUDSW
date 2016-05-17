@@ -70,6 +70,7 @@
     toolbar.backgroundColor = [UIColor whiteColor];
     toolbar.frame = CGRectMake(0, self.cellView.frame.size.height+1, screenWidth, 30);
     [self.contentView addSubview:toolbar];
+    toolbar.delegate = self;
     self.toolbar = toolbar;
 }
 
@@ -78,10 +79,12 @@
  */
 -(void)showAddressCell{
     UIView *cellView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, screenWidth, 90)];
+//    UIView *cellView = [[UIView alloc]init];
     cellView.backgroundColor = [UIColor whiteColor];
     [self addSubview:cellView];
     self.cellView = cellView;
     UILabel *name = [[UILabel alloc]initWithFrame:CGRectMake(10, 10, cellView.frame.size.width/2-10, cellView.frame.size.height/3)];
+//    UILabel *name = [[UILabel alloc]init];
     name.text = @"jwh";
     name.textColor = [UIColor blackColor];
     name.font = [UIFont systemFontOfSize:14];
@@ -109,35 +112,45 @@
     
 }
 
-//-(void)setAddressFrame:(WXAddressFrame *)addressFrame{
-//    _addressFrame = addressFrame;
-//    
+-(void)setAddressFrame:(WXAddressFrame *)addressFrame{
+    _addressFrame = addressFrame;
+    
 //    WXAddressModel *address = addressFrame.address;
-//    
-//    self.cellView.frame = addressFrame.cellViewF;
-//    //收件人
-//    self.name.frame = addressFrame.usernameF;
-////    self.name.text =address.username;
+    
+    self.cellView.frame = addressFrame.cellViewF;
+    //收件人
+    self.name.frame = addressFrame.usernameF;
+//    self.name.text =address.username;
 //    self.name.text = @"jwh";
-//    
-//    //phone
-//    self.phone.frame = addressFrame.phoneF;
-////    self.phone.text = address.Phone;
+    
+    //phone
+    self.phone.frame = addressFrame.phoneF;
+//    self.phone.text = address.Phone;
 //    self.phone.text = @"15075056282";
-//    
-//    self.address.frame = addressFrame.addressDetailF;
-////    self.address.text = address.Specific_Address;
+    
+    self.address.frame = addressFrame.addressDetailF;
+//    self.address.text = address.Specific_Address;
 //    self.address.text = @"天津市武清区";
-//    
-//    self.toolbar.frame = addressFrame.toolBarF;
-//    
-//
-//}
+    
+    self.toolbar.frame = addressFrame.toolBarF;
+    
+
+}
 //
 -(void)addressToolBar:(UIView *)toolBar didClickButton:(UIButton *)button{
     if (button.tag ==100) {
-        isbool = YES;
-        [self.toolbar.defaultBtn setImage:[UIImage imageNamed:@"iconfont-zhengque"] forState:UIControlStateNormal];
+        if (isbool) {
+            _addressModel.addressClickState = 0;
+            [_delegate WXAddressTableViewCell:_addressModel];
+            [self.toolbar.defaultBtn setImage:[UIImage imageNamed:@"iconfont-yuanquan"] forState:UIControlStateNormal];
+            isbool = NO;
+        }else{
+            _addressModel.addressClickState = 1;
+            [_delegate WXAddressTableViewCell:_addressModel];
+            [self.toolbar.defaultBtn setImage:[UIImage imageNamed:@"iconfont-zhengque"] forState:UIControlStateNormal];
+            isbool = YES;
+        }
+        
         
     }else if (button.tag ==200){
         

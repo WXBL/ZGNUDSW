@@ -9,14 +9,16 @@
 #import <Foundation/Foundation.h>
 
 @interface WXAddressModel : NSObject
-@property(strong,nonatomic)NSString *Address_ID;
-@property(strong,nonatomic)NSString *Specific_Address;//详细地址
-@property(strong,nonatomic)NSString *User_ID;
-@property(strong,nonatomic)NSString *addNumber;//邮编
-@property(strong,nonatomic)NSString *Phone;
-@property(strong,nonatomic)NSString *addName;//所在地区
-@property(strong,nonatomic)NSString *username;//收件人
-@property(strong,nonatomic)NSString *IS_default;
+@property(copy,nonatomic)NSString *Address_ID;
+@property(copy,nonatomic)NSString *Specific_Address;//详细地址
+@property(copy,nonatomic)NSString *User_ID;
+@property(copy,nonatomic)NSString *addNumber;//邮编
+@property(copy,nonatomic)NSString *Phone;
+@property(copy,nonatomic)NSString *addName;//所在地区
+@property(copy,nonatomic)NSString *username;//收件人
+@property(copy,nonatomic)NSString *IS_default;
+
+@property (assign,nonatomic)NSInteger addressClickState;
 
 
 -(id)getAddressDataWithDictionaryJSON:(NSDictionary *)dict;

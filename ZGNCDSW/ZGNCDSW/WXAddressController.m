@@ -10,8 +10,8 @@
 #import "WXTopView.h"
 #import "WXAddAddressViewController.h"
 #import "WXAddressTableViewCell.h"
+#import "WXAddressModel.h"
 #import "WXAddressFrame.h"
-//#import "WXAddressTVCell.h"
 @interface WXAddressController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic,strong)UITableView *tableView;
@@ -35,15 +35,22 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
    
-    self.addressArray = [NSMutableArray array];
-    
+//    self.addressArray = [NSMutableArray array];
+//    WXAddressModel *model=[[WXAddressModel alloc] init];
+//    model.addName=@"asd";
+//    model.addNumber=@"1231";
+//    model.Specific_Address = @"tinajinshiwuqingqu";
+//    [self.addressArray addObject:model];
     [self addNavBar];
     
     [self addTableView];
     
     [self addAddressButton];
     
+    
 }
+
+
 -(void)addNavBar{
     WXTopView *topView = [[WXTopView alloc]initWithFrame:CGRectMake(0, 0, screenWidth, 50) TitleText:@"收货地址"];
     [topView.backButton addTarget:self action:@selector(backButton:) forControlEvents:UIControlEventTouchUpInside];
@@ -118,6 +125,7 @@
     
     WXAddressTableViewCell *cell = [WXAddressTableViewCell cellWithTableView:tableView];
     
+//
 //    cell.addressFrame = self.addressArray[indexPath.row];
     
     return cell;
@@ -127,7 +135,8 @@
 
 #pragma mark tableView -delegate
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-//    WXAddressFrame *frame = [[WXAddressFrame alloc]init];
+    
+//    WXAddressFrame *frame = self.addressArray[indexPath.row];
     
     return 130;
  
