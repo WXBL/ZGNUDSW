@@ -7,7 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MessageUI/MessageUI.h>
+#import "NetWork.h"
+@interface WXForgetPasswordViewController : UIViewController<UITextFieldDelegate,UIAlertViewDelegate>
+@property(nonatomic,strong)UITextField *telePhoneTextField;
+@property(nonatomic,strong)UILabel *signLbl;
 
-@interface WXForgetPasswordViewController : UIViewController
+@property(nonatomic,strong)UIButton *registerBtn;
+
+@property(nonatomic,strong)UILabel *alertLbl;
+@property(nonatomic,strong)NetWork *isHaveNet;
+@property(nonatomic,strong)UITextField *passTextField;
+
 
 @end

@@ -23,6 +23,7 @@
         model.Shipments_Address=(dict[@"Shipments_Address"]==[NSNull null])?@"":dict[@"Shipments_Address"];
         model.Goods_Color=(dict[@"Goods_Color"]==[NSNull null])?@"":dict[@"Goods_Color"];
         model.Goods_Size=(dict[@"Goods_Size"]==[NSNull null])?@"":dict[@"Goods_Size"];
+        model.Goods_Number=[((NSNumber *)dict[@"number"]) stringValue];
         return model;
     }
     

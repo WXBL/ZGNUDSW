@@ -21,7 +21,7 @@
 #import "AFHTTPRequestOperationManager.h"
 #import "WXNewsModel.h"
 #import "WXProductModel.h"
-
+#define GET_NEWSLIST_URL @""
 @interface WXTabBarController ()
 
 @end
@@ -84,7 +84,7 @@
 }
 -(void)setNewsData{
     AFHTTPRequestOperationManager *AFMgr=[AFHTTPRequestOperationManager manager];
-    NSString *path=[NSString stringWithFormat:@"%@%@",BASE_SERVICE_URL,@""];
+    NSString *path=[NSString stringWithFormat:@"%@%@",BASE_SERVICE_URL,GET_NEWSLIST_URL];
     
     [AFMgr GET:path parameters:nil success:^(AFHTTPRequestOperation *operation,NSArray *responseObject){
         WXNewsModel *model=[[WXNewsModel alloc] init];

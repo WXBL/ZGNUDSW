@@ -67,6 +67,12 @@
     }
     return _str;
 }
+-(WXShoppingCarModel *)shoppingCarModel{
+    if (!_shoppingCarModel) {
+        self.shoppingCarModel=[[WXShoppingCarModel alloc] init];
+    }
+    return _shoppingCarModel;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -205,7 +211,7 @@
     [store.layer setBorderColor:[UIColor colorWithWhite:0.9 alpha:1].CGColor];
     [store.layer setBorderWidth:0.5];
     [store.layer setMasksToBounds:YES];
-    [store addTarget:self action:@selector(ClickStoreButton:) forControlEvents:UIControlEventTouchUpInside];
+    [store addTarget:self action:@selector(ClickGoToStoreButton:) forControlEvents:UIControlEventTouchUpInside];
     [self.buyCartView addSubview:store];
     
     UIButton *keep = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -252,11 +258,9 @@
     [self.buyCartView addSubview:buyLabel];
 }
 
--(void)ClickServiceButton:(UIButton *)sender{
-    
-}
 
--(void)ClickStoreButton:(UIButton *)sender{
+
+-(void)ClickGoToStoreButton:(UIButton *)sender{
     
 }
 -(void)ClickKeepButton:(UIButton *)sender{
@@ -284,12 +288,20 @@
 
 //点击加入购物车按钮触发事件
 -(void)addBuyCartButton:(UIButton *)sender{
-    
+    if (self.shoppingCarModel==nil) {
+        
+    }else{
+        
+    }
 }
 
 //点击立即购买按钮触发事件
 -(void)ClickBuyButton:(UIButton *)sender{
-    
+    if (self.shoppingCarModel==nil) {
+        
+    }else{
+        
+    }
 }
 
 //点击购物车触发事件
@@ -572,6 +584,8 @@
     if (tableView == self.tableView) {
         if (indexPath.row == 1) {
             [self showProductSize];
+        }else if(indexPath.row==0){
+            NSLog(@"asda");
         }
     }
     
@@ -855,6 +869,7 @@
 //点击全部评论按钮触发事件
 -(void)ClickAllCommentButton:(UIButton *)sender{
     WXCommentController *commnetView = [[WXCommentController alloc]init];
+    commnetView.Goods_ID=self.theProduct.Goods_ID;
     [self presentViewController:commnetView animated:YES completion:nil];
 }
 

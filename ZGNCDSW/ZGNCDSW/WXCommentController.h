@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface WXCommentController : UIViewController
-
+@property(nonatomic,strong)NSString * Goods_ID;
 @end

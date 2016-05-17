@@ -13,6 +13,7 @@
 #import "AFNetworking.h"
 #import "AFHTTPRequestOperationManager.h"
 #import "WXUserLoginViewController.h"
+#define  RESET_PASSWORD_URL @""
 @interface WXResetPasswordViewController ()
 
 @end
@@ -133,7 +134,7 @@
     AFHTTPRequestOperationManager *mgr=[AFHTTPRequestOperationManager manager];
     NSMutableDictionary *params=[[NSMutableDictionary alloc] init];
     params[@"ReSetPassword"]=self.resetPasswordText.text;
-    NSString *path=[NSString stringWithFormat:@"%@%@",BASE_SERVICE_URL,@""];
+    NSString *path=[NSString stringWithFormat:@"%@%@",BASE_SERVICE_URL,RESET_PASSWORD_URL];
     [mgr POST:path parameters:params success:^(AFHTTPRequestOperation *operation,NSDictionary *responseObject){
         [MDDataBaseUtil setPassword:self.resetPasswordText.text];
         WXUserLoginViewController *userLoginVC=[[WXUserLoginViewController alloc] init];

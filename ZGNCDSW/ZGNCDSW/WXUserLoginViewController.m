@@ -18,6 +18,7 @@
 #import "WXUserModel.h"
 #import "AFNetworking.h"
 #import "MJExtension.h"
+#define USER_LOGIN_URL @""
 @interface WXUserLoginViewController ()
 
 @end
@@ -236,7 +237,7 @@
     NSMutableDictionary *params=[NSMutableDictionary dictionary];
     params[@"UserName"]=self.userNameTextField.text;
     params[@"Password"]=self.passwordTextField.text;
-    NSString *path=[NSString stringWithFormat:@"%@%@",BASE_SERVICE_URL,@""];
+    NSString *path=[NSString stringWithFormat:@"%@%@",BASE_SERVICE_URL,USER_LOGIN_URL];
     [mgr POST:path parameters:params success:^(AFHTTPRequestOperation *operation,NSDictionary *responseObject){
         WXUserModel *model=[WXUserModel objectWithKeyValues:responseObject];
         //        WXUserModel *model=[[WXUserModel alloc] init];

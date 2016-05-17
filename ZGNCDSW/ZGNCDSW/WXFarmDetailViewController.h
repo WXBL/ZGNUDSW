@@ -8,7 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "WXProductModel.h"
+#import "WXShoppingCarModel.h"
 @interface WXFarmDetailViewController : UIViewController
 @property(nonatomic,strong)WXProductModel *theProduct;
 @property(nonatomic,strong)NSMutableArray *productImgArr;//存放图片数据
+@property(nonatomic,strong)WXShoppingCarModel *shoppingCarModel;
 @end

@@ -49,6 +49,7 @@
 		791038391CE452A400B3AC08 /* WXSizeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 791038381CE452A400B3AC08 /* WXSizeModel.m */; };
 		7910383C1CE452DC00B3AC08 /* WXTypeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7910383B1CE452DC00B3AC08 /* WXTypeModel.m */; };
 		7910383D1CE457ED00B3AC08 /* WXNavigationController.h in Sources */ = {isa = PBXBuildFile; fileRef = 8401902D1CCE2D2A00A43AA4 /* WXNavigationController.h */; };
+		79AAECF41CE9B3D9005695FE /* WXShoppingCarModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 79AAECF31CE9B3D9005695FE /* WXShoppingCarModel.m */; };
 		79B6C2901CE5747500E81B89 /* WXAddressModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 79B6C28F1CE5747500E81B89 /* WXAddressModel.m */; };
 		79B6C2931CE57C3000E81B89 /* WXCollectionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 79B6C2921CE57C3000E81B89 /* WXCollectionModel.m */; };
 		79B6C2961CE5E12400E81B89 /* UILabel+WXStringFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = 79B6C2951CE5E12400E81B89 /* UILabel+WXStringFrame.m */; };
@@ -286,6 +287,8 @@
 		791038381CE452A400B3AC08 /* WXSizeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXSizeModel.m; sourceTree = "<group>"; };
 		7910383A1CE452DC00B3AC08 /* WXTypeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXTypeModel.h; sourceTree = "<group>"; };
 		7910383B1CE452DC00B3AC08 /* WXTypeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXTypeModel.m; sourceTree = "<group>"; };
+		79AAECF21CE9B3D9005695FE /* WXShoppingCarModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXShoppingCarModel.h; sourceTree = "<group>"; };
+		79AAECF31CE9B3D9005695FE /* WXShoppingCarModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXShoppingCarModel.m; sourceTree = "<group>"; };
 		79B6C28E1CE5747500E81B89 /* WXAddressModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXAddressModel.h; sourceTree = "<group>"; };
 		79B6C28F1CE5747500E81B89 /* WXAddressModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXAddressModel.m; sourceTree = "<group>"; };
 		79B6C2911CE57C3000E81B89 /* WXCollectionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXCollectionModel.h; sourceTree = "<group>"; };
@@ -1457,6 +1460,8 @@
 				7910382F1CE450CF00B3AC08 /* WXImageModel.m */,
 				79B6C2911CE57C3000E81B89 /* WXCollectionModel.h */,
 				79B6C2921CE57C3000E81B89 /* WXCollectionModel.m */,
+				79AAECF21CE9B3D9005695FE /* WXShoppingCarModel.h */,
+				79AAECF31CE9B3D9005695FE /* WXShoppingCarModel.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -1646,6 +1651,7 @@
 				84CAD0B61CE5A33C005A8049 /* WXAddressController.m in Sources */,
 				8F288E7F1CD063F1007CA5EF /* WXCommendModel.m in Sources */,
 				84CAD09F1CE559E9005A8049 /* WXCommendTableViewController.m in Sources */,
+				79AAECF41CE9B3D9005695FE /* WXShoppingCarModel.m in Sources */,
 				79B6C2961CE5E12400E81B89 /* UILabel+WXStringFrame.m in Sources */,
 				8FA39DF21CCE0C0B0034C622 /* MBProgressHUD.m in Sources */,
 				7910381C1CE4348800B3AC08 /* NSData+ImageContentType.m in Sources */,

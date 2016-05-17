@@ -74,9 +74,7 @@
  */
 
 
--(void)ClickServiceButton:(UIButton *)sender{
-    
-}
+
 
 -(void)ClickStoreButton:(UIButton *)sender{
     

@@ -18,6 +18,7 @@
 @property(strong,nonatomic)WXProductModel *Goods;
 @property(strong,nonatomic)NSString *Goods_Size;
 @property(strong,nonatomic)NSString *Goods_Color;
+@property(strong,nonatomic)NSString *Goods_Number;
 @property(strong,nonatomic)NSString *Delivery_Time;
 @property(strong,nonatomic)NSString *Place_On_Order_Time;
 @property(strong,nonatomic)NSString *Shipments_Address;

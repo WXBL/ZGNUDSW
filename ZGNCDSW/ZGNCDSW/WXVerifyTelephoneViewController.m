@@ -13,6 +13,8 @@
 #import "AFHTTPRequestOperationManager.h"
 #import "AFNetworking.h"
 #import "WXTabBarController.h"
+#define USER_REGISTER_URL @""
+#define TELEVAIL_URL @""
 @interface WXVerifyTelephoneViewController ()
 
 @end
@@ -87,6 +89,7 @@
     self.telePhoneTextField=[[UITextField alloc] initWithFrame:CGRectMake(7, 5, CGRectGetWidth(userView.frame)-14, CGRectGetHeight(userView.frame)-10)];
     self.telePhoneTextField.delegate=self;
     self.telePhoneTextField.placeholder=@"请输入手机号";
+    self.telePhoneTextField.keyboardType=UIKeyboardTypeNumberPad;
     [userView addSubview:self.telePhoneTextField];
     
     UIView *passwordView=[[UIView alloc] initWithFrame:CGRectMake(1, CGRectGetMaxY(userView.frame)+10, textView.frame.size.width/2+20, CGRectGetHeight(userView.frame))];
@@ -145,22 +148,24 @@
     //    }Failure:^(NSString *error){
     //
     //    }];
-    
-    AFHTTPRequestOperationManager *mgr=[AFHTTPRequestOperationManager manager];
-    NSMutableDictionary *params=[NSMutableDictionary dictionary];
-    params[@"UserName"]=self.userName;
-    params[@"Password"]=self.password;
-    params[@"Tel"]=self.telePhoneTextField.text;
-    NSString *path=[NSString stringWithFormat:@"%@%@",BASE_SERVICE_URL,@""];
-    [mgr POST:path parameters:params success:^(AFHTTPRequestOperation *operation,NSString *responseObject){
-        WXTabBarController *tabBar = [[WXTabBarController alloc]init];
-        [self presentViewController:tabBar animated:YES completion:nil];
+    if ([self.verifyCodeTextField.text isEqualToString:@"ads"]) {
         
-    }failure:^(AFHTTPRequestOperation *operation,NSError *error){
-        UIAlertView * alertView=[[UIAlertView alloc] initWithTitle:@"提示" message:@"登录失败" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"关闭", nil];
-        [alertView show];
-    }];
-    
+        AFHTTPRequestOperationManager *mgr=[AFHTTPRequestOperationManager manager];
+        NSMutableDictionary *params=[NSMutableDictionary dictionary];
+        params[@"UserName"]=self.userName;
+        params[@"Password"]=self.password;
+        params[@"Tel"]=self.telePhoneTextField.text;
+        NSString *path=[NSString stringWithFormat:@"%@%@",BASE_SERVICE_URL,USER_REGISTER_URL];
+        [mgr POST:path parameters:params success:^(AFHTTPRequestOperation *operation,NSString *responseObject){
+            WXTabBarController *tabBar = [[WXTabBarController alloc]init];
+            [self presentViewController:tabBar animated:YES completion:nil];
+            
+        }failure:^(AFHTTPRequestOperation *operation,NSError *error){
+            UIAlertView * alertView=[[UIAlertView alloc] initWithTitle:@"提示" message:@"注册失败" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"关闭", nil];
+            [alertView show];
+        }];
+
+    }
     
 }
 -(void)getVerifyCode:(UIButton *)sender{
@@ -170,16 +175,31 @@
         [self alertWithTitle:@"提示" msg:@"手机号格式不正确，请重新输入！"];
         self.telePhoneTextField.text=@"";
     }else{
-        if ([MFMessageComposeViewController canSendText]) {
-            MFMessageComposeViewController *controller=[[MFMessageComposeViewController alloc] init];
-            controller.recipients=[NSArray arrayWithObject:self.telePhoneTextField.text];
-            controller.body=@"asd";
-            controller.messageComposeDelegate=self;
-            [self presentModalViewController:controller animated:YES];
-            [[[[controller viewControllers]lastObject]navigationItem]setTitle:@"test"];
-        }else{
-            [self alertWithTitle:@"提示" msg:@"该设备没有短信功能！"];
-        }
+        AFHTTPRequestOperationManager *mgr=[AFHTTPRequestOperationManager manager];
+        NSMutableDictionary *params=[NSMutableDictionary dictionary];
+        params[@"Tel"]=self.telePhoneTextField.text;
+        NSString *path=[NSString stringWithFormat:@"%@%@",BASE_SERVICE_URL,TELEVAIL_URL];
+        [mgr POST:path parameters:params success:^(AFHTTPRequestOperation *operation,NSString *responseObject){
+            if([responseObject isEqualToString:@"not exit"]){
+                if ([MFMessageComposeViewController canSendText]) {
+                    MFMessageComposeViewController *controller=[[MFMessageComposeViewController alloc] init];
+                    controller.recipients=[NSArray arrayWithObject:self.telePhoneTextField.text];
+                    controller.body=@"asd";
+                    controller.messageComposeDelegate=self;
+                    [self presentModalViewController:controller animated:YES];
+                    [[[[controller viewControllers]lastObject]navigationItem]setTitle:@"test"];
+                }else{
+                    [self alertWithTitle:@"提示" msg:@"该设备没有短信功能！"];
+                }
+            }else if([responseObject isEqualToString:@"exit"]){
+                [self alertWithTitle:@"提示" msg:@"手机号已经被注册！"];
+            }
+            
+        }failure:^(AFHTTPRequestOperation *operation,NSError *error){
+            UIAlertView * alertView=[[UIAlertView alloc] initWithTitle:@"提示" message:@"手机号验证失败，请稍候再试！" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"关闭", nil];
+            [alertView show];
+        }];
+        
     }
 }
 -(void)messageComposeViewController:(MFMessageComposeViewController *)controller didFinishWithResult:(MessageComposeResult)result{

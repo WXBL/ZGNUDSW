@@ -17,6 +17,7 @@
 #import "AFNetworking.h"
 #import "WXProductModel.h"
 #import "WXImageModel.h"
+#define GET_PRODUCTSLIST_URL @""
 @interface WXFarmImportsController ()<UITextFieldDelegate,UICollectionViewDelegate,UICollectionViewDataSource>
 
 @property (nonatomic,strong)UITextField *farmImports;
@@ -64,7 +65,7 @@
 }
 -(void)setProductData{
     AFHTTPRequestOperationManager *AFMGR=[AFHTTPRequestOperationManager manager];
-    NSString *path=[NSString stringWithFormat:@"%@%@",BASE_SERVICE_URL,@""];
+    NSString *path=[NSString stringWithFormat:@"%@%@",BASE_SERVICE_URL,GET_PRODUCTSLIST_URL];
     NSMutableDictionary *params=[NSMutableDictionary dictionary];
     if (self.typeModel) {
         if (![self.typeModel.Type_ID isEqualToString:@""]) {
