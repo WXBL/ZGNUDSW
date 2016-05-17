@@ -9,6 +9,10 @@
 #import "WXAddressModel.h"
 
 @implementation WXAddressModel
+
+
+
+
 -(id)getAddressDataWithArrayJSON:(NSArray *)array{
     if (array) {
         NSMutableArray *data=[NSMutableArray array];
@@ -32,6 +36,9 @@
         model.addName=(dict[@"addName"]==[NSNull null])?@"":dict[@"addName"];
         model.username=(dict[@"username"]==[NSNull null])?@"":dict[@"username"];
         model.User_ID=[((NSNumber *)dict[@"User_ID"]) stringValue];
+        
+
+        
         return model;
     }
     return nil;

@@ -10,6 +10,8 @@
 #import "WXTopView.h"
 #import "WXAddAddressViewController.h"
 #import "WXAddressTableViewCell.h"
+#import "WXAddressFrame.h"
+//#import "WXAddressTVCell.h"
 @interface WXAddressController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic,strong)UITableView *tableView;
@@ -19,6 +21,16 @@
 @end
 
 @implementation WXAddressController
+
+#pragma mark -懒加载
+-(NSMutableArray *)statusArray
+{
+    if (!_addressArray) {
+        self.addressArray = [NSMutableArray array];
+    }
+    return _addressArray;
+}
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -68,13 +80,28 @@
     WXAddAddressViewController *address = [[WXAddAddressViewController alloc]init];
     [self presentViewController:address animated:YES completion:nil];
 }
--(void)backButton:(id)sender{
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+-(void)viewDidLayoutSubviews
+{
+    if ([self.tableView respondsToSelector:@selector(setSeparatorInset:)]) {
+        [self.tableView setSeparatorInset:UIEdgeInsetsZero];
+        
+    }
+    if ([self.tableView respondsToSelector:@selector(setLayoutMargins:)])  {
+        [self.tableView setLayoutMargins:UIEdgeInsetsZero];
+    }
+}
+/**
+ * 显示完全分割线
+ */
+-(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if ([cell respondsToSelector:@selector(setSeparatorInset:)]) {
+        [cell setSeparatorInset:UIEdgeInsetsZero];
+    }
+    if ([cell respondsToSelector:@selector(setLayoutMargins:)]) {
+        [cell setLayoutMargins:UIEdgeInsetsZero];
+    }
 }
 
 #pragma mark tableView -dataSource
@@ -89,12 +116,10 @@
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    static NSString *ID = @"status";
-    WXAddressTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
-    if (cell == nil) {
-        cell = [[WXAddressTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:ID];
-        
-    }
+    WXAddressTableViewCell *cell = [WXAddressTableViewCell cellWithTableView:tableView];
+    
+//    cell.addressFrame = self.addressArray[indexPath.row];
+    
     return cell;
     
 
@@ -102,6 +127,21 @@
 
 #pragma mark tableView -delegate
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+//    WXAddressFrame *frame = [[WXAddressFrame alloc]init];
+    
     return 130;
+ 
 }
+
+-(void)backButton:(id)sender{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+
 @end

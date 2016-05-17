@@ -7,17 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "WXAddressFrame.h"
+@class WXAddressFrame;
 @interface WXAddressTableViewCell : UITableViewCell
 
-//+(instancetype)cellWithTableView:(UITableView *)tableView;
++(instancetype)cellWithTableView:(UITableView *)tableView;
 
-@property (nonatomic,strong)UILabel *name;
-@property (nonatomic,strong)UILabel *phone;
-@property (nonatomic,strong)UILabel *address;
-@property (nonatomic,strong)UIButton *editBtn;
-@property (nonatomic,strong)UIButton *deleteBtn;
+@property (nonatomic,strong)WXAddressFrame *addressFrame;
 
-@property(nonatomic,strong)UILabel *defaultAddress;
-@property (nonatomic,strong)UIButton *defaultBtn;//勾选默认地址
+
 @end

@@ -10,6 +10,7 @@
 #import "WXTopView.h"
 #import "AddressChoicePickerView.h"
 #import "AreaObject.h"
+#import "validateTest.h"
 @interface WXAddAddressViewController ()<UITextFieldDelegate,UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic,strong)UIView *topView;
@@ -30,11 +31,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.view.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor = [UIColor colorWithWhite:0.9 alpha:1];
     
     [self addNavBar];
     
     [self addTableView];
+    
+    [self addSaveBtn];
     
     
 }
@@ -56,13 +59,53 @@
 }
 
 -(void)addTableView{
-    self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, self.topView.frame.size.height, screenWidth, screenHeigth-self.topView.frame.size.height) style:UITableViewStylePlain];
+    self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, self.topView.frame.size.height, screenWidth, screenHeigth/2-self.topView.frame.size.height) style:UITableViewStylePlain];
     self.tableView.backgroundColor = [UIColor colorWithWhite:0.9 alpha:1];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.tableFooterView = [[UIView alloc]init];
+    self.tableView.bounces = NO;
     [self.view addSubview:self.tableView];
 }
+
+-(void)addSaveBtn{
+    UIButton *saveBtn = [[UIButton alloc]init];
+    saveBtn.frame = CGRectMake(screenWidth *0.1, self.tableView.frame.size.height, screenWidth *0.8, 40);
+    [saveBtn setTitle:@"保存地址" forState:UIControlStateNormal];
+    [saveBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [saveBtn setBackgroundColor:[UIColor colorWithRed:0.7 green:0.2 blue:0.2 alpha:1]];
+    [saveBtn addTarget:self action:@selector(ClickSaveBtn:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:saveBtn];
+}
+
+-(void)ClickSaveBtn:(UIButton *)sender{
+    
+   
+    if (([self.nameText.text isEqualToString:@""]|| [self.phoneText.text isEqualToString:@""]||[self.PostcodesText.text isEqualToString:@""]||[self.addressDetail.text isEqualToString:@""])&& [self.areaText.text isEqualToString:@"省、市、区"]) {
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"提示" message:@"请完善收货地址信息" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+        UIAlertAction *established = [UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault handler:nil];
+        [alertController addAction:cancelAction];
+        [alertController addAction:established];
+        [self presentViewController:alertController animated:YES completion:nil];
+    
+    }else{
+        validateTest *test=[[validateTest alloc] init];
+        if (![test validateMobile:self.phoneText.text]) {
+            UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"提示" message:@"手机号格式不正确请重新填写！" preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+            UIAlertAction *established = [UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault handler:nil];
+            [alertController addAction:cancelAction];
+            [alertController addAction:established];
+            self.phoneText=nil;
+        }else{
+            
+        }
+        
+        
+    }
+}
+
 
 -(void)viewDidLayoutSubviews
 {
@@ -88,14 +131,14 @@
     if (cell == nil) {
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
         if (indexPath.row ==0) {
-            self.nameText = [[UITextField alloc]initWithFrame:CGRectMake(10, 0, screenWidth-10, 35)];
+            self.nameText = [[UITextField alloc]initWithFrame:CGRectMake(10, 0, screenWidth-10, 40)];
             self.nameText.placeholder = @"收货人姓名";
             self.nameText.font = [UIFont systemFontOfSize:14];
             //    self.nameText.keyboardType = UIKeyboardType;
             self.nameText.delegate = self;
             [cell addSubview:self.nameText];
         }else if (indexPath.row == 1){
-            self.phoneText = [[UITextField alloc]initWithFrame:CGRectMake(10, 0, screenWidth - 10, 35)];
+            self.phoneText = [[UITextField alloc]initWithFrame:CGRectMake(10, 0, screenWidth - 10, 40)];
             self.phoneText.placeholder = @"手机号码";
             self.phoneText.font = [UIFont systemFontOfSize:14];
             self.phoneText.delegate = self;
@@ -103,10 +146,9 @@
             [cell addSubview:self.phoneText];
         }else if (indexPath.row == 2){
            
-            self.areaText = [[UILabel alloc]initWithFrame:CGRectMake(10, 0, screenWidth - 10, 35)];
+            self.areaText = [[UILabel alloc]initWithFrame:CGRectMake(10, 0, screenWidth - 10, 40)];
             self.areaText.text = @"省、市、区";
             self.areaText.textColor = [UIColor blackColor];
-            self.areaText.textColor = [UIColor colorWithWhite:0.8 alpha:1];
             self.areaText.font = [UIFont systemFontOfSize:14];
             
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
@@ -115,7 +157,7 @@
         
             
         }else if (indexPath.row ==3){
-            self.PostcodesText = [[UITextField alloc]initWithFrame:CGRectMake(10, 0, screenWidth-10, 35)];
+            self.PostcodesText = [[UITextField alloc]initWithFrame:CGRectMake(10, 0, screenWidth-10, 40)];
             self.PostcodesText.placeholder = @"邮编";
             self.PostcodesText.font = [UIFont systemFontOfSize:14];
             self.PostcodesText.delegate =self;
@@ -184,7 +226,10 @@
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 35;
+    if (indexPath.row ==4) {
+        return 60;
+    }
+    return 40;
 }
 
 

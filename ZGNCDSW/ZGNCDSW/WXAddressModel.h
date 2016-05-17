@@ -19,7 +19,6 @@
 @property(strong,nonatomic)NSString *IS_default;
 
 
-
 -(id)getAddressDataWithDictionaryJSON:(NSDictionary *)dict;
 -(id)getAddressDataWithArrayJSON:(NSArray *)array;
 @end
