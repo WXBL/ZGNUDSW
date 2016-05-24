@@ -21,6 +21,7 @@
 #import "MDDataBaseUtil.h"
 #import "WXColorModel.h"
 #import "WXSizeModel.h"
+#import "WXProductFeatureModel.h"
 #define PRODUCT_IS_COLLECTION @""
 #define ADD_COLLECTION_PRODUCT @""
 #define CANCEL_COLLECTION_PRODUCT @""
@@ -48,7 +49,9 @@
 @property(nonatomic,copy)NSString *str;
 @property(nonatomic,assign)CGFloat height;
 @end
-
+#define GOODSFEATURE_OFGOODSID_URL @""
+//#define GOODS_COLOR_URL @""
+//#define GOODS_SIZE_URL @""
 @implementation WXFarmDetailViewController
 -(NSMutableArray *)productImgArr{
     if (!_productImgArr) {
@@ -79,25 +82,44 @@
     // Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor colorWithWhite:0.9 alpha:1];
     
-    self.sizeBgView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, screenWidth, screenHeigth)];
-    self.sizeBgView.backgroundColor = [UIColor blackColor];
-    self.sizeBgView.alpha = 0.3;
-    [self.view addSubview:self.sizeBgView];
-    
-    
-    self.bgButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.bgButton.frame = CGRectMake(0, 0, screenWidth, screenHeigth);
-    self.bgButton.backgroundColor = [UIColor clearColor];
-    [self.bgButton addTarget:self action:@selector(ClickBgButton:) forControlEvents:UIControlEventTouchUpInside];
-    [self.sizeBgView addSubview:self.bgButton];
-    
+    self.AFOMG=[AFHTTPRequestOperationManager manager];
+    self.GoodsColorNumberArr=[[NSMutableArray alloc] init];
+    self.GoodsSizeNumberArr=[[NSMutableArray alloc] init];
+    self.ProductFeatureDataArr=[[NSMutableArray alloc] init];
     [self setNavBar];
     
     [self addTableView];
     [self addproductPic];
     [self addbuyCart];
-    
+    self.sizeArr = [[NSMutableArray alloc] init];;
+    self.colorArr = [[NSMutableArray alloc] init];;
+    WXColorModel *color=[[WXColorModel alloc] init];
+    for (int i=0; i<self.theProduct.Goods_Color.count; i++) {
+        color=[self.theProduct.Goods_Color objectAtIndex:i];
+        [self.colorArr  addObject:color.Goods_Color];
+    }
+    WXSizeModel *size=[[WXSizeModel alloc] init];
+    for (int i=0; i<self.theProduct.Goods_Size.count; i++) {
+        size=[self.theProduct.Goods_Size objectAtIndex:i];
+        [self.sizeArr addObject:size.Goods_Size];
+    }
+
+    self.sizeArr = [[NSMutableArray alloc] initWithObjects:@"S",@"M",@"L",nil];
+    self.colorArr = [[NSMutableArray alloc] initWithObjects:@"蓝色",@"红色",@"湖蓝色",@"咖啡色",nil];
+    [self initChoseView];
 }
+-(void)getTheProducNumberInProduceFeature{
+    NSString *path=[NSString stringWithFormat:@"%@%@",BASE_SERVICE_URL,GOODSFEATURE_OFGOODSID_URL];
+    NSMutableDictionary *params=[NSMutableDictionary dictionary];
+    params[@"Goods_ID"]=self.theProduct.Goods_ID;
+    [self.AFOMG GET:path parameters:params success:^(AFHTTPRequestOperation *operation,NSArray *responseObject){
+        self.ProductFeatureDataArr=[[[WXProductFeatureModel alloc] init] getProductFeatureListWithArray:responseObject];
+        
+    }failure:^(AFHTTPRequestOperation *operation,NSError *error){
+        
+    }];
+}
+
 -(void)viewWillAppear:(BOOL)animated{
     [self.sizeTableView reloadData];
     [self.tableView reloadData];
@@ -275,7 +297,6 @@
     [self.buyCartView addSubview:buyLabel];
 }
 
-
 /**
  *进入商店
  */
@@ -436,7 +457,9 @@
 //    WXproductpicView *productPic = [[WXproductpicView alloc]init];
 //    [self presentViewController:productPic animated:YES completion:nil];
 //}
-
+-(void)showShoppingChooseType{
+    
+}
 -(void)backButton:(id)sender{
     [self dismissViewControllerAnimated:YES completion:nil];
 }
@@ -607,15 +630,13 @@
         if (indexPath.row == 1) {
             [self showProductSize];
         }else if(indexPath.row==2){
-            [self showShoppingChooseType];
+            [self btnselete];
         }
     }
     
     
 }
--(void)showShoppingChooseType{
-    
-}
+
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -659,7 +680,17 @@
 -(void)showProductSize
 {
 
+    self.sizeBgView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, screenWidth, screenHeigth)];
+    self.sizeBgView.backgroundColor = [UIColor blackColor];
+    self.sizeBgView.alpha = 0.3;
+    [self.view addSubview:self.sizeBgView];
     
+    
+    self.bgButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    self.bgButton.frame = CGRectMake(0, 0, screenWidth, screenHeigth);
+    self.bgButton.backgroundColor = [UIColor clearColor];
+    [self.bgButton addTarget:self action:@selector(ClickBgButton:) forControlEvents:UIControlEventTouchUpInside];
+    [self.sizeBgView addSubview:self.bgButton];
     UIView *sizeView = [[UIView alloc]initWithFrame:CGRectMake(0, screenHeigth/2, screenWidth, screenHeigth/2)];
     sizeView.backgroundColor = [UIColor whiteColor];
     sizeView.alpha = 1;
@@ -748,7 +779,7 @@
     //价格
     UILabel *priceLabel = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(price.frame), titleLabel.frame.size.height, screenWidth * 0.2, 20)];
     priceLabel.textColor = [UIColor redColor];
-    priceLabel.text = [NSString stringWithFormat:@"¥ %@",self.theProduct.Goods_Buy_Num];
+    priceLabel.text = [NSString stringWithFormat:@"¥ %@", (self.theProduct.Goods_Buy_Num==NULL?@"0":self.theProduct.Goods_Buy_Num)];
     priceLabel.textAlignment = NSTextAlignmentLeft;
     priceLabel.font = [UIFont systemFontOfSize:16];
     [self.cellBgView addSubview:priceLabel];
@@ -885,6 +916,232 @@
     WXCommentController *commnetView = [[WXCommentController alloc]init];
     commnetView.Goods_ID=self.theProduct.Goods_ID;
     [self presentViewController:commnetView animated:YES completion:nil];
+}
+
+
+#pragma choose shopping type
+/**
+ *  初始化弹出视图
+ */
+-(void)initChoseView
+{
+    
+    
+    //选择尺码颜色的视图
+    self.choseView = [[ChoseView alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height, self.view.frame.size.width, self.view.frame.size.height)];
+    [self.view addSubview:self.choseView];
+    
+    //尺码
+    self.choseView.sizeView = [[TypeView alloc] initWithFrame:CGRectMake(0, 0, self.choseView.frame.size.width, 50) andDatasource:self.sizeArr :@"尺码"];
+    self.choseView.sizeView.delegate = self;
+    [self.choseView.mainscrollview addSubview:self.choseView.sizeView];
+    self.choseView.sizeView.frame = CGRectMake(0, 0, self.choseView.frame.size.width, self.choseView.sizeView.height);
+    //颜色分类
+    self.choseView.colorView = [[TypeView alloc] initWithFrame:CGRectMake(0, self.choseView.sizeView.frame.size.height, self.choseView.frame.size.width, 50) andDatasource:self.colorArr :@"颜色分类"];
+    self.choseView.colorView.delegate = self;
+    [self.choseView.mainscrollview addSubview:self.choseView.colorView];
+    self.choseView.colorView.frame = CGRectMake(0, self.choseView.sizeView.frame.size.height, self.choseView.frame.size.width, self.choseView.colorView.height);
+    //购买数量
+    self.choseView.countView.frame = CGRectMake(0, self.choseView.colorView.frame.size.height+self.choseView.colorView.frame.origin.y, self.choseView.frame.size.width, 50);
+    self.choseView.mainscrollview.contentSize = CGSizeMake(self.view.frame.size.width, self.choseView.countView.frame.size.height+self.choseView.countView.frame.origin.y);
+    
+    self.choseView.lb_price.text = self.theProduct.Goods_Price;
+    self.choseView.lb_stock.text = [NSString stringWithFormat:@"库存%@件",(self.theProduct.Goods_Inventory==NULL?@"0":self.theProduct.Goods_Inventory)];
+    self.choseView.lb_detail.text = @"请选择 尺码 颜色分类";
+    [self.choseView.bt_cancle addTarget:self action:@selector(dismiss) forControlEvents:UIControlEventTouchUpInside];
+    [self.choseView.bt_sure addTarget:self action:@selector(dismiss) forControlEvents:UIControlEventTouchUpInside];
+    
+    //点击黑色透明视图choseView会消失
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismiss)];
+    [self.choseView.alphaiView addGestureRecognizer:tap];
+    //点击图片放大图片
+    UITapGestureRecognizer *tap1 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showBigImage:)];
+    self.choseView.img.userInteractionEnabled = YES;
+    self.choseView.img.image=[self.theProduct.Goods_Image firstObject];
+    [self.choseView.img addGestureRecognizer:tap1];
+}
+/**
+ *  此处嵌入浏览图片代码
+ */
+-(void)showBigImage:(UITapGestureRecognizer *)tap
+{
+    NSLog(@"放大图片");
+}
+/**
+ *  点击按钮弹出
+ */
+-(void)btnselete
+{
+    
+    [UIView animateWithDuration: 0.35 animations: ^{
+        self.bgView.transform = CGAffineTransformScale(CGAffineTransformIdentity,0.8,0.8);
+        self.bgView.center = CGPointMake(self.view.center.x, self.view.center.y-50);
+        self.choseView.center = self.view.center;
+        self.choseView.frame =CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
+    } completion: nil];
+    
+    
+}
+/**
+ *  点击半透明部分或者取消按钮，弹出视图消失
+ */
+-(void)dismiss
+{
+//    self.center.y = self.center.y+self.view.frame.size.height;
+    [UIView animateWithDuration: 0.35 animations: ^{
+        self.choseView.frame =CGRectMake(0, self.view.frame.size.height, self.view.frame.size.width, self.view.frame.size.height);
+        
+        self.bgView.transform = CGAffineTransformScale(CGAffineTransformIdentity,1.0,1.0);
+        self.bgView.center = self.view.center;
+    } completion: nil];
+    
+}
+#pragma mark-typedelegete
+-(void)btnindex:(int)tag
+{
+    
+    //通过seletIndex是否>=0来判断尺码和颜色是否被选择，－1则是未选择状态
+    if (self.choseView.sizeView.seletIndex >=0&&self.choseView.colorView.seletIndex >=0) {
+        //尺码和颜色都选择的时候
+        NSString *size =[self.sizeArr objectAtIndex:self.choseView.sizeView.seletIndex];
+        NSString *color =[self.colorArr objectAtIndex:self.choseView.colorView.seletIndex];
+//        self.choseView.lb_stock.text = [NSString stringWithFormat:@"库存%@件",[[ objectForKey: size] objectForKey:color]];
+        self.choseView.lb_stock.text =[NSString stringWithFormat: @"库存%d件",self.choseView.stock ];
+        self.choseView.lb_detail.text = [NSString stringWithFormat:@"已选 \"%@\" \"%@\"",size,color];
+        [self searchDataWithColor:color WithColor:size];
+//        self.choseView.stock =[[[stockarr objectForKey: size] objectForKey:color] intValue];
+        
+//        [self reloadTypeBtn:[stockarr objectForKey:size] :colorarr :choseView.colorView];
+//        [self reloadTypeBtn:[stockarr objectForKey:color] :sizearr :choseView.sizeView];
+        NSLog(@"%d",self.choseView.colorView.seletIndex);
+        
+        self.choseView.img.image = [self.theProduct.Goods_Image objectAtIndex:self.choseView.colorView.seletIndex+1];
+    }else if (self.choseView.sizeView.seletIndex ==-1&&self.choseView.colorView.seletIndex == -1)
+    {
+        //尺码和颜色都没选的时候
+        self.choseView.lb_price.text =[NSString stringWithFormat: @"¥%@",(self.theProduct.Goods_Price==NULL?@"0":self.theProduct.Goods_Price)];
+        self.choseView.stock = (self.theProduct.Goods_Inventory==NULL?@"0":self.theProduct.Goods_Inventory).intValue;
+        self.choseView.lb_stock.text =[NSString stringWithFormat: @"库存%d件",self.choseView.stock ];
+        self.choseView.lb_detail.text = @"请选择 尺码 颜色分类";
+        
+        //全部恢复可点击状态
+        [self resumeBtn:self.colorArr :self.choseView.colorView];
+        [self resumeBtn:self.sizeArr :self.choseView.sizeView];
+        
+    }else if (self.choseView.sizeView.seletIndex ==-1&&self.choseView.colorView.seletIndex >= 0)
+    {
+        //只选了颜色
+        NSString *color =[self.colorArr objectAtIndex:self.choseView.colorView.seletIndex];
+        //根据所选颜色 取出该颜色对应所有尺码的库存字典
+        [self searchDataWithKey:@"Color" WithValue:color];
+        [self resumeBtn:self.colorArr :self.choseView.colorView];
+//        self.choseView.stock = (self.theProduct.Goods_Inventory==NULL?@"0":self.theProduct.Goods_Inventory).intValue;
+        self.choseView.lb_stock.text =[NSString stringWithFormat: @"库存%d件",self.choseView.stock ];
+        self.choseView.lb_detail.text = @"请选择 尺码";
+        
+        self.choseView.img.image = [self.theProduct.Goods_Image objectAtIndex:self.choseView.colorView.seletIndex+1];
+    }else if (self.choseView.sizeView.seletIndex >= 0&&self.choseView.colorView.seletIndex == -1)
+    {
+        //只选了尺码
+        NSString *size =[self.sizeArr objectAtIndex:self.choseView.sizeView.seletIndex];
+        //根据所选尺码 取出该尺码对应所有颜色的库存字典
+//        NSDictionary *dic = [stockarr objectForKey:size];
+        [self resumeBtn:self.sizeArr :self.choseView.sizeView];
+        [self searchDataWithKey:@"Size" WithValue:size];
+//        [self reloadTypeBtn:dic :self.colorArr :self.choseView.colorView];
+//        self.choseView.stock = (self.theProduct.Goods_Inventory==NULL?@"0":self.theProduct.Goods_Inventory).intValue;
+        self.choseView.lb_stock.text =[NSString stringWithFormat: @"库存%d件",self.choseView.stock ];
+        self.choseView.lb_detail.text = @"请选择 颜色分类";
+        
+                for (int i = 0; i<self.colorArr.count; i++) {
+//                    int count = [[dic objectForKey:[colorarr objectAtIndex:i]] intValue];
+                    int count=0;
+                    //遍历颜色字典 库存为零则改尺码按钮不能点击
+                    if (count == 0) {
+                        UIButton *btn =(UIButton *) [self.choseView.colorView viewWithTag:100+i];
+                        btn.enabled = NO;
+                    }
+                }
+        
+    }
+}
+//恢复按钮的原始状态
+-(void)resumeBtn:(NSArray *)arr :(TypeView *)view
+{
+    for (int i = 0; i< arr.count; i++) {
+        UIButton *btn =(UIButton *) [view viewWithTag:100+i];
+        btn.enabled = YES;
+        btn.selected = NO;
+        [btn setBackgroundColor:[UIColor colorWithRed:240/255.0 green:240/255.0 blue:240/255.0 alpha:1]];
+        [btn setTitleColor:[UIColor blackColor] forState:0];
+        [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
+        if (view.seletIndex == i) {
+            btn.selected = YES;
+            [btn setBackgroundColor:[UIColor redColor]];
+        }
+    }
+}
+//根据所选的尺码或者颜色对应库存量 确定哪些按钮不可选
+-(void)reloadTypeBtn:(NSDictionary *)dic :(NSArray *)arr :(TypeView *)view
+{
+    for (int i = 0; i<arr.count; i++) {
+        int count = [[dic objectForKey:[arr objectAtIndex:i]] intValue];
+        UIButton *btn =(UIButton *)[view viewWithTag:100+i];
+        btn.selected = NO;
+        [btn setBackgroundColor:[UIColor colorWithRed:240/255.0 green:240/255.0 blue:240/255.0 alpha:1]];
+        //库存为零 不可点击
+        if (count == 0) {
+            btn.enabled = NO;
+            [btn setTitleColor:[UIColor lightGrayColor] forState:0];
+        }else
+        {
+            btn.enabled = YES;
+            [btn setTitleColor:[UIColor blackColor] forState:0];
+        }
+        //根据seletIndex 确定用户当前点了那个按钮
+        if (view.seletIndex == i) {
+            btn.selected = YES;
+            [btn setBackgroundColor:[UIColor redColor]];
+        }
+    }
+}
+/**
+ 搜索商品大小、颜色对应的个数
+ */
+-(void)searchDataWithKey:(NSString *)key WithValue:(NSString *)value{
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%@ = %@",key,value];
+    NSMutableArray * filteredGoods = [NSMutableArray arrayWithArray:[self.ProductFeatureDataArr filteredArrayUsingPredicate:predicate]];
+    if (filteredGoods.count > 0) {
+        self.choseView.stock=0;
+        WXProductFeatureModel *featureModel=[[WXProductFeatureModel alloc] init];
+        for (int i=0; i<filteredGoods.count; i++) {
+            featureModel=[filteredGoods objectAtIndex:i];
+            self.choseView.stock+=featureModel.count.intValue;
+        }
+        
+    }else{
+        
+        self.choseView.stock=0;
+    }
+//    self.choseView.lb_stock.text =[NSString stringWithFormat: @"库存%d件",self.choseView.stock ];
+    //    [self.rootTableView reloadData];
+}
+-(void)searchDataWithColor:(NSString *)color WithColor:(NSString *)size{
+    NSPredicate *predicate=[NSPredicate predicateWithFormat:@"Color=%@ and Size=%@",color,size];
+    NSMutableArray *filterGoods=[NSMutableArray arrayWithArray:[self.ProductFeatureDataArr filteredArrayUsingPredicate:predicate]];
+    if (filterGoods.count > 0) {
+        self.choseView.stock=0;
+        WXProductFeatureModel *featureModel=[[WXProductFeatureModel alloc] init];
+        for (int i=0; i<filterGoods.count; i++) {
+            featureModel=[filterGoods objectAtIndex:i];
+            self.choseView.stock+=featureModel.count.intValue;
+        }
+        
+    }else{
+        
+        self.choseView.stock=0;
+    }
+//    self.choseView.lb_stock.text =[NSString stringWithFormat: @"库存%d件",self.choseView.stock ];
 }
 
 @end
