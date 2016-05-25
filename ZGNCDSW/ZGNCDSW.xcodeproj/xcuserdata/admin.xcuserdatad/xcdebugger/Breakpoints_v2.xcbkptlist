@@ -127,8 +127,10 @@
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
+                  symbolName = "TIFFFaxBlackTable"
+                  moduleName = "ImageIO"
                   usesParentBreakpointCondition = "Yes"
-                  offsetFromSymbolStart = "0">
+                  offsetFromSymbolStart = "64814">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -156,7 +158,7 @@
                   moduleName = "ZGNCDSW"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/admin/Desktop/WXBL/ZGNUDSW/ZGNCDSW/ZGNCDSW/WXAddressTableViewCell.h"
-                  timestampString = "485753904.805628"
+                  timestampString = "485847549.340503"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "28"
@@ -171,7 +173,7 @@
                   moduleName = "ZGNCDSW"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/admin/Desktop/WXBL/ZGNUDSW/ZGNCDSW/ZGNCDSW/WXAddressTableViewCell.h"
-                  timestampString = "485753904.805776"
+                  timestampString = "485847549.340656"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "28"
