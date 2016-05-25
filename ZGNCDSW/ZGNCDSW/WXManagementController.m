@@ -51,7 +51,7 @@
     // Do any additional setup after loading the view.
     
     self.userDetailArray = [NSMutableArray arrayWithObjects:@"头像",@"用户名",@"昵称",@"性别",@"出生日期", nil];
-    self.userManageArray = [NSMutableArray arrayWithObjects:@"收获地址",@"安全管理", nil];
+    self.userManageArray = [NSMutableArray arrayWithObjects:@"收获地址", nil];
     
     self.sexView  = [[UIView alloc]init];
     self.userName = [[UILabel alloc]init];
@@ -362,8 +362,9 @@
 #pragma mark -tableview delegate
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
+    
     if (indexPath.section == 0) {
-        if (indexPath.row ==2) {
+        if (indexPath.row ==1 ) {
             WXUpdateUserNameController *updateName = [[WXUpdateUserNameController alloc]init];
             [self presentViewController:updateName animated:YES completion:nil];
         }else if (indexPath.row ==3) {
@@ -406,7 +407,7 @@
             [self.view addSubview:manButton];
             [self.view addSubview:gileButton];
             [self.view addSubview:cancelButton];
-        }else{
+        }else if(indexPath.row ==4){
             UIView *birthView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height) ];
             birthView.backgroundColor = [UIColor grayColor];
             birthView.alpha = 0.5;

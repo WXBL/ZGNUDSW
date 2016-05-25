@@ -29,5 +29,5 @@
 @property (nonatomic,strong)UIButton *defaultBtn;
 
 @property (nonatomic,strong)UIButton *setDefaultBtn;
-
+@property(nonatomic,assign)NSInteger theTag;
 @end

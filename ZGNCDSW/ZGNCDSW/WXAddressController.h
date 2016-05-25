@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "WXAddAddressViewController.h"
+@interface WXAddressController : UIViewController<WXAddAddressViewControllerDelegate>
 
-@interface WXAddressController : UIViewController
 
 @end

@@ -32,9 +32,7 @@
     WXCommentTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
     if (cell == nil) {
         cell = [[WXCommentTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:ID];
-//        cell.nameLabel.text=@"asd";
-//        cell.commentContent.text = @"alskdjflaksjdfl;aksjdflka";
-//        cell.category.text = @"2015/3/2";
+
         
     }
     return cell;

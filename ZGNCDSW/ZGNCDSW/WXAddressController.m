@@ -8,16 +8,24 @@
 
 #import "WXAddressController.h"
 #import "WXTopView.h"
-#import "WXAddAddressViewController.h"
+
 #import "WXAddressTableViewCell.h"
 #import "WXAddressModel.h"
 #import "WXAddressFrame.h"
-@interface WXAddressController ()<UITableViewDelegate,UITableViewDataSource>
+#import "validateTest.h"
+@interface WXAddressController ()<UITableViewDelegate,UITableViewDataSource>{
+    
+    BOOL isbool;
+    
+}
 
 @property (nonatomic,strong)UITableView *tableView;
 @property (nonatomic,strong)UIView *topView;
 
 @property (nonatomic,strong)NSMutableArray *addressArray;
+
+
+@property (nonatomic,assign)NSInteger theTag;
 @end
 
 @implementation WXAddressController
@@ -32,24 +40,84 @@
 }
 
 
+
 - (void)viewDidLoad {
     [super viewDidLoad];
    
-//    self.addressArray = [NSMutableArray array];
-//    WXAddressModel *model=[[WXAddressModel alloc] init];
-//    model.addName=@"asd";
-//    model.addNumber=@"1231";
-//    model.Specific_Address = @"tinajinshiwuqingqu";
-//    [self.addressArray addObject:model];
+    self.addressArray = [NSMutableArray array];
+//    WXAddressModel *addressModel=[[WXAddressModel alloc] init];
+//    addressModel.username=@"asd";
+//    addressModel.Phone=@"15075056282";
+//    addressModel.Specific_Address = @"tinajinshiaseflkjwhelkhsfkhaskldfjhlkasjhdflkjaslkdlksfjhlkasjhdflkasjhdflkajhsdflkjhaslkdjfhlkasjhdflkajhsdfkljhaskdfjhalksjdhflkasjhdfkajshdkfjhwuqingqu";
+//    addressModel.username=@"asd";
+//    addressModel.Phone=@"15075056282";
+//    addressModel.Specific_Address = @"tinajinshiaseflkjwhelkhsfkhaskldfjhlkasjhdflkjaslkdlksfjhlkasjhdflkasjhdflkajhsdflkjhaslkdjfhlkasjhdflkajhsdfkljhaskdfjhalksjdhflkasjhdfkajshdkfjhwuqingqu";
+//    [self.addressArray addObject:addressModel];
+//    [self.addressArray addObject:addressModel];
+    
+   
+    
     [self addNavBar];
     
     [self addTableView];
     
     [self addAddressButton];
     
-    
+   
 }
 
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+   
+    WXAddAddressViewController *addAddressController = [[WXAddAddressViewController alloc]init];
+    
+    addAddressController.delegate = self;
+    [self.tableView reloadData];
+}
+
+-(void)addressViewController:(UIViewController *)addressViewController didClickButton:(UIButton *)button{
+    
+    WXAddAddressViewController *addAddressController = [[WXAddAddressViewController alloc]init];
+    
+    if (([addAddressController.nameText.text isEqualToString:@""]|| [addAddressController.phoneText.text isEqualToString:@""]||[addAddressController.PostcodesText.text isEqualToString:@""]||[addAddressController.addressDetail.text isEqualToString:@""])&& [addAddressController.areaText.text isEqualToString:@"省、市、区"]) {
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"提示" message:@"请完善收货地址信息" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+        UIAlertAction *established = [UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault handler:nil];
+        [alertController addAction:cancelAction];
+        [alertController addAction:established];
+        [self presentViewController:alertController animated:YES completion:nil];
+        
+    }else{
+        validateTest *test=[[validateTest alloc] init];
+        if (![test validateMobile:addAddressController.phoneText.text]) {
+            UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"提示" message:@"手机号格式不正确请重新填写！" preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+            UIAlertAction *established = [UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault handler:nil];
+            [alertController addAction:cancelAction];
+            [alertController addAction:established];
+            addAddressController.phoneText=nil;
+        }else{
+            WXAddressModel *addressModel = [[WXAddressModel alloc]init];
+            addressModel.username = addAddressController.nameText.text;
+            addressModel.Phone = addAddressController.phoneText.text;
+            addressModel.Specific_Address = addAddressController.addressDetail.text;
+            addressModel.addName = addAddressController.areaText.text;
+            
+            [self.addressArray addObject:addressModel];
+            
+            [self.tableView reloadData];
+            [self dismissViewControllerAnimated:YES completion:nil];
+        }
+        
+        
+    }
+
+}
+
+
+-(void)setData{
+    
+}
 
 -(void)addNavBar{
     WXTopView *topView = [[WXTopView alloc]initWithFrame:CGRectMake(0, 0, screenWidth, 50) TitleText:@"收货地址"];
@@ -117,28 +185,59 @@
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 3;
-//    return self.addressArray.count;
+//    return 3;
+    return self.addressArray.count;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+   
     
     WXAddressTableViewCell *cell = [WXAddressTableViewCell cellWithTableView:tableView];
+    cell.toolbar.defaultBtn.tag = indexPath.row;
+    WXAddressFrame *frame=[[WXAddressFrame alloc] init];
+    WXAddressModel *model=[self.addressArray objectAtIndex:indexPath.row];
+    frame.address=model;
+    cell.addressFrame =frame;
     
-//
-//    cell.addressFrame = self.addressArray[indexPath.row];
+    [cell.toolbar.defaultBtn addTarget:self action:@selector(ClickDefaultBtn:) forControlEvents:UIControlEventTouchUpInside];
+    
+    
+
     
     return cell;
     
 
 }
 
+-(void)ClickDefaultBtn:(UIButton *)button{
+
+        for (UIView *view in self.tableView.visibleCells) {
+            for (UIView *theView in view.subviews) {
+                for (UIView *littleView in theView.subviews) {
+                    if ([littleView isKindOfClass:[UIButton class]]) {
+                        UIButton *btn=(UIButton *)littleView;
+                        if (btn==button) {
+                            [btn setSelected:YES];
+                        }else{
+                            [btn setSelected:NO];
+                        }
+                        NSLog(@"%ld",btn.tag);
+                    }
+                }
+            }
+        }
+    
+       [self.tableView reloadData];
+}
+
 #pragma mark tableView -delegate
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-//    WXAddressFrame *frame = self.addressArray[indexPath.row];
+    WXAddressFrame *frame=[[WXAddressFrame alloc] init];
+    WXAddressModel *model=[self.addressArray objectAtIndex:indexPath.row];
+    frame.address=model;
     
-    return 130;
+    return frame.cellHeight;
  
 }
 

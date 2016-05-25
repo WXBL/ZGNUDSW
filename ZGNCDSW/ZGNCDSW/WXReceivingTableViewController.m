@@ -27,7 +27,7 @@
 
 -(void)addNavBar{
     
-    WXTopView *topView = [[WXTopView alloc]initWithFrame:CGRectMake(0, 0, screenWidth, 50) TitleText:@"待评价"];
+    WXTopView *topView = [[WXTopView alloc]initWithFrame:CGRectMake(0, 0, screenWidth, 50) TitleText:@"待收货"];
     [topView.backButton addTarget:self action:@selector(backButton:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:topView];
     self.topView = topView;

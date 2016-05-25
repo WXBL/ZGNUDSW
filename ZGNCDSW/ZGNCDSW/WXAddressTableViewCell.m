@@ -13,19 +13,15 @@
 @interface WXAddressTableViewCell ()<WXAddressToolbarDelegate>{
     
     BOOL isbool;
+    
+//    NSIndexPath *indexPath;
+    
 }
+
+
 @property (nonatomic,strong)UIView *cellView;
 
-@property (nonatomic,strong)UILabel *name;
-@property (nonatomic,strong)UILabel *phone;
-@property (nonatomic,strong)UILabel *address;
-@property (nonatomic,strong)UIButton *editBtn;
-@property (nonatomic,strong)UIButton *deleteBtn;
 
-@property(nonatomic,strong)UILabel *defaultAddress;
-@property (nonatomic,strong)UIButton *defaultBtn;//勾选默认地址
-
-@property (nonatomic,strong)WXtoolbarView *toolbar;
 @end
 @implementation WXAddressTableViewCell
 
@@ -42,6 +38,8 @@
     
         
     }
+   
+    
     return cell;
 }
 
@@ -49,6 +47,7 @@
     
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
+        
         self.backgroundColor = [UIColor clearColor];
         
         //点击cell时候不变颜色
@@ -68,8 +67,7 @@
 -(void)setupToolbar{
     WXtoolbarView *toolbar = [WXtoolbarView toolbar];
     toolbar.backgroundColor = [UIColor whiteColor];
-    toolbar.frame = CGRectMake(0, self.cellView.frame.size.height+1, screenWidth, 30);
-    [self.contentView addSubview:toolbar];
+    [self addSubview:toolbar];
     toolbar.delegate = self;
     self.toolbar = toolbar;
 }
@@ -78,14 +76,12 @@
  * 初始化收货地址cell
  */
 -(void)showAddressCell{
-    UIView *cellView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, screenWidth, 90)];
-//    UIView *cellView = [[UIView alloc]init];
+    UIView *cellView = [[UIView alloc]init];
     cellView.backgroundColor = [UIColor whiteColor];
     [self addSubview:cellView];
     self.cellView = cellView;
-    UILabel *name = [[UILabel alloc]initWithFrame:CGRectMake(10, 10, cellView.frame.size.width/2-10, cellView.frame.size.height/3)];
-//    UILabel *name = [[UILabel alloc]init];
-    name.text = @"jwh";
+
+    UILabel *name = [[UILabel alloc]init];
     name.textColor = [UIColor blackColor];
     name.font = [UIFont systemFontOfSize:14];
     name.textAlignment = NSTextAlignmentLeft;
@@ -94,65 +90,80 @@
     
   
     UILabel *phone = [[UILabel alloc]init];
-    phone.frame = CGRectMake(cellView.frame.size.width/2, self.name.frame.origin.y, cellView.frame.size.width/2, self.name.frame.size.height);
     phone.font = AddressCellPhoneFont;
-    phone.text = @"15075056282";
     phone.textAlignment = NSTextAlignmentCenter;
     [cellView addSubview:phone];
     self.phone = phone;
     
-    UILabel *address = [[UILabel alloc]init];
-    address.frame = CGRectMake(self.name.frame.origin.x, CGRectGetMaxY(name.frame), cellView.frame.size.width-20, cellView.frame.size.height/3*2);
+    UILabel *address = [[UILabel alloc]init];;
     address.font = AddressCellAddDetailFont;
-    address.text = @"天津市武清区财富兴园";
     address.numberOfLines = 0;
     [cellView addSubview:address];
     self.address = address;
+    
+    UIView *lineView = [[UIView alloc]init];
+    lineView.backgroundColor = [UIColor grayColor];
+    [cellView addSubview:lineView];
+    self.lineView  = lineView;
+    
+    if (_addressModel.addressClickState == 1) {
+        
+        isbool = YES;
+        [self.toolbar.defaultBtn setImage:[UIImage imageNamed:@"selected_btn"] forState:UIControlStateNormal];
+        
+    } else {
+        
+        isbool = NO;
+        [self.toolbar.defaultBtn setImage:[UIImage imageNamed:@"unselected_btn"] forState:UIControlStateNormal];
+    }
 
     
 }
 
+//-(void)defaultAddressImage:(WXAddressModel *)addressModel{
+//    if (_addressModel.addressClickState == 1) {
+//        
+//        isbool = YES;
+//        [self.toolbar.defaultBtn setImage:[UIImage imageNamed:@"selected_btn"] forState:UIControlStateNormal];
+//        
+//    } else {
+//        
+//        isbool = NO;
+//        [self.toolbar.defaultBtn setImage:[UIImage imageNamed:@"unselected_btn"] forState:UIControlStateNormal];
+//    }
+//}
+
+
 -(void)setAddressFrame:(WXAddressFrame *)addressFrame{
     _addressFrame = addressFrame;
     
-//    WXAddressModel *address = addressFrame.address;
+    WXAddressModel *address = addressFrame.address;
     
     self.cellView.frame = addressFrame.cellViewF;
     //收件人
     self.name.frame = addressFrame.usernameF;
-//    self.name.text =address.username;
-//    self.name.text = @"jwh";
+    self.name.text = address.username;
     
     //phone
     self.phone.frame = addressFrame.phoneF;
-//    self.phone.text = address.Phone;
-//    self.phone.text = @"15075056282";
+    self.phone.text = address.Phone;
     
     self.address.frame = addressFrame.addressDetailF;
-//    self.address.text = address.Specific_Address;
-//    self.address.text = @"天津市武清区";
+    self.address.text = address.Specific_Address;
+    
+    self.lineView.frame = addressFrame.lineF;
     
     self.toolbar.frame = addressFrame.toolBarF;
     
 
 }
-//
+
+
+
 -(void)addressToolBar:(UIView *)toolBar didClickButton:(UIButton *)button{
-    if (button.tag ==100) {
-        if (isbool) {
-            _addressModel.addressClickState = 0;
-            [_delegate WXAddressTableViewCell:_addressModel];
-            [self.toolbar.defaultBtn setImage:[UIImage imageNamed:@"iconfont-yuanquan"] forState:UIControlStateNormal];
-            isbool = NO;
-        }else{
-            _addressModel.addressClickState = 1;
-            [_delegate WXAddressTableViewCell:_addressModel];
-            [self.toolbar.defaultBtn setImage:[UIImage imageNamed:@"iconfont-zhengque"] forState:UIControlStateNormal];
-            isbool = YES;
-        }
-        
-        
-    }else if (button.tag ==200){
+
+    if (button.tag ==200){
+    
         
     }else{
         

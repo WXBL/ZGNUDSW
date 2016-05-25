@@ -39,6 +39,7 @@
         
 
         model.addressClickState = 0;
+
         
         return model;
     }

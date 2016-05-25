@@ -45,11 +45,12 @@
     CGFloat defaultBtnY = 5;
     CGFloat defaultBtnWH = 20;
     self.defaultBtn.frame = CGRectMake(defaultBtnX, defaultBtnY, defaultBtnWH, defaultBtnWH);
-    [self.defaultBtn setImage:[UIImage imageNamed:@"iconfont-yuanquan"] forState:UIControlStateNormal];
-//    [self.defaultBtn setImage:[UIImage imageNamed:@"iconfont-zhengque"] forState:UIControlStateSelected];
-    self.defaultBtn.tag = 100;
-    [self.defaultBtn addTarget:self action:@selector(ClickBtn:) forControlEvents:UIControlEventTouchUpInside];
+    [self.defaultBtn setImage:[UIImage imageNamed:@"unselected_btn"] forState:UIControlStateNormal];
+    [self.defaultBtn setImage:[UIImage imageNamed:@"selected_btn"] forState:UIControlStateFocused];
+    [self.defaultBtn setImage:[UIImage imageNamed:@"selected_btn"] forState:UIControlStateSelected];
+//    [self.defaultBtn addTarget:self action:@selector(ClickBtn:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:self.defaultBtn];
+//    self.defaultBtn.tag = self.theTag;
     
     self.setDefaultBtn = [[UIButton alloc]init];
     self.setDefaultBtn.frame = CGRectMake(CGRectGetMaxX(self.defaultBtn.frame)+5, 5, screenWidth/2-CGRectGetMaxX(self.defaultBtn.frame), 20);
@@ -57,8 +58,8 @@
     [self.setDefaultBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     self.setDefaultBtn.titleLabel.font = [UIFont systemFontOfSize:12];
     self.setDefaultBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
-    self.setDefaultBtn.tag = 100;
-    [self.setDefaultBtn addTarget:self action:@selector(ClickBtn:) forControlEvents:UIControlEventTouchUpInside];
+    
+//    [self.setDefaultBtn addTarget:self action:@selector(ClickBtn:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:self.setDefaultBtn];
     
     self.editBtn = [[UIButton alloc]init];

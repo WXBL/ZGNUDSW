@@ -101,6 +101,12 @@
     [runLoop addTimer:self.timer forMode:NSRunLoopCommonModes];
 }
 
+//要改变StatusBar的显示样式需要在UIViewController中重载
+-(UIStatusBarStyle)preferredStatusBarStyle{
+    return UIStatusBarStyleLightContent;
+}
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.searchBar = [WXSearchBar searchBar];
@@ -119,6 +125,15 @@
     [center addObserver:self selector:@selector(notice:) name:@"choice" object:nil];
     
     [center addObserver:self selector:@selector(recommend:) name:@"recommend" object:nil];
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    
+    [self setNeedsStatusBarAppearanceUpdate];
+    
+    [self.rootTableView reloadData];
+    
 }
 -(void)recommend:(NSNotification *)notification{
     NSDictionary *recommendDic=[notification userInfo];
@@ -219,11 +234,7 @@
     }
      [alertView show];
 }
--(void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
-    
-    [self.rootTableView reloadData];
-}
+
 
 
 #pragma mark -设置轮播图片

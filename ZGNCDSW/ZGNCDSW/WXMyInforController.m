@@ -16,6 +16,7 @@
 #import "WXReceivingTableViewController.h"
 #import "WXPayingTableViewController.h"
 #import "WXReturnrefundTableVC.h"
+#import "WXGZProductViewController.h"
 @interface WXMyInforController ()<WXHeaderViewDelegate>
 
 
@@ -127,6 +128,8 @@
 
 #pragma mark - 点击关注商品，店铺，浏览记录三个按钮触发事件
 -(void)ClickProductBtn:(UIButton *)sender{
+    WXGZProductViewController *productController = [[WXGZProductViewController alloc]init];
+    [self presentViewController:productController animated:YES completion:nil];
     
 }
 

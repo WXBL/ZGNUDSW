@@ -21,6 +21,7 @@
 @property (assign,nonatomic)NSInteger addressClickState;
 
 
+
 -(id)getAddressDataWithDictionaryJSON:(NSDictionary *)dict;
 -(id)getAddressDataWithArrayJSON:(NSArray *)array;
 @end

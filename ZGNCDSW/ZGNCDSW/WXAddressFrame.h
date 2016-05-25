@@ -30,6 +30,9 @@
 @property (nonatomic,assign)CGRect usernameF;
 @property (nonatomic,assign)CGRect phoneF;
 @property (nonatomic,assign)CGRect addressDetailF;
+
+//分割线
+@property (nonatomic,assign)CGRect lineF;
 //底部工具条
 @property (nonatomic,assign)CGRect toolBarF;
 

@@ -76,6 +76,7 @@
 		8436AE7F1CE2B790008FD067 /* WXUserInforModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8436AE7E1CE2B790008FD067 /* WXUserInforModel.m */; };
 		8436AE821CE302BD008FD067 /* WXOrderController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8436AE811CE302BD008FD067 /* WXOrderController.m */; };
 		8436AE851CE31278008FD067 /* WXManagementController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8436AE841CE31278008FD067 /* WXManagementController.m */; };
+		843F5DDC1CF4235C00BC738E /* WXCommendTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 843F5DDB1CF4235C00BC738E /* WXCommendTableViewCell.m */; };
 		844329F51CD9860800BD7B9E /* WXBigPic.m in Sources */ = {isa = PBXBuildFile; fileRef = 844329F41CD9860800BD7B9E /* WXBigPic.m */; };
 		84432A001CD9D9B600BD7B9E /* libicucore.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 844329FF1CD9D9B600BD7B9E /* libicucore.tbd */; };
 		84432A021CD9D9C200BD7B9E /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 84432A011CD9D9C200BD7B9E /* libz.tbd */; };
@@ -100,6 +101,8 @@
 		8460471D1CE01BC600DC01B9 /* WXShoppingModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8460471C1CE01BC600DC01B9 /* WXShoppingModel.m */; };
 		846047211CE0209200DC01B9 /* Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 8460471F1CE0209200DC01B9 /* Util.m */; };
 		846047241CE020B200DC01B9 /* ShoppingBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = 846047231CE020B200DC01B9 /* ShoppingBtn.m */; };
+		846C84D71CED69CD00ADBEC1 /* WXGZProductViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 846C84D61CED69CD00ADBEC1 /* WXGZProductViewController.m */; };
+		846C84DA1CED6AC600ADBEC1 /* WXGZProductTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 846C84D91CED6AC600ADBEC1 /* WXGZProductTableViewCell.m */; };
 		84C361FC1CD19274008ED985 /* WXCategoryTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 84C361FA1CD19274008ED985 /* WXCategoryTableViewCell.m */; };
 		84C361FF1CD19C0A008ED985 /* WXRecommendTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 84C361FE1CD19C0A008ED985 /* WXRecommendTableViewCell.m */; };
 		84C362051CD1B284008ED985 /* WXNewsTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 84C362041CD1B284008ED985 /* WXNewsTableCell.m */; };
@@ -348,6 +351,8 @@
 		8436AE811CE302BD008FD067 /* WXOrderController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXOrderController.m; sourceTree = "<group>"; };
 		8436AE831CE31278008FD067 /* WXManagementController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXManagementController.h; sourceTree = "<group>"; };
 		8436AE841CE31278008FD067 /* WXManagementController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXManagementController.m; sourceTree = "<group>"; };
+		843F5DDA1CF4235C00BC738E /* WXCommendTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXCommendTableViewCell.h; sourceTree = "<group>"; };
+		843F5DDB1CF4235C00BC738E /* WXCommendTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXCommendTableViewCell.m; sourceTree = "<group>"; };
 		844329F31CD9860800BD7B9E /* WXBigPic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXBigPic.h; sourceTree = "<group>"; };
 		844329F41CD9860800BD7B9E /* WXBigPic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXBigPic.m; sourceTree = "<group>"; };
 		844329FF1CD9D9B600BD7B9E /* libicucore.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libicucore.tbd; path = usr/lib/libicucore.tbd; sourceTree = SDKROOT; };
@@ -391,6 +396,10 @@
 		846047201CE0209200DC01B9 /* Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Header.h; sourceTree = "<group>"; };
 		846047221CE020B200DC01B9 /* ShoppingBtn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShoppingBtn.h; sourceTree = "<group>"; };
 		846047231CE020B200DC01B9 /* ShoppingBtn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShoppingBtn.m; sourceTree = "<group>"; };
+		846C84D51CED69CD00ADBEC1 /* WXGZProductViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXGZProductViewController.h; sourceTree = "<group>"; };
+		846C84D61CED69CD00ADBEC1 /* WXGZProductViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXGZProductViewController.m; sourceTree = "<group>"; };
+		846C84D81CED6AC600ADBEC1 /* WXGZProductTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXGZProductTableViewCell.h; sourceTree = "<group>"; };
+		846C84D91CED6AC600ADBEC1 /* WXGZProductTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXGZProductTableViewCell.m; sourceTree = "<group>"; };
 		84C361FA1CD19274008ED985 /* WXCategoryTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXCategoryTableViewCell.m; sourceTree = "<group>"; };
 		84C361FB1CD19274008ED985 /* WXCategoryTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXCategoryTableViewCell.h; sourceTree = "<group>"; };
 		84C361FD1CD19C0A008ED985 /* WXRecommendTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXRecommendTableViewCell.h; sourceTree = "<group>"; };
@@ -876,6 +885,7 @@
 		840190241CCE2A0F00A43AA4 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				843F5DDD1CF43B5100BC738E /* OrderModel */,
 				84CAD0AC1CE56C10005A8049 /* OrderCell */,
 				84FC3BBF1CE4102000209B8D /* Orders(订单详情) */,
 				840190251CCE2A3700A43AA4 /* WXMyInforController.h */,
@@ -884,6 +894,8 @@
 				8436AE811CE302BD008FD067 /* WXOrderController.m */,
 				8436AE831CE31278008FD067 /* WXManagementController.h */,
 				8436AE841CE31278008FD067 /* WXManagementController.m */,
+				846C84D51CED69CD00ADBEC1 /* WXGZProductViewController.h */,
+				846C84D61CED69CD00ADBEC1 /* WXGZProductViewController.m */,
 				84CAD0B31CE5A304005A8049 /* UserManage（用户管理界列表） */,
 			);
 			name = Controller;
@@ -926,6 +938,8 @@
 				84CAD0A41CE55A46005A8049 /* WXInforTableViewCell.m */,
 				84CAD0A91CE55A67005A8049 /* XFSegementView.h */,
 				84CAD0AA1CE55A67005A8049 /* XFSegementView.m */,
+				846C84D81CED6AC600ADBEC1 /* WXGZProductTableViewCell.h */,
+				846C84D91CED6AC600ADBEC1 /* WXGZProductTableViewCell.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -937,6 +951,13 @@
 				8436AE7E1CE2B790008FD067 /* WXUserInforModel.m */,
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		843F5DDD1CF43B5100BC738E /* OrderModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = OrderModel;
 			sourceTree = "<group>";
 		};
 		84432A171CD9DFE700BD7B9E /* ShareSDK */ = {
@@ -1037,6 +1058,8 @@
 				84CAD0AE1CE56C70005A8049 /* WXPayTableViewCell.m */,
 				84CAD0B01CE56E56005A8049 /* WXReturnrefundTableViewCell.h */,
 				84CAD0B11CE56E56005A8049 /* WXReturnrefundTableViewCell.m */,
+				843F5DDA1CF4235C00BC738E /* WXCommendTableViewCell.h */,
+				843F5DDB1CF4235C00BC738E /* WXCommendTableViewCell.m */,
 			);
 			name = OrderCell;
 			sourceTree = "<group>";
@@ -1683,7 +1706,9 @@
 				8F62015A1CE01294002C9C60 /* WXResetPasswordViewController.m in Sources */,
 				84CAD0AB1CE55A67005A8049 /* XFSegementView.m in Sources */,
 				8401901A1CCE297300A43AA4 /* WXFarmImportsController.m in Sources */,
+				846C84D71CED69CD00ADBEC1 /* WXGZProductViewController.m in Sources */,
 				8FA39DF41CCE0C0B0034C622 /* MJRefreshBaseView.m in Sources */,
+				846C84DA1CED6AC600ADBEC1 /* WXGZProductTableViewCell.m in Sources */,
 				7910381F1CE4348800B3AC08 /* SDWebImageDecoder.m in Sources */,
 				8FA39DF51CCE0C0B0034C622 /* MJRefreshFooterView.m in Sources */,
 				791038221CE4348800B3AC08 /* SDWebImageManager.m in Sources */,
@@ -1703,6 +1728,7 @@
 				8F06694C1CC4E7ED007CD423 /* AppDelegate.m in Sources */,
 				7910381E1CE4348800B3AC08 /* SDWebImageCompat.m in Sources */,
 				8FA39DE91CCE0C0B0034C622 /* rscode.c in Sources */,
+				843F5DDC1CF4235C00BC738E /* WXCommendTableViewCell.m in Sources */,
 				84CAD0A21CE559E9005A8049 /* WXReturnrefundTableVC.m in Sources */,
 				8FA39DDF1CCE0C0B0034C622 /* SDRefreshFooterView.m in Sources */,
 				8FA39DF61CCE0C0B0034C622 /* MJRefreshHeaderView.m in Sources */,

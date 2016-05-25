@@ -11,18 +11,16 @@
 #import "AddressChoicePickerView.h"
 #import "AreaObject.h"
 #import "validateTest.h"
+#import "WXAddressModel.h"
 @interface WXAddAddressViewController ()<UITextFieldDelegate,UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic,strong)UIView *topView;
 
 @property (nonatomic,strong)UITableView *tableView;
 
-@property (nonatomic,strong)UITextField *nameText;
-@property (nonatomic,strong)UITextField *phoneText;
-@property (nonatomic,strong)UILabel *areaText;
-@property (nonatomic,strong)UITextField *PostcodesText;
-@property (nonatomic,strong)UITextField *addressDetail;
 
+
+//@property (nonatomic,strong)WXAddressModel *addressModel;
 
 @end
 
@@ -78,32 +76,12 @@
     [self.view addSubview:saveBtn];
 }
 
--(void)ClickSaveBtn:(UIButton *)sender{
+-(void)ClickSaveBtn:(UIButton *)button{
     
-   
-    if (([self.nameText.text isEqualToString:@""]|| [self.phoneText.text isEqualToString:@""]||[self.PostcodesText.text isEqualToString:@""]||[self.addressDetail.text isEqualToString:@""])&& [self.areaText.text isEqualToString:@"省、市、区"]) {
-        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"提示" message:@"请完善收货地址信息" preferredStyle:UIAlertControllerStyleAlert];
-        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
-        UIAlertAction *established = [UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault handler:nil];
-        [alertController addAction:cancelAction];
-        [alertController addAction:established];
-        [self presentViewController:alertController animated:YES completion:nil];
-    
-    }else{
-        validateTest *test=[[validateTest alloc] init];
-        if (![test validateMobile:self.phoneText.text]) {
-            UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"提示" message:@"手机号格式不正确请重新填写！" preferredStyle:UIAlertControllerStyleAlert];
-            UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
-            UIAlertAction *established = [UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault handler:nil];
-            [alertController addAction:cancelAction];
-            [alertController addAction:established];
-            self.phoneText=nil;
-        }else{
-            
-        }
-        
-        
+    if ([self.delegate respondsToSelector:@selector(addressViewController:didClickButton:)]) {
+        [self.delegate addressViewController:self didClickButton:button];
     }
+   
 }
 
 
@@ -234,6 +212,7 @@
 
 
 -(void)backButton:(id)sender{
+    [self dismissViewControllerAnimated:YES completion:nil];
     
 }
 - (void)didReceiveMemoryWarning {
