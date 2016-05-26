@@ -89,11 +89,11 @@
     
     WXTopView *topView=[[WXTopView alloc] initWithFrame:CGRectMake(0, 0, screenWidth, 50) TitleText:@"农品购"];
     [topView.backButton addTarget:self action:@selector(backButton:) forControlEvents:UIControlEventTouchUpInside];
-    UIButton *buyCart = [UIButton buttonWithType:UIButtonTypeCustom];
-    buyCart.frame = CGRectMake(screenWidth -50, CGRectGetHeight(topView.frame)-40, 50, 40);
-    [buyCart setImage:[UIImage imageNamed:@"detailBar_cart_press"] forState:UIControlStateNormal];
-    [buyCart addTarget:self action:@selector(ClickBuyCartButton:) forControlEvents:UIControlEventTouchUpInside];
-    [topView addSubview:buyCart];
+//    UIButton *buyCart = [UIButton buttonWithType:UIButtonTypeCustom];
+//    buyCart.frame = CGRectMake(screenWidth -50, CGRectGetHeight(topView.frame)-40, 50, 40);
+//    [buyCart setImage:[UIImage imageNamed:@"detailBar_cart_press"] forState:UIControlStateNormal];
+//    [buyCart addTarget:self action:@selector(ClickBuyCartButton:) forControlEvents:UIControlEventTouchUpInside];
+//    [topView addSubview:buyCart];
     [self.view addSubview:topView];
     
 }
@@ -105,11 +105,11 @@
 {
     self.navigationItem.title = @"农品购";
     
-    UIButton *buyCart = [UIButton buttonWithType:UIButtonTypeCustom];
-    buyCart.frame = CGRectMake(screenWidth -50, CGRectGetHeight(self.navigationController.navigationBar.frame)-40, 50, 40);
-    [buyCart setImage:[UIImage imageNamed:@"detailBar_cart_press"] forState:UIControlStateNormal];
-    [buyCart addTarget:self action:@selector(ClickBuyCartButton:) forControlEvents:UIControlEventTouchUpInside];
-    [self.navigationController.navigationBar addSubview:buyCart];
+//    UIButton *buyCart = [UIButton buttonWithType:UIButtonTypeCustom];
+//    buyCart.frame = CGRectMake(screenWidth -50, CGRectGetHeight(self.navigationController.navigationBar.frame)-40, 50, 40);
+//    [buyCart setImage:[UIImage imageNamed:@"detailBar_cart_press"] forState:UIControlStateNormal];
+//    [buyCart addTarget:self action:@selector(ClickBuyCartButton:) forControlEvents:UIControlEventTouchUpInside];
+//    [self.navigationController.navigationBar addSubview:buyCart];
 }
 //添加搜索
 -(void)addSearchView{

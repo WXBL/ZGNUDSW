@@ -22,6 +22,7 @@
 #import "WXColorModel.h"
 #import "WXSizeModel.h"
 #import "WXProductFeatureModel.h"
+#import "WXMerchantViewController.h"
 #define PRODUCT_IS_COLLECTION @""
 #define ADD_COLLECTION_PRODUCT @""
 #define CANCEL_COLLECTION_PRODUCT @""
@@ -186,11 +187,11 @@
     [topView.backButton addTarget:self action:@selector(backButton:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:topView];
     
-    UIButton *buyCart = [UIButton buttonWithType:UIButtonTypeCustom];
-    buyCart.frame = CGRectMake(screenWidth -50, 10, 50, 40);
-    [buyCart setImage:[UIImage imageNamed:@"detailBar_cart_press"] forState:UIControlStateNormal];
-    [buyCart addTarget:self action:@selector(ClickBuyCartButton:) forControlEvents:UIControlEventTouchUpInside];
-    [topView addSubview:buyCart];
+//    UIButton *buyCart = [UIButton buttonWithType:UIButtonTypeCustom];
+//    buyCart.frame = CGRectMake(screenWidth -50, 10, 50, 40);
+//    [buyCart setImage:[UIImage imageNamed:@"detailBar_cart_press"] forState:UIControlStateNormal];
+//    [buyCart addTarget:self action:@selector(ClickBuyCartButton:) forControlEvents:UIControlEventTouchUpInside];
+//    [topView addSubview:buyCart];
 
 }
 
@@ -220,6 +221,7 @@
     self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 50, screenWidth, screenHeigth - 90) style:UITableViewStylePlain];
     self.tableView.backgroundColor = [UIColor colorWithWhite:0.9 alpha:1];
     self.tableView.tag=1;
+    self.tableView.bounces=NO;
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.tableFooterView = [[UIView alloc]init];
@@ -237,16 +239,16 @@
 -(void)addbuyCart
 {
     self.buyCartView = [[UIView alloc]initWithFrame:CGRectMake(0, screenHeigth - 40, screenWidth, 40)];
-    self.buyCartView.backgroundColor = [UIColor whiteColor];
+    self.buyCartView.backgroundColor = [UIColor blackColor];
     [self.view addSubview:self.buyCartView];
     
     UIButton *store = [UIButton buttonWithType:UIButtonTypeCustom];
-    store.frame = CGRectMake(0, 0, screenWidth/6, 40);
+    store.frame = CGRectMake(0, 0, screenWidth/2, 40);
     //    [keep setImage:[UIImage imageNamed:@"collect"] forState:UIControlStateNormal];
     [store setTitle:@"商家" forState:UIControlStateNormal];
-    [store setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+    [store setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [store setTitleColor:[UIColor blackColor] forState:UIControlStateHighlighted];
-    store.titleLabel.font = [UIFont systemFontOfSize:14];
+    store.titleLabel.font = [UIFont systemFontOfSize:16];
     [store.layer setBorderColor:[UIColor colorWithWhite:0.9 alpha:1].CGColor];
     [store.layer setBorderWidth:0.5];
     [store.layer setMasksToBounds:YES];
@@ -254,11 +256,11 @@
     [self.buyCartView addSubview:store];
     
     UIButton *keep = [UIButton buttonWithType:UIButtonTypeCustom];
-    keep.frame = CGRectMake(CGRectGetMaxX(store.frame), 0, screenWidth/6, 40);
+    keep.frame = CGRectMake(CGRectGetMaxX(store.frame), 0, screenWidth/2, 40);
 //    [keep setImage:[UIImage imageNamed:@"collect"] forState:UIControlStateNormal];
     [keep setTitle:@"收藏" forState:UIControlStateNormal];
-    [keep setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
-
+    [keep setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [keep setTitleColor:[UIColor blackColor] forState:UIControlStateHighlighted];
     [keep setTitle:@"已收藏" forState:UIControlStateSelected];
     [keep setTitleColor:[UIColor redColor] forState:UIControlStateSelected];
     
@@ -268,40 +270,39 @@
         keep.selected=NO;
     }
 
-    
-    [keep setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
-    [keep setTitleColor:[UIColor redColor] forState:UIControlStateHighlighted];
-    keep.titleLabel.font = [UIFont systemFontOfSize:14];
+    keep.titleLabel.font = [UIFont systemFontOfSize:16];
     [keep.layer setBorderColor:[UIColor colorWithWhite:0.9 alpha:1].CGColor];
     [keep.layer setBorderWidth:0.5];
     [keep.layer setMasksToBounds:YES];
     [keep addTarget:self action:@selector(ClickKeepButton:) forControlEvents:UIControlEventTouchUpInside];
     [self.buyCartView addSubview:keep];
     
-    UIButton *addbuyCart = [UIButton buttonWithType:UIButtonTypeCustom];
-    addbuyCart.frame = CGRectMake(CGRectGetMaxX(keep.frame), 0, screenWidth/3, 40);
-    addbuyCart.backgroundColor = [UIColor colorWithRed:0.3 green:0.7 blue:0.5 alpha:1];
-    [addbuyCart setTitle:@"加入购物车" forState:UIControlStateNormal];
-    [addbuyCart setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    addbuyCart.titleLabel.font = [UIFont systemFontOfSize:16];
-    [addbuyCart addTarget:self action:@selector(addBuyCartButton:) forControlEvents:UIControlEventTouchUpInside];
-    [self.buyCartView addSubview:addbuyCart];
-    
-    UIButton *buyLabel = [UIButton buttonWithType:UIButtonTypeCustom];
-    buyLabel.frame = CGRectMake(CGRectGetMaxX(addbuyCart.frame), 0, screenWidth/3, 40);
-    buyLabel.backgroundColor = [UIColor colorWithRed:0.8 green:0.2 blue:0.3 alpha:1];
-    [buyLabel setTitle:@"立即购买" forState:UIControlStateNormal];
-    [buyLabel setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    buyLabel.titleLabel.font = [UIFont systemFontOfSize:16];
-    [buyLabel addTarget:self action:@selector(ClickBuyButton:) forControlEvents:UIControlEventTouchUpInside];
-    [self.buyCartView addSubview:buyLabel];
+//    UIButton *addbuyCart = [UIButton buttonWithType:UIButtonTypeCustom];
+//    addbuyCart.frame = CGRectMake(CGRectGetMaxX(keep.frame), 0, screenWidth/3, 40);
+//    addbuyCart.backgroundColor = [UIColor colorWithRed:0.3 green:0.7 blue:0.5 alpha:1];
+//    [addbuyCart setTitle:@"加入购物车" forState:UIControlStateNormal];
+//    [addbuyCart setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+//    addbuyCart.titleLabel.font = [UIFont systemFontOfSize:16];
+//    [addbuyCart addTarget:self action:@selector(addBuyCartButton:) forControlEvents:UIControlEventTouchUpInside];
+//    [self.buyCartView addSubview:addbuyCart];
+//    
+//    UIButton *buyLabel = [UIButton buttonWithType:UIButtonTypeCustom];
+//    buyLabel.frame = CGRectMake(CGRectGetMaxX(addbuyCart.frame), 0, screenWidth/3, 40);
+//    buyLabel.backgroundColor = [UIColor colorWithRed:0.8 green:0.2 blue:0.3 alpha:1];
+//    [buyLabel setTitle:@"立即购买" forState:UIControlStateNormal];
+//    [buyLabel setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+//    buyLabel.titleLabel.font = [UIFont systemFontOfSize:16];
+//    [buyLabel addTarget:self action:@selector(ClickBuyButton:) forControlEvents:UIControlEventTouchUpInside];
+//    [self.buyCartView addSubview:buyLabel];
 }
 
 /**
  *进入商店
  */
 -(void)ClickGoToStoreButton:(UIButton *)sender{
-    
+    WXMerchantViewController *merchantVC=[[WXMerchantViewController alloc] init];
+    merchantVC.theMerchant=self.theProduct.Merchant;
+    [self presentViewController:merchantVC animated:YES completion:nil];
 }
 /*
  收藏方法
@@ -311,17 +312,21 @@
     
     hud.mode = MBProgressHUDModeText;
     
-    
-    if ([[NSUserDefaults standardUserDefaults]objectForKey:@"saveTheProduct"]) {
-        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"saveTheProduct"];
-        hud.labelText=@"取消收藏";
-        
-        sender.selected=NO;
+    if ([[NSUserDefaults standardUserDefaults]objectForKey:@"UserName"]) {
+        if ([[NSUserDefaults standardUserDefaults]objectForKey:@"saveTheProduct"]) {
+            [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"saveTheProduct"];
+            hud.labelText=@"取消收藏";
+            
+            sender.selected=NO;
+        }else{
+            [[NSUserDefaults standardUserDefaults] setObject:self.theProduct forKey:@"saveTheProduct"];
+            hud.labelText = @"收藏成功！";
+            sender.selected=YES;
+        }
     }else{
-        [[NSUserDefaults standardUserDefaults] setObject:self.theProduct forKey:@"saveTheProduct"];
-        hud.labelText = @"收藏成功！";
-        sender.selected=YES;
+        hud.labelText = @"请登录！";
     }
+    
     hud.margin = 10.f;
     hud.yOffset = 150.f;
     hud.removeFromSuperViewOnHide = YES;
@@ -488,7 +493,7 @@
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if (tableView == self.tableView) {
-        return 4;
+        return 2;
     }else{
 //        return self.sizeArray.count;
         return 4;
@@ -533,31 +538,31 @@
             cell.accessoryType =UITableViewCellAccessoryDisclosureIndicator;
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             
-        }else if (indexPath.row == 2){
-            UILabel *size = [[UILabel alloc]initWithFrame:CGRectMake(10, 0, screenWidth /2, 44)];
-            size.text = @"选择类型";
-            size.textAlignment = NSTextAlignmentLeft;
-            size.font = [UIFont systemFontOfSize:14];
-            size.textColor = [UIColor blackColor];
-            [cell addSubview:size];
-            
-            cell.backgroundColor = [UIColor whiteColor];
-            
-            //单元格右侧图标
-            cell.accessoryType =UITableViewCellAccessoryDisclosureIndicator;
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        }else if(indexPath.row == 3){
-            
-            self.commentView = [[UIView alloc]initWithFrame:CGRectMake(0, 10, screenWidth, 170)];
-            self.commentView.backgroundColor = [UIColor whiteColor];
-            
-            [cell addSubview:self.commentView];
-            
-            [self commentContent];
-            
-            cell.backgroundColor = [UIColor colorWithWhite:0.9 alpha:1];
-            //隐藏UITableViewCell的分隔线
-            [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+//        }else if (indexPath.row == 2){
+//            UILabel *size = [[UILabel alloc]initWithFrame:CGRectMake(10, 0, screenWidth /2, 44)];
+//            size.text = @"选择类型";
+//            size.textAlignment = NSTextAlignmentLeft;
+//            size.font = [UIFont systemFontOfSize:14];
+//            size.textColor = [UIColor blackColor];
+//            [cell addSubview:size];
+//            
+//            cell.backgroundColor = [UIColor whiteColor];
+//            
+//            //单元格右侧图标
+//            cell.accessoryType =UITableViewCellAccessoryDisclosureIndicator;
+//            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+//        }else if(indexPath.row == 2){
+//            
+//            self.commentView = [[UIView alloc]initWithFrame:CGRectMake(0, 10, screenWidth, 170)];
+//            self.commentView.backgroundColor = [UIColor whiteColor];
+//            
+//            [cell addSubview:self.commentView];
+//            
+//            [self commentContent];
+//            
+//            cell.backgroundColor = [UIColor colorWithWhite:0.9 alpha:1];
+//            //隐藏UITableViewCell的分隔线
+//            [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
             
             
         }
@@ -629,8 +634,8 @@
     if (tableView == self.tableView) {
         if (indexPath.row == 1) {
             [self showProductSize];
-        }else if(indexPath.row==2){
-            [self btnselete];
+//        }else if(indexPath.row==2){
+//            [self ClickAllCommentButton:nil];
         }
     }
     
@@ -643,7 +648,7 @@
     if (tableView == self.tableView) {
         if (indexPath.row == 0) {
             return 110;
-        }else if(indexPath.row == 3){
+        }else if(indexPath.row == 2){
             return 100;
         }else{
             return 40;
@@ -741,7 +746,7 @@
  */
 -(void)firstCellContent
 {
-    
+     WXMerchantModel *merchant=self.theProduct.Merchant;
     UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 0, screenWidth, 50)];
     titleLabel.textColor = [UIColor blackColor];
     titleLabel.text = self.theProduct.Goods_Name;
@@ -787,14 +792,14 @@
     //快递费，销量，卖家地址
     UILabel *postageLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, CGRectGetMaxY(price.frame)+5, 50, 20)];
     postageLabel.textColor = [UIColor grayColor];
-    postageLabel.text = @"快递：";
+    postageLabel.text = @"商家：";
     postageLabel.textAlignment = NSTextAlignmentLeft;
     postageLabel.font = [UIFont systemFontOfSize:14];
     [self.cellBgView addSubview:postageLabel];
     
     UILabel *postage = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(postageLabel.frame), CGRectGetMinY(postageLabel.frame), screenWidth/3-60, 20)];
     postage.textColor = [UIColor grayColor];
-    postage.text = @"免费";
+    postage.text =merchant.Company_Name;
     postage.textAlignment = NSTextAlignmentLeft;
     postage.font = [UIFont systemFontOfSize:14];
     [self.cellBgView addSubview:postage];
@@ -808,7 +813,7 @@
     
     UILabel *address = [[UILabel alloc]initWithFrame:CGRectMake(screenWidth /3 *2,  CGRectGetMinY(postageLabel.frame), screenWidth /3-10, 20)];
     address.textColor = [UIColor grayColor];
-    WXMerchantModel *merchant=self.theProduct.Merchant;
+   
     address.text = merchant.Company_Address;
     address.textAlignment = NSTextAlignmentRight;
     address.font = [UIFont systemFontOfSize:14];
@@ -908,6 +913,7 @@
     allComment.titleLabel.font = [UIFont systemFontOfSize:13];
     [allComment addTarget:self action:@selector(ClickAllCommentButton:) forControlEvents:UIControlEventTouchUpInside];
     [self.commentView addSubview:allComment];
+
     
 }
 
@@ -1016,6 +1022,8 @@
         NSLog(@"%d",self.choseView.colorView.seletIndex);
         
         self.choseView.img.image = [self.theProduct.Goods_Image objectAtIndex:self.choseView.colorView.seletIndex+1];
+        
+        
     }else if (self.choseView.sizeView.seletIndex ==-1&&self.choseView.colorView.seletIndex == -1)
     {
         //尺码和颜色都没选的时候

@@ -42,11 +42,11 @@
     [topView.backButton addTarget:self action:@selector(backButton:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:topView];
     
-    UIButton *buyCart = [UIButton buttonWithType:UIButtonTypeCustom];
-    buyCart.frame = CGRectMake(screenWidth -50, 10, 50, 40);
-    [buyCart setImage:[UIImage imageNamed:@"detailBar_cart_press"] forState:UIControlStateNormal];
-    [buyCart addTarget:self action:@selector(ClickBuyCartButton:) forControlEvents:UIControlEventTouchUpInside];
-    [topView addSubview:buyCart];
+//    UIButton *buyCart = [UIButton buttonWithType:UIButtonTypeCustom];
+//    buyCart.frame = CGRectMake(screenWidth -50, 10, 50, 40);
+//    [buyCart setImage:[UIImage imageNamed:@"detailBar_cart_press"] forState:UIControlStateNormal];
+//    [buyCart addTarget:self action:@selector(ClickBuyCartButton:) forControlEvents:UIControlEventTouchUpInside];
+//    [topView addSubview:buyCart];
     
     [self addTableView];
 
