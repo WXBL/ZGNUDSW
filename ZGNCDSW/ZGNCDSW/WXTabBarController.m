@@ -57,25 +57,25 @@
     farmImports.showType=1;
     [self addChildVc:farmImports title:@"农产品" image:@"tabbar_home" selectedImage:@"tabbar_home_selected"];
     
-    if (![[NSUserDefaults standardUserDefaults]stringForKey:@"userName"]) {
-        
-    }
+
     
 
     
-    if ([MDDataBaseUtil userName]==NULL) {
-        WXUserLoginViewController *userLoginVC=[[WXUserLoginViewController alloc] init];
-        [self addChildVc:userLoginVC title:@"消息" image:@"tabbar_home" selectedImage:@"tabbar_home_selected"];
+//    if ([MDDataBaseUtil userName]==NULL) {
+//        WXUserLoginViewController *userLoginVC=[[WXUserLoginViewController alloc] init];
+//        [self addChildVc:userLoginVC title:@"消息" image:@"tabbar_home" selectedImage:@"tabbar_home_selected"];
 //                WXUserLoginViewController *userLoginVC1=[[WXUserLoginViewController alloc] init];
 //                [self addChildVc:userLoginVC1 title:@"我的" image:@"tabbar_home" selectedImage:@"tabbar_home_selected"];
-    }else{
-        WXMessageTableViewController *message = [[WXMessageTableViewController alloc]init];
-        [self addChildVc:message title:@"消息" image:@"tabbar_home" selectedImage:@"tabbar_home_selected"];
-        
+//    }else{
+//        WXMessageTableViewController *message = [[WXMessageTableViewController alloc]init];
+//        [self addChildVc:message title:@"消息" image:@"tabbar_home" selectedImage:@"tabbar_home_selected"];
+//        
 //        
 //                WXMyInforController *myInfor = [[WXMyInforController alloc]init];
 //                [self addChildVc:myInfor title:@"我的" image:@"tabbar_home" selectedImage:@"tabbar_home_selected"];
-    }
+//    }
+//    WXMessageTableViewController *message = [[WXMessageTableViewController alloc]init];
+//    [self addChildVc:message title:@"消息" image:@"tabbar_home" selectedImage:@"tabbar_home_selected"];
     WXMyInforController *myInfor = [[WXMyInforController alloc]init];
     [self addChildVc:myInfor title:@"我的" image:@"tabbar_home" selectedImage:@"tabbar_home_selected"];
 //

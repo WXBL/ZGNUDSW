@@ -7,7 +7,7 @@
 //
 
 #import "WXMessageTableViewController.h"
-
+#import "WXMessageContentViewController.h"
 @interface WXMessageTableViewController ()
 
 @property (nonatomic,strong)NSMutableArray *messageArray;
@@ -27,7 +27,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    self.tableView.bounces=NO;
     self.messageArray = [NSMutableArray array];
     
 }
@@ -57,16 +57,20 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
     
     if (cell == nil) {
-        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:identifier];
     }
-    
-    cell.textLabel.text = @"alskd";
-    
+    cell.imageView.image=[UIImage imageNamed:@"icon_weibo.png"];
+    cell.textLabel.text = @"今日消息";
+    cell.detailTextLabel.text=@"asdasdsa";
+    cell.detailTextLabel.textColor=[UIColor grayColor];
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    
+    WXMessageContentViewController *messageContentVC=[[WXMessageContentViewController alloc] init];
+    [self presentViewController:messageContentVC animated:YES completion:nil];
 }
 
 

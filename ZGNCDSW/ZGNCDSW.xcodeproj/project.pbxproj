@@ -69,6 +69,7 @@
 		794F44721CF5944C00CCA8FC /* img_goods5.png in Resources */ = {isa = PBXBuildFile; fileRef = 794F44601CF5944C00CCA8FC /* img_goods5.png */; };
 		794F44731CF5944C00CCA8FC /* img_goods6.png in Resources */ = {isa = PBXBuildFile; fileRef = 794F44611CF5944C00CCA8FC /* img_goods6.png */; };
 		794F44761CF5993300CCA8FC /* WXMerchantViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 794F44751CF5993300CCA8FC /* WXMerchantViewController.m */; };
+		794F44791CF6CF8A00CCA8FC /* WXMessageContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 794F44781CF6CF8A00CCA8FC /* WXMessageContentViewController.m */; };
 		79AAECF41CE9B3D9005695FE /* WXShoppingCarModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 79AAECF31CE9B3D9005695FE /* WXShoppingCarModel.m */; };
 		79AAECFB1CEAFD02005695FE /* ChoseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 79AAECF61CEAFD02005695FE /* ChoseView.m */; };
 		79AAECFC1CEAFD02005695FE /* TypeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 79AAECF81CEAFD02005695FE /* TypeView.m */; };
@@ -338,6 +339,8 @@
 		794F44611CF5944C00CCA8FC /* img_goods6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = img_goods6.png; sourceTree = "<group>"; };
 		794F44741CF5993300CCA8FC /* WXMerchantViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXMerchantViewController.h; sourceTree = "<group>"; };
 		794F44751CF5993300CCA8FC /* WXMerchantViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXMerchantViewController.m; sourceTree = "<group>"; };
+		794F44771CF6CF8A00CCA8FC /* WXMessageContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXMessageContentViewController.h; sourceTree = "<group>"; };
+		794F44781CF6CF8A00CCA8FC /* WXMessageContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXMessageContentViewController.m; sourceTree = "<group>"; };
 		79AAECF21CE9B3D9005695FE /* WXShoppingCarModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXShoppingCarModel.h; sourceTree = "<group>"; };
 		79AAECF31CE9B3D9005695FE /* WXShoppingCarModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXShoppingCarModel.m; sourceTree = "<group>"; };
 		79AAECF51CEAFD02005695FE /* ChoseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChoseView.h; sourceTree = "<group>"; };
@@ -945,6 +948,8 @@
 			children = (
 				84004EA21CE18563002DEFB6 /* WXMessageTableViewController.h */,
 				84004EA31CE18563002DEFB6 /* WXMessageTableViewController.m */,
+				794F44771CF6CF8A00CCA8FC /* WXMessageContentViewController.h */,
+				794F44781CF6CF8A00CCA8FC /* WXMessageContentViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -1805,6 +1810,7 @@
 				8401901A1CCE297300A43AA4 /* WXFarmImportsController.m in Sources */,
 				846C84D71CED69CD00ADBEC1 /* WXGZProductViewController.m in Sources */,
 				8FA39DF41CCE0C0B0034C622 /* MJRefreshBaseView.m in Sources */,
+				794F44791CF6CF8A00CCA8FC /* WXMessageContentViewController.m in Sources */,
 				846C84DA1CED6AC600ADBEC1 /* WXGZProductTableViewCell.m in Sources */,
 				7910381F1CE4348800B3AC08 /* SDWebImageDecoder.m in Sources */,
 				8FA39DF51CCE0C0B0034C622 /* MJRefreshFooterView.m in Sources */,

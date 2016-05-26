@@ -582,6 +582,7 @@
             [self presentViewController:newVC animated:YES completion:nil];
         }else{
             WXNewsDetailViewController *newDetailViewController = [[WXNewsDetailViewController alloc]init];
+            newDetailViewController.theNew=[self.newsListArray objectAtIndex:indexPath.row-1];
             [self presentViewController:newDetailViewController animated:YES completion:nil];
         }
         

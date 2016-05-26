@@ -42,6 +42,7 @@
 
 }
 -(void)addContent{
+    
     UIView *topContentView=[[UIView alloc] initWithFrame:CGRectMake(10, 60, screenWidth-20, 170)];
     [self.view addSubview:topContentView];
     topContentView.backgroundColor=[UIColor whiteColor];
@@ -105,7 +106,7 @@
     
     [self.productTableView.layer setCornerRadius:5];
     [self.productTableView.layer setMasksToBounds:YES];
-    self.productTableView.backgroundColor=[UIColor whiteColor];
+    self.productTableView.backgroundColor=[UIColor clearColor];
     self.productTableView.delegate=self;
     self.productTableView.dataSource=self;
     [self.view addSubview:self.productTableView];
@@ -117,7 +118,7 @@
     params[@"Merchant_ID"]=self.theMerchant.Merchant_ID;
     [AFMGR GET:path parameters:params success:^(AFHTTPRequestOperation *operation,NSArray *responseObject){
         self.productArray=[[[WXProductModel alloc] init] getProductListWithArrayJSON:responseObject];
-
+        [self.productTableView reloadData];
     }failure:^(AFHTTPRequestOperation *operation,NSError *error){
         
     }];
@@ -127,7 +128,7 @@
 -(void)setNavBar
 {
     
-    WXTopView *topView = [[WXTopView alloc]initWithFrame:CGRectMake(0, 0, screenWidth, 50) TitleText:@"商品详情"];
+    WXTopView *topView = [[WXTopView alloc]initWithFrame:CGRectMake(0, 0, screenWidth, 50) TitleText:@"商家详情"];
     [topView.backButton addTarget:self action:@selector(backButton:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:topView];
     
@@ -146,9 +147,8 @@
     // Dispose of any resources that can be recreated.
 }
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-    //    return self.keepArray.count;
-    //    return self.productArray.count;
-    return 1;
+        return self.productArray.count;
+//    return 1;
 }
 
 -(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
@@ -166,16 +166,19 @@
     if (!cell) {
         NSLog(@"无法创建CollectionViewCell时打印，自定义的cell就不可能进来");
     }
-    //    WXProductModel *productmodel=[self.productArray objectAtIndex:indexPath.row];
-    //    WXImageModel *imgModel=[productmodel.Goods_Image firstObject];
-    //    cell.farmImage.image = [UIImage imageNamed:imgModel.Image_ur];
-    //    cell.titleLabel.text = productmodel.Goods_Name;
-    //    cell.priceLabel.text = productmodel.Goods_Price;
-    //    cell.saleNumLabel.text = productmodel.Goods_Inventory;
-    cell.farmImage.image = [UIImage imageNamed:@""];
-    cell.titleLabel.text = @"asdasd";
-    cell.priceLabel.text = @"asdas";
-    cell.saleNumLabel.text = @"asdas";
+        WXProductModel *productmodel=[self.productArray objectAtIndex:indexPath.row];
+        WXImageModel *imgModel=[productmodel.Goods_Image firstObject];
+        cell.farmImage.image = [UIImage imageNamed:imgModel.Image_ur];
+        cell.titleLabel.text = productmodel.Goods_Name;
+        cell.priceLabel.text = productmodel.Goods_Price;
+        cell.saleNumLabel.text = productmodel.Goods_Inventory;
+//    cell.farmImage.image = [UIImage imageNamed:@""];
+//    cell.titleLabel.text = @"asdasd";
+//    cell.priceLabel.text = @"100/件";
+    cell.priceLabel.textColor=[UIColor blackColor];
+    cell.priceLabel.frame=CGRectMake(-10, CGRectGetMaxY(cell.titleLabel.frame), CGRectGetWidth(cell.titleLabel.frame), CGRectGetHeight(cell.titleLabel.frame));
+    cell.saleNumLabel.hidden=YES;
+    cell.saleLabel.hidden=YES;
     return cell;
 }
 
@@ -184,7 +187,7 @@
     
     //边距占5*4=20 2个
     //图片为正方形，边长
-    return CGSizeMake((screenWidth-20)/2, (screenWidth - 20)/2 + 50);
+    return CGSizeMake((screenWidth-40)/3, (screenWidth - 40)/3 + 50);
 }
 
 //定义每个UICollectionView的间距
