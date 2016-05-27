@@ -29,12 +29,12 @@
             
             // 计算每个UIImageView在UIScrollView中的x坐标值
             CGFloat imgW = screenWidth * 0.25 -40;
-            CGFloat imgH = 60;
+            CGFloat imgH = screenWidth * 0.25 -40;
             
             CGFloat imgY = 5;
             CGFloat imgX = i * screenWidth * 0.25 +20;
             // 设置UIImageView中的图片
-            NSString *imgName = [NSString stringWithFormat:@"category_list%d", i + 1];
+            NSString *imgName = [NSString stringWithFormat:@"cate_%d", i + 1];
             imgView.image = [UIImage imageNamed:imgName];
             // 设置imgView的frame
             imgView.frame = CGRectMake(imgX, imgY, imgW, imgH);
