@@ -12,6 +12,7 @@
 #import "AFNetworking.h"
 #import "AFHTTPRequestOperationManager.h"
 #import "WXTypeModel.h"
+#define PRODUCT_CATEGORY_LIST_URL @""
 @interface WXProductCategoryViewController ()
 
 @end
@@ -33,7 +34,7 @@
 }
 -(void)setCatagoryData{
     AFHTTPRequestOperationManager *mgr=[AFHTTPRequestOperationManager manager];
-    NSString *path=[NSString stringWithFormat:@"%@%@",BASE_SERVICE_URL,@""];
+    NSString *path=[NSString stringWithFormat:@"%@%@",BASE_SERVICE_URL,PRODUCT_CATEGORY_LIST_URL];
     [mgr GET:path parameters:nil success:^(AFHTTPRequestOperation *operation,NSArray *responseObject){
         WXTypeModel *model=[[WXTypeModel alloc] init];
         self.productCategoryArray=[model getTypeDataWithArrayJSON:responseObject];
@@ -45,7 +46,7 @@
 }
 -(void)addTitleView{
     
-    WXTopView *topView=[[WXTopView alloc] initWithFrame:CGRectMake(0, 0, screenWidth, 50) TitleText:@"类别"];
+    WXTopView *topView=[[WXTopView alloc] initWithFrame:CGRectMake(0, 0, screenWidth, 50) TitleText:@"产品分类"];
     [topView.backButton addTarget:self action:@selector(backButton:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:topView];
     
@@ -76,6 +77,8 @@
         cell=[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
     }
     cell.textLabel.text=((WXTypeModel *)[self.productCategoryArray objectAtIndex:indexPath.row]).Type_Name;
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }
 

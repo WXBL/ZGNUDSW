@@ -23,6 +23,7 @@
 #import "WXSizeModel.h"
 #import "WXProductFeatureModel.h"
 #import "WXMerchantViewController.h"
+#import "MDDataBaseUtil.h"
 #define PRODUCT_IS_COLLECTION @""
 #define ADD_COLLECTION_PRODUCT @""
 #define CANCEL_COLLECTION_PRODUCT @""
@@ -312,7 +313,7 @@
     
     hud.mode = MBProgressHUDModeText;
     
-    if ([[NSUserDefaults standardUserDefaults]objectForKey:@"UserName"]) {
+    if ([MDDataBaseUtil userName]!=NULL) {
         if ([[NSUserDefaults standardUserDefaults]objectForKey:@"saveTheProduct"]) {
             [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"saveTheProduct"];
             hud.labelText=@"取消收藏";

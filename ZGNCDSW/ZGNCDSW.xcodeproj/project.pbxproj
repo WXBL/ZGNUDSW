@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7906E1E51CF7D69000D1E7DE /* WXMerchantListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7906E1E41CF7D69000D1E7DE /* WXMerchantListViewController.m */; };
 		791037CD1CE4344800B3AC08 /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 791037BB1CE4344800B3AC08 /* AFHTTPRequestOperation.m */; };
 		791037CE1CE4344800B3AC08 /* AFHTTPRequestOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 791037BD1CE4344800B3AC08 /* AFHTTPRequestOperationManager.m */; };
 		791037CF1CE4344800B3AC08 /* AFHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 791037BF1CE4344800B3AC08 /* AFHTTPSessionManager.m */; };
@@ -233,6 +234,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7906E1E31CF7D69000D1E7DE /* WXMerchantListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXMerchantListViewController.h; sourceTree = "<group>"; };
+		7906E1E41CF7D69000D1E7DE /* WXMerchantListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXMerchantListViewController.m; sourceTree = "<group>"; };
 		791037BA1CE4344800B3AC08 /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
 		791037BB1CE4344800B3AC08 /* AFHTTPRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPRequestOperation.m; sourceTree = "<group>"; };
 		791037BC1CE4344800B3AC08 /* AFHTTPRequestOperationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperationManager.h; sourceTree = "<group>"; };
@@ -854,6 +857,8 @@
 				84ED68441CCF1A5200A45281 /* WXHomeViewController.m */,
 				8406FAF81CD8773000EA155E /* WXNewsDetailViewController.h */,
 				8406FAF91CD8773000EA155E /* WXNewsDetailViewController.m */,
+				7906E1E31CF7D69000D1E7DE /* WXMerchantListViewController.h */,
+				7906E1E41CF7D69000D1E7DE /* WXMerchantListViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -1894,6 +1899,7 @@
 				840190271CCE2A3700A43AA4 /* WXMyInforController.m in Sources */,
 				8406FAFA1CD8773000EA155E /* WXNewsDetailViewController.m in Sources */,
 				7910381B1CE4348800B3AC08 /* MKAnnotationView+WebCache.m in Sources */,
+				7906E1E51CF7D69000D1E7DE /* WXMerchantListViewController.m in Sources */,
 				79FF56241CEC5B74001B0647 /* WXProductFeatureModel.m in Sources */,
 				8F6201531CE0127A002C9C60 /* WXUserRegistViewController.m in Sources */,
 				791038201CE4348800B3AC08 /* SDWebImageDownloader.m in Sources */,

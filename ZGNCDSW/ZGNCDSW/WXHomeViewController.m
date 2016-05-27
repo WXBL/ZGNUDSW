@@ -25,7 +25,7 @@
 #import "WXProductCategoryViewController.h"
 #import "WXNewsModel.h"
 #import "WXImageModel.h"
-
+#import "WXMerchantListViewController.h"
 @interface WXHomeViewController ()<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate>
 
 @property (nonatomic,strong)UITableView *rootTableView;
@@ -168,65 +168,91 @@
     NSLog(@"%@",choice);
     UIAlertView * alertView=nil;
     switch (choice.intValue) {
-        case 0:
-            NSLog(@"%@",[MDDataBaseUtil userName]);
-            if ([MDDataBaseUtil userName]==NULL) {
-                WXUserLoginViewController *loginVC=[[WXUserLoginViewController alloc] init];
-                [self presentViewController:loginVC animated:YES completion:nil];
-            }else{
-                WXMyInforController *myInforVC=[[WXMyInforController alloc] init];
-                [self presentViewController:myInforVC animated:YES completion:nil];
-            }
-            break;
-        case 1:
-            if ([MDDataBaseUtil userName]==NULL) {
-                WXUserLoginViewController *loginVC=[[WXUserLoginViewController alloc] init];
-                [self presentViewController:loginVC animated:YES completion:nil];
-            }else{
-                
-            }
-            break;
-        case 2:
-            alertView=[[UIAlertView alloc] initWithTitle:@"提示" message:@"商家入驻，请登录官方网站注册！" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"关闭", nil];
-           
-            break;
-        case 3:
-            alertView=[[UIAlertView alloc] initWithTitle:@"提示" message:@"大宗团购，请电话联系商家！" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"关闭", nil];
+//        case 0:
+//            NSLog(@"%@",[MDDataBaseUtil userName]);
 //            if ([MDDataBaseUtil userName]==NULL) {
 //                WXUserLoginViewController *loginVC=[[WXUserLoginViewController alloc] init];
 //                [self presentViewController:loginVC animated:YES completion:nil];
 //            }else{
-//                WXFarmImportsController *farmImportVC=[[WXFarmImportsController alloc] init];
-//                [self presentViewController:farmImportVC animated:YES completion:nil];
+//                WXMyInforController *myInforVC=[[WXMyInforController alloc] init];
+//                [self presentViewController:myInforVC animated:YES completion:nil];
 //            }
+//            break;
+//        case 1:
+//            if ([MDDataBaseUtil userName]==NULL) {
+//                WXUserLoginViewController *loginVC=[[WXUserLoginViewController alloc] init];
+//                [self presentViewController:loginVC animated:YES completion:nil];
+//            }else{
+//                
+//            }
+//            break;
+//        case 2:
+//            alertView=[[UIAlertView alloc] initWithTitle:@"提示" message:@"商家入驻，请登录官方网站注册！" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"关闭", nil];
+//           
+//            break;
+//        case 3:
+//            alertView=[[UIAlertView alloc] initWithTitle:@"提示" message:@"大宗团购，请电话联系商家！" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"关闭", nil];
+////            if ([MDDataBaseUtil userName]==NULL) {
+////                WXUserLoginViewController *loginVC=[[WXUserLoginViewController alloc] init];
+////                [self presentViewController:loginVC animated:YES completion:nil];
+////            }else{
+////                WXFarmImportsController *farmImportVC=[[WXFarmImportsController alloc] init];
+////                [self presentViewController:farmImportVC animated:YES completion:nil];
+////            }
+//            break;
+//        case 4:
+//        {
+//            WXProductCategoryViewController *productCategoryCV=[[WXProductCategoryViewController alloc] init];
+//            [self presentViewController:productCategoryCV animated:YES completion:nil];
+//        }
+//            break;
+//        case 5:
+//        {
+//            WXFarmImportsController *farmImportVC=[[WXFarmImportsController alloc] init];
+//            farmImportVC.typeModel.Type_Name=@"ad";
+//            [self presentViewController:farmImportVC animated:YES completion:nil];
+//        }
+//            break;
+//        case 6:
+//        {
+//            WXNewsController *newsVC=[[WXNewsController alloc] init];
+//            [self presentViewController:newsVC animated:YES completion:nil];
+//        }
+//            break;
+//        case 7:
+//            if ([MDDataBaseUtil userName]==NULL) {
+//                WXUserLoginViewController *loginVC=[[WXUserLoginViewController alloc] init];
+//                [self presentViewController:loginVC animated:YES completion:nil];
+//            }else{
+//                WXBuyCartController *buyCarVC=[[WXBuyCartController alloc] init];
+//                [self presentViewController:buyCarVC animated:YES completion:nil];
+//            }
+//            break;
+        case 0:{
+            WXNewsController *newsVC=[[WXNewsController alloc] init];
+            [self presentViewController:newsVC animated:YES completion:nil];
+        }
+           
             break;
-        case 4:
-        {
+        case 1:{
+            WXMerchantListViewController *merchantList=[[WXMerchantListViewController alloc] init];
+            [self presentViewController:merchantList animated:YES completion:nil];
+        }
+       
+            break;
+        case 2:{
             WXProductCategoryViewController *productCategoryCV=[[WXProductCategoryViewController alloc] init];
             [self presentViewController:productCategoryCV animated:YES completion:nil];
         }
+        
+            
             break;
-        case 5:
-        {
+        case 3:{
             WXFarmImportsController *farmImportVC=[[WXFarmImportsController alloc] init];
             farmImportVC.typeModel.Type_Name=@"ad";
             [self presentViewController:farmImportVC animated:YES completion:nil];
         }
-            break;
-        case 6:
-        {
-            WXNewsController *newsVC=[[WXNewsController alloc] init];
-            [self presentViewController:newsVC animated:YES completion:nil];
-        }
-            break;
-        case 7:
-            if ([MDDataBaseUtil userName]==NULL) {
-                WXUserLoginViewController *loginVC=[[WXUserLoginViewController alloc] init];
-                [self presentViewController:loginVC animated:YES completion:nil];
-            }else{
-                WXBuyCartController *buyCarVC=[[WXBuyCartController alloc] init];
-                [self presentViewController:buyCarVC animated:YES completion:nil];
-            }
+     
             break;
             
         default:
@@ -592,7 +618,12 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 0) {
-        return 180;
+        if (indexPath.row==0) {
+            return 90;
+        }else{
+            return 180;
+        }
+        
         
     }else{
         if (indexPath.row == 0) {
