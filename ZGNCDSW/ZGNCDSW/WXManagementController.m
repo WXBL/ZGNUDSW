@@ -50,24 +50,14 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    self.userDetailArray = [NSMutableArray arrayWithObjects:@"头像",@"用户名",@"昵称",@"性别",@"出生日期", nil];
-    self.userManageArray = [NSMutableArray arrayWithObjects:@"收获地址", nil];
+    self.userDetailArray = [NSMutableArray arrayWithObjects:@"用户名",@"昵称",@"性别",@"出生日期", nil];
     
     self.sexView  = [[UIView alloc]init];
     self.userName = [[UILabel alloc]init];
     self.sexLabel = [[UILabel alloc]init];
     self.birthLabel = [[UILabel alloc]init];
     
-    //    WXSexView *sexView = [[WXSexView alloc]init];
-    //    sexView.frame = CGRectMake(0, 0, screenWidth, screenHeigth);
-    //    [self.view addSubview:sexView];
-    //    sexView.hidden = YES;
-    //    self.sexView = sexView;
-    
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(changeName:) name:@"ChangeUserNameNotification" object:nil];
-    
-    
-    [self saveImage:self.picNameImg withName:@"currentImage.png"];
+   
     
     [self addNavBar];
     
@@ -98,7 +88,7 @@
     UIButton *updateFinish = [UIButton buttonWithType:UIButtonTypeCustom];
     updateFinish.frame = CGRectMake(topView.frame.size.width - 80, 10, 80, topView.frame.size.height);
     [updateFinish setTitle:@"完成" forState:UIControlStateNormal];
-    [updateFinish setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [updateFinish setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [updateFinish addTarget:self action:@selector(finishClick) forControlEvents:UIControlEventTouchUpInside];
     updateFinish.titleLabel.font = [UIFont systemFontOfSize:15];
     [topView addSubview:updateFinish];
@@ -123,47 +113,31 @@
 
 
 -(void)finishClick{
-    UIAlertView *alert = [[UIAlertView alloc]init];
-    alert = [[UIAlertView alloc]initWithTitle:@"确认修改吗？" message:nil delegate:self cancelButtonTitle:nil otherButtonTitles:@"确定",@"取消", nil];
-    [alert show];
+    
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"提示" message:@"确认修改吗？" preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:nil];
+     UIAlertAction *cancleAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:nil];
+    
+    [alertController addAction:okAction];
+    [alertController addAction:cancleAction];
+    
+    [self presentViewController:alertController animated:YES completion:nil];
 }
 
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    if (buttonIndex == 0) {
-        NSString *fullPath1 = [[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"]stringByAppendingPathComponent:@"currentImage1.png"];
-        
-        UIImage *savedImage = [[UIImage alloc]initWithContentsOfFile:fullPath1];
-        [self saveImage:savedImage withName:@"currentImage.png"];
-        NSString *fullPath = [[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"]stringByAppendingPathComponent:@"currentImage.png"];
-        
-        self.picNameImg = [[UIImage alloc]initWithContentsOfFile:fullPath];
-        //        self.picNameImg=savedImage;
-        
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"ChangeUserInforNotification" object:self userInfo:@{@"UserPic":self.picNameImg}];
-        [self dismissViewControllerAnimated:YES completion:nil];
-    }else{
-        NSString *fullPath = [[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"]stringByAppendingPathComponent:@"currentImage.png"];
-        
-        self.picNameImg = [[UIImage alloc]initWithContentsOfFile:fullPath];
-        [self.manageTableView reloadData];
-    }
-    
-}
+
 
 
 #pragma mark - tableview dataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     
-    return 2;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if (section == 0) {
+   
         return self.userDetailArray.count;
-    }else{
-        return self.userManageArray.count;
-    }
+   
     
 }
 
@@ -205,33 +179,16 @@
     if (cell == nil) {
         cell = [[WXInforTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellStr];
         
-        if (indexPath.section ==0 && indexPath.row ==0) {
-            UIButton *headButton = [UIButton buttonWithType:UIButtonTypeCustom];
-            headButton.frame  = CGRectMake(screenWidth *0.7, 0, 80, 80);
-            [headButton.layer setCornerRadius:40];
-            headButton.layer.masksToBounds = YES;
-            [headButton setImage:self.picNameImg forState:UIControlStateNormal];
-            [headButton addTarget:self action:@selector(ClickHeadButton:) forControlEvents:UIControlEventTouchUpInside];
-            [cell addSubview:headButton];
-            self.headImageBtn = headButton;
-            
-            
-        }
     }
-    if (indexPath.section ==0) {
-        
-        if (indexPath.row ==0) {
-            [self.headImageBtn setImage:self.picNameImg forState:UIControlStateNormal];
-        }
-        else if (indexPath.row == 1){
+        if (indexPath.row == 0){
             
             cell.textlbl.text = self.userName.text;
             
-        }else if (indexPath.row == 2){
+        }else if (indexPath.row == 1){
             
             cell.textlbl.text = self.userName.text;
         }
-        else if (indexPath.row == 3){
+        else if (indexPath.row == 2){
             
             cell.textlbl.text=self.sexLabel.text;
         }else{
@@ -239,9 +196,6 @@
             cell.textlbl.text=self.birthLabel.text;
         }
         cell.textLabel.text = self.userDetailArray[indexPath.row];
-    }else{
-        cell.textLabel.text = self.userManageArray[indexPath.row];
-    }
     
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -254,120 +208,16 @@
 
 
 
-#pragma mark 点击头像按钮
--(void)ClickHeadButton:(UIButton *)sender{
-    UIActionSheet *sheet;
-    
-    //判断是否支持相机
-    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
-        sheet = [[UIActionSheet alloc]initWithTitle:nil delegate:self cancelButtonTitle:nil destructiveButtonTitle:@"取消" otherButtonTitles:@"相机",@"从相册中选择", nil];
-    }else{
-        sheet = [[UIActionSheet alloc]initWithTitle:nil delegate:self cancelButtonTitle:nil destructiveButtonTitle:@"取消" otherButtonTitles:@"从相册中选择", nil];
-    }
-    
-    sheet.tag = 255;
-    
-    [sheet showInView:self.view];
-}
-
-#pragma mark - 保存图片至沙盒
-- (void) saveImage:(UIImage *)currentImage withName:(NSString *)imageName
-{
-    
-    NSData *imageData = UIImageJPEGRepresentation(currentImage, 0.5);
-    // 获取沙盒目录
-    
-    NSString *fullPath = [[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"] stringByAppendingPathComponent:imageName];
-    self.fullPath = fullPath;
-    
-    // 将图片写入文件
-    
-    [imageData writeToFile:fullPath atomically:NO];
-}
-
-#pragma mark - image picker delegte
-- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
-{
-    [picker dismissViewControllerAnimated:YES completion:^{}];
-    
-    UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
-    
-    [self saveImage:image withName:@"currentImage.png"];
-    
-    NSString *fullPath = [[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"] stringByAppendingPathComponent:@"currentImage.png"];
-    
-    UIImage *savedImage = [[UIImage alloc] initWithContentsOfFile:fullPath];
-    
-    isFullScreen = NO;
-    self.picNameImg = savedImage;
-    //    [self.headImageBtm setImage:savedImage forState:UIControlStateNormal];
-    
-    [self.manageTableView reloadData];
-    
-    
-    
-    //    self.headImageBtm.tag = 100;
-    
-}
-
-
-#pragma mark - actionsheet delegate
--(void) actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    if (actionSheet.tag == 255) {
-        
-        NSUInteger sourceType = 0;
-        
-        // 判断是否支持相机
-        if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
-            
-            switch (buttonIndex) {
-                case 0:
-                    // 取消
-                    return;
-                case 1:
-                    // 相机
-                    sourceType = UIImagePickerControllerSourceTypeCamera;
-                    break;
-                    
-                case 2:
-                    // 相册
-                    sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-                    break;
-            }
-        }
-        else {
-            if (buttonIndex == 0) {
-                
-                return;
-            } else {
-                sourceType = UIImagePickerControllerSourceTypeSavedPhotosAlbum;
-            }
-        }
-        // 跳转到相机或相册页面
-        UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
-        
-        imagePickerController.delegate = self;
-        
-        imagePickerController.allowsEditing = YES;
-        
-        imagePickerController.sourceType = sourceType;
-        
-        [self presentViewController:imagePickerController animated:YES completion:^{}];
-        
-    }
-}
-
 
 #pragma mark -tableview delegate
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
     
-    if (indexPath.section == 0) {
-        if (indexPath.row ==1 ) {
+    
+        if (indexPath.row ==0 ) {
             WXUpdateUserNameController *updateName = [[WXUpdateUserNameController alloc]init];
             [self presentViewController:updateName animated:YES completion:nil];
-        }else if (indexPath.row ==3) {
+        }else if (indexPath.row ==2) {
             
             UIView *sexView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
             sexView.alpha = 0.5;
@@ -407,7 +257,7 @@
             [self.view addSubview:manButton];
             [self.view addSubview:gileButton];
             [self.view addSubview:cancelButton];
-        }else if(indexPath.row ==4){
+        }else if(indexPath.row ==3){
             UIView *birthView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height) ];
             birthView.backgroundColor = [UIColor grayColor];
             birthView.alpha = 0.5;
@@ -454,12 +304,6 @@
             
             
         }
-    }else{
-        if (indexPath.row == 0) {
-            WXAddressController *addressViewController = [[WXAddressController alloc]init];
-            [self presentViewController:addressViewController animated:YES completion:nil];
-        }
-    }
     
 }
 
@@ -505,12 +349,8 @@
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (indexPath.section == 0) {
-        if (indexPath.row ==0) {
-            return 80;
-        }
-        return 40;
-    }
+    
+    
     return 40;
     
 }

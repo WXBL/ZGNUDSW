@@ -11,13 +11,14 @@
 //#import "WXOrderController.h"
 #import "WXUserInforModel.h"
 #import "WXManagementController.h"
-
-#import "WXCommendTableViewController.h"
-#import "WXReceivingTableViewController.h"
-#import "WXPayingTableViewController.h"
-#import "WXReturnrefundTableVC.h"
+#import "WXUserLoginViewController.h"
+//#import "WXCommendTableViewController.h"
+//#import "WXReceivingTableViewController.h"
+//#import "WXPayingTableViewController.h"
+//#import "WXReturnrefundTableVC.h"
 #import "WXGZProductViewController.h"
-@interface WXMyInforController ()<WXHeaderViewDelegate>
+#import "MDDataBaseUtil.h"
+@interface WXMyInforController ()<WXHeaderViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 
 
 @property (nonatomic,strong)UIButton *headButton;
@@ -72,18 +73,7 @@
     self.headButton = headerView.headerButton;
     self.tableView.tableHeaderView = headerView;
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeUserInfor:) name:@"ChangeUserInforNotification" object:nil];
     
-    NSString *fullPath = [[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"]stringByAppendingPathComponent:@"currentImage.png"];
-    
-    if (self.picImage==nil) {
-        self.picImage= [UIImage imageNamed:@"my_head_default"];
-    }
-    else{
-        self.picImage=[UIImage imageNamed:fullPath];
-    }
-    
-    [self.headButton setImage:self.picImage forState:UIControlStateNormal];
     
 }
 
@@ -100,46 +90,158 @@
     if (button.tag == 0) {
         [self ClickHeadImageBtn:button];
     }else if (button.tag ==1){
-        [self ClickProductBtn:button];
-    }else if (button.tag == 2){
-        [self ClickShopButton:button];
-    }else if(button.tag ==3){
-        [self ClickScannedButton:button];
-    }else if(button.tag ==4){
-        [self ClickManagementButton:button];
-    }else if(button.tag ==5){
-        [self ClickHeadImageBtn:button];
-    }else{
-        [self ClickMbtypeBtn:button];
+        [self ClickLoginBtn:button];
     }
     
 }
 
-#pragma mark 点击会员按钮
--(void)ClickMbtypeBtn:(UIButton *)sender{
-    
-}
 
 #pragma mark -点击头像
 -(void)ClickHeadImageBtn:(UIButton *)sender{
-    WXManagementController *managementController = [[WXManagementController alloc]init];
-    [self presentViewController:managementController animated:YES completion:nil];
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"请选择" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+    
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+    
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"相册" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [self photo];
+    }];
+    
+    UIAlertAction *xiangji = [UIAlertAction actionWithTitle:@"相机" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [self camera];
+    }];
+//    UIAlertAction *localvideo = [UIAlertAction actionWithTitle:@"本地视频" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+//        [self locallVideo];
+//    }];
+//    UIAlertAction *shotvideo = [UIAlertAction actionWithTitle:@"拍摄视频" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+//        [self shotVideo];
+//    }];
+    
+    
+    [alertController addAction:okAction];
+    [alertController addAction:xiangji];
+//    [alertController addAction:localvideo];
+//    [alertController addAction:shotvideo];
+    [alertController addAction:cancelAction];
+    
+    [self presentViewController:alertController animated:YES completion:nil];
 }
 
-#pragma mark - 点击关注商品，店铺，浏览记录三个按钮触发事件
--(void)ClickProductBtn:(UIButton *)sender{
-    WXGZProductViewController *productController = [[WXGZProductViewController alloc]init];
-    [self presentViewController:productController animated:YES completion:nil];
+//相册
+-(void)photo{
+    /**
+     
+     UIImagePickerControllerSourceTypePhotoLibrary ,//来自图库
+     UIImagePickerControllerSourceTypeCamera ,//来自相机
+     UIImagePickerControllerSourceTypeSavedPhotosAlbum //来自相册
+     */
+    UIImagePickerController *imagePicker = [[UIImagePickerController alloc]init];
+    imagePicker.delegate = self;
+    imagePicker.allowsEditing = YES;
+    imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    
+    [self presentViewController:imagePicker animated:YES completion:nil];
     
 }
 
--(void)ClickShopButton:(UIButton *)sender{
+//相机
+-(void)camera{
     
+    //判断是否可以打开相机，模拟器此功能无法使用
+    if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"错误" message:@"没有摄像头" preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"返回" style:UIAlertActionStyleDefault handler:nil];
+        
+        [alertController addAction:okAction];
+        
+        [self presentViewController:alertController animated:YES completion:nil];
+        
+        return;
+    }
+    
+    UIImagePickerController *imagePicker = [[UIImagePickerController alloc]init];
+    imagePicker.delegate = self;
+    imagePicker.allowsEditing = YES;
+    imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
+    [self presentViewController:imagePicker animated:YES completion:nil];
 }
 
--(void)ClickScannedButton:(UIButton *)sender{
+////本地视频
+//- (void)locallVideo
+//{
+//    UIImagePickerController *imgPickerCtrl = [[UIImagePickerController alloc] init];
+//    
+//    imgPickerCtrl.delegate = self;
+//    
+//    imgPickerCtrl.sourceType = UIImagePickerControllerSourceTypeSavedPhotosAlbum;
+//    
+//    //自定媒体类型
+//    imgPickerCtrl.mediaTypes = @[@"public.movie"];
+//    
+//    [self presentViewController:imgPickerCtrl animated:YES completion:nil];
+//    
+//}
+////拍摄视频
+//- (void)shotVideo
+//{
+//    UIImagePickerController *imgPickerCtrl = [[UIImagePickerController alloc] init];
+//    
+//    imgPickerCtrl.delegate = self;
+//    
+//    imgPickerCtrl.sourceType = UIImagePickerControllerSourceTypeCamera;
+//    
+//    imgPickerCtrl.mediaTypes = @[@"public.movie"];
+//    
+//    [self presentViewController:imgPickerCtrl animated:YES completion:nil];
+//    
+//}
+
+-(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info{
+    /**
+     
+     选取的信息都在info中，info 是一个字典。
+     字典中的键：
+     NSString *const  UIImagePickerControllerMediaType ;指定用户选择的媒体类型（文章最后进行扩展）
+     NSString *const  UIImagePickerControllerOriginalImage ;原始图片
+     NSString *const  UIImagePickerControllerEditedImage ;修改后的图片
+     NSString *const  UIImagePickerControllerCropRect ;裁剪尺寸
+     NSString *const  UIImagePickerControllerMediaURL ;媒体的URL
+     NSString *const  UIImagePickerControllerReferenceURL ;原件的URL
+     NSString *const  UIImagePickerControllerMediaMetadata;当来数据来源是照相机的时候这个值才有效
+     
+     
+     */
     
+    NSString *mediaType = [info objectForKey:UIImagePickerControllerMediaType];
+    
+    if ([mediaType isEqualToString:@"public.image"]) {
+        UIImage *image = [info objectForKey:UIImagePickerControllerEditedImage];
+        
+        //如果是拍摄的照片
+        if (picker.sourceType == UIImagePickerControllerSourceTypeCamera) {
+            //保存在相册
+            UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil);
+        }
+        
+        [self.headButton setImage:image forState:UIControlStateNormal];
+        
+    }else if ([mediaType isEqualToString:@"public.movie"])
+    {
+        //获取视图的url
+        NSURL *url = [info objectForKey:UIImagePickerControllerReferenceURL];
+        //播放视频
+        NSLog(@"%@",url);
+    }
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
+
+-(void)ClickLoginBtn:(UIButton *)sender{
+    WXUserLoginViewController *loginViewController = [[WXUserLoginViewController alloc]init];
+    [self presentViewController:loginViewController animated:YES completion:nil];
+}
+
+
 
 #pragma mark - 账户管理
 -(void)ClickManagementButton:(UIButton *)sender{
@@ -151,18 +253,21 @@
 
 #pragma mark - tableview dataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    
-    return 3;
+    if ([MDDataBaseUtil userName] == NULL) {
+        return 2;
+    }else{
+         return 3;
+    }
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (section == 0) {
         return 2;
     }else if (section ==1){
-        return 2;
+        return 4;
     }
-    return 2;
-    //    return self.messageArray.count;
+    return 1;
+
 }
 
 /**
@@ -195,6 +300,7 @@
 }
 
 
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     static NSString *identifier = @"cell";
@@ -207,34 +313,45 @@
     
     if (indexPath.section == 0) {
         if (indexPath.row ==0) {
-            cell.textLabel.text = @"我的订单";
             
-            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            cell.textLabel.text = @"账户管理";
+            
         }else{
-            [self showOrderContent];
-            [cell addSubview:self.orderView];
-            
+            [cell.imageView setImage:[UIImage imageNamed:@"个人中心icon收藏"]];
+            cell.textLabel.text = @"我的收藏";
+           
         }
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }else if (indexPath.section == 1){
-        if (indexPath.row == 0) {
-            cell.textLabel.text = @"我的钱包";
-            
-            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        switch (indexPath.row) {
+            case 0:
+                
+                cell.textLabel.text = @"账户安全";
+                break;
+            case 1:
+                cell.textLabel.text = @"清楚缓存";
+                break;
+            case 2:
+                [cell.imageView setImage:[UIImage imageNamed:@"个人中心icon意见反馈"]];
+                cell.textLabel.text = @"意见反馈";
+                break;
+            case 3:
+                [cell.imageView setImage:[UIImage imageNamed:@"个人中心icon关于"]];
+                cell.textLabel.text = @"关于我们";
+                break;
+            default:
+                break;
         }
-        else{
-            [self myMoneyInfor];
-            [cell addSubview:self.myMoneyView];
-        }
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }else{
-        if (indexPath.row == 0) {
-            cell.textLabel.text = @"我的服务";
-            
-            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        }
+        cell.textLabel.text = @"退出登录";
+        cell.textLabel.textColor = [UIColor redColor];
+        cell.textLabel.font = [UIFont systemFontOfSize:15];
+        cell.textLabel.textAlignment = NSTextAlignmentCenter;
     }
+    
     
     return cell;
 }
@@ -242,18 +359,44 @@
 
 #pragma mark -tableview delegate
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    
+    if ([MDDataBaseUtil userName] == NULL) {
+        WXUserLoginViewController *loginViewController = [[WXUserLoginViewController alloc]init];
+        [self presentViewController:loginViewController animated:YES completion:nil];
+    }else{
+        switch (indexPath.section) {
+            case 0:
+                if (indexPath.row == 0) {
+                    WXManagementController *managementViewController = [[WXManagementController alloc]init];
+                    [self presentViewController:managementViewController animated:YES completion:nil];
+                }else{
+                    WXGZProductViewController *keep = [[WXGZProductViewController alloc]init];
+                    [self presentViewController:keep animated:YES completion:nil];
+                }
+                
+                break;
+            case 1:
+                switch (indexPath.row) {
+                    case 0:
+                        
+                        break;
+                        
+                    default:
+                        break;
+                }
+                break;
+            case 2:
+                
+                break;
+            default:
+                break;
+        }
+    }
 }
 
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    if (indexPath.row == 0) {
-        return 50;
-    }else{
-        return 80;
-    }
-    
+    return 44;
 }
 
 
@@ -262,117 +405,5 @@
     // Dispose of any resources that can be recreated.
 }
 
-//添加待付款、待收货、待评价、退货／退款
--(void)showOrderContent{
-    self.orderView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, screenWidth, 80)];
-    self.orderView.backgroundColor = [UIColor whiteColor];
-    for (int i = 0; i<4; i++) {
-        self.orderBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        self.orderBtn.frame = CGRectMake(i * screenWidth *0.25, 0, screenWidth *0.25, 80);
-        self.orderBtn.tag = i;
-        switch (i) {
-            case 0:
-                [self.orderBtn setTitle:@"待付款" forState:UIControlStateNormal];
-                break;
-            case 1:
-                [self.orderBtn setTitle:@"待收货" forState:UIControlStateNormal];
-                break;
-            case 2:
-                [self.orderBtn setTitle:@"待评价" forState:UIControlStateNormal];
-                break;
-            case 3:
-                [self.orderBtn setTitle:@"退货／退款" forState:UIControlStateNormal];
-                break;
-                
-            default:
-                break;
-        }
-        [self.orderBtn setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
-        self.orderBtn.titleLabel.font = [UIFont systemFontOfSize:15];
-        [self.orderView addSubview:self.orderBtn];
-        
-        
-        [self.orderBtn addTarget:self action:@selector(ClickOrderBtn:) forControlEvents:UIControlEventTouchUpInside];
-    }
-    
-    
-}
-
--(void)ClickOrderBtn:(UIButton *)sender{
-    
-    
-    if (sender.tag ==0) {
-        WXPayingTableViewController *paying = [[WXPayingTableViewController alloc]init];
-        [self presentViewController:paying animated:YES completion:nil];
-    }else if (sender.tag ==1){
-        WXReceivingTableViewController *receiving = [[WXReceivingTableViewController alloc]init];
-        [self presentViewController:receiving animated:YES completion:nil];
-    }else if (sender.tag ==2){
-        WXCommendTableViewController *commend = [[WXCommendTableViewController alloc]init];
-        [self presentViewController:commend animated:YES completion:nil];
-    }else{
-        WXReturnrefundTableVC *returnFund = [[WXReturnrefundTableVC alloc]init];
-        [self presentViewController:returnFund animated:YES completion:nil];
-    }
-}
-
--(void)myMoneyInfor
-{
-    //    WXUserInforModel *userInforModel = [[WXUserInforModel alloc]init];
-    
-    
-    self.myMoneyView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, screenWidth, 80)];
-    self.myMoneyView.backgroundColor = [UIColor whiteColor];
-    
-    for (int i = 0; i<3; i++) {
-        self.moneyButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        self.moneyButton.frame = CGRectMake(i * screenWidth /3, 0, screenWidth/3, 80);
-        self.moneyButton.tag = i+1;
-        
-        self.numLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 5, self.moneyButton.frame.size.width, self.moneyButton.frame.size.height/2-5)];
-        self.numLabel.textColor = [UIColor blackColor];
-        self.numLabel.font = [UIFont systemFontOfSize:15];
-        self.numLabel.textAlignment = NSTextAlignmentCenter;
-        
-        self.moneyLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, self.moneyButton.frame.size.height/2-5, self.moneyButton.frame.size.width, self.myMoneyView.frame.size.height/2-5)];
-        self.moneyLabel.textColor = [UIColor grayColor];
-        self.moneyLabel.font = [UIFont systemFontOfSize:14];
-        self.moneyLabel.textAlignment = NSTextAlignmentCenter;
-        
-        switch (i) {
-            case 0:
-                //                self.numLabel.text = userInforModel.balance;
-                self.numLabel.text = @"0.00";
-                self.moneyLabel.text = @"账户余额";
-                break;
-            case 1:
-                //                self.numLabel.text = userInforModel.coupon;
-                self.numLabel.text = @"1";
-                self.moneyLabel.text = @"优惠券";
-                break;
-            case 2:
-                //                self.numLabel.text = userInforModel.gold_coin;
-                self.numLabel.text = @"0";
-                self.moneyLabel.text = @"金币";
-                break;
-                
-            default:
-                break;
-        }
-        [self.moneyButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
-        self.moneyButton.titleLabel.font = [UIFont systemFontOfSize:15];
-        [self.myMoneyView addSubview:self.moneyButton];
-        
-        [self.moneyButton addSubview:self.moneyLabel];
-        [self.moneyButton addSubview:self.numLabel];
-        
-        [self.moneyButton addTarget:self action:@selector(ClickMoneyBtn:) forControlEvents:UIControlEventTouchUpInside];
-        
-    }
-}
-
--(void)ClickMoneyBtn:(UIButton *)sender{
-    
-}
 
 @end

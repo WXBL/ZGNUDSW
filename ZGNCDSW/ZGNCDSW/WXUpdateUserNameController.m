@@ -33,7 +33,7 @@
     UIButton *updateFinish = [UIButton buttonWithType:UIButtonTypeCustom];
     updateFinish.frame = CGRectMake(topView.frame.size.width - 80, 10, 80, topView.frame.size.height);
     [updateFinish setTitle:@"确定" forState:UIControlStateNormal];
-    [updateFinish setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [updateFinish setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [updateFinish addTarget:self action:@selector(finishClick) forControlEvents:UIControlEventTouchUpInside];
     updateFinish.titleLabel.font = [UIFont systemFontOfSize:15];
     [topView addSubview:updateFinish];
@@ -69,12 +69,21 @@
 }
 
 -(void)finishClick{
-    UIAlertView *alert = [[UIAlertView alloc]init];
-    alert = [[UIAlertView alloc]initWithTitle:nil message:@"确定修改个人信息吗？" delegate:self cancelButtonTitle:nil otherButtonTitles:@"确定",@"取消", nil];
-    [alert show];
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"提示" message:@"确认修改吗？" preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:nil];
+    UIAlertAction *cancleAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+    
+    [alertController addAction:okAction];
+    [alertController addAction:cancleAction];
+    
+    [self presentViewController:alertController animated:YES completion:nil];
+
     
     
 }
+
+
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     if (buttonIndex == 0) {
