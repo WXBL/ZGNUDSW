@@ -71,7 +71,10 @@
 -(void)finishClick{
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"提示" message:@"确认修改吗？" preferredStyle:UIAlertControllerStyleAlert];
     
-    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:nil];
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction *_Nonnull okAction){
+        [self ClickOkAction];
+    }];
+    
     UIAlertAction *cancleAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
     
     [alertController addAction:okAction];
@@ -83,15 +86,19 @@
     
 }
 
-
-
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
-    if (buttonIndex == 0) {
-        [[NSNotificationCenter defaultCenter]postNotificationName:@"ChangeUserNameNotification" object:self userInfo:@{@"name":self.nameText.text}];
-        
-        [self dismissViewControllerAnimated:YES completion:nil];
-    }
+-(void)ClickOkAction{
+    [[NSNotificationCenter defaultCenter]postNotificationName:@"ChangeUserNameNotification" object:self userInfo:@{@"name":self.nameText.text}];
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
+
+//- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+//    if (buttonIndex == 0) {
+//        [[NSNotificationCenter defaultCenter]postNotificationName:@"ChangeUserNameNotification" object:self userInfo:@{@"name":self.nameText.text}];
+//        
+//        [self dismissViewControllerAnimated:YES completion:nil];
+//    }
+//}
 
 -(void)backButton:(id)sender{
     [self dismissViewControllerAnimated:YES completion:nil];

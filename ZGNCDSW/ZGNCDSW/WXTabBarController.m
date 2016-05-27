@@ -51,7 +51,7 @@
     
     WXNewsController *news = [[WXNewsController alloc]init];
     news.newsDataArray=self.newsMutableArray;
-    [self addChildVc:news title:@"资讯"  image:@"tabbar_home" selectedImage:@"tabbar_home_selected"];
+    [self addChildVc:news title:@"资讯"  image:@"tabbar_message_center" selectedImage:@"tabbar_message_center_selected"];
     
     WXFarmImportsController *farmImports = [[WXFarmImportsController alloc]init];
     farmImports.showType=1;
@@ -77,7 +77,7 @@
 //    WXMessageTableViewController *message = [[WXMessageTableViewController alloc]init];
 //    [self addChildVc:message title:@"消息" image:@"tabbar_home" selectedImage:@"tabbar_home_selected"];
     WXMyInforController *myInfor = [[WXMyInforController alloc]init];
-    [self addChildVc:myInfor title:@"我的" image:@"tabbar_home" selectedImage:@"tabbar_home_selected"];
+    [self addChildVc:myInfor title:@"我的" image:@"tabbar_profile" selectedImage:@"tabbar_profile_selected"];
 //
     
     

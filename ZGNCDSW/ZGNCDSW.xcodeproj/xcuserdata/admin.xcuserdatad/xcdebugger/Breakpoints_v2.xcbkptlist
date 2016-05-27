@@ -156,7 +156,7 @@
                   moduleName = "ZGNCDSW"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/admin/Desktop/WXBL/ZGNUDSW/ZGNCDSW/ZGNCDSW/WXAddressTableViewCell.h"
-                  timestampString = "486025535.604646"
+                  timestampString = "486036044.381706"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "28"
@@ -171,7 +171,7 @@
                   moduleName = "ZGNCDSW"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/admin/Desktop/WXBL/ZGNUDSW/ZGNCDSW/ZGNCDSW/WXAddressTableViewCell.h"
-                  timestampString = "486025535.604801"
+                  timestampString = "486036044.381867"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "28"
@@ -400,6 +400,86 @@
             startingLineNumber = "22"
             endingLineNumber = "22"
             landmarkName = "-initWithStyle:reuseIdentifier:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ZGNCDSW/WXUpdateUserNameController.m"
+            timestampString = "486026763.983717"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "89"
+            endingLineNumber = "89"
+            landmarkName = "-ClickOkAction"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ZGNCDSW/WXUpdateUserNameController.m"
+            timestampString = "486026906.207702"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "74"
+            endingLineNumber = "74"
+            landmarkName = "-finishClick"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[WXUpdateUserNameController finishClick]"
+                  moduleName = "ZGNCDSW"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/admin/Desktop/WXBL/ZGNUDSW/ZGNCDSW/ZGNCDSW/WXUpdateUserNameController.m"
+                  timestampString = "486036044.396147"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "74"
+                  endingLineNumber = "74"
+                  offsetFromSymbolStart = "111">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__41-[WXUpdateUserNameController finishClick]_block_invoke"
+                  moduleName = "ZGNCDSW"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/admin/Desktop/WXBL/ZGNUDSW/ZGNCDSW/ZGNCDSW/WXUpdateUserNameController.m"
+                  timestampString = "486036044.396286"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "74"
+                  endingLineNumber = "74"
+                  offsetFromSymbolStart = "16">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ZGNCDSW/WXManagementController.m"
+            timestampString = "486026976.363518"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "106"
+            endingLineNumber = "106"
+            landmarkName = "-changeName:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

@@ -57,7 +57,7 @@
     self.sexLabel = [[UILabel alloc]init];
     self.birthLabel = [[UILabel alloc]init];
     
-   
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeName:) name:@"ChangeUserNameNotification" object:nil];
     
     [self addNavBar];
     

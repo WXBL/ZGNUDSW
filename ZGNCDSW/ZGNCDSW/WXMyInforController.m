@@ -18,6 +18,7 @@
 //#import "WXReturnrefundTableVC.h"
 #import "WXGZProductViewController.h"
 #import "MDDataBaseUtil.h"
+#import "WXSafetyViewController.h"
 @interface WXMyInforController ()<WXHeaderViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 
 
@@ -326,7 +327,7 @@
     }else if (indexPath.section == 1){
         switch (indexPath.row) {
             case 0:
-                
+                [cell.imageView setImage:[UIImage imageNamed:@"个人中心icon账户安全"]];
                 cell.textLabel.text = @"账户安全";
                 break;
             case 1:
@@ -364,6 +365,8 @@
         [self presentViewController:loginViewController animated:YES completion:nil];
     }else{
         switch (indexPath.section) {
+               
+                
             case 0:
                 if (indexPath.row == 0) {
                     WXManagementController *managementViewController = [[WXManagementController alloc]init];
@@ -377,7 +380,7 @@
             case 1:
                 switch (indexPath.row) {
                     case 0:
-                        
+                        [self Safety];
                         break;
                         
                     default:
@@ -393,6 +396,11 @@
     }
 }
 
+//账户安全
+-(void)Safety{
+    WXSafetyViewController *safetyView = [[WXSafetyViewController alloc]init];
+    [self presentViewController:safetyView animated:YES completion:nil];
+}
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
