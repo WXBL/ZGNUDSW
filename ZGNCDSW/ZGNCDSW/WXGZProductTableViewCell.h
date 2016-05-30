@@ -8,8 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface WXGZProductTableViewCell : UITableViewCell
 
+@interface WXGZProductTableViewCell : UITableViewCell
 
 @property (nonatomic,strong)UIImageView *proImage;
 @property (nonatomic,strong)UILabel *titleLabel;

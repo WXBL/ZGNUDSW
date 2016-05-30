@@ -180,8 +180,8 @@
 
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
     //    return self.keepArray.count;
-//    return self.productArray.count;
-    return 1;
+    return self.productArray.count;
+//    return 1;
 }
 
 -(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
@@ -241,16 +241,16 @@
     if (!cell) {
         NSLog(@"无法创建CollectionViewCell时打印，自定义的cell就不可能进来");
     }
-//    WXProductModel *productmodel=[self.productArray objectAtIndex:indexPath.row];
-//    WXImageModel *imgModel=[productmodel.Goods_Image firstObject];
-//    cell.farmImage.image = [UIImage imageNamed:imgModel.Image_ur];
-//    cell.titleLabel.text = productmodel.Goods_Name;
-//    cell.priceLabel.text = productmodel.Goods_Price;
-//    cell.saleNumLabel.text = productmodel.Goods_Inventory;
-    cell.farmImage.image = [UIImage imageNamed:@""];
-        cell.titleLabel.text = @"asdasd";
-        cell.priceLabel.text = @"asdas";
-        cell.saleNumLabel.text = @"asdas";
+    WXProductModel *productmodel=[self.productArray objectAtIndex:indexPath.row];
+    WXImageModel *imgModel=[productmodel.Goods_Image firstObject];
+    cell.farmImage.image = [UIImage imageNamed:imgModel.Image_ur];
+    cell.titleLabel.text = productmodel.Goods_Name;
+    cell.priceLabel.text = productmodel.Goods_Price;
+    cell.saleNumLabel.text = productmodel.Goods_Inventory;
+//    cell.farmImage.image = [UIImage imageNamed:@""];
+//        cell.titleLabel.text = @"asdasd";
+//        cell.priceLabel.text = @"asdas";
+//        cell.saleNumLabel.text = @"asdas";
     return cell;
 }
 
@@ -277,7 +277,7 @@
 //UICollectionView被选中时调用的方法
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     WXFarmDetailViewController *farmDetail = [[WXFarmDetailViewController alloc]init];
-//    farmDetail.theProduct=[self.productArray objectAtIndex:indexPath.row];
+    farmDetail.theProduct=[self.productArray objectAtIndex:indexPath.row];
     [self presentViewController:farmDetail animated:YES completion:nil];
     
 }
