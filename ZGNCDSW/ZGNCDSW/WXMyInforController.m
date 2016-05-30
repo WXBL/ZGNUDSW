@@ -232,25 +232,25 @@
             //保存在相册
             UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil);
         }
-        AFHTTPRequestOperationManager *mgr=[AFHTTPRequestOperationManager manager];
-        NSString *path=[NSString stringWithFormat:@"%@%@",BASE_SERVICE_URL,UPDATE_USER_IMAGE];
-        NSMutableDictionary *params=[NSMutableDictionary dictionary];
-        params[@"UserID"]=[MDDataBaseUtil userID];
-        params[@"User_image"]=image;
-        
-        [mgr POST:path parameters:params success:^(AFHTTPRequestOperation *operation,NSString *responseObject){
-            if (responseObject) {
-                [MDDataBaseUtil setUserImage:responseObject];
-                [self.headButton setImage:image forState:UIControlStateNormal];
-            }
-        }failure:^(AFHTTPRequestOperation *operation,NSError *error){
-            UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"提示" message:@"请求数据失败，请稍后重试" preferredStyle:UIAlertControllerStyleAlert];
-            
-            
-            UIAlertAction *cancleAction = [UIAlertAction actionWithTitle:@"关闭" style:UIAlertActionStyleDefault handler:nil];
-            
-            [alertController addAction:cancleAction];
-        }];
+//        AFHTTPRequestOperationManager *mgr=[AFHTTPRequestOperationManager manager];
+//        NSString *path=[NSString stringWithFormat:@"%@%@",BASE_SERVICE_URL,UPDATE_USER_IMAGE];
+//        NSMutableDictionary *params=[NSMutableDictionary dictionary];
+//        params[@"UserID"]=[MDDataBaseUtil userID];
+//        params[@"User_image"]=image;
+//        
+//        [mgr POST:path parameters:params success:^(AFHTTPRequestOperation *operation,NSString *responseObject){
+//            if (responseObject) {
+//                [MDDataBaseUtil setUserImage:responseObject];
+//                [self.headButton setImage:image forState:UIControlStateNormal];
+//            }
+//        }failure:^(AFHTTPRequestOperation *operation,NSError *error){
+//            UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"提示" message:@"请求数据失败，请稍后重试" preferredStyle:UIAlertControllerStyleAlert];
+//            
+//            
+//            UIAlertAction *cancleAction = [UIAlertAction actionWithTitle:@"关闭" style:UIAlertActionStyleDefault handler:nil];
+//            
+//            [alertController addAction:cancleAction];
+//        }];
         
 
         [self.headButton setImage:image forState:UIControlStateNormal];
