@@ -13,6 +13,11 @@
 #import "WXInforTableViewCell.h"
 #import "WXUpdateUserNameController.h"
 #import "WXAddressController.h"
+#import "AFNetworking.h"
+#import "AFHTTPRequestOperationManager.h"
+#import "MDDataBaseUtil.h"
+#import "WXUserModel.h"
+#define UPDATE_USER_INFORMATION @""
 @interface WXManagementController ()<UITableViewDelegate,UITableViewDataSource,UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UIAlertViewDelegate>{
     
     BOOL isFullScreen;
@@ -50,12 +55,15 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    self.userDetailArray = [NSMutableArray arrayWithObjects:@"用户名",@"昵称",@"性别",@"出生日期", nil];
+    self.userDetailArray = [NSMutableArray arrayWithObjects:@"用户名",@"性别",@"出生日期", nil];
     
     self.sexView  = [[UIView alloc]init];
     self.userName = [[UILabel alloc]init];
+    self.userName.text=[MDDataBaseUtil userName];
     self.sexLabel = [[UILabel alloc]init];
+    self.sexLabel.text=[MDDataBaseUtil sex];
     self.birthLabel = [[UILabel alloc]init];
+    self.birthLabel.text=[MDDataBaseUtil age];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeName:) name:@"ChangeUserNameNotification" object:nil];
     
@@ -116,7 +124,9 @@
     
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"提示" message:@"确认修改吗？" preferredStyle:UIAlertControllerStyleAlert];
     
-    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:nil];
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction *_Nonnull okAction){
+        [self ClickOkAction];
+    }];
      UIAlertAction *cancleAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:nil];
     
     [alertController addAction:okAction];
@@ -126,6 +136,56 @@
 }
 
 
+-(void)ClickOkAction{
+    
+    AFHTTPRequestOperationManager *mgr=[AFHTTPRequestOperationManager manager];
+    NSString *path=[NSString stringWithFormat:@"%@%@",BASE_SERVICE_URL,UPDATE_USER_INFORMATION];
+    NSMutableDictionary *params=[NSMutableDictionary dictionary];
+    params[@"User_ID"]=[MDDataBaseUtil userID];
+    if ([self.userName.text isEqualToString:@""]) {
+        params[@"UserName"]=[MDDataBaseUtil userName];
+    }else{
+        params[@"UserName"]=self.userName.text;
+    }
+    if ([self.sexLabel.text isEqualToString:@""]) {
+        params[@"Sex"]=[MDDataBaseUtil sex];
+    }else{
+        params[@"Sex"]=self.sexLabel.text;
+    }
+    if ([self.birthLabel.text isEqualToString:@""]) {
+        params[@"Age"]=[MDDataBaseUtil age];
+    }else{
+        NSString *dateString= self.birthLabel.text;
+        dateString=[dateString substringToIndex:4];
+        NSLog(@"%@",dateString);
+        NSDate *date=[NSDate new];
+        NSLog(@"%@",date);
+        NSString *nowDate=[NSString stringWithFormat:@"%@",date];
+        NSLog(@"%@",nowDate);
+        nowDate=[nowDate substringToIndex:4];
+        params[@"Age"]=[NSNumber numberWithInt:nowDate.intValue-dateString.intValue];
+    }
+    
+
+    [mgr POST:path parameters:params success:^(AFHTTPRequestOperation *operation,NSDictionary *responseObject){
+        if (responseObject) {
+            WXUserModel *user=[[[WXUserModel alloc] init] getUserDataWithDictionaryJSON:responseObject];
+            [MDDataBaseUtil setUserName:user.UserName];
+            [MDDataBaseUtil setSex:user.Sex];
+            [MDDataBaseUtil setAge:user.Age];
+        }
+    }failure:^(AFHTTPRequestOperation *operation,NSError *error){
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"提示" message:@"请求数据失败，请稍后重试" preferredStyle:UIAlertControllerStyleAlert];
+        
+        
+        UIAlertAction *cancleAction = [UIAlertAction actionWithTitle:@"关闭" style:UIAlertActionStyleDefault handler:nil];
+        
+        [alertController addAction:cancleAction];
+    }];
+   
+
+   
+}
 
 
 #pragma mark - tableview dataSource
@@ -184,11 +244,8 @@
             
             cell.textlbl.text = self.userName.text;
             
-        }else if (indexPath.row == 1){
-            
-            cell.textlbl.text = self.userName.text;
         }
-        else if (indexPath.row == 2){
+        else if (indexPath.row == 1){
             
             cell.textlbl.text=self.sexLabel.text;
         }else{
@@ -216,8 +273,9 @@
     
         if (indexPath.row ==0 ) {
             WXUpdateUserNameController *updateName = [[WXUpdateUserNameController alloc]init];
+//            updateName.nameText.placeholder=self.userName.text;
             [self presentViewController:updateName animated:YES completion:nil];
-        }else if (indexPath.row ==2) {
+        }else if (indexPath.row ==1) {
             
             UIView *sexView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
             sexView.alpha = 0.5;
@@ -257,7 +315,7 @@
             [self.view addSubview:manButton];
             [self.view addSubview:gileButton];
             [self.view addSubview:cancelButton];
-        }else if(indexPath.row ==3){
+        }else if(indexPath.row ==2){
             UIView *birthView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height) ];
             birthView.backgroundColor = [UIColor grayColor];
             birthView.alpha = 0.5;
@@ -320,7 +378,9 @@
     NSLog(@"date..%@",dateString);
     
     self.birthLabel.text = dateString;
+    
     [self.manageTableView reloadData];
+    
 }
 
 -(void)ClickBirthButton:(id)sender{

@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface WXUpdateUserNameController : UIViewController
-
+@property (nonatomic,strong)UITextField *nameText;
 @end

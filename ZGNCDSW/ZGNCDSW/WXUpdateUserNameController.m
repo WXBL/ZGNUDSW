@@ -8,9 +8,11 @@
 
 #import "WXUpdateUserNameController.h"
 #import "WXTopView.h"
+#import "AFNetworking.h"
+#import "AFHTTPRequestOperationManager.h"
 @interface WXUpdateUserNameController ()<UITextFieldDelegate>
 
-@property (nonatomic,strong)UITextField *nameText;
+
 @end
 
 @implementation WXUpdateUserNameController
@@ -26,7 +28,7 @@
 }
 
 -(void)addNavBar{
-    WXTopView *topView = [[WXTopView alloc]initWithFrame:CGRectMake(0, 0, screenWidth, 50) TitleText:@"修改昵称"];
+    WXTopView *topView = [[WXTopView alloc]initWithFrame:CGRectMake(0, 0, screenWidth, 50) TitleText:@"修改用户名"];
     [topView.backButton addTarget:self action:@selector(backButton:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:topView];
     
@@ -48,7 +50,7 @@
     self.nameText = [[UITextField alloc]initWithFrame:CGRectMake(10, 0, screenWidth-10, 40)];
     self.nameText.backgroundColor = [UIColor whiteColor];
     self.nameText.keyboardType = UIKeyboardTypeDefault;//键盘显示类型
-    self.nameText.placeholder = @"请输入昵称";
+    self.nameText.placeholder = @"请输入用户名";
     self.nameText.clearButtonMode = UITextFieldViewModeWhileEditing; //编辑时会出现个修改X
     self.nameText.font = [UIFont systemFontOfSize:14];
     self.nameText.delegate = self;
