@@ -17,12 +17,17 @@
 @property (nonatomic,strong)UITextView *questDetailTextView;
 @property (nonatomic,strong)UILabel *placeholderLabel;
 
+@property (nonatomic,strong)UITextField *inputTextFiled;
 
-@property (nonatomic,strong)UITableViewCell *questionCategoryCell;
-@property (nonatomic,strong)UITableViewCell *questionContentCell;
-@property (nonatomic,strong)UITableViewCell *phoneCell;
+//输入错误提示
+@property (nonatomic,strong)UILabel *inputErrorPoint1;
+@property (nonatomic,strong)UILabel *inputErrorPoint2;
 
 @property (nonatomic,strong)UILabel *selectCategoryLabel;
+
+@property (nonatomic,strong)NSArray *categories;
+@property (nonatomic,strong)NSArray *categoryiesName;
+
 @end
 
 @implementation WXAdviceViewController
@@ -67,6 +72,7 @@
     
 }
 
+#pragma mark tableViewDataSource
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return 3;
 }
@@ -74,6 +80,23 @@
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return 1;
 }
+
+/**
+ * section底部间距
+ */
+-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+    return 30;
+}
+
+/**
+ * section顶部间距
+ */
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 0.1;
+}
+
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     static NSString *cellID = @"AdviceCell";
@@ -135,6 +158,27 @@
                 [self.questDetailTextView addSubview:self.placeholderLabel];
             }
         }
+            break;
+        case 2:
+        {
+            if (indexPath.row ==0) {
+                UILabel *contactLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 0, screenWidth * 0.25, 50)];
+                contactLabel.text = @"联系方式";
+                contactLabel.textColor = [UIColor grayColor];
+                contactLabel.font = [UIFont systemFontOfSize:16];
+                contactLabel.textAlignment = NSTextAlignmentLeft;
+                [cell addSubview:contactLabel];
+
+                self.inputTextFiled = [[UITextField alloc]initWithFrame:CGRectMake(CGRectGetMaxX(contactLabel.frame), 0, screenWidth * 0.7, contactLabel.frame.size.height)];
+                self.inputTextFiled.delegate = self;
+                self.inputTextFiled.placeholder = @"请输入手机号／邮箱／qq";
+                self.inputTextFiled.textAlignment = NSTextAlignmentLeft;
+                self.inputTextFiled.font = [UIFont systemFontOfSize:14];
+                self.inputTextFiled.textColor = [UIColor blackColor];
+                [cell addSubview:self.inputTextFiled];
+            }
+        }
+            break;
             
         default:
             break;
@@ -143,6 +187,50 @@
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
 
     return cell;
+}
+
+
+/**
+ * section底部添加错误提示信息
+ */
+-(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
+    
+    if (section == 1) {
+        UIView *footerView1 = [[UIView alloc]initWithFrame:CGRectMake(0, 0, screenWidth, 20)];
+        footerView1.backgroundColor = [UIColor colorWithWhite:0.9 alpha:1];
+        
+        self.inputErrorPoint1 = [[UILabel alloc]initWithFrame:CGRectMake(10, 0, screenWidth, footerView1.frame.size.height)];
+        self.inputErrorPoint1.text = @"请输入10-200个字符";
+        self.inputErrorPoint1.textColor = [UIColor redColor];
+        self.inputErrorPoint1.textAlignment = NSTextAlignmentLeft;
+        self.inputErrorPoint1.font = [UIFont systemFontOfSize:12];
+        self.inputErrorPoint1.hidden = YES;
+        [footerView1 addSubview:self.inputErrorPoint1];
+        
+        return footerView1;
+    }else if (section ==2){
+        UIView *footerView2 = [[UIView alloc]initWithFrame:CGRectMake(0, 0, screenWidth, 20)];
+        footerView2.backgroundColor = [UIColor colorWithWhite:0.9 alpha:1];
+        
+        self.inputErrorPoint2 = [[UILabel alloc]initWithFrame:CGRectMake(10, 0, screenWidth, footerView2.frame.size.height)];
+        self.inputErrorPoint2.text = @"请输入正确的联系方式格式";
+        self.inputErrorPoint2.textColor = [UIColor redColor];
+        self.inputErrorPoint2.textAlignment = NSTextAlignmentLeft;
+        self.inputErrorPoint2.font = [UIFont systemFontOfSize:12];
+        self.inputErrorPoint2.hidden = YES;
+        [footerView2 addSubview:self.inputErrorPoint2];
+        return footerView2;
+    }
+    return nil;
+   
+}
+
+
+#pragma mark - UITextFiledDelegate
+-(BOOL)textFieldShouldReturn:(UITextField *)textField{
+    [self.inputTextFiled resignFirstResponder];
+    
+    return YES;
 }
 
 #pragma mark - UITextViewdDelegate  开始编辑
@@ -175,6 +263,8 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [self.questDetailTextView resignFirstResponder];
+    [self.inputTextFiled resignFirstResponder];
+    
     if (indexPath.section == 0 && indexPath.row == 0) {
         [self chooseQuestionCategory];
     }
@@ -182,6 +272,9 @@
 }
 
 -(void)chooseQuestionCategory{
+    [self.questDetailTextView resignFirstResponder];
+    [self.inputTextFiled resignFirstResponder];
+    
     
 }
 
