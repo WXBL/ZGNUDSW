@@ -50,6 +50,7 @@
 		791038391CE452A400B3AC08 /* WXSizeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 791038381CE452A400B3AC08 /* WXSizeModel.m */; };
 		7910383C1CE452DC00B3AC08 /* WXTypeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7910383B1CE452DC00B3AC08 /* WXTypeModel.m */; };
 		7910383D1CE457ED00B3AC08 /* WXNavigationController.h in Sources */ = {isa = PBXBuildFile; fileRef = 8401902D1CCE2D2A00A43AA4 /* WXNavigationController.h */; };
+		794E7CEC1CFC49F000ACED26 /* WXAboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 794E7CEB1CFC49F000ACED26 /* WXAboutViewController.m */; };
 		794F444E1CF5943600CCA8FC /* goods.plist in Resources */ = {isa = PBXBuildFile; fileRef = 794F444D1CF5943600CCA8FC /* goods.plist */; };
 		794F44621CF5944C00CCA8FC /* algimg.png in Resources */ = {isa = PBXBuildFile; fileRef = 794F44501CF5944C00CCA8FC /* algimg.png */; };
 		794F44631CF5944C00CCA8FC /* icon_goods1.png in Resources */ = {isa = PBXBuildFile; fileRef = 794F44511CF5944C00CCA8FC /* icon_goods1.png */; };
@@ -325,6 +326,8 @@
 		791038381CE452A400B3AC08 /* WXSizeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXSizeModel.m; sourceTree = "<group>"; };
 		7910383A1CE452DC00B3AC08 /* WXTypeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXTypeModel.h; sourceTree = "<group>"; };
 		7910383B1CE452DC00B3AC08 /* WXTypeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXTypeModel.m; sourceTree = "<group>"; };
+		794E7CEA1CFC49F000ACED26 /* WXAboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXAboutViewController.h; sourceTree = "<group>"; };
+		794E7CEB1CFC49F000ACED26 /* WXAboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXAboutViewController.m; sourceTree = "<group>"; };
 		794F444D1CF5943600CCA8FC /* goods.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = goods.plist; sourceTree = "<group>"; };
 		794F44501CF5944C00CCA8FC /* algimg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = algimg.png; sourceTree = "<group>"; };
 		794F44511CF5944C00CCA8FC /* icon_goods1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_goods1.png; sourceTree = "<group>"; };
@@ -1001,6 +1004,8 @@
 				843F5DE21CF846E600BC738E /* WXSetPassViewController.m */,
 				8440C7F81CFBD88C008EC0BA /* WXAdviceViewController.h */,
 				8440C7F91CFBD88C008EC0BA /* WXAdviceViewController.m */,
+				794E7CEA1CFC49F000ACED26 /* WXAboutViewController.h */,
+				794E7CEB1CFC49F000ACED26 /* WXAboutViewController.m */,
 				84CAD0B31CE5A304005A8049 /* UserManage（用户管理界列表） */,
 			);
 			name = Controller;
@@ -1833,6 +1838,7 @@
 				8F62015A1CE01294002C9C60 /* WXResetPasswordViewController.m in Sources */,
 				84CAD0AB1CE55A67005A8049 /* XFSegementView.m in Sources */,
 				8401901A1CCE297300A43AA4 /* WXFarmImportsController.m in Sources */,
+				794E7CEC1CFC49F000ACED26 /* WXAboutViewController.m in Sources */,
 				846C84D71CED69CD00ADBEC1 /* WXGZProductViewController.m in Sources */,
 				8FA39DF41CCE0C0B0034C622 /* MJRefreshBaseView.m in Sources */,
 				794F44791CF6CF8A00CCA8FC /* WXMessageContentViewController.m in Sources */,

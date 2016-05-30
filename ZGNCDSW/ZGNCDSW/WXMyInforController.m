@@ -23,6 +23,7 @@
 #import "WXAdviceViewController.h"
 #import "AFNetworking.h"
 #import "AFHTTPRequestOperationManager.h"
+#import "WXAboutViewController.h"
 #define UPDATE_USER_IMAGE @""
 @interface WXMyInforController ()<WXHeaderViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 
@@ -445,7 +446,10 @@
                         [self presentViewController:adviceViewController animated:YES completion:nil];
                     }
                         break;
-                    case 3:
+                    case 3:{
+                        WXAboutViewController *aboutVC=[[WXAboutViewController alloc] init];
+                        [self presentViewController:aboutVC animated:YES completion:nil];
+                    }
                         
                         break;
                     default:
@@ -453,21 +457,7 @@
                 }
                 break;
             case 2:{
-                [MDDataBaseUtil removeUserID];
-                [MDDataBaseUtil removeUserName];
-                [MDDataBaseUtil removePassword];
-                [MDDataBaseUtil removeUserImage];
-                [MDDataBaseUtil removeTel];
-                [MDDataBaseUtil removeSex];
-                [MDDataBaseUtil removeNowAddress];
-                [MDDataBaseUtil removeLevelID];
-                [MDDataBaseUtil removeLastLoginTime];
-                [MDDataBaseUtil removeLoginAddress];
-                [MDDataBaseUtil removeAge];
-                [MDDataBaseUtil removeRegisteTime];
-                [MDDataBaseUtil removeEmail];
-                [MDDataBaseUtil removeRankContent];
-                [self viewWillAppear:YES];
+                [self finishClick];
             }
             
                 break;
@@ -476,12 +466,55 @@
         }
     }
 }
+-(void)finishClick{
+    
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"提示" message:@"退出登录？" preferredStyle:UIAlertControllerStyleAlert];
+    
+    
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction *_Nonnull okAction){
+        [self ClickOkAction];
+    }];
+    
+    UIAlertAction *cancleAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+    
+    [alertController addAction:okAction];
+    [alertController addAction:cancleAction];
+    
+    [self presentViewController:alertController animated:YES completion:nil];
+}
+
+
+-(void)ClickOkAction{
+    
+    
+    [MDDataBaseUtil removeUserID];
+    [MDDataBaseUtil removeUserName];
+    [MDDataBaseUtil removePassword];
+    [MDDataBaseUtil removeUserImage];
+    [MDDataBaseUtil removeTel];
+    [MDDataBaseUtil removeSex];
+    [MDDataBaseUtil removeNowAddress];
+    [MDDataBaseUtil removeLevelID];
+    [MDDataBaseUtil removeLastLoginTime];
+    [MDDataBaseUtil removeLoginAddress];
+    [MDDataBaseUtil removeAge];
+    [MDDataBaseUtil removeRegisteTime];
+    [MDDataBaseUtil removeEmail];
+    [MDDataBaseUtil removeRankContent];
+    [self viewWillAppear:YES];
+}
+
 
 //账户安全
 -(void)Safety{
     WXSafetyViewController *safetyView = [[WXSafetyViewController alloc]init];
     [self presentViewController:safetyView animated:YES completion:nil];
 }
+
+
+
+
+
 
 //清除缓存
 -(void)clearCachesSuccess{
