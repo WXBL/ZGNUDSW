@@ -19,6 +19,8 @@
 #import "WXGZProductViewController.h"
 #import "MDDataBaseUtil.h"
 #import "WXSafetyViewController.h"
+#import "MBProgressHUD.h"
+#import "WXAdviceViewController.h"
 @interface WXMyInforController ()<WXHeaderViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 
 
@@ -380,15 +382,49 @@
             case 1:
                 switch (indexPath.row) {
                     case 0:
-                        [self Safety];
+                    {
+                        WXSafetyViewController *safetyView = [[WXSafetyViewController alloc]init];
+                        [self presentViewController:safetyView animated:YES completion:nil];
+   
+                    }
+//                        [self Safety];
                         break;
+                    case 1:
+                    {
+                        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                            NSString *cachPath = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES)objectAtIndex:0];
+                            
+                            NSArray *files = [[NSFileManager defaultManager]subpathsAtPath:cachPath];
+                            
+                            NSLog(@"files :%ld",[files count]);
+                            
+                            for (NSString *p in files) {
+                                NSError *error;
+                                NSString *path = [cachPath stringByAppendingPathComponent:p];
+                                if ([[NSFileManager defaultManager]fileExistsAtPath:path]) {
+                                    [[NSFileManager defaultManager]removeItemAtPath:path error:&error];
+                                }
+                            }
+                            
+                            [self performSelectorOnMainThread:@selector(clearCachesSuccess) withObject:nil waitUntilDone:YES];
+                        });
+                    }
+                        break;
+                    case 2:
+                    {
+                        WXAdviceViewController *adviceViewController = [[WXAdviceViewController alloc]init];
+                        [self presentViewController:adviceViewController animated:YES completion:nil];
+                    }
+                        break;
+                    case 3:
                         
+                        break;
                     default:
                         break;
                 }
                 break;
             case 2:
-                
+            
                 break;
             default:
                 break;
@@ -400,6 +436,20 @@
 -(void)Safety{
     WXSafetyViewController *safetyView = [[WXSafetyViewController alloc]init];
     [self presentViewController:safetyView animated:YES completion:nil];
+}
+
+//清除缓存
+-(void)clearCachesSuccess{
+    NSLog(@"清理成功");
+    
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
+    hud.mode = MBProgressHUDModeText;
+    hud.labelText = @"清理成功";
+    hud.margin = 10.f;
+    hud.yOffset = 100.f;
+    hud.removeFromSuperViewOnHide = YES;
+    [hud hide:YES afterDelay:2];
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{

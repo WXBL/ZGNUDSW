@@ -101,6 +101,7 @@
 		843F5DDC1CF4235C00BC738E /* WXCommendTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 843F5DDB1CF4235C00BC738E /* WXCommendTableViewCell.m */; };
 		843F5DE01CF83B1100BC738E /* WXSafetyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 843F5DDF1CF83B1100BC738E /* WXSafetyViewController.m */; };
 		843F5DE31CF846E600BC738E /* WXSetPassViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 843F5DE21CF846E600BC738E /* WXSetPassViewController.m */; };
+		8440C7FA1CFBD88C008EC0BA /* WXAdviceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8440C7F91CFBD88C008EC0BA /* WXAdviceViewController.m */; };
 		844329F51CD9860800BD7B9E /* WXBigPic.m in Sources */ = {isa = PBXBuildFile; fileRef = 844329F41CD9860800BD7B9E /* WXBigPic.m */; };
 		84432A001CD9D9B600BD7B9E /* libicucore.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 844329FF1CD9D9B600BD7B9E /* libicucore.tbd */; };
 		84432A021CD9D9C200BD7B9E /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 84432A011CD9D9C200BD7B9E /* libz.tbd */; };
@@ -406,6 +407,8 @@
 		843F5DDF1CF83B1100BC738E /* WXSafetyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXSafetyViewController.m; sourceTree = "<group>"; };
 		843F5DE11CF846E600BC738E /* WXSetPassViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXSetPassViewController.h; sourceTree = "<group>"; };
 		843F5DE21CF846E600BC738E /* WXSetPassViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXSetPassViewController.m; sourceTree = "<group>"; };
+		8440C7F81CFBD88C008EC0BA /* WXAdviceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXAdviceViewController.h; sourceTree = "<group>"; };
+		8440C7F91CFBD88C008EC0BA /* WXAdviceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXAdviceViewController.m; sourceTree = "<group>"; };
 		844329F31CD9860800BD7B9E /* WXBigPic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXBigPic.h; sourceTree = "<group>"; };
 		844329F41CD9860800BD7B9E /* WXBigPic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXBigPic.m; sourceTree = "<group>"; };
 		844329FF1CD9D9B600BD7B9E /* libicucore.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libicucore.tbd; path = usr/lib/libicucore.tbd; sourceTree = SDKROOT; };
@@ -993,6 +996,8 @@
 				843F5DDF1CF83B1100BC738E /* WXSafetyViewController.m */,
 				843F5DE11CF846E600BC738E /* WXSetPassViewController.h */,
 				843F5DE21CF846E600BC738E /* WXSetPassViewController.m */,
+				8440C7F81CFBD88C008EC0BA /* WXAdviceViewController.h */,
+				8440C7F91CFBD88C008EC0BA /* WXAdviceViewController.m */,
 				84CAD0B31CE5A304005A8049 /* UserManage（用户管理界列表） */,
 			);
 			name = Controller;
@@ -1847,6 +1852,7 @@
 				7910381E1CE4348800B3AC08 /* SDWebImageCompat.m in Sources */,
 				8FA39DE91CCE0C0B0034C622 /* rscode.c in Sources */,
 				843F5DDC1CF4235C00BC738E /* WXCommendTableViewCell.m in Sources */,
+				8440C7FA1CFBD88C008EC0BA /* WXAdviceViewController.m in Sources */,
 				84CAD0A21CE559E9005A8049 /* WXReturnrefundTableVC.m in Sources */,
 				8FA39DDF1CCE0C0B0034C622 /* SDRefreshFooterView.m in Sources */,
 				843F5DE01CF83B1100BC738E /* WXSafetyViewController.m in Sources */,

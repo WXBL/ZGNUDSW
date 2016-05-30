@@ -124,10 +124,12 @@
     
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"提示" message:@"确认修改吗？" preferredStyle:UIAlertControllerStyleAlert];
     
+
     UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction *_Nonnull okAction){
         [self ClickOkAction];
     }];
-     UIAlertAction *cancleAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:nil];
+
+     UIAlertAction *cancleAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
     
     [alertController addAction:okAction];
     [alertController addAction:cancleAction];
