@@ -156,7 +156,7 @@
                   moduleName = "ZGNCDSW"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/admin/Desktop/WXBL/ZGNUDSW/ZGNCDSW/ZGNCDSW/WXAddressTableViewCell.h"
-                  timestampString = "486293296.291055"
+                  timestampString = "486299025.720808"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "28"
@@ -171,7 +171,7 @@
                   moduleName = "ZGNCDSW"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/admin/Desktop/WXBL/ZGNUDSW/ZGNCDSW/ZGNCDSW/WXAddressTableViewCell.h"
-                  timestampString = "486293296.291202"
+                  timestampString = "486299025.720957"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "28"
@@ -447,23 +447,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "106"
             endingLineNumber = "106"
-            landmarkName = "-changeName:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ZGNCDSW/WXOptionPickerView.m"
-            timestampString = "486291976.024965"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "58"
-            endingLineNumber = "58"
-            landmarkName = "-loadView"
+            landmarkName = "-addTableView"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

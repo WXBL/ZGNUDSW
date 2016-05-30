@@ -62,6 +62,7 @@
     self.canceleBtn.backgroundColor = [UIColor colorWithWhite:0.9 alpha:1];
     self.canceleBtn.titleLabel.font = [UIFont systemFontOfSize:14];
     [self.canceleBtn addTarget:self action:@selector(cancelSelection:) forControlEvents:UIControlEventTouchUpInside];
+    [self.topView addSubview:self.canceleBtn];
     
     self.titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, screenWidth, self.topView.frame.size.height)];
     self.titleLabel.text = @"请选择";
@@ -95,5 +96,22 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return self.options.count;
+}
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    static NSString *optionCell = @"optionCell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:optionCell];
+    if (!cell) {
+        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:optionCell];
+    }
+    NSString *option = [self.options objectAtIndex:indexPath.row];
+    cell.textLabel.text = option;
+    return cell;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    if ([_delegate respondsToSelector:@selector(optionPickerView:didSelectOptionAtIndex:)]) {
+        [_delegate performSelector:@selector(optionPickerView:didSelectOptionAtIndex:) withObject:self withObject:[NSNumber numberWithInteger:indexPath.row]];
+    }
 }
 @end

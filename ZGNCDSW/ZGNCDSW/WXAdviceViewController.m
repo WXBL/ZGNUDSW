@@ -8,7 +8,9 @@
 
 #import "WXAdviceViewController.h"
 #import "WXTopView.h"
-@interface WXAdviceViewController ()<UITableViewDelegate,UITableViewDataSource,UITextViewDelegate,UITextFieldDelegate>
+#import "WXOptionPickerView.h"
+
+@interface WXAdviceViewController ()<UITableViewDelegate,UITableViewDataSource,UITextViewDelegate,UITextFieldDelegate,WXOptionPickerViewDelegate>
 
 @property (nonatomic,strong)WXTopView *topView;
 
@@ -25,8 +27,12 @@
 
 @property (nonatomic,strong)UILabel *selectCategoryLabel;
 
+@property (nonatomic,assign)NSInteger selectedIndex;
+
 @property (nonatomic,strong)NSArray *categories;
 @property (nonatomic,strong)NSArray *categoryiesName;
+
+@property (nonatomic,strong)WXOptionPickerView *picker;
 
 @end
 
@@ -39,6 +45,19 @@
     [self addNavBar];
     
     [self addTableView];
+    
+    self.categoryiesName = [NSArray arrayWithObjects:@"无",@"登录／注册不了",@"联网太忙",@"忘记密码／帐号", nil];
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    
+    self.selectCategoryLabel  = [[UILabel alloc]init];
+    self.selectCategoryLabel .text = @"无";
+    self.selectCategoryLabel .font = [UIFont systemFontOfSize:14];
+    self.selectCategoryLabel .textColor = [UIColor blackColor];
+    self.selectCategoryLabel .textAlignment = NSTextAlignmentLeft;
+//    [self.tableView reloadData];
 }
 
 -(void)addNavBar{
@@ -60,8 +79,48 @@
 }
 
 -(void)submit:(UIButton *)sender{
+    [self.inputTextFiled resignFirstResponder];
+    [self.questDetailTextView resignFirstResponder];
+    
+    NSString *inputDescription = [self.questDetailTextView.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    
+    if (inputDescription && inputDescription.length <200 && inputDescription.length >10) {
+        [self.inputErrorPoint1 setHidden:YES];
+        
+        NSString *phone = [self.inputTextFiled.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+        if (!phone || ![self isContact:phone]) {
+            [self.inputErrorPoint2 setHidden:NO];
+        }else{
+            [self sendSubmitRequest];
+            [self showFloatMessageZP:@"正在提交"];
+        }
+    }else{
+        [self.inputErrorPoint1 setHidden:NO];
+    }
+}
+
+-(void)sendSubmitRequest{
     
 }
+
+-(void)showFloatMessageZP:(NSString*)message
+{
+    
+}
+#pragma mark - Pivatemethod
+- (BOOL)isContact:(NSString *)text
+{
+    NSString *emailRegex = @"^\\w+((\\-\\w+)|(\\.\\w+))*@[A-Za-z0-9]+((\\.|\\-)[A-Za-z0-9]+)*.[A-Za-z0-9]+$";
+    NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegex];
+    
+    NSString * mobileOrQQ = @"[1-9][0-9]{4,14}";
+    NSPredicate *regextestmobile = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", mobileOrQQ];
+    if ([regextestmobile evaluateWithObject:text] == NO && [emailTest evaluateWithObject:text] == NO) {
+        return NO;
+    }
+    return YES;
+}
+
 
 -(void)addTableView{
     self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.topView.frame), screenWidth, screenHeigth - self.topView.frame.size.height) style:UITableViewStyleGrouped];
@@ -119,15 +178,16 @@
                 questionCategoryLabel.textAlignment = NSTextAlignmentLeft;
                 [cell addSubview:questionCategoryLabel];
                 
-                UILabel *selectCategoryLabel = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(questionCategoryLabel.frame), 0, screenWidth *0.6, 50)];
-                selectCategoryLabel.text = @"无";
-                selectCategoryLabel.font = [UIFont systemFontOfSize:14];
-                selectCategoryLabel.textColor = [UIColor blackColor];
-                selectCategoryLabel.textAlignment = NSTextAlignmentLeft;
-                [cell addSubview:selectCategoryLabel];
-                self.selectCategoryLabel = selectCategoryLabel;
+//                UILabel *selectCategoryLabel = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(questionCategoryLabel.frame), 0, screenWidth *0.6, 50)];
+//                selectCategoryLabel.text = @"无";
+//                selectCategoryLabel.font = [UIFont systemFontOfSize:14];
+//                selectCategoryLabel.textColor = [UIColor blackColor];
+//                selectCategoryLabel.textAlignment = NSTextAlignmentLeft;
+//                [cell addSubview:selectCategoryLabel];
+                self.selectCategoryLabel.frame=CGRectMake(CGRectGetMaxX(questionCategoryLabel.frame), 0, screenWidth *0.6, 50);
+                [cell addSubview:self.selectCategoryLabel];
                 
-                UIImageView *downImage = [[UIImageView alloc]initWithFrame:CGRectMake(CGRectGetMaxX(selectCategoryLabel.frame)+10, 20, 15, 15)];
+                UIImageView *downImage = [[UIImageView alloc]initWithFrame:CGRectMake(CGRectGetMaxX(self.selectCategoryLabel.frame)+10, 20, 15, 15)];
                 [downImage setImage:[UIImage imageNamed:@"向下箭头icon"]];
                 [cell addSubview:downImage];
             }
@@ -275,8 +335,34 @@
     [self.questDetailTextView resignFirstResponder];
     [self.inputTextFiled resignFirstResponder];
     
+//    if (self.categories) {
+        if (!self.picker) {
+            self.picker = [[WXOptionPickerView alloc]initWithOptions:self.categoryiesName frame:[[UIApplication sharedApplication]keyWindow].bounds];
+            self.picker.delegate = self;
+            [self.picker setTitle:@"反馈类型"];
+        }
+        [self.picker show];
+//    }else{
+//        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"提示" message:@"问题类型正在获取中，请稍后重试" preferredStyle:UIAlertControllerStyleAlert];
+//        
+//        
+//        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:nil];
+//        
+//            [alertController addAction:okAction];
+//
+//        
+//        [self presentViewController:alertController animated:YES completion:nil];
+//        
+//        //获取数据
+//        [self getQuestionCategories];
+//    }
+}
+
+-(void)getQuestionCategories{
     
 }
+
+
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section ==0) {
@@ -288,6 +374,21 @@
     }
     
 }
+
+#pragma mark - QuestionCategoryPickerDelegate
+-(void)optionPickerView:(WXOptionPickerView *)pickerView didSelectOptionAtIndex:(NSNumber *)index{
+    [self.picker dismiss];
+    self.selectedIndex = index.integerValue;
+    
+    self.selectCategoryLabel.text = [self.categoryiesName objectAtIndex:self.selectedIndex];
+    
+//    [self.tableView reloadData];
+}
+
+-(void)optionPickerViewDidCancel:(WXOptionPickerView *)pickerView{
+    [self.picker dismiss];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
