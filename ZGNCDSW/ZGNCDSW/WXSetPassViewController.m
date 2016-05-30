@@ -10,7 +10,9 @@
 #import "WXTopView.h"
 #import "MDDataBaseUtil.h"
 #import "MBProgressHUD.h"
-
+#import "AFNetworking.h"
+#import "AFHTTPRequestOperationManager.h"
+#define  RESET_PASSWORD_URL @""
 @interface WXSetPassViewController ()<UITextFieldDelegate>
 
 @property (nonatomic,strong)WXTopView *topView;
@@ -106,22 +108,15 @@
         UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"提示" message:@"请输入密码" preferredStyle:UIAlertControllerStyleAlert];
         
 //        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:nil];
-        UIAlertAction *cancleAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+        UIAlertAction *cancleAction = [UIAlertAction actionWithTitle:@"关闭" style:UIAlertActionStyleCancel handler:nil];
         
 //        [alertController addAction:okAction];
         [alertController addAction:cancleAction];
         
         [self presentViewController:alertController animated:YES completion:nil];
-    }else if (![self.passText.text isEqualToString:self.oldPassText.text]){
-        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"提示" message:@"新密码与原始密码不一致" preferredStyle:UIAlertControllerStyleAlert];
         
-        //        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:nil];
-        UIAlertAction *cancleAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
-        
-        //        [alertController addAction:okAction];
-        [alertController addAction:cancleAction];
     }else{
-        if (!(self.oldPassText.text.length <4 || self.oldPassText.text.length >6)) {
+        if ((self.oldPassText.text.length <4 || self.oldPassText.text.length >6)||(self.passText.text.length <4 || self.passText.text.length >6)) {
             UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"提示" message:@"请输入4-6字符的密码" preferredStyle:UIAlertControllerStyleAlert];
             
             //        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:nil];
@@ -129,27 +124,55 @@
             
             //        [alertController addAction:okAction];
             [alertController addAction:cancleAction];
+            
+             [self presentViewController:alertController animated:YES completion:nil];
         }else if (![self.oldPassText.text isEqualToString:[MDDataBaseUtil password]]){
             UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"提示" message:@"原始密码输入有误，请重新输入" preferredStyle:UIAlertControllerStyleAlert];
             
-                    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:nil];
+                    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"关闭" style:UIAlertActionStyleDefault handler:nil];
 //            UIAlertAction *cancleAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
             
                     [alertController addAction:okAction];
 //            [alertController addAction:cancleAction];
-        }
-        else{
-            [MDDataBaseUtil setUserName:self.passText.text];
+             [self presentViewController:alertController animated:YES completion:nil];
+        }else if ([self.passText.text isEqualToString:self.oldPassText.text]){
+            UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"提示" message:@"新密码与原始密码一致" preferredStyle:UIAlertControllerStyleAlert];
+            
+            //        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:nil];
+            UIAlertAction *cancleAction = [UIAlertAction actionWithTitle:@"关闭" style:UIAlertActionStyleCancel handler:nil];
+            
+            //        [alertController addAction:okAction];
+            [alertController addAction:cancleAction];
+             [self presentViewController:alertController animated:YES completion:nil];
+        }else{
+            
             MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
             
             hud.mode = MBProgressHUDModeText;
-            hud.labelText = @"密码修改成功！";
+            
             hud.margin = 10.f;
             hud.yOffset = 150.f;
             hud.removeFromSuperViewOnHide = YES;
             [hud hide:YES afterDelay:2];
+            AFHTTPRequestOperationManager *mgr=[AFHTTPRequestOperationManager manager];
+            NSMutableDictionary *params=[NSMutableDictionary dictionary];
+            params[@"UserID"]=[MDDataBaseUtil userID];
+            params[@"Password"]=self.passText.text;
+            NSString *path=[NSString stringWithFormat:@"%@%@",BASE_SERVICE_URL,RESET_PASSWORD_URL];
+            [mgr POST:path parameters:params success:^(AFHTTPRequestOperation *operation,NSString *responseObject){
+                if ([responseObject isEqualToString:@"success"]) {
+                    [MDDataBaseUtil setPassword:self.passText.text];
+                    hud.labelText = @"密码修改成功！";
+                }
+                [self dismissViewControllerAnimated:YES completion:nil];
+            }failure:^(AFHTTPRequestOperation *operation,NSError *error){
+               hud.labelText = @"密码修改失败！请重试";
+            }];
+            
         }
     }
+    self.oldPassText.text=@"";
+    self.passText.text=@"";
 }
 
 -(void)backButton:(id)sender{
