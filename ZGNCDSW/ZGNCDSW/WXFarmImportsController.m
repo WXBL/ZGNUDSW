@@ -243,7 +243,8 @@
     }
     WXProductModel *productmodel=[self.productArray objectAtIndex:indexPath.row];
     WXImageModel *imgModel=[productmodel.Goods_Image firstObject];
-    cell.farmImage.image = [UIImage imageNamed:imgModel.Image_ur];
+    NSData *imgData=[NSData dataWithContentsOfURL:[NSURL URLWithString:imgModel.Image_ur]];
+    [cell.farmImage setImage:[UIImage imageWithData:imgData]];
     cell.titleLabel.text = productmodel.Goods_Name;
     cell.priceLabel.text = productmodel.Goods_Price;
     cell.saleNumLabel.text = productmodel.Goods_Inventory;

@@ -255,7 +255,6 @@
         [MDDataBaseUtil setAge:model.Age];
         [MDDataBaseUtil setRegistTime:model.Regist_time];
         [MDDataBaseUtil setEmail:model.Email];
-        [MDDataBaseUtil setLevelID:model.Level_ID];
         [MDDataBaseUtil setRankContent:model.Rank_Content];
         WXTabBarController *tabBarVC=[[WXTabBarController alloc] init];
         [self presentViewController:tabBarVC animated:YES completion:nil];

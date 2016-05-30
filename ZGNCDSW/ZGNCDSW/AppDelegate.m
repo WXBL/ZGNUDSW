@@ -10,7 +10,7 @@
 #import "WXTabBarController.h"
 #import <CoreData/CoreData.h>
 #import "WXUserLoginViewController.h"
-
+#import "MDDataBaseUtil.h"
 #import <ShareSDK/ShareSDK.h>
 #import <ShareSDKConnector/ShareSDKConnector.h>
 //腾讯开放平台（对应QQ和QQ空间）sdk头文件
@@ -44,7 +44,7 @@
     self.window.rootViewController = tabBar;
     
     [self.window makeKeyAndVisible];
-    
+    [MDDataBaseUtil setUserName:@"ww"];
     [ShareSDK registerApp:@"1265d2d8495a0" activePlatforms:@[@(SSDKPlatformTypeSinaWeibo),@(SSDKPlatformTypeWechat),@(SSDKPlatformTypeQQ),] onImport:^(SSDKPlatformType plateformType){
         switch (plateformType) {
             case SSDKPlatformTypeQQ:

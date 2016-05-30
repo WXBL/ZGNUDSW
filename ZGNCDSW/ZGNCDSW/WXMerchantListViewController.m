@@ -78,7 +78,8 @@
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.textLabel.numberOfLines=0;
     WXMerchantModel *merchant=[self.merchantListArr objectAtIndex:indexPath.row];
-    cell.imageView.image=[UIImage imageNamed:merchant.Company_logo];
+    NSData *imgData=[NSData dataWithContentsOfURL:[NSURL URLWithString:merchant.Company_logo]];
+    [cell.imageView setImage:[UIImage imageWithData:imgData]];
     cell.textLabel.text=merchant.Company_Name;
     return cell;
 }

@@ -32,6 +32,9 @@
     [[NSUserDefaults standardUserDefaults] synchronize];
     
 }
++(void)removeUserObject{
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:M_USER_OBJECT];
+}
 + (id)userID
 {
     return [[NSUserDefaults standardUserDefaults] objectForKey:USER_ID];
@@ -41,6 +44,9 @@
     [[NSUserDefaults standardUserDefaults] setObject:userID forKey:USER_ID];
     [[NSUserDefaults standardUserDefaults] synchronize];
     
+}
++(void)removeUserID{
+     [[NSUserDefaults standardUserDefaults] removeObjectForKey:USER_ID];
 }
 
 + (id)userName
@@ -53,6 +59,9 @@
     [[NSUserDefaults standardUserDefaults] synchronize];
     
 }
++(void)removeUserName{
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:USER_NAME];
+}
 
 + (id)password {
     return [[NSUserDefaults standardUserDefaults] objectForKey:PASSWORD];
@@ -62,7 +71,9 @@
     [[NSUserDefaults standardUserDefaults] setObject:password forKey:PASSWORD];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
-
++(void)removePassword{
+     [[NSUserDefaults standardUserDefaults] removeObjectForKey:PASSWORD];
+}
 
 
 + (id)tel {
@@ -74,7 +85,9 @@
     [[NSUserDefaults standardUserDefaults] setObject:tel forKey:TEL];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
-
++(void)removeTel{
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:TEL];
+}
 
 + (id)age {
     return [[NSUserDefaults standardUserDefaults] objectForKey:AGE];
@@ -83,6 +96,9 @@
 + (void)setAge:(id)age{
     [[NSUserDefaults standardUserDefaults] setObject:age forKey:AGE];
     [[NSUserDefaults standardUserDefaults] synchronize];
+}
++(void)removeAge{
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:AGE];
 }
 
 + (id)sex
@@ -95,7 +111,9 @@
     [[NSUserDefaults standardUserDefaults] setObject:sex forKey:SEX];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
-
++(void)removeSex{
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:SEX];
+}
 
 + (id)registTime {
     return [[NSUserDefaults standardUserDefaults] objectForKey:REGIST_TIME];
@@ -104,6 +122,9 @@
 + (void)setRegistTime:(id)registTime{
     [[NSUserDefaults standardUserDefaults] setObject:registTime forKey:REGIST_TIME];
     [[NSUserDefaults standardUserDefaults] synchronize];
+}
++(void)removeRegisteTime{
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:REGIST_TIME];
 }
 
 + (id)lastLoginTime
@@ -117,6 +138,9 @@
     [[NSUserDefaults standardUserDefaults] synchronize];
     
 }
++(void)removeLastLoginTime{
+     [[NSUserDefaults standardUserDefaults] removeObjectForKey:LAST_LOGIN_TIME];
+}
 
 + (id)userImage
 {
@@ -128,6 +152,9 @@
     [[NSUserDefaults standardUserDefaults] setObject:userImage forKey:USER_IMAGE];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
++(void)removeUserImage{
+     [[NSUserDefaults standardUserDefaults] removeObjectForKey:USER_IMAGE];
+}
 + (id)email
 {
     return [[NSUserDefaults standardUserDefaults] objectForKey:EMAIL];
@@ -138,6 +165,9 @@
     [[NSUserDefaults standardUserDefaults] setObject:email forKey:EMAIL];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
++(void)removeEmail{
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:EMAIL];
+}
 
 + (id)loginAddress{
     return [[NSUserDefaults standardUserDefaults] objectForKey:LOGIN_ADDRESS];
@@ -146,7 +176,9 @@
     [[NSUserDefaults standardUserDefaults] setObject:loginAddress forKey:LOGIN_ADDRESS];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
-
++(void)removeLoginAddress{
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:LOGIN_ADDRESS];
+}
 
 + (id)nowAddress{
     return [[NSUserDefaults standardUserDefaults] objectForKey:NOW_ADDRESS];
@@ -154,6 +186,9 @@
 + (void)setNowAddress:(id)nowAddress{
     [[NSUserDefaults standardUserDefaults] setObject:nowAddress forKey:NOW_ADDRESS];
     [[NSUserDefaults standardUserDefaults] synchronize];
+}
++(void)removeNowAddress{
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:NOW_ADDRESS];
 }
 
 + (id)note
@@ -167,6 +202,9 @@
     [[NSUserDefaults standardUserDefaults] setObject:note forKey:NOTE];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
++(void)removeNote{
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:NOTE];
+}
 +(id)levelID{
     return [NSString stringWithFormat:@"%@", [[NSUserDefaults standardUserDefaults] objectForKey:LEVEL_ID]];
 }
@@ -174,11 +212,17 @@
     [[NSUserDefaults standardUserDefaults] setObject:levelID forKey:LEVEL_ID];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
++(void)removeLevelID{
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:LEVEL_ID];
+}
 +(id)rankContent{
     return [NSString stringWithFormat:@"%@", [[NSUserDefaults standardUserDefaults] objectForKey:RANK_CONTENT]];
 }
 +(void)setRankContent:(id)rankContent{
     [[NSUserDefaults standardUserDefaults] setObject:rankContent forKey:RANK_CONTENT];
     [[NSUserDefaults standardUserDefaults] synchronize];
+}
++(void)removeRankContent{
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:RANK_CONTENT];
 }
 @end

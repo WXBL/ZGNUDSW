@@ -101,7 +101,8 @@
     WXCollectionModel *collection=[self.collectionArr objectAtIndex:indexPath.row];
     WXProductModel *product=collection.Goods;
     WXImageModel *img=[product.Goods_Image firstObject];
-    cell.proImage.image=[UIImage imageNamed:img.Image_Name];
+    NSData *imgData=[NSData dataWithContentsOfURL:[NSURL URLWithString:img.Image_ur]];
+    [cell.proImage setImage:[UIImage imageWithData:imgData]];
     cell.titleLabel.text=product.Goods_Name;
     cell.priceLabel.text=product.Goods_Price;
     

@@ -383,6 +383,7 @@
     ;
     CGFloat imgY = 0;
     WXImageModel *imageModel=[[WXImageModel alloc] init];
+    
     // 1. 循环创建5个UIImageView添加到ScrollView中
     for (int i = 0; i < self.productImgArr.count; i++) {
         // 创建一个UIImageView
@@ -390,7 +391,8 @@
         
         // 设置UIImageView中的图片
         imageModel=[self.productImgArr objectAtIndex:i];
-        self.imageView.image = [UIImage imageNamed:imageModel.Image_ur];
+        NSData *imgData=[NSData dataWithContentsOfURL:[NSURL URLWithString:imageModel.Image_ur]];
+        [self.imageView setImage:[UIImage imageWithData:imgData]];
         
         // 计算每个UIImageView在UIScrollView中的x坐标值
         CGFloat imgX = i * imgW;

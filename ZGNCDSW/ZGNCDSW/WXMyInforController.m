@@ -21,6 +21,9 @@
 #import "WXSafetyViewController.h"
 #import "MBProgressHUD.h"
 #import "WXAdviceViewController.h"
+#import "AFNetworking.h"
+#import "AFHTTPRequestOperationManager.h"
+#define UPDATE_USER_IMAGE @""
 @interface WXMyInforController ()<WXHeaderViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 
 
@@ -46,14 +49,13 @@
     self.view.backgroundColor = [UIColor colorWithWhite:0.9 alpha:1];
     
     self.tableView = [[UITableView alloc]initWithFrame:self.tableView.frame style:UITableViewStyleGrouped];
-    
     //添加头部个人信息
-    [self addHeaderView];
+    
 }
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    
+    [self addHeaderView];
     [self.tableView reloadData];
 }
 
@@ -79,7 +81,12 @@
     
     
 }
-
+//-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+//    WXHeaderView *headerView = [[WXHeaderView alloc]init];
+//    headerView.delegate = self;
+//    self.headButton = headerView.headerButton;
+//    return headerView;
+//}
 -(void)changeUserInfor:(NSNotification *)notification{
     NSDictionary *userDictionary=[notification userInfo];
     
@@ -225,8 +232,29 @@
             //保存在相册
             UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil);
         }
+        AFHTTPRequestOperationManager *mgr=[AFHTTPRequestOperationManager manager];
+        NSString *path=[NSString stringWithFormat:@"%@%@",BASE_SERVICE_URL,UPDATE_USER_IMAGE];
+        NSMutableDictionary *params=[NSMutableDictionary dictionary];
+        params[@"UserID"]=[MDDataBaseUtil userID];
+        params[@"User_image"]=image;
         
+        [mgr POST:path parameters:params success:^(AFHTTPRequestOperation *operation,NSString *responseObject){
+            if (responseObject) {
+                [MDDataBaseUtil setUserImage:responseObject];
+                [self.headButton setImage:image forState:UIControlStateNormal];
+            }
+        }failure:^(AFHTTPRequestOperation *operation,NSError *error){
+            UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"提示" message:@"请求数据失败，请稍后重试" preferredStyle:UIAlertControllerStyleAlert];
+            
+            
+            UIAlertAction *cancleAction = [UIAlertAction actionWithTitle:@"关闭" style:UIAlertActionStyleDefault handler:nil];
+            
+            [alertController addAction:cancleAction];
+        }];
+        
+
         [self.headButton setImage:image forState:UIControlStateNormal];
+
         
     }else if ([mediaType isEqualToString:@"public.movie"])
     {
@@ -235,7 +263,6 @@
         //播放视频
         NSLog(@"%@",url);
     }
-    
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -363,6 +390,7 @@
 
 #pragma mark -tableview delegate
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
     if ([MDDataBaseUtil userName] == NULL) {
         WXUserLoginViewController *loginViewController = [[WXUserLoginViewController alloc]init];
         [self presentViewController:loginViewController animated:YES completion:nil];
@@ -424,7 +452,23 @@
                         break;
                 }
                 break;
-            case 2:
+            case 2:{
+                [MDDataBaseUtil removeUserID];
+                [MDDataBaseUtil removeUserName];
+                [MDDataBaseUtil removePassword];
+                [MDDataBaseUtil removeUserImage];
+                [MDDataBaseUtil removeTel];
+                [MDDataBaseUtil removeSex];
+                [MDDataBaseUtil removeNowAddress];
+                [MDDataBaseUtil removeLevelID];
+                [MDDataBaseUtil removeLastLoginTime];
+                [MDDataBaseUtil removeLoginAddress];
+                [MDDataBaseUtil removeAge];
+                [MDDataBaseUtil removeRegisteTime];
+                [MDDataBaseUtil removeEmail];
+                [MDDataBaseUtil removeRankContent];
+                [self viewWillAppear:YES];
+            }
             
                 break;
             default:

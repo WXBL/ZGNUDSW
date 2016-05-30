@@ -33,49 +33,66 @@
 
 + (id)userObject;
 + (void)setUserObject:(id)UserObject;
++(void)removeUserObject;
 
 + (id)userID;
 + (void)setUserID:(id)userID;
++(void)removeUserID;
 
 + (id)userName;
 + (void)setUserName:(id)userName;
++(void)removeUserName;
 
 + (id)password;
 + (void)setPassword:(id)password;
++(void)removePassword;
 
 
 + (id)tel;
 + (void)setTel:(id)tel;
++(void)removeTel;
 
 + (id)age;
 + (void)setAge:(id)age;
++(void)removeAge;
 
 + (id)sex;
 + (void)setSex:(id)sex;
++(void)removeSex;
 
 + (id)registTime;
 + (void)setRegistTime:(id)registTime;
++(void)removeRegisteTime;
 
 + (id)lastLoginTime;
 + (void)setLastLoginTime:(id)lastLoginTime;
++(void)removeLastLoginTime;
 
 + (id)userImage;
 + (void)setUserImage:(id)userImage;
++(void)removeUserImage;
 
 + (id)email;
 + (void)setEmail:(id)email;
++(void)removeEmail;
 
 + (id)loginAddress;
 + (void)setLoginAddress:(id)loginAddress;
++(void)removeLoginAddress;
 
 + (id)nowAddress;
 + (void)setNowAddress:(id)nowAddress;
++(void)removeNowAddress;
 
 + (id)note;
 + (void)setNote:(id)note;
++(void)removeNote;
 
 + (id)levelID;
 + (void)setLevelID:(id)levelID;
++(void)removeLevelID;
+
 + (id)rankContent;
 + (void)setRankContent:(id)rankContent;
++(void)removeRankContent;
 @end

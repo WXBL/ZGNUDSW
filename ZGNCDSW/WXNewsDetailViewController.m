@@ -72,7 +72,9 @@
     
     UIImageView *imgView=[[UIImageView alloc] initWithFrame:CGRectMake(10, CGRectGetMaxY(titleLbl.frame), screenWidth-20, screenWidth-10)];
     
-    imgView.image=[UIImage imageNamed:((WXImageModel *)[self.theNew.newsImgArr firstObject]).Image_ur];
+    NSData *imgData=[NSData dataWithContentsOfURL:[NSURL URLWithString:((WXImageModel *)[self.theNew.newsImgArr firstObject]).Image_ur]];
+    [imgView setImage:[UIImage imageWithData:imgData]];
+
     [self.scrollView addSubview:imgView];
     
     UILabel *newsContentLbl=[[UILabel alloc] initWithFrame:CGRectMake(10, CGRectGetMaxY(imgView.frame), screenWidth-20, screenHeigth)];

@@ -143,7 +143,7 @@
     AFHTTPRequestOperationManager *mgr=[AFHTTPRequestOperationManager manager];
     NSString *path=[NSString stringWithFormat:@"%@%@",BASE_SERVICE_URL,UPDATE_USER_INFORMATION];
     NSMutableDictionary *params=[NSMutableDictionary dictionary];
-    params[@"User_ID"]=[MDDataBaseUtil userID];
+    params[@"UserID"]=[MDDataBaseUtil userID];
     if ([self.userName.text isEqualToString:@""]) {
         params[@"UserName"]=[MDDataBaseUtil userName];
     }else{

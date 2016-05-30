@@ -32,7 +32,7 @@
     headButton.frame = CGRectMake(10, 10, CGRectGetHeight(self.bgView.frame)-20, CGRectGetHeight(self.bgView.frame)-20);
     [headButton.layer setCornerRadius:(CGRectGetHeight(self.bgView.frame)-20)/2];
     headButton.layer.masksToBounds=YES;
-    [MDDataBaseUtil setUserName:@"asd"];
+//    [MDDataBaseUtil setUserName:@"asd"];
     
     headButton.tag = 0;
     [self.bgView addSubview:headButton];
@@ -60,9 +60,16 @@
         self.userName.text = @"用户登录";
         
     }else{
-        [self.headerButton addTarget:self action:@selector(ClickButton:) forControlEvents:UIControlEventTouchUpInside];
         self.userName.text = [MDDataBaseUtil userName];
+        NSData *imgData=[NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",[MDDataBaseUtil userImage]]]];
+        if (imgData) {
+            [self.headerButton setImage:[UIImage imageWithData:imgData] forState:UIControlStateNormal];
+        }else{
+            [self.headerButton setImage:[UIImage imageNamed:@"my_head_default"] forState:UIControlStateNormal];
+        }
         
+        [self.headerButton addTarget:self action:@selector(ClickButton:) forControlEvents:UIControlEventTouchUpInside];
+
     }
     
 

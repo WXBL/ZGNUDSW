@@ -95,7 +95,7 @@
     updatePassBtn.frame = CGRectMake(screenWidth *0.1, CGRectGetMaxY(label.frame), screenWidth *0.8, 40);
     [updatePassBtn setTitle:@"修改密码" forState:UIControlStateNormal];
     [updatePassBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    updatePassBtn.backgroundColor = [UIColor colorWithRed:0.6 green:0.7 blue:0.4 alpha:1];
+    updatePassBtn.backgroundColor = [UIColor colorWithRed:0.3 green:0.7 blue:0.5 alpha:1];
     updatePassBtn.titleLabel.font = [UIFont systemFontOfSize:16];
     [updatePassBtn setContentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter];
     [updatePassBtn addTarget:self action:@selector(ClickSaveBtn:) forControlEvents:UIControlEventTouchUpInside];

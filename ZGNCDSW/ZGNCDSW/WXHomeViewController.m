@@ -547,7 +547,8 @@
             
             UIImageView *newImage = [[UIImageView alloc]initWithFrame:CGRectMake(5, 5, CGRectGetHeight(newView.frame)-10, CGRectGetHeight(newView.frame)-10)];
             WXImageModel *imgModel=[model.newsImgArr firstObject];
-            [newImage setImage:[UIImage imageNamed:imgModel.Image_ur]];
+            NSData *imgData=[NSData dataWithContentsOfURL:[NSURL URLWithString:imgModel.Image_ur]];
+            [newImage setImage:[UIImage imageWithData:imgData]];
             [newView addSubview:newImage];
             
             UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(newImage.frame)+10, 5, CGRectGetWidth(newView.frame)-CGRectGetMaxX(newImage.frame)-20, 25)];
