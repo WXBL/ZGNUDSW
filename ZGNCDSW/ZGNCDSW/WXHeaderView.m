@@ -61,13 +61,13 @@
         
     }else{
         self.userName.text = [MDDataBaseUtil userName];
-        NSData *imgData=[NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",[MDDataBaseUtil userImage]]]];
-        if (imgData) {
-            [self.headerButton setImage:[UIImage imageWithData:imgData] forState:UIControlStateNormal];
-        }else{
-            [self.headerButton setImage:[UIImage imageNamed:@"my_head_default"] forState:UIControlStateNormal];
-        }
-        
+//        NSData *imgData=[NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",[MDDataBaseUtil userImage]]]];
+//        if (imgData) {
+//            [self.headerButton setImage:[UIImage imageWithData:imgData] forState:UIControlStateNormal];
+//        }else{
+//            [self.headerButton setImage:[UIImage imageNamed:@"my_head_default"] forState:UIControlStateNormal];
+//        }
+//        
         [self.headerButton addTarget:self action:@selector(ClickButton:) forControlEvents:UIControlEventTouchUpInside];
 
     }
