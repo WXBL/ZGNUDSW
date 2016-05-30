@@ -316,7 +316,7 @@
     
     if (indexPath.section == 0) {
         if (indexPath.row ==0) {
-            
+            [cell.imageView setImage:[UIImage imageNamed:@"个人中心icon管理"]];
             cell.textLabel.text = @"账户管理";
             
         }else{
@@ -333,6 +333,7 @@
                 cell.textLabel.text = @"账户安全";
                 break;
             case 1:
+                [cell.imageView setImage:[UIImage imageNamed:@"个人中心icon清除缓存"]];
                 cell.textLabel.text = @"清楚缓存";
                 break;
             case 2:
