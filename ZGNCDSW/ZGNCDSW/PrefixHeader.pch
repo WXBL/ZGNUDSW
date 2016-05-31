@@ -31,6 +31,9 @@
 //接口
 #define BASE_SERVICE_URL @""
 
+//APP版本
+#define kVersionId               [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"]
+
 // 随机色
 #define MJRandomColor MJColor(arc4random_uniform(256), arc4random_uniform(256), arc4random_uniform(256))
 

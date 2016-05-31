@@ -125,6 +125,11 @@
     
 }
 
+-(BOOL)textFieldShouldReturn:(UITextField *)textField{
+    [self.newsText resignFirstResponder];
+    
+    return YES;
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

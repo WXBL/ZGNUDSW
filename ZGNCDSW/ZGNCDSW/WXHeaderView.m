@@ -38,7 +38,7 @@
     [self.bgView addSubview:headButton];
     self.headerButton = headButton;
     
-    self.userName = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(self.headerButton.frame)+10, self.headerButton.frame.origin.x, self.bgView.frame.size.width/2, self.headerButton.frame.size.height)];
+    self.userName = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(self.headerButton.frame)+10, self.headerButton.frame.origin.x, self.bgView.frame.size.width/3, self.headerButton.frame.size.height)];
     self.userName.textColor = [UIColor blackColor];
     self.userName.textAlignment = NSTextAlignmentLeft;
     self.userName.font = [UIFont systemFontOfSize:14];
@@ -46,7 +46,8 @@
     
     if ([MDDataBaseUtil userName] == NULL) {
         self.loginButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        self.loginButton.frame = CGRectMake(CGRectGetMaxX(self.userName.frame), 30, 70, 35);
+        self.loginButton.frame = CGRectMake(CGRectGetMaxX(self.userName.frame), 30, 70, 30
+                                            );
         [self.loginButton.layer setCornerRadius:5];
         [self.loginButton setTitle:@"登录" forState:UIControlStateNormal];
         self.loginButton.backgroundColor = [UIColor colorWithRed:0.3 green:0.7 blue:0.5 alpha:1];

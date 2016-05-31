@@ -184,7 +184,7 @@
         
         [alertController addAction:cancleAction];
     }];
-   
+//   [MDDataBaseUtil setUserName:self.userName.text];
 
    
 }

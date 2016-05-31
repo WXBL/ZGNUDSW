@@ -8,14 +8,9 @@
 
 #import "WXMyInforController.h"
 #import "WXHeaderView.h"
-//#import "WXOrderController.h"
 #import "WXUserInforModel.h"
 #import "WXManagementController.h"
 #import "WXUserLoginViewController.h"
-//#import "WXCommendTableViewController.h"
-//#import "WXReceivingTableViewController.h"
-//#import "WXPayingTableViewController.h"
-//#import "WXReturnrefundTableVC.h"
 #import "WXGZProductViewController.h"
 #import "MDDataBaseUtil.h"
 #import "WXSafetyViewController.h"
@@ -24,6 +19,7 @@
 #import "AFNetworking.h"
 #import "AFHTTPRequestOperationManager.h"
 #import "WXAboutViewController.h"
+
 #define UPDATE_USER_IMAGE @""
 @interface WXMyInforController ()<WXHeaderViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 
@@ -39,6 +35,16 @@
 @property (nonatomic,strong)UILabel *numLabel;
 
 @property (nonatomic,strong)UIImage *picImage;
+
+
+@property (nonatomic,copy)NSString *appID;
+
+@property (nonatomic,copy)NSString *trackViewUrl;
+@property (nonatomic,copy)NSString *latesVersion;
+@property (nonatomic,copy)NSString *trackName;
+
+@property (nonatomic,strong)NSDictionary *infoDict;//获取当前版本号
+@property (nonatomic,copy)NSString *currentVersion;
 @end
 
 @implementation WXMyInforController
@@ -295,7 +301,7 @@
     if (section == 0) {
         return 2;
     }else if (section ==1){
-        return 4;
+        return 5;
     }
     return 1;
 
@@ -306,7 +312,7 @@
  */
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
-    return 0.1;
+    return 20;
 }
 
 /**
@@ -314,7 +320,7 @@
  */
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return 15;
+    return 0.1;
 }
 
 /**
@@ -365,10 +371,14 @@
                 cell.textLabel.text = @"清楚缓存";
                 break;
             case 2:
+                [cell.imageView setImage:[UIImage imageNamed:@"个人中心icon检查更新"]];
+                cell.textLabel.text = @"版本更新";
+                break;
+            case 3:
                 [cell.imageView setImage:[UIImage imageNamed:@"个人中心icon意见反馈"]];
                 cell.textLabel.text = @"意见反馈";
                 break;
-            case 3:
+            case 4:
                 [cell.imageView setImage:[UIImage imageNamed:@"个人中心icon关于"]];
                 cell.textLabel.text = @"关于我们";
                 break;
@@ -442,11 +452,16 @@
                         break;
                     case 2:
                     {
+                        [self checkVersion];
+                    }
+                        break;
+                    case 3:
+                    {
                         WXAdviceViewController *adviceViewController = [[WXAdviceViewController alloc]init];
                         [self presentViewController:adviceViewController animated:YES completion:nil];
                     }
                         break;
-                    case 3:{
+                    case 4:{
                         WXAboutViewController *aboutVC=[[WXAboutViewController alloc] init];
                         [self presentViewController:aboutVC animated:YES completion:nil];
                     }
@@ -466,6 +481,77 @@
         }
     }
 }
+
+-(void)checkVersion{
+    NSString *appID = @"com..$(PRODUCT_NAME:rfc1034identifier)";
+    _appID = appID;
+    //通过同步请求，解析json数据，得到了数据
+    NSError *error;
+    NSString *urlStr = [NSString stringWithFormat:@"http://itunes.apple.com/lookup?id=%@",appID];
+    NSURL *url = [NSURL URLWithString:urlStr];
+    NSURLRequest *request= [NSURLRequest requestWithURL:url];
+    NSData *response = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
+    
+    NSDictionary *appInfoDic = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingMutableLeaves error:&error];
+    if (error) {
+        NSLog(@"error : %@",[error description]);
+        //                return self;
+    }
+    NSArray *resultsArray = [appInfoDic objectForKey:@"resul†s"];
+    if (![resultsArray count]) {
+        NSLog(@"error: resultsArray==nil");
+        //                return self;
+    }
+    
+    NSDictionary *infoDic = [resultsArray objectAtIndex:0];
+    //这里需要，version，trackViewUrl，trackName
+    _latesVersion  = [infoDic objectForKey:@"version"];
+    _trackViewUrl = [infoDic objectForKey:@"trackViewUrl"];//地址trackViewUrl
+    _trackName = [infoDic objectForKey:@"trackName"];
+    
+    //获取此应用的版本号
+    _infoDict = [[NSBundle mainBundle]infoDictionary];
+    _currentVersion = [_infoDict objectForKey:@"CFBundleViersion"];
+    
+    double doubleCurrentVersion = [_currentVersion doubleValue];
+    double doubleUpdatVersion = [_latesVersion doubleValue];
+    
+    if (doubleCurrentVersion < doubleUpdatVersion) {
+        NSString *titleStr = [NSString stringWithFormat:@"检查更新：%@",kVersionId];
+        NSString *messageStr = [NSString stringWithFormat:@"发现新版本 （ %@ ）",_latesVersion];
+        
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:titleStr message:messageStr preferredStyle:UIAlertControllerStyleAlert];
+        
+        
+        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"升级" style:UIAlertActionStyleDefault handler:^(UIAlertAction *_Nonnull okAction){
+            [self VersionRelease];
+        }];
+        UIAlertAction *cancleAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+        
+        [alertController addAction:okAction];
+        [alertController addAction:cancleAction];
+        
+        [self presentViewController:alertController animated:YES completion:nil];
+    }else{
+        NSString *titleStr = [NSString stringWithFormat:@"检查更新：%@",kVersionId];
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:titleStr message:@"当前已是最新版本，无需更新" preferredStyle:UIAlertControllerStyleAlert];
+        
+        
+        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:nil];
+        UIAlertAction *cancleAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+        
+        [alertController addAction:okAction];
+        [alertController addAction:cancleAction];
+        
+        [self presentViewController:alertController animated:YES completion:nil];
+    }
+
+}
+
+-(void)VersionRelease{
+    [[UIApplication sharedApplication]openURL:[NSURL URLWithString:_trackViewUrl]];
+}
+
 -(void)finishClick{
     
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"提示" message:@"退出登录？" preferredStyle:UIAlertControllerStyleAlert];
