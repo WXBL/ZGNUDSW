@@ -17,6 +17,7 @@
 #import "AFNetworking.h"
 #import "WXProductModel.h"
 #import "WXImageModel.h"
+#import "MBProgressHUD.h"
 #define GET_PRODUCTSLIST_URL @""
 @interface WXFarmImportsController ()<UITextFieldDelegate,UICollectionViewDelegate,UICollectionViewDataSource>
 
@@ -24,6 +25,10 @@
 @property (nonatomic,strong)UIView *searchView;
 
 @property (nonatomic,strong)UICollectionView *collectionView;
+//声明一个搜索后的可变数组
+@property (nonatomic,strong)NSMutableArray *filteredArr;
+//显示当前列表内容
+@property (nonatomic,strong)NSMutableArray *currentArray;
 @end
 
 @implementation WXFarmImportsController
@@ -79,6 +84,7 @@
     }
     [AFMGR GET:path parameters:params success:^(AFHTTPRequestOperation *operation,NSArray *responseObject){
         self.productArray=[[[WXProductModel alloc] init] getProductListWithArrayJSON:responseObject];
+        self.currentArray=self.productArray;
         [self.collectionView reloadData];
     }failure:^(AFHTTPRequestOperation *operation,NSError *error){
         
@@ -136,6 +142,59 @@
     self.farmImports.leftViewMode = UITextFieldViewModeAlways;
     
 }
+#pragma mark - search搜索功能实现
+-(void)search:(id)sender{
+    NSString *searchString = self.farmImports.text;
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"Goods_Name contains [c] %@",searchString];
+    self.filteredArr = [NSMutableArray arrayWithArray:[self.currentArray filteredArrayUsingPredicate:predicate]];
+    if (self.filteredArr.count > 0) {
+        self.currentArray=self.filteredArr;
+    }else{
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        
+        hud.mode = MBProgressHUDModeText;
+        hud.labelText = @"没有搜索到您想要的商品";
+        hud.margin = 10.f;
+        hud.yOffset = 150.f;
+        hud.removeFromSuperViewOnHide = YES;
+        [hud hide:YES afterDelay:2];
+        
+    }
+    [self.collectionView reloadData];
+}
+-(BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+    [self search:nil];
+    return YES;
+}
+
+
+-(BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
+    
+    self.farmImports.text = nil;
+    self.currentArray = self.productArray;
+    return YES;
+}
+
+-(BOOL)textFieldShouldEndEditing:(UITextField *)textField{
+    
+    [self search:nil];
+    return YES;
+}
+
+-(BOOL)textFieldShouldClear:(UITextField *)textField{
+    
+    self.currentArray = self.productArray;
+    [self search:nil];
+    return YES;
+}
+
+-(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
+    
+    [self search:nil];
+    return YES;
+}
 
 -(void)addCollectionView{
     
@@ -180,7 +239,7 @@
 
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
     //    return self.keepArray.count;
-    return self.productArray.count;
+    return self.currentArray.count;
 //    return 1;
 }
 
@@ -241,7 +300,7 @@
     if (!cell) {
         NSLog(@"无法创建CollectionViewCell时打印，自定义的cell就不可能进来");
     }
-    WXProductModel *productmodel=[self.productArray objectAtIndex:indexPath.row];
+    WXProductModel *productmodel=[self.currentArray objectAtIndex:indexPath.row];
     WXImageModel *imgModel=[productmodel.Goods_Image firstObject];
     NSData *imgData=[NSData dataWithContentsOfURL:[NSURL URLWithString:imgModel.Image_ur]];
     [cell.farmImage setImage:[UIImage imageWithData:imgData]];
@@ -278,7 +337,7 @@
 //UICollectionView被选中时调用的方法
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     WXFarmDetailViewController *farmDetail = [[WXFarmDetailViewController alloc]init];
-    farmDetail.theProduct=[self.productArray objectAtIndex:indexPath.row];
+    farmDetail.theProduct=[self.currentArray objectAtIndex:indexPath.row];
     [self presentViewController:farmDetail animated:YES completion:nil];
     
 }

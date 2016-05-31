@@ -118,7 +118,7 @@
     [self.navigationController.navigationBar addSubview:self.searchBar];
     
     
-    
+    self.currentNewsArray=self.newsListArray;
     
     [self addScrollView];
     NSNotificationCenter *center=[NSNotificationCenter defaultCenter];
@@ -387,7 +387,7 @@
 #pragma mark - search搜索功能实现
 -(void)search:(id)sender{
     NSString *searchString = self.searchBar.text;
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"title contains [c] %@",searchString];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"Administrivia_Name contains [c] %@",searchString];
     self.filteredGoods = [NSMutableArray arrayWithArray:[self.newsListArray filteredArrayUsingPredicate:predicate]];
     if (self.filteredGoods.count > 0) {
         self.currentNewsArray=self.filteredGoods;
@@ -416,7 +416,7 @@
 -(BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
     
     self.searchBar.text = nil;
-    self.filteredGoods = self.newsListArray;
+    self.currentNewsArray = self.newsListArray;
     return YES;
 }
 
@@ -428,7 +428,7 @@
 
 -(BOOL)textFieldShouldClear:(UITextField *)textField{
     
-    self.filteredGoods = self.newsListArray;
+    self.currentNewsArray = self.newsListArray;
     [self search:nil];
     return YES;
 }
@@ -464,10 +464,10 @@
         //            }
         //        }
         //    }
-        if (self.newsListArray.count>10) {
+        if (self.currentNewsArray.count>10) {
             return 11;
         }else{
-            return self.newsListArray.count+1;
+            return self.currentNewsArray.count+1;
         }
         //        return 10;
         
@@ -536,7 +536,7 @@
                 cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellID];
             }
             
-            WXNewsModel *model=[self.newsListArray objectAtIndex:indexPath.row-1];
+            WXNewsModel *model=[self.currentNewsArray objectAtIndex:indexPath.row-1];
             UIView *newView = [[UIView alloc]initWithFrame:CGRectMake(10, 0, screenWidth - 20, 100)];
             newView.backgroundColor = [UIColor whiteColor];
             [newView.layer setCornerRadius:5];
@@ -609,7 +609,7 @@
             [self presentViewController:newVC animated:YES completion:nil];
         }else{
             WXNewsDetailViewController *newDetailViewController = [[WXNewsDetailViewController alloc]init];
-            newDetailViewController.theNew=[self.newsListArray objectAtIndex:indexPath.row-1];
+            newDetailViewController.theNew=[self.currentNewsArray objectAtIndex:indexPath.row-1];
             [self presentViewController:newDetailViewController animated:YES completion:nil];
         }
         

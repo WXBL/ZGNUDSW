@@ -44,7 +44,7 @@
     self.window.rootViewController = tabBar;
     
     [self.window makeKeyAndVisible];
-    [MDDataBaseUtil setUserName:@"ww"];
+
     [ShareSDK registerApp:@"1265d2d8495a0" activePlatforms:@[@(SSDKPlatformTypeSinaWeibo),@(SSDKPlatformTypeWechat),@(SSDKPlatformTypeQQ),] onImport:^(SSDKPlatformType plateformType){
         switch (plateformType) {
             case SSDKPlatformTypeQQ:

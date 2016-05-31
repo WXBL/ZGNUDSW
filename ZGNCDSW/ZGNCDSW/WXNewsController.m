@@ -14,12 +14,17 @@
 #import "WXTopView.h"
 #import "WXNewsModel.h"
 #import "WXImageModel.h"
+#import "MBProgressHUD.h"
 @interface WXNewsController ()<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate>
 
 @property (nonatomic,strong)UITextField *newsText;
 
 @property (nonatomic,strong)UITableView *newsTableView;
 @property (nonatomic,strong)UIView *searchView;
+//声明一个搜索后的可变数组
+@property (nonatomic,strong)NSMutableArray *filteredArr;
+//显示当前列表内容
+@property (nonatomic,strong)NSMutableArray *currentNewsArray;
 @end
 
 @implementation WXNewsController
@@ -31,7 +36,7 @@
     self.view.backgroundColor = [UIColor colorWithWhite:0.9 alpha:1];
     
     [self addTitleView];
-    
+    self.currentNewsArray=self.newsDataArray;
     [self addSearchView];
     [self addTableView];
 }
@@ -71,8 +76,59 @@
     
     
 }
+#pragma mark - search搜索功能实现
+-(void)search:(id)sender{
+    NSString *searchString = self.newsText.text;
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"Administrivia_Name contains [c] %@",searchString];
+    self.filteredArr = [NSMutableArray arrayWithArray:[self.newsDataArray filteredArrayUsingPredicate:predicate]];
+    if (self.filteredArr.count > 0) {
+        self.currentNewsArray=self.filteredArr;
+    }else{
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        
+        hud.mode = MBProgressHUDModeText;
+        hud.labelText = @"没有搜索到您想要的商品";
+        hud.margin = 10.f;
+        hud.yOffset = 150.f;
+        hud.removeFromSuperViewOnHide = YES;
+        [hud hide:YES afterDelay:2];
+        
+    }
+    [self.newsTableView reloadData];
+}
+-(BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+    [self search:nil];
+    return YES;
+}
 
 
+-(BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
+    
+    self.newsText.text = nil;
+    self.currentNewsArray = self.newsDataArray;
+    return YES;
+}
+
+-(BOOL)textFieldShouldEndEditing:(UITextField *)textField{
+    
+    [self search:nil];
+    return YES;
+}
+
+-(BOOL)textFieldShouldClear:(UITextField *)textField{
+    
+    self.currentNewsArray = self.newsDataArray;
+    [self search:nil];
+    return YES;
+}
+
+-(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
+    
+    [self search:nil];
+    return YES;
+}
 -(void)addTableView{
     
     self.newsTableView = [[UITableView alloc]initWithFrame:CGRectMake(0,CGRectGetMaxY(self.searchView.frame), screenWidth, screenHeigth  ) style:UITableViewStylePlain];
@@ -125,11 +181,7 @@
     
 }
 
--(BOOL)textFieldShouldReturn:(UITextField *)textField{
-    [self.newsText resignFirstResponder];
-    
-    return YES;
-}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -142,7 +194,7 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
-    return self.newsDataArray.count;
+    return self.currentNewsArray.count;
 //        return 1;
 }
 
@@ -154,8 +206,8 @@
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellStr];
     }
     
-    if (self.newsDataArray.count>0) {
-        WXNewsModel *model=[self.newsDataArray objectAtIndex:indexPath.row];
+    if (self.currentNewsArray.count>0) {
+        WXNewsModel *model=[self.currentNewsArray objectAtIndex:indexPath.row];
         UIView *newView = [[UIView alloc]initWithFrame:CGRectMake(10, 0, screenWidth - 20, 100)];
         newView.backgroundColor = [UIColor whiteColor];
         [newView.layer setCornerRadius:5];
@@ -202,7 +254,7 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     WXNewsDetailViewController *newDetailViewController = [[WXNewsDetailViewController alloc]init];
-    newDetailViewController.theNew=[self.newsDataArray objectAtIndex:indexPath.row];
+    newDetailViewController.theNew=[self.currentNewsArray objectAtIndex:indexPath.row];
     [self presentViewController:newDetailViewController animated:YES completion:nil];
 }
 
